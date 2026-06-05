@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>James Earl Medrano — AI Portfolio + Job Hunter Dashboard</title>
+<meta name="description" content="James Earl Medrano — AI Operations Analyst, IT Specialist, BS IT 2025. Open to work in Manila, PH."/>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#04050d;--bg2:#080a14;--panel:#0d0f1e;--panel2:#111328;--line:rgba(255,255,255,.07);--lc:rgba(0,240,255,.25);--lv:rgba(155,77,255,.25);--cyan:#00f0ff;--cy2:#5cf6ff;--vio:#9b4dff;--red:#ff2d55;--gold:#f7c843;--grn:#00ff88;--txt:#eceef8;--mut:rgba(236,238,248,.48);--fd:"Chakra Petch",sans-serif;--fm:"Space Mono",monospace}
+body.light{--bg:#f0f3fb;--bg2:#e4e9f5;--panel:#fff;--panel2:#f6f8fe;--line:rgba(0,0,0,.07);--lc:rgba(0,160,190,.3);--txt:#080b1a;--mut:rgba(8,11,26,.5)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:66px}
+body{background:var(--bg);color:var(--txt);font-family:var(--fd);line-height:1.65;overflow-x:hidden;cursor:none;transition:background .4s,color .4s}
+a{text-decoration:none;color:inherit;transition:.2s}
+button{font-family:var(--fd)}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--cyan),var(--vio))}
+#pbar{position:fixed;top:0;left:0;height:2px;z-index:9999;width:0%;background:linear-gradient(90deg,var(--cyan),var(--vio));box-shadow:0 0 10px var(--cyan);transition:width .08s}
+#hex{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.35}
+.pts{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.pt{position:absolute;border-radius:50%;animation:ptrise linear infinite}
+@keyframes ptrise{0%{transform:translateY(0) translateX(0);opacity:1}100%{transform:translateY(-110vh) translateX(var(--d));opacity:0}}
+.mglow{position:fixed;width:600px;height:600px;border-radius:50%;pointer-events:none;z-index:1;background:radial-gradient(circle,rgba(0,240,255,.04) 0%,transparent 70%);transform:translate(-50%,-50%)}
+#cur{position:fixed;top:0;left:0;pointer-events:none;z-index:999999;transform:translate(-50%,-50%)}
+#cur svg{transition:transform .11s}
+/* ── RIGHT CONTROLS — stacked, zero overlap ── */
+.btt{position:fixed;bottom:22px;right:22px;z-index:500;background:linear-gradient(135deg,var(--cyan),var(--vio));color:#020810;width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;font-weight:700;border:none;opacity:0;pointer-events:none;transition:.3s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%)}
+.btt.show{opacity:1;pointer-events:all}
+.btt:hover{box-shadow:0 0 20px rgba(0,240,255,.4)}
+.sndbtn{position:fixed;bottom:72px;right:22px;z-index:500;background:var(--panel);border:1px solid var(--line);color:var(--txt);width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:.2s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%)}
+.sndbtn:hover{border-color:var(--lc)}
+.dlr{position:fixed;bottom:122px;right:22px;z-index:500;background:var(--panel);border:1px solid rgba(247,200,67,.28);color:var(--gold);font-family:var(--fm);font-size:8px;letter-spacing:.1em;padding:0 11px;height:42px;display:flex;align-items:center;cursor:pointer;text-transform:uppercase;transition:.2s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%);white-space:nowrap}
+.dlr:hover{background:rgba(247,200,67,.07)}
+/* ── LEFT CONTROLS — AI orb + chatbot ── */
+.ai-orb{position:fixed;bottom:22px;left:68px;z-index:500;width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--vio));display:flex;align-items:center;justify-content:center;font-size:19px;cursor:pointer;border:none;animation:orbp 3s ease-in-out infinite;transition:.25s}
+.ai-orb:hover{transform:scale(1.08)}
+@keyframes orbp{0%,100%{box-shadow:0 0 16px rgba(0,240,255,.28),0 0 32px rgba(155,77,255,.18)}50%{box-shadow:0 0 26px rgba(0,240,255,.5),0 0 52px rgba(155,77,255,.3)}}
+.cbt{position:fixed;bottom:22px;left:122px;z-index:500;width:44px;height:44px;border-radius:50%;background:var(--panel);border:1px solid var(--lc);color:var(--txt);font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.25s}
+.cbt:hover{border-color:var(--cyan);box-shadow:0 0 12px rgba(0,240,255,.22);transform:scale(1.06)}
+.cbno{position:absolute;top:-2px;right:-2px;width:10px;height:10px;background:var(--red);border-radius:50%;border:2px solid var(--bg);animation:pip 1.5s infinite}
+/* AI FAB PANEL */
+.afp{position:fixed;bottom:78px;left:68px;z-index:499;width:274px;background:var(--panel);border:1px solid var(--lc);display:none;flex-direction:column;overflow:hidden;box-shadow:0 0 36px rgba(0,240,255,.1)}
+.afp::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--vio))}
+.afp.open{display:flex}
+.afp-h{display:flex;align-items:center;justify-content:space-between;padding:10px 13px;border-bottom:1px solid var(--line);background:rgba(0,240,255,.03)}
+.afp-t{font-family:var(--fm);font-size:9px;letter-spacing:.14em;color:var(--cyan);text-transform:uppercase}
+.afp-x{background:none;border:none;color:var(--mut);cursor:pointer;font-size:13px;font-family:var(--fm)}
+.afp-x:hover{color:var(--red)}
+.afp-btns{display:flex;flex-direction:column}
+.afp-btn{display:flex;align-items:center;gap:8px;padding:10px 13px;border:none;border-bottom:1px solid var(--line);background:transparent;color:var(--txt);font-family:var(--fd);font-size:11px;cursor:pointer;text-align:left;transition:.2s}
+.afp-btn:hover{background:rgba(0,240,255,.05);color:var(--cyan)}
+.afp-btn:last-child{border-bottom:none}
+.afp-res{padding:11px 13px;background:var(--bg2);font-family:var(--fm);font-size:10px;color:var(--mut);line-height:1.7;max-height:160px;overflow-y:auto;display:none;white-space:pre-wrap;border-top:1px solid var(--line)}
+.afp-res.show{display:block}
+.afp-res.loading{display:flex;align-items:center;gap:7px;color:var(--cyan)}
+.afp-res.loading::before{content:"";width:11px;height:11px;border:2px solid rgba(0,240,255,.2);border-top-color:var(--cyan);border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
+/* CHATBOT WINDOW */
+.cwin{position:fixed;bottom:76px;left:68px;z-index:498;width:308px;background:var(--panel);border:1px solid var(--lc);box-shadow:0 0 44px rgba(0,240,255,.07);display:none;flex-direction:column;overflow:hidden}
+.cwin::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--vio))}
+.cwin.open{display:flex}
+.cwh{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;border-bottom:1px solid var(--line);background:rgba(0,240,255,.03)}
+.cwhl{display:flex;align-items:center;gap:9px}
+.cwav{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,rgba(0,240,255,.14),rgba(155,77,255,.14));border:1px solid var(--lc);display:flex;align-items:center;justify-content:center;font-size:13px}
+.cwn{font-size:12px;font-weight:700;letter-spacing:.03em}
+.cws{font-family:var(--fm);font-size:8px;letter-spacing:.09em;color:var(--grn);display:flex;align-items:center;gap:4px}
+.cws::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--grn);animation:pip 1.4s infinite}
+.cwx{background:none;border:none;color:var(--mut);cursor:pointer;font-size:14px;font-family:var(--fm)}
+.cwx:hover{color:var(--red)}
+.cms{height:230px;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:8px;background:var(--bg2)}
+.cms::-webkit-scrollbar{width:2px}.cms::-webkit-scrollbar-thumb{background:var(--cyan)}
+.msg{display:flex;gap:7px;align-items:flex-end}
+.msg.u{flex-direction:row-reverse}
+.mav{width:23px;height:23px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;border:1px solid var(--line)}
+.mbub{max-width:200px;padding:7px 11px;font-size:11px;line-height:1.6;font-weight:300}
+.mbub.b{background:var(--panel);border:1px solid var(--line);border-radius:0 8px 8px 8px;color:var(--txt)}
+.mbub.u{background:linear-gradient(135deg,rgba(0,240,255,.1),rgba(155,77,255,.1));border:1px solid var(--lc);border-radius:8px 0 8px 8px;color:var(--cyan)}
+.ctyp{padding:4px 12px;font-family:var(--fm);font-size:8px;color:var(--mut);display:none;background:var(--bg2)}
+.ctyp.show{display:block}
+.qbtns{display:flex;flex-wrap:wrap;gap:4px;padding:7px 10px;border-top:1px solid var(--line);background:var(--bg2)}
+.qb{font-family:var(--fm);font-size:8px;letter-spacing:.08em;color:var(--cyan);background:rgba(0,240,255,.04);border:1px solid rgba(0,240,255,.18);padding:4px 8px;cursor:pointer;text-transform:uppercase;transition:.2s}
+.qb:hover{background:rgba(0,240,255,.12)}
+.cir{display:flex;border-top:1px solid var(--line)}
+.cin{flex:1;background:var(--panel);border:none;color:var(--txt);font-family:var(--fd);font-size:12px;padding:10px 12px;outline:none}
+.cse{background:linear-gradient(135deg,var(--cyan),var(--vio));color:#020810;border:none;padding:10px 13px;font-size:10px;cursor:pointer;font-weight:700;letter-spacing:.07em;font-family:var(--fm)}
+/* ACHIEVEMENT + TOAST + HR NOTIF */
+.ach{position:fixed;top:82px;right:22px;z-index:600;background:var(--panel);border:1px solid rgba(0,240,255,.38);padding:13px 17px;display:flex;align-items:center;gap:12px;transform:translateX(130%);transition:.45s cubic-bezier(.34,1.56,.64,1);max-width:280px;box-shadow:0 0 32px rgba(0,240,255,.1)}
+.ach::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--vio))}
+.ach.show{transform:none}
+.ach-ico{font-size:24px;flex:none}.ach-lbl{font-family:var(--fm);font-size:8px;letter-spacing:.16em;color:var(--cyan);text-transform:uppercase;margin-bottom:2px}.ach-ttl{font-size:12px;font-weight:700}
+.tst{position:fixed;bottom:88px;left:50%;transform:translateX(-50%) translateY(12px);z-index:700;background:var(--panel);border:1px solid rgba(0,255,136,.38);color:var(--grn);font-family:var(--fm);font-size:10px;letter-spacing:.11em;padding:9px 18px;opacity:0;transition:.28s;pointer-events:none;white-space:nowrap}
+.tst.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.hr-notif{position:fixed;top:82px;left:50%;transform:translateX(-50%) translateY(-150px);z-index:700;background:var(--panel);border:1px solid rgba(0,255,136,.4);padding:12px 20px;display:flex;align-items:center;gap:12px;box-shadow:0 0 36px rgba(0,255,136,.12);transition:.5s cubic-bezier(.34,1.56,.64,1);pointer-events:none;min-width:295px;max-width:88vw}
+.hr-notif::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--grn),var(--cyan))}
+.hr-notif.show{transform:translateX(-50%) translateY(0)}
+.hrn-ico{font-size:21px;flex-shrink:0}.hrn-lbl{font-family:var(--fm);font-size:7px;letter-spacing:.17em;color:var(--grn);text-transform:uppercase;margin-bottom:2px}.hrn-txt{font-size:12px;font-weight:700;color:var(--txt)}.hrn-sub{font-family:var(--fm);font-size:8px;color:var(--mut);margin-top:1px}
+/* SOCIAL SIDEBAR */
+.ssb{position:fixed;left:16px;top:50%;transform:translateY(-50%);z-index:200;display:flex;flex-direction:column;align-items:center;gap:9px}
+.ssb::before,.ssb::after{content:"";width:1px;height:44px;background:linear-gradient(180deg,transparent,rgba(0,240,255,.28))}
+.ssb::after{background:linear-gradient(180deg,rgba(0,240,255,.28),transparent)}
+.sb{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);background:var(--panel);font-size:14px;transition:.25s;position:relative;cursor:pointer;text-decoration:none;color:inherit}
+.sb:hover{border-color:var(--lc);box-shadow:0 0 12px rgba(0,240,255,.18);transform:scale(1.1)}
+.sb .tip{position:absolute;left:45px;top:50%;transform:translateY(-50%);background:var(--panel);border:1px solid var(--lc);font-family:var(--fm);font-size:8px;letter-spacing:.13em;color:var(--cyan);padding:3px 9px;white-space:nowrap;opacity:0;pointer-events:none;transition:.2s;z-index:10}
+.sb:hover .tip{opacity:1}
+/* NAV */
+.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(18px) saturate(150%);background:rgba(4,5,13,.88);border-bottom:1px solid var(--line);transition:background .4s}
+body.light .nav{background:rgba(240,243,251,.94)}
+.nav-in{display:flex;align-items:center;height:62px;padding:0 22px 0 60px;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;letter-spacing:.16em;text-transform:uppercase;flex-shrink:0}
+.bdot{width:8px;height:8px;background:var(--cyan);border-radius:50%;box-shadow:0 0 10px var(--cyan);animation:bdota 2s infinite}
+@keyframes bdota{0%,100%{box-shadow:0 0 10px var(--cyan)}50%{box-shadow:0 0 20px var(--cyan),0 0 38px rgba(0,240,255,.28)}}
+/* PAGE TABS */
+.ntabs{display:flex;align-items:center;gap:2px;flex-shrink:0}
+.ntab{font-family:var(--fm);font-size:9px;letter-spacing:.12em;text-transform:uppercase;padding:7px 14px;cursor:pointer;border:none;background:transparent;color:var(--mut);transition:.2s;border-bottom:2px solid transparent;border-top:2px solid transparent}
+.ntab:hover{color:var(--txt)}
+.ntab.act{color:var(--cyan);border-bottom-color:var(--cyan)}
+.nav-links{display:flex;align-items:center;gap:20px;font-size:11px;letter-spacing:.09em;text-transform:uppercase;list-style:none;flex:1;justify-content:center}
+.nav-links a{color:var(--mut);font-weight:500;position:relative;transition:.2s}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:1px;background:var(--cyan);transition:.25s}
+.nav-links a:hover,.nav-links a.act{color:var(--cyan)}
+.nav-links a:hover::after,.nav-links a.act::after{width:100%}
+.nav-r{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.ibtn{background:var(--panel);border:1px solid var(--line);color:var(--txt);width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;transition:.2s}
+.ibtn:hover{border-color:var(--lc)}
+.nhire{font-family:var(--fd);font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;background:linear-gradient(135deg,var(--cyan),var(--cy2));color:#020810;padding:8px 18px;cursor:pointer;border:none;transition:.2s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%)}
+.nhire:hover{box-shadow:0 0 20px rgba(0,240,255,.4);transform:translateY(-1px)}
+.mbtn{display:none;background:none;border:1px solid var(--lc);color:var(--txt);padding:7px 10px;cursor:pointer}
+.bars{position:relative;display:block;width:18px;height:12px}
+.bars i{position:absolute;left:0;width:100%;height:2px;background:currentColor;transition:.3s;font-style:normal}
+.bars i:nth-child(1){top:0}.bars i:nth-child(2){top:5px}.bars i:nth-child(3){top:10px}
+.mbtn.open .bars i:nth-child(1){top:5px;transform:rotate(45deg)}
+.mbtn.open .bars i:nth-child(2){opacity:0}
+.mbtn.open .bars i:nth-child(3){top:5px;transform:rotate(-45deg)}
+/* MOBILE MENU */
+.mmen{position:fixed;inset:0;z-index:90;display:flex;flex-direction:column;justify-content:center;background:rgba(4,5,13,.97);padding:44px 28px;transform:translateX(100%);transition:.4s cubic-bezier(.77,0,.18,1)}
+.mmen.open{transform:none}
+.mml a{display:flex;align-items:center;justify-content:space-between;font-size:clamp(18px,5vw,32px);font-weight:700;text-transform:uppercase;letter-spacing:-.01em;padding:10px 0;border-bottom:1px solid var(--line);color:var(--mut);transition:.25s}
+.mml a:hover{color:var(--cyan);padding-left:6px}
+.mmsoc{display:flex;gap:9px;margin-top:22px}
+.mmsoc a{width:38px;height:38px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);font-size:15px;transition:.2s}
+.mmsoc a:hover{border-color:var(--lc)}
+/* TERMINAL */
+.trm{display:none;position:fixed;bottom:22px;left:68px;z-index:520;width:420px;background:rgba(4,5,13,.97);border:1px solid rgba(0,240,255,.38);font-family:var(--fm);font-size:12px;box-shadow:0 0 44px rgba(0,240,255,.1)}
+.trm.open{display:block}
+.trh{display:flex;justify-content:space-between;align-items:center;padding:9px 13px;border-bottom:1px solid rgba(0,240,255,.14);background:rgba(0,240,255,.04)}
+.trh span{color:var(--cyan);letter-spacing:.1em;font-size:9px}
+.trc{background:none;border:none;color:var(--mut);cursor:pointer;font-size:13px;transition:.2s;font-family:var(--fm)}.trc:hover{color:var(--red)}
+.tro{padding:11px 13px;height:185px;overflow-y:auto;color:#5fffb0;line-height:1.9}
+.tro::-webkit-scrollbar{width:2px}.tro::-webkit-scrollbar-thumb{background:var(--cyan)}
+.trr{display:flex;align-items:center;padding:8px 13px;border-top:1px solid rgba(0,240,255,.14)}
+.trpr{color:var(--cyan);margin-right:8px;font-size:10px;flex-shrink:0}
+.trin{flex:1;background:none;border:none;color:#5fffb0;font-family:var(--fm);font-size:12px;outline:none}
+/* PAGE SYSTEM */
+.page{display:none}.page.act{display:block}
+/* LAYOUT */
+.wrap{max-width:1240px;margin:0 auto;padding:0 32px 0 64px;position:relative;z-index:5}
+.sec{padding:96px 0;position:relative}
+.kk{color:var(--cyan);font-family:var(--fm);font-size:10px;letter-spacing:.28em;text-transform:uppercase;display:flex;align-items:center;gap:11px;margin-bottom:12px}
+.kk::before{content:"";width:24px;height:1px;background:linear-gradient(90deg,var(--cyan),var(--vio))}
+.kk::after{content:"";flex:1;height:1px;max-width:54px;background:rgba(0,240,255,.16)}
+.stitle{font-size:clamp(24px,4vw,50px);font-weight:700;text-transform:uppercase;letter-spacing:-.02em;line-height:.95;margin-bottom:44px}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .72s ease,transform .72s ease}
+.rv.in{opacity:1;transform:none}
+/* TAGS */
+.tg{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;font-family:var(--fm);font-size:9px;letter-spacing:.15em;text-transform:uppercase;border:1px solid}
+.tg.c{color:var(--cyan);border-color:rgba(0,240,255,.3);background:rgba(0,240,255,.04)}
+.tg.v{color:var(--vio);border-color:rgba(155,77,255,.3);background:rgba(155,77,255,.04)}
+.tg.g{color:var(--gold);border-color:rgba(247,200,67,.3);background:rgba(247,200,67,.04)}
+.tg.r{color:var(--red);border-color:rgba(255,45,85,.3);background:rgba(255,45,85,.04)}
+.tg.gr{color:var(--grn);border-color:rgba(0,255,136,.3);background:rgba(0,255,136,.04)}
+/* BUTTONS */
+.btn{font-family:var(--fd);font-weight:600;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:12px 24px;cursor:pointer;border:none;transition:.25s;display:inline-flex;align-items:center;gap:8px;position:relative;overflow:hidden}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.09),transparent);opacity:0;transition:.25s}
+.btn:hover::after{opacity:1}
+.bp{background:linear-gradient(135deg,var(--cyan),var(--cy2));color:#020810}.bp:hover{transform:translateY(-2px);box-shadow:0 0 26px rgba(0,240,255,.42)}
+.bg{background:transparent;color:var(--txt);border:1px solid var(--lc)}.bg:hover{color:var(--cyan);border-color:var(--cyan);box-shadow:0 0 14px rgba(0,240,255,.14);transform:translateY(-2px)}
+.bv{background:linear-gradient(135deg,var(--vio),#7b35cc);color:#fff}.bv:hover{transform:translateY(-2px);box-shadow:0 0 26px rgba(155,77,255,.42)}
+.bgd{background:linear-gradient(135deg,var(--gold),#e8a500);color:#080b1a}.bgd:hover{transform:translateY(-2px);box-shadow:0 0 26px rgba(247,200,67,.38)}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pip{0%,100%{opacity:1}50%{opacity:.2}}
+/* HERO */
+.hero{min-height:calc(100vh - 62px);display:flex;align-items:center;position:relative;overflow:hidden;padding:56px 0}
+.hud{position:absolute;font-family:var(--fm);font-size:8px;letter-spacing:.14em;color:rgba(0,240,255,.2);pointer-events:none;line-height:2}
+.hud.tl{top:18px;left:62px}.hud.br{bottom:18px;right:22px;text-align:right}
+.hc{position:relative;z-index:5;max-width:880px}
+.hpre{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.lpip{width:7px;height:7px;border-radius:50%;background:var(--grn);box-shadow:0 0 8px var(--grn);animation:pip 1.4s infinite;flex-shrink:0}
+.ptxt{font-family:var(--fm);font-size:10px;letter-spacing:.16em;color:var(--mut);text-transform:uppercase}
+.ptxt b{color:var(--grn);font-weight:400}
+.hclk{display:inline-flex;align-items:center;gap:7px;font-family:var(--fm);font-size:10px;letter-spacing:.1em;color:var(--cyan);background:rgba(0,240,255,.05);border:1px solid rgba(0,240,255,.16);padding:4px 10px}
+.abadge{display:inline-flex;align-items:center;gap:7px;background:rgba(0,255,136,.06);border:1px solid rgba(0,255,136,.26);color:var(--grn);font-family:var(--fm);font-size:9px;letter-spacing:.14em;padding:4px 11px;text-transform:uppercase}
+.abadge::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--grn);animation:pip 1.4s infinite}
+.hname{font-size:clamp(42px,8vw,96px);font-weight:700;line-height:.9;letter-spacing:-.04em;text-transform:uppercase;margin-bottom:10px}
+.hn1{display:block;color:var(--txt)}.hn2{display:block;background:linear-gradient(90deg,var(--cyan),var(--vio));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hcur{display:inline-block;width:3px;height:.86em;background:var(--cyan);vertical-align:baseline;margin-left:2px;animation:cblink 1s step-end infinite}
+@keyframes cblink{0%,100%{opacity:1}50%{opacity:0}}
+.hrole{font-family:var(--fm);font-size:11px;letter-spacing:.2em;color:var(--mut);text-transform:uppercase;margin-bottom:9px;display:flex;align-items:center;gap:8px}
+.hrole::before{content:"//";color:var(--cyan)}
+.hsoc{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap}
+.hsoc a{display:flex;align-items:center;gap:5px;font-family:var(--fm);font-size:9px;letter-spacing:.1em;color:var(--mut);background:var(--panel);border:1px solid var(--line);padding:5px 11px;text-transform:uppercase;transition:.25s}
+.hsoc a:hover{color:var(--cyan);border-color:var(--lc)}
+.hdesc{font-size:14px;color:var(--mut);max-width:540px;font-weight:300;line-height:1.85;margin-bottom:28px}
+.hctas{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:40px}
+.sstrip{display:grid;grid-template-columns:repeat(4,1fr);max-width:640px;border:1px solid var(--lc)}
+.ssi{padding:14px 16px;border-right:1px solid var(--lc);position:relative;overflow:hidden;transition:.3s}
+.ssi:last-child{border-right:none}
+.ssi::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--vio));opacity:0;transition:.3s}
+.ssi:hover::before{opacity:1}
+.ssn{font-family:var(--fm);font-size:22px;font-weight:700;color:var(--cyan);line-height:1;margin-bottom:3px}
+.ssl{font-family:var(--fm);font-size:8px;letter-spacing:.11em;color:var(--mut);text-transform:uppercase}
+/* ABOUT / HIRE / EXPERIENCE / SKILLS / EDUCATION / CONTACT */
+.ag{display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:start}
+.atxt p{color:var(--mut);font-size:14px;line-height:1.88;margin-bottom:13px;font-weight:300}
+.atxt p strong{color:var(--txt);font-weight:600}
+.ahl{border-left:2px solid var(--cyan);padding:9px 14px;margin:18px 0;background:rgba(0,240,255,.03);font-family:var(--fm);font-size:11px;letter-spacing:.07em;color:var(--cyan);line-height:1.7}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.pill{font-family:var(--fm);font-size:9px;letter-spacing:.09em;color:var(--txt);background:var(--panel);border:1px solid var(--line);padding:5px 11px;text-transform:uppercase;transition:.22s;cursor:default}
+.pill:hover{border-color:var(--lc);color:var(--cyan)}
+.sp{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--lc);border:1px solid var(--lc)}
+.spc{background:var(--panel);padding:20px 17px}
+.spn{font-family:var(--fm);font-size:34px;font-weight:700;line-height:1;margin-bottom:4px;background:linear-gradient(135deg,var(--cyan),var(--vio));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.spl{font-family:var(--fm);font-size:8px;letter-spacing:.13em;color:var(--mut);text-transform:uppercase}
+.rw{margin-top:13px;background:var(--panel);border:1px solid var(--line);padding:16px;text-align:center}
+.rl{font-family:var(--fm);font-size:8px;letter-spacing:.16em;color:var(--mut);text-transform:uppercase;margin-bottom:10px}
+/* HIRE SECTION */
+.hg{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:start}
+.hl p{color:var(--mut);font-size:14px;line-height:1.85;margin-bottom:12px;font-weight:300}
+.hl p strong{color:var(--txt);font-weight:600}
+.hrcards{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.hrc{display:flex;align-items:flex-start;gap:12px;background:var(--panel);border:1px solid var(--line);padding:14px;transition:.25s}
+.hrc:hover{border-color:var(--lc);transform:translateX(4px)}
+.hrc-icon{font-size:20px;flex-shrink:0}
+.hrc-t strong{font-size:13px;font-weight:700;display:block;margin-bottom:2px}
+.hrc-t span{font-size:12px;color:var(--mut);line-height:1.55}
+.hr2{display:flex;flex-direction:column;gap:12px}
+.pcard{background:var(--panel);border:1px solid var(--lc);padding:24px;text-align:center;position:relative;overflow:hidden}
+.pcard::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--vio))}
+.pav{width:74px;height:74px;border-radius:50%;background:linear-gradient(135deg,rgba(0,240,255,.14),rgba(155,77,255,.14));border:2px solid var(--lc);display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 12px;box-shadow:0 0 20px rgba(0,240,255,.13)}
+.pname{font-size:15px;font-weight:700;letter-spacing:.02em;margin-bottom:3px}
+.ptitle{font-family:var(--fm);font-size:9px;letter-spacing:.14em;color:var(--cyan);text-transform:uppercase;margin-bottom:10px}
+.ptags{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-bottom:13px}
+.psoc{display:flex;justify-content:center;gap:6px}
+.psoc a{width:30px;height:30px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);font-size:13px;transition:.25s}
+.psoc a:hover{border-color:var(--lc);transform:translateY(-2px)}
+.avcard{background:rgba(0,255,136,.04);border:1px solid rgba(0,255,136,.2);padding:16px}
+.avt{font-family:var(--fm);font-size:8px;letter-spacing:.16em;color:var(--grn);text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.avt::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--grn);animation:pip 1.4s infinite}
+.avi{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--mut);padding:3px 0}
+.avi::before{content:"✓";color:var(--grn);font-weight:700;font-size:11px}
+.qf{background:var(--panel);border:1px solid var(--line);padding:16px}
+.qft{font-family:var(--fm);font-size:8px;letter-spacing:.16em;color:var(--cyan);text-transform:uppercase;margin-bottom:10px}
+.qfr{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid var(--line);font-size:11px}
+.qfr:last-child{border-bottom:none}
+.qfk{color:var(--mut);font-family:var(--fm);font-size:8px;letter-spacing:.08em;text-transform:uppercase}
+.qfv{color:var(--txt);font-weight:600;font-size:11px;text-align:right;max-width:150px}
+/* TIMELINE */
+.tl{position:relative;max-width:860px}
+.tl::before{content:"";position:absolute;left:0;top:8px;bottom:0;width:1px;background:linear-gradient(180deg,var(--cyan),var(--vio),transparent)}
+.tli{padding:0 0 50px 38px;position:relative}
+.tli:last-child{padding-bottom:0}
+.tld{position:absolute;left:-6px;top:5px;width:13px;height:13px;border-radius:50%;background:var(--bg);border:2px solid var(--cyan);box-shadow:0 0 10px var(--cyan)}
+.tli:nth-child(2) .tld{border-color:var(--vio);box-shadow:0 0 10px var(--vio)}
+.tli:nth-child(3) .tld{border-color:var(--gold);box-shadow:0 0 10px var(--gold)}
+.tli.cur .tld::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1px solid var(--cyan);animation:rp 2s infinite}
+@keyframes rp{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0;transform:scale(1.8)}}
+.tlm{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.tlp{font-family:var(--fm);font-size:10px;letter-spacing:.12em;color:var(--cyan);text-transform:uppercase}
+.tli:nth-child(2) .tlp{color:var(--vio)}.tli:nth-child(3) .tlp{color:var(--gold)}
+.tlc{background:var(--panel);border:1px solid var(--line);padding:24px;position:relative;overflow:hidden;transition:.3s}
+.tlc::before{content:"";position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(180deg,var(--cyan),var(--cy2))}
+.tli:nth-child(2) .tlc::before{background:linear-gradient(180deg,var(--vio),#c084fc)}
+.tli:nth-child(3) .tlc::before{background:linear-gradient(180deg,var(--gold),#fde68a)}
+.tlc:hover{border-color:var(--lc);box-shadow:0 4px 28px rgba(0,240,255,.06)}
+.tlr{font-size:17px;font-weight:700;letter-spacing:.02em;margin-bottom:3px}
+.tlco{font-family:var(--fm);font-size:9px;letter-spacing:.11em;color:var(--mut);text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.tlco::before{content:"//";color:var(--cyan);font-size:10px}
+.tli:nth-child(2) .tlco::before{color:var(--vio)}.tli:nth-child(3) .tlco::before{color:var(--gold)}
+.tll{list-style:none;display:flex;flex-direction:column;gap:8px}
+.tll li{font-size:13px;color:var(--mut);font-weight:300;padding-left:16px;position:relative;line-height:1.65}
+.tll li::before{content:"▸";position:absolute;left:0;color:var(--cyan);font-size:10px;line-height:1.65}
+.tli:nth-child(2) .tll li::before{color:var(--vio)}.tli:nth-child(3) .tll li::before{color:var(--gold)}
+.tlt{display:flex;flex-wrap:wrap;gap:5px;margin-top:13px}
+.tltg{font-family:var(--fm);font-size:8px;letter-spacing:.08em;padding:3px 9px;border:1px solid var(--line);text-transform:uppercase;color:var(--mut);transition:.2s}
+.tltg:hover{border-color:var(--lc);color:var(--cyan)}
+/* SKILLS */
+.skgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line)}
+.skc{background:var(--panel);padding:26px 22px;position:relative;overflow:hidden;transition:.3s;cursor:default}
+.skc:hover{background:var(--panel2)}
+.skn{font-family:var(--fm);font-size:9px;letter-spacing:.17em;color:rgba(0,240,255,.24);margin-bottom:12px}
+.ski{font-size:32px;margin-bottom:12px;display:block}
+.skname{font-size:14px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;margin-bottom:8px}
+.skdesc{font-size:12px;color:var(--mut);line-height:1.72;font-weight:300;margin-bottom:14px}
+.sbars{display:flex;flex-direction:column;gap:7px}
+.sbar{display:flex;flex-direction:column;gap:3px}
+.sbm{display:flex;justify-content:space-between;font-family:var(--fm);font-size:8px;letter-spacing:.08em;text-transform:uppercase}
+.sbm span:first-child{color:var(--mut)}.sbm span:last-child{color:var(--cyan)}
+.skc:nth-child(2) .sbm span:last-child{color:var(--vio)}.skc:nth-child(3) .sbm span:last-child{color:var(--gold)}
+.sbtr{height:3px;background:rgba(255,255,255,.07);border-radius:2px;overflow:hidden}
+.sbfi{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--cyan),var(--cy2));transform:scaleX(0);transform-origin:left;transition:transform 1.2s cubic-bezier(.4,0,.2,1)}
+.skc:nth-child(2) .sbfi{background:linear-gradient(90deg,var(--vio),#c084fc)}.skc:nth-child(3) .sbfi{background:linear-gradient(90deg,var(--gold),#fde68a)}
+/* EDUCATION */
+.edh{background:var(--panel);border:1px solid var(--lc);position:relative;overflow:hidden;max-width:800px}
+.edh::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),var(--vio),transparent)}
+.edi{display:flex;align-items:stretch}
+.edb{width:104px;flex-shrink:0;background:rgba(0,240,255,.04);border-right:1px solid var(--lc);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 10px;gap:8px}
+.edb .bico{font-size:40px}.edb .blbl{font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--cyan);text-transform:uppercase;text-align:center;line-height:1.6}
+.edbody{padding:28px 30px;flex:1}
+.edsc{font-family:var(--fm);font-size:9px;letter-spacing:.18em;color:var(--cyan);text-transform:uppercase;margin-bottom:7px}
+.eddg{font-size:19px;font-weight:700;letter-spacing:.01em;line-height:1.2;margin-bottom:8px}
+.edyr{font-family:var(--fm);font-size:9px;letter-spacing:.14em;color:var(--mut);display:flex;align-items:center;gap:6px}
+.edyr::before{content:"//";color:var(--vio)}
+.edtgs{display:flex;gap:6px;flex-wrap:wrap;margin-top:16px}
+/* CONTACT */
+.clo{display:grid;grid-template-columns:1fr 1.3fr;gap:48px;align-items:start;max-width:980px}
+.cit{font-size:15px;font-weight:700;letter-spacing:.02em;margin-bottom:4px}
+.cis{font-size:13px;color:var(--mut);font-weight:300;line-height:1.75;margin-bottom:18px}
+.csg{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:16px}
+.csc{display:flex;align-items:center;gap:9px;padding:11px 13px;background:var(--panel);border:1px solid var(--line);transition:.25s;color:inherit}
+.csc:hover{border-color:var(--lc);transform:translateX(4px)}
+.csci{font-size:17px;flex-shrink:0}
+.cscl{font-family:var(--fm);font-size:7px;letter-spacing:.12em;color:var(--mut);text-transform:uppercase;margin-bottom:2px}
+.cscv{font-size:11px;font-weight:600;color:var(--txt)}
+.cics{display:flex;flex-direction:column;gap:7px}
+.cic{display:flex;align-items:center;gap:10px;padding:13px 14px;background:var(--panel);border:1px solid var(--line);transition:.25s;color:inherit;position:relative}
+.cic:hover{border-color:var(--lc);transform:translateX(4px)}
+.cpb{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:rgba(0,240,255,.07);border:1px solid rgba(0,240,255,.18);color:var(--cyan);font-family:var(--fm);font-size:8px;letter-spacing:.08em;padding:3px 7px;cursor:pointer;transition:.2s;opacity:0;text-transform:uppercase}
+.cic:hover .cpb{opacity:1}.cpb.done{color:var(--grn);border-color:rgba(0,255,136,.28);background:rgba(0,255,136,.07)}
+.cicn{width:34px;height:34px;background:rgba(0,240,255,.07);border:1px solid var(--lc);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.cicl{font-family:var(--fm);font-size:7px;letter-spacing:.12em;color:var(--mut);text-transform:uppercase;margin-bottom:2px}
+.cicv{font-size:12px;font-weight:600;color:var(--txt)}
+.fw{background:var(--panel);border:1px solid var(--line);padding:30px;position:relative;overflow:hidden}
+.fw::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--vio))}
+.ftitle{font-family:var(--fm);font-size:9px;letter-spacing:.17em;color:var(--cyan);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.ftitle::after{content:"";flex:1;height:1px;background:var(--lc)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.fg{display:flex;flex-direction:column;gap:4px;margin-bottom:10px}
+.fl{font-family:var(--fm);font-size:8px;letter-spacing:.13em;color:var(--mut);text-transform:uppercase}
+.fi,.fta{background:var(--bg2);border:1px solid var(--line);color:var(--txt);font-family:var(--fd);font-size:12px;padding:10px 12px;outline:none;transition:.25s;width:100%}
+.fi:focus,.fta:focus{border-color:var(--lc)}
+.fta{resize:vertical;min-height:106px;line-height:1.6}
+.fi::placeholder,.fta::placeholder{color:rgba(236,238,248,.2)}
+.fst{margin-top:9px;padding:9px 12px;font-family:var(--fm);font-size:10px;letter-spacing:.09em;display:none}
+.fst.ok{display:block;background:rgba(0,255,136,.05);border:1px solid rgba(0,255,136,.2);color:var(--grn)}
+.fst.er{display:block;background:rgba(255,45,85,.05);border:1px solid rgba(255,45,85,.2);color:var(--red)}
+/* FOOTER */
+footer{background:var(--bg);border-top:1px solid var(--line);padding:32px 0 20px;position:relative;z-index:5}
+.ftop{display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px;margin-bottom:22px}
+.fbl{display:flex;align-items:center;gap:9px;font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
+.ftag{font-size:12px;color:var(--mut);font-weight:300;line-height:1.7;margin-bottom:13px;max-width:230px}
+.fsoc{display:flex;gap:5px}
+.fsoc a{width:29px;height:29px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);font-size:12px;transition:.2s}.fsoc a:hover{border-color:var(--lc)}
+.fct{font-family:var(--fm);font-size:8px;letter-spacing:.16em;color:var(--cyan);text-transform:uppercase;margin-bottom:11px}
+.flinks{display:flex;flex-direction:column;gap:7px}
+.flinks a{font-size:12px;color:var(--mut);transition:.2s;display:flex;align-items:center;gap:5px}
+.flinks a::before{content:"→";font-size:9px;color:var(--cyan)}.flinks a:hover{color:var(--cyan);padding-left:3px}
+.fbot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:9px;padding-top:18px;border-top:1px solid var(--line)}
+.fcp{font-family:var(--fm);font-size:9px;letter-spacing:.1em;color:var(--mut)}.fcp span{color:var(--cyan)}
+/* ════ DASHBOARD ════ */
+.dash-wrap{display:grid;grid-template-columns:196px 1fr;min-height:calc(100vh - 62px)}
+.dsb{background:var(--panel);border-right:1px solid var(--line);overflow-y:auto;padding:12px 0;position:sticky;top:62px;height:calc(100vh - 62px)}
+.dsb::-webkit-scrollbar{width:2px}.dsb::-webkit-scrollbar-thumb{background:var(--cyan)}
+.dsb-lbl{font-family:var(--fm);font-size:8px;letter-spacing:.2em;color:rgba(0,240,255,.36);text-transform:uppercase;padding:8px 12px 4px;display:block}
+.dsi{display:flex;align-items:center;gap:8px;padding:8px 10px;cursor:pointer;font-size:11px;color:var(--mut);margin:0 7px 1px;border-radius:3px;border:1px solid transparent;transition:.2s}
+.dsi:hover{background:rgba(0,240,255,.04);color:var(--txt)}.dsi.act{background:rgba(0,240,255,.08);color:var(--cyan);border-color:rgba(0,240,255,.18)}
+.dsi-ico{font-size:13px;flex-shrink:0;width:17px;text-align:center}
+.dsb-div{height:1px;background:var(--line);margin:6px 11px}
+.dsbadge{margin-left:auto;background:var(--cyan);color:#020810;font-family:var(--fm);font-size:7px;font-weight:700;padding:2px 5px;border-radius:2px;min-width:15px;text-align:center}
+.dsb-pro{display:flex;align-items:center;gap:8px;padding:10px 12px;border-top:1px solid var(--line);margin-top:auto}
+.dsb-av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,rgba(0,240,255,.14),rgba(155,77,255,.14));border:1px solid var(--lc);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.dsb-name{font-size:11px;font-weight:600;margin-bottom:1px}.dsb-role{font-family:var(--fm);font-size:8px;letter-spacing:.08em;color:var(--cyan);text-transform:uppercase}
+.dmain{overflow-y:auto;background:var(--bg2)}
+.dmi{padding:26px 30px;max-width:1040px}
+.dpage{display:none}.dpage.act{display:block}
+.dph{margin-bottom:22px}
+.dph-kk{font-family:var(--fm);font-size:9px;letter-spacing:.24em;color:var(--cyan);text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.dph-kk::before{content:"";width:16px;height:1px;background:linear-gradient(90deg,var(--cyan),var(--vio))}
+.dph-title{font-size:clamp(19px,2.8vw,30px);font-weight:700;text-transform:uppercase;letter-spacing:-.02em;line-height:1}
+.dph-sub{font-size:12px;color:var(--mut);font-weight:300;margin-top:4px}
+/* Dashboard cards */
+.dc{background:var(--panel);border:1px solid var(--line);padding:19px;position:relative;overflow:hidden;margin-bottom:13px;transition:.2s}
+.dc::before{content:"";position:absolute;top:0;left:0;right:0;height:2px}
+.dc.c1::before{background:linear-gradient(90deg,var(--cyan),var(--cy2))}.dc.c2::before{background:linear-gradient(90deg,var(--vio),#c084fc)}.dc.c3::before{background:linear-gradient(90deg,var(--gold),#fde68a)}.dc.c4::before{background:linear-gradient(90deg,var(--grn),#5fffb0)}.dc.c5::before{background:linear-gradient(90deg,var(--red),#ff7096)}
+.dc-title{font-size:13px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;margin-bottom:2px}
+.dc-sub{font-family:var(--fm);font-size:8px;letter-spacing:.1em;color:var(--mut);text-transform:uppercase;margin-bottom:12px}
+.dg2{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.dg3{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+.dg4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.dstat{background:var(--panel2);border:1px solid var(--line);padding:13px;text-align:center}
+.dstat-n{font-family:var(--fm);font-size:22px;font-weight:700;background:linear-gradient(135deg,var(--cyan),var(--vio));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:3px}
+.dstat-l{font-family:var(--fm);font-size:7px;letter-spacing:.12em;color:var(--mut);text-transform:uppercase}
+/* AI tool inputs */
+.ai-lbl{font-family:var(--fm);font-size:8px;letter-spacing:.14em;color:var(--mut);text-transform:uppercase;margin-bottom:4px;margin-top:9px;display:block}
+.ai-lbl:first-child{margin-top:0}
+.ai-inp,.ai-ta,.ai-sel{background:var(--bg);border:1px solid var(--line);color:var(--txt);font-family:var(--fd);font-size:12px;padding:9px 11px;outline:none;transition:.2s;width:100%;margin-bottom:9px}
+.ai-inp:focus,.ai-ta:focus,.ai-sel:focus{border-color:var(--lc)}
+.ai-ta{resize:vertical;min-height:84px;line-height:1.6}
+.ai-inp::placeholder,.ai-ta::placeholder{color:rgba(236,238,248,.2)}
+.ai-sel{cursor:pointer}
+.ai-out{margin-top:10px;background:rgba(0,240,255,.03);border:1px solid rgba(0,240,255,.14);padding:11px;font-size:12px;color:var(--mut);line-height:1.75;display:none;position:relative;white-space:pre-wrap;word-break:break-word;font-weight:300}
+.ai-out.show{display:block}
+.ai-out.loading{display:flex;align-items:center;gap:8px;color:var(--cyan);font-family:var(--fm);font-size:9px;letter-spacing:.11em}
+.ai-out.loading::before{content:"";width:12px;height:12px;border:2px solid rgba(0,240,255,.2);border-top-color:var(--cyan);border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
+.aicopy{position:absolute;top:7px;right:7px;background:rgba(0,240,255,.07);border:1px solid rgba(0,240,255,.18);color:var(--cyan);font-family:var(--fm);font-size:8px;letter-spacing:.08em;padding:3px 7px;cursor:pointer;text-transform:uppercase;transition:.2s}
+.aicopy:hover{background:rgba(0,240,255,.14)}
+.tone-row{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-bottom:9px}
+.tone-btn{background:var(--bg);border:1px solid var(--line);color:var(--mut);font-family:var(--fm);font-size:8px;letter-spacing:.08em;padding:6px 4px;cursor:pointer;text-transform:uppercase;transition:.2s;text-align:center}
+.tone-btn:hover,.tone-btn.sel{border-color:var(--lc);color:var(--cyan);background:rgba(0,240,255,.06)}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px}
+.chip{font-family:var(--fm);font-size:8px;letter-spacing:.07em;padding:4px 9px;border:1px solid rgba(0,240,255,.22);color:var(--cyan);background:rgba(0,240,255,.05);cursor:pointer;text-transform:uppercase;transition:.2s}
+.chip:hover,.chip.sel{background:rgba(0,240,255,.15);border-color:var(--cyan)}
+.qchips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px}
+.qchip{font-family:var(--fm);font-size:8px;letter-spacing:.07em;color:var(--vio);background:rgba(155,77,255,.07);border:1px solid rgba(155,77,255,.22);padding:4px 9px;cursor:pointer;text-transform:uppercase;transition:.2s}
+.qchip:hover{background:rgba(155,77,255,.18)}
+/* Job Tracker */
+.jtstats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);margin-bottom:8px}
+.jtst{background:var(--panel2);padding:8px;text-align:center}
+.jtst-n{font-family:var(--fm);font-size:15px;font-weight:700;color:var(--cyan);line-height:1}
+.jtst-l{font-family:var(--fm);font-size:7px;letter-spacing:.09em;color:var(--mut);text-transform:uppercase;margin-top:2px}
+.jtlist{display:flex;flex-direction:column;gap:5px;max-height:190px;overflow-y:auto;margin-bottom:8px}
+.jtlist::-webkit-scrollbar{width:2px}.jtlist::-webkit-scrollbar-thumb{background:var(--cyan)}
+.jtrow{display:flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--line);padding:8px 10px}
+.jtdot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.jtdot.applied{background:var(--gold)}.jtdot.interview{background:var(--cyan)}.jtdot.offer{background:var(--grn)}.jtdot.rejected{background:var(--red)}
+.jtinfo{flex:1}.jtrl{font-size:11px;font-weight:600;line-height:1.2}.jtco{font-family:var(--fm);font-size:8px;color:var(--mut);letter-spacing:.07em;text-transform:uppercase}
+.jtdt{font-family:var(--fm);font-size:8px;color:var(--mut);flex-shrink:0}
+.jtdel{background:none;border:none;color:rgba(255,45,85,.38);cursor:pointer;font-size:13px;transition:.2s;font-family:var(--fm)}.jtdel:hover{color:var(--red)}
+.jtadd{display:flex;gap:5px;flex-wrap:wrap}
+.jtinp{flex:1;min-width:80px;background:var(--bg);border:1px solid var(--line);color:var(--txt);font-family:var(--fd);font-size:11px;padding:7px 8px;outline:none}
+.jtinp:focus{border-color:var(--lc)}
+.jtsel{background:var(--bg);border:1px solid var(--line);color:var(--txt);font-family:var(--fd);font-size:11px;padding:7px 8px;outline:none;cursor:pointer}
+.jtaddbtn{background:var(--panel);border:1px solid var(--lc);color:var(--cyan);font-family:var(--fm);font-size:8px;letter-spacing:.1em;padding:7px 10px;cursor:pointer;text-transform:uppercase;transition:.2s;white-space:nowrap}
+.jtaddbtn:hover{background:rgba(0,240,255,.07)}
+/* Follow-up */
+.fu-steps{display:flex;flex-direction:column;gap:4px;margin-bottom:9px}
+.fu-step{display:flex;align-items:center;gap:8px;padding:7px 10px;background:var(--bg);border:1px solid var(--line);cursor:pointer;transition:.2s}
+.fu-step:hover,.fu-step.act{border-color:var(--lc);color:var(--cyan)}
+.fu-day{font-family:var(--fm);font-size:8px;letter-spacing:.08em;color:var(--cyan);width:48px;flex-shrink:0}
+.fu-lbl{font-size:11px;color:var(--mut)}
+/* Video */
+.vidscreen{background:#000819;min-height:114px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:15px;margin-bottom:9px;text-align:center;border:1px solid rgba(0,240,255,.1)}
+.vid-q{font-size:13px;font-weight:600;line-height:1.5;color:var(--txt);max-width:330px}
+.vid-sub{font-family:var(--fm);font-size:8px;letter-spacing:.12em;color:rgba(0,240,255,.36);text-transform:uppercase;margin-bottom:6px}
+.vid-ctrl{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
+.vid-rec{font-family:var(--fm);font-size:8px;color:var(--red);letter-spacing:.08em;display:none;align-items:center;gap:5px}
+.vid-rec.show{display:flex}
+.vid-rec::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--red);animation:pip 1s infinite}
+/* HR Feed */
+.nfeed{display:flex;flex-direction:column;gap:6px;max-height:250px;overflow-y:auto}
+.nfeed::-webkit-scrollbar{width:2px}.nfeed::-webkit-scrollbar-thumb{background:var(--cyan)}
+.nitem{display:flex;align-items:flex-start;gap:9px;padding:10px 12px;background:var(--panel2);border:1px solid var(--line);border-left:3px solid var(--cyan)}
+.nicon{font-size:16px;flex-shrink:0}
+.ntime{font-family:var(--fm);font-size:7px;letter-spacing:.08em;color:var(--mut);text-transform:uppercase;margin-bottom:2px}
+.ntxt{font-size:12px;font-weight:600;margin-bottom:1px}.nsub{font-family:var(--fm);font-size:8px;color:var(--mut)}
+/* Dashboard skill bars */
+.sk-bars{display:flex;flex-direction:column;gap:6px}
+.sk-r{display:flex;align-items:center;gap:7px}
+.sk-l{font-family:var(--fm);font-size:8px;letter-spacing:.07em;color:var(--mut);text-transform:uppercase;width:96px;flex-shrink:0}
+.sk-b{flex:1;height:4px;background:rgba(255,255,255,.07);border-radius:2px;overflow:hidden}
+.sk-f{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--cyan),var(--cy2));width:0;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
+.sk-v{font-family:var(--fm);font-size:8px;color:var(--cyan);width:24px;text-align:right;flex-shrink:0}
+/* Email preview */
+.ep{background:var(--bg);border:1px solid var(--line);padding:13px;margin-top:9px;display:none;position:relative}
+.ep.show{display:block}
+.ep-subj{font-family:var(--fm);font-size:8px;letter-spacing:.12em;color:var(--cyan);text-transform:uppercase;margin-bottom:6px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.ep-body{font-size:11px;color:var(--mut);line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.ep-copy{position:absolute;top:8px;right:8px;background:rgba(0,240,255,.07);border:1px solid rgba(0,240,255,.18);color:var(--cyan);font-family:var(--fm);font-size:8px;letter-spacing:.08em;padding:3px 7px;cursor:pointer;text-transform:uppercase}
+.ep-copy:hover{background:rgba(0,240,255,.14)}
+/* ATS */
+.ats-list{display:flex;flex-direction:column;gap:5px;margin-bottom:10px}
+.ats-c{display:flex;align-items:center;gap:6px;font-family:var(--fm);font-size:9px;letter-spacing:.07em;color:var(--mut);text-transform:uppercase}
+.ats-c.ok::before{content:"✓";color:var(--grn);font-weight:700}.ats-c.no::before{content:"✗";color:var(--red);font-weight:700}.ats-c.wn::before{content:"!";color:var(--gold);font-weight:700}
+/* Salary bench */
+.sal-bench{display:flex;flex-direction:column;gap:6px}
+.sal-bench-r{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid var(--line);font-size:11px}
+.sal-bench-r:last-child{border-bottom:none}
+/* Career timeline */
+.crtl{position:relative;padding-left:18px}
+.crtl::before{content:"";position:absolute;left:0;top:4px;bottom:4px;width:1px;background:linear-gradient(180deg,var(--cyan),var(--vio),transparent)}
+.crtl-item{position:relative;padding:0 0 14px 14px}
+.crtl-dot{position:absolute;left:-5px;top:4px;width:10px;height:10px;border-radius:50%;background:var(--bg);border:2px solid var(--cyan);box-shadow:0 0 7px var(--cyan)}
+.crtl-time{font-family:var(--fm);font-size:8px;letter-spacing:.1em;color:var(--cyan);text-transform:uppercase;margin-bottom:2px}
+.crtl-txt{font-size:11px;color:var(--mut);line-height:1.6}.crtl-txt strong{color:var(--txt)}
+/* Career path nodes */
+.cpn-row{display:flex;gap:0;margin-bottom:12px;overflow-x:auto;padding-bottom:2px}
+.cpn{flex:1;min-width:88px;text-align:center;position:relative;padding-bottom:8px}
+.cpn::after{content:"";position:absolute;top:16px;left:50%;right:-50%;height:1px;background:linear-gradient(90deg,var(--cyan),rgba(0,240,255,.1))}
+.cpn:last-child::after{display:none}
+.cpn-dot{width:30px;height:30px;border-radius:50%;border:2px solid var(--cyan);background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:12px;margin:0 auto 6px;box-shadow:0 0 8px rgba(0,240,255,.16)}
+.cpn-role{font-family:var(--fm);font-size:8px;letter-spacing:.07em;color:var(--mut);text-transform:uppercase;line-height:1.4}
+.cpn-year{font-family:var(--fm);font-size:8px;color:var(--cyan);margin-top:2px}
+/* Print */
+@media print{body{cursor:auto!important;background:#fff!important;color:#000!important}#cur,.ssb,.pts,.mglow,.ach,.tst,.sndbtn,.btt,.dlr,.trm,.cbt,.cwin,.ai-orb,.afp,#hex,.nav,.hr-notif{display:none!important}.wrap{padding:0 16px!important}.sec{padding:28px 0!important}.hero{min-height:unset!important;padding:24px 0!important}.rv{opacity:1!important;transform:none!important}.sbfi{transform:scaleX(1)!important}.hud{display:none!important}.dash-wrap{display:none!important}#page-portfolio{display:block!important}}
+/* Responsive */
+@media(max-width:980px){.dg2,.dg3,.dg4{grid-template-columns:1fr}.hg,.ag,.clo,.skgrid,.ftop{grid-template-columns:1fr}.sstrip{grid-template-columns:repeat(2,1fr)}.edi{flex-direction:column}.edb{width:100%;flex-direction:row;justify-content:flex-start;border-right:none;border-bottom:1px solid var(--lc);padding:14px}.csg{grid-template-columns:1fr}.dash-wrap{grid-template-columns:1fr}.dsb{display:none}}
+@media(max-width:700px){.wrap{padding:0 15px}.ssb{display:none}.mbtn{display:flex}.nav-links,.nhire,.ntabs{display:none}.frow{grid-template-columns:1fr}.cwin{width:calc(100vw - 26px);left:14px}.trm{width:calc(100vw - 26px);left:14px}.cbt{left:22px;bottom:76px}.ai-orb{left:22px;bottom:22px}.afp{left:14px}.hud{display:none}.sstrip{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<!-- CURSOR -->
+<div id="cur"><svg width="30" height="30" viewBox="-15 -15 30 30" fill="none"><circle id="cr" r="10" stroke="#00f0ff" stroke-width="1" fill="none" opacity=".85"/><circle id="cd" r="2" fill="#00f0ff"/><line id="lh1" x1="-15" y1="0" x2="-12" y2="0" stroke="#00f0ff" stroke-width="1"/><line id="lh2" x1="12" y1="0" x2="15" y2="0" stroke="#00f0ff" stroke-width="1"/><line id="lv1" x1="0" y1="-15" x2="0" y2="-12" stroke="#00f0ff" stroke-width="1"/><line id="lv2" x1="0" y1="12" x2="0" y2="15" stroke="#00f0ff" stroke-width="1"/></svg></div>
+<canvas id="hex"></canvas>
+<div id="pbar"></div>
+<div class="pts" id="pts"></div>
+<div class="mglow" id="mg"></div>
+<div class="tst" id="tst"></div>
+<div class="ach" id="ach"><div class="ach-ico" id="aico">🏆</div><div><div class="ach-lbl">Achievement Unlocked</div><div class="ach-ttl" id="attl"></div></div></div>
+<div class="hr-notif" id="hr-notif"><div class="hrn-ico" id="hrn-ico">👀</div><div><div class="hrn-lbl">Live Activity</div><div class="hrn-txt" id="hrn-txt">HR Manager is viewing your profile</div><div class="hrn-sub" id="hrn-sub">📍 Makati City · Just now</div></div></div>
+<div class="ssb">
+  <a class="sb" href="https://www.linkedin.com/feed/" target="_blank" rel="noopener">💼<span class="tip">LinkedIn</span></a>
+  <a class="sb" href="https://github.com/youngNwis31" target="_blank" rel="noopener">🐙<span class="tip">GitHub</span></a>
+  <a class="sb" href="https://www.facebook.com/eaarlsuuu" target="_blank" rel="noopener">📘<span class="tip">Facebook</span></a>
+  <a class="sb" href="https://www.instagram.com/eaarlsu/" target="_blank" rel="noopener">📸<span class="tip">Instagram</span></a>
+  <a class="sb" href="https://x.com/eaarlsuu" target="_blank" rel="noopener">𝕏<span class="tip">X/Twitter</span></a>
+</div>
+<!-- RIGHT CONTROLS — perfectly stacked, no overlap -->
+<button class="btt" id="btt" title="Back to top">↑</button>
+<button class="sndbtn" id="sndbtn" title="Toggle sound">🔊</button>
+<button class="dlr" id="dlr">⬇ Print</button>
+<!-- LEFT CONTROLS — AI tools, separate from right -->
+<button class="ai-orb" id="ai-orb" title="Quick AI Actions">🤖</button>
+<div class="afp" id="afp">
+  <div class="afp-h"><span class="afp-t">// Quick AI</span><button class="afp-x" id="afp-x">✕</button></div>
+  <div class="afp-btns">
+    <button class="afp-btn" data-a="pitch">⚡ HR Elevator Pitch</button>
+    <button class="afp-btn" data-a="summary">📄 Resume Summary Line</button>
+    <button class="afp-btn" data-a="unique">💎 What Makes James Unique?</button>
+    <button class="afp-btn" data-a="hire">✅ Top 3 Reasons to Hire</button>
+    <button class="afp-btn" data-a="salary">💰 2026 PH Salary Benchmark</button>
+    <button class="afp-btn" data-a="linkedin">💼 Quick LinkedIn Headline</button>
+    <button class="afp-btn" data-a="cold">📧 Cold Email Opening Line</button>
+    <button class="afp-btn" data-a="ats">🤖 ATS Keyword Cheat Sheet</button>
+  </div>
+  <div class="afp-res" id="afp-res"></div>
+</div>
+<button class="cbt" id="cbt" title="Chat with JEM-BOT">🗨️<span class="cbno" id="cbno"></span></button>
+<div class="cwin" id="cwin">
+  <div class="cwh"><div class="cwhl"><div class="cwav">🤖</div><div><div class="cwn">JEM-BOT</div><div class="cws">Claude AI · Online</div></div></div><button class="cwx" id="cwx">✕</button></div>
+  <div class="cms" id="cms"></div>
+  <div class="ctyp" id="ctyp">// Claude is thinking…</div>
+  <div class="qbtns">
+    <button class="qb" data-q="Why hire James?">Why Hire?</button>
+    <button class="qb" data-q="James top skills">Skills</button>
+    <button class="qb" data-q="James work experience">Experience</button>
+    <button class="qb" data-q="How to contact James">Contact</button>
+    <button class="qb" data-q="James social media links">Socials</button>
+  </div>
+  <div class="cir"><input class="cin" id="cin" type="text" placeholder="Ask about James…" autocomplete="off"/><button class="cse" id="cse">SEND</button></div>
+</div>
+<div class="trm" id="trm">
+  <div class="trh"><span>// JAMES_OS v4.0 · MANILA_SHELL</span><button class="trc" id="trc">✕</button></div>
+  <div class="tro" id="tro"><div style="color:var(--cyan)">JAMES_OS v4.0 · Malate Manila PH</div><div style="color:rgba(0,240,255,.3)">Type "help" for commands.</div></div>
+  <div class="trr"><span class="trpr">james@manila:~$</span><input class="trin" id="trin" type="text" placeholder="command…" autocomplete="off" spellcheck="false"/></div>
+</div>
+<div class="mmen" id="mmen">
+  <div class="mml">
+    <a href="#hire" onclick="closeMM()">Why Hire <span>→</span></a>
+    <a href="#about" onclick="closeMM()">About <span>→</span></a>
+    <a href="#experience" onclick="closeMM()">Experience <span>→</span></a>
+    <a href="#skills" onclick="closeMM()">Skills <span>→</span></a>
+    <a href="#contact" onclick="closeMM()">Contact <span>→</span></a>
+  </div>
+  <div class="mmsoc">
+    <a href="https://www.linkedin.com/feed/" target="_blank">💼</a>
+    <a href="https://github.com/youngNwis31" target="_blank">🐙</a>
+    <a href="https://www.facebook.com/eaarlsuuu" target="_blank">📘</a>
+    <a href="https://www.instagram.com/eaarlsu/" target="_blank">📸</a>
+    <a href="https://x.com/eaarlsuu" target="_blank">𝕏</a>
+  </div>
+  <a href="mailto:Workwitheaaarl@gmail.com" class="btn bp" style="margin-top:22px;justify-content:center">▶ Hire Me</a>
+</div>
+<nav class="nav">
+  <div class="nav-in">
+    <div class="brand"><div class="bdot"></div>JEM</div>
+    <div class="ntabs">
+      <button class="ntab act" id="tab-portfolio" data-tab="portfolio">Portfolio</button>
+      <button class="ntab" id="tab-dashboard" data-tab="dashboard">🤖 AI Dashboard</button>
+    </div>
+    <ul class="nav-links" id="pnav">
+      <li><a href="#hire">Why Hire</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-r">
+      <button class="ibtn" id="thbtn" title="Toggle theme">🌙</button>
+      <button class="nhire" id="nhire">Hire Me</button>
+      <button class="mbtn" id="mbtn"><span class="bars"><i></i><i></i><i></i></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════ PORTFOLIO PAGE ══════════ -->
+<div id="page-portfolio" class="page act">
+<section class="hero" id="home">
+  <div class="hud tl">// SYSTEM ONLINE<br>RUNNER: JAMES_EARL_M<br>CLASS: AI_OPS_ANALYST<br>LOC: MALATE.MANILA.PH</div>
+  <div class="hud br">STATUS: OPEN_TO_WORK<br>DEGREE: BS_IT_2025<br>BUILD: v5.0</div>
+  <div class="wrap"><div class="hc">
+    <div class="hpre"><div class="lpip"></div><div class="ptxt">Open to Work · <b>Available Now</b></div><div class="hclk">🕐 <span id="clk">--:--:--</span> PHT</div><span class="abadge">Actively Hiring</span></div>
+    <h1 class="hname"><span class="hn1" id="tw1"></span><span class="hn2" id="tw2"></span><span class="hcur" id="twcur"></span></h1>
+    <div class="hrole"><span id="srole">AI Operations Analyst &amp; Technical Specialist</span></div>
+    <div class="hsoc">
+      <a href="https://www.linkedin.com/feed/" target="_blank" rel="noopener">💼 LinkedIn</a>
+      <a href="https://github.com/youngNwis31" target="_blank" rel="noopener">🐙 GitHub</a>
+      <a href="https://www.facebook.com/eaarlsuuu" target="_blank" rel="noopener">📘 Facebook</a>
+      <a href="https://www.instagram.com/eaarlsu/" target="_blank" rel="noopener">📸 Instagram</a>
+      <a href="https://x.com/eaarlsuu" target="_blank" rel="noopener">𝕏 Twitter</a>
+    </div>
+    <p class="hdesc">IT graduate bridging cutting-edge AI systems with operational excellence. Specialized in LLM optimization, prompt engineering, and data-driven IT operations — running the grid from Manila.</p>
+    <div class="hctas">
+      <a href="#contact" class="btn bp">▶ Hire Me</a>
+      <a href="https://www.linkedin.com/feed/" target="_blank" class="btn bv">💼 LinkedIn</a>
+      <a href="https://github.com/youngNwis31" target="_blank" class="btn bg">🐙 GitHub</a>
+      <button class="btn bg" onclick="switchTab('dashboard')">🤖 AI Dashboard</button>
+    </div>
+    <div class="sstrip">
+      <div class="ssi"><div class="ssn" id="c1">0</div><div class="ssl">Years Active</div></div>
+      <div class="ssi"><div class="ssn" id="c2">0</div><div class="ssl">Companies</div></div>
+      <div class="ssi"><div class="ssn">BS IT</div><div class="ssl">Grad 2025</div></div>
+      <div class="ssi"><div class="ssn">LLM</div><div class="ssl">AI Analyst II</div></div>
+    </div>
+  </div></div>
+</section>
+
+<section class="sec" id="hire"><div class="wrap">
+  <div class="kk rv">00 · For Recruiters</div><h2 class="stitle rv">Why Hire James?</h2>
+  <div class="hg">
+    <div class="hl rv">
+      <p>James is a <strong>rare hybrid talent</strong> — can optimize AI models in the morning, configure a firewall in the afternoon, and produce Power BI dashboards by end of day. Three industries in two years.</p>
+      <p>He brings <strong>hands-on LLM experience</strong> from Innodata, <strong>financial IT ops</strong> from a global BPO, and <strong>cybersecurity deployment</strong> from an enterprise IT firm — all before turning 25.</p>
+      <div class="hrcards">
+        <div class="hrc"><div class="hrc-icon">🤖</div><div class="hrc-t"><strong>AI-Native Professional</strong><span>Real LLM fine-tuning, prompt engineering, and model QA — not just a user of AI, but a builder of AI systems.</span></div></div>
+        <div class="hrc"><div class="hrc-icon">⚡</div><div class="hrc-t"><strong>Fast Learner, Multi-Industry</strong><span>3 companies across cybersecurity, BPO financial IT, and AI research in 2 years. Rapid upskilling proven by results.</span></div></div>
+        <div class="hrc"><div class="hrc-icon">📊</div><div class="hrc-t"><strong>Data-Driven Decision Maker</strong><span>Built Power BI dashboards and Excel reports for international credit card operations. Strong analytical communication.</span></div></div>
+        <div class="hrc"><div class="hrc-icon">🛡️</div><div class="hrc-t"><strong>Security-Conscious IT Mindset</strong><span>Deployed firewalls, configured servers, handled sensitive financial data — understands compliance dimensions of IT.</span></div></div>
+      </div>
+    </div>
+    <div class="hr2 rv">
+      <div class="pcard">
+        <div class="pav">👨‍💻</div>
+        <div class="pname">James Earl Medrano</div>
+        <div class="ptitle">AI Ops Analyst · BS IT 2025</div>
+        <div class="ptags"><span class="tg gr">Open to Work</span><span class="tg c">Manila, PH</span><span class="tg v">LLM Specialist</span></div>
+        <div class="psoc">
+          <a href="https://www.linkedin.com/feed/" target="_blank">💼</a>
+          <a href="https://github.com/youngNwis31" target="_blank">🐙</a>
+          <a href="https://www.facebook.com/eaarlsuuu" target="_blank">📘</a>
+          <a href="https://www.instagram.com/eaarlsu/" target="_blank">📸</a>
+          <a href="https://x.com/eaarlsuu" target="_blank">𝕏</a>
+        </div>
+      </div>
+      <div class="avcard">
+        <div class="avt">Availability</div>
+        <div class="avi">Full-time positions</div>
+        <div class="avi">Remote &amp; hybrid roles</div>
+        <div class="avi">Freelance contracts</div>
+        <div class="avi">Can start immediately</div>
+      </div>
+      <div class="qf">
+        <div class="qft">// Quick Facts</div>
+        <div class="qfr"><span class="qfk">Location</span><span class="qfv">Malate, Manila PH</span></div>
+        <div class="qfr"><span class="qfk">Degree</span><span class="qfv">BS Information Technology</span></div>
+        <div class="qfr"><span class="qfk">School</span><span class="qfv">PLM Intramuros · 2025</span></div>
+        <div class="qfr"><span class="qfk">Latest Role</span><span class="qfv">AI Analyst II (LLM)</span></div>
+        <div class="qfr"><span class="qfk">Email</span><span class="qfv">Workwitheaaarl@gmail.com</span></div>
+        <div class="qfr"><span class="qfk">Phone</span><span class="qfv">+63 976 318 9033</span></div>
+        <div class="qfr"><span class="qfk">GitHub</span><span class="qfv">github.com/youngNwis31</span></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" id="about" style="background:linear-gradient(180deg,var(--bg2),var(--bg))"><div class="wrap">
+  <div class="ag">
+    <div class="atxt rv">
+      <div class="kk">01 · Profile</div><h2 class="stitle">About<br>James Earl</h2>
+      <p>I'm <strong>James Earl Medrano</strong>, a BS IT graduate from Pamantasan ng Lungsod ng Maynila with expertise spanning AI operations, IT infrastructure, and financial technology.</p>
+      <p>My career spans <strong>cybersecurity environments, international financial IT operations</strong>, and <strong>cutting-edge LLM development</strong> — a uniquely versatile skill set for modern tech roles.</p>
+      <p>Driven by the intersection of AI and practical IT — building systems that are both intelligent and reliable, from Manila to wherever the work takes me.</p>
+      <div class="ahl">// Connect on LinkedIn, GitHub, or any social below.</div>
+      <div class="pills">
+        <span class="pill">Prompt Engineering</span><span class="pill">LLM Evaluation</span><span class="pill">Data Annotation</span>
+        <span class="pill">Technical Support</span><span class="pill">Power BI</span><span class="pill">Advanced Excel</span>
+        <span class="pill">CRM Systems</span><span class="pill">Network Ops</span><span class="pill">Cybersecurity</span><span class="pill">AI QA</span>
+      </div>
+    </div>
+    <div class="rv">
+      <div class="sp" style="margin-bottom:13px">
+        <div class="spc"><div class="spn" id="sa1">0</div><div class="spl">Years Experience</div></div>
+        <div class="spc"><div class="spn" id="sa2">0</div><div class="spl">Companies</div></div>
+        <div class="spc"><div class="spn" style="font-size:26px">2025</div><div class="spl">IT Graduate</div></div>
+        <div class="spc"><div class="spn" style="font-size:26px">LLM</div><div class="spl">AI Analyst II</div></div>
+      </div>
+      <div class="rw"><div class="rl">// Skill Radar</div><canvas id="radar" width="250" height="210"></canvas></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" id="experience"><div class="wrap">
+  <div class="kk rv">02 · Career</div><h2 class="stitle rv">Work Experience</h2>
+  <div class="tl">
+    <div class="tli cur rv"><div class="tld"></div>
+      <div class="tlm"><span class="tlp">Jan 2026 – May 2026</span><span class="tg r">Most Recent</span></div>
+      <div class="tlc"><div class="tlr">A.I. Analyst II (LLM)</div><div class="tlco">Innodata Knowledge Services · Mandaue City, Cebu</div>
+        <ul class="tll"><li>Engineered complex prompts to optimize LLM performance, accuracy, and logic.</li><li>Executed high-quality data annotation and side-by-side analysis for supervised fine-tuning.</li><li>Conducted rigorous AI model testing to identify vulnerabilities and improve model behavior.</li></ul>
+        <div class="tlt"><span class="tltg">LLM Optimization</span><span class="tltg">Prompt Engineering</span><span class="tltg">Data Annotation</span><span class="tltg">AI QA</span></div>
+      </div>
+    </div>
+    <div class="tli rv"><div class="tld"></div>
+      <div class="tlm"><span class="tlp">Jan 2025 – Jan 2026</span><span class="tg v">IT Operations</span></div>
+      <div class="tlc"><div class="tlr">IT Support &amp; Case Resolution</div><div class="tlco">Alorica Teleservices · Cyberpod Centris, Manila</div>
+        <ul class="tll"><li>Managed IT-driven case resolutions for an international credit card company.</li><li>Administered user account security: tracing, freezing, holding, and deleting sensitive data.</li><li>Utilized Power BI and Advanced Excel for analytics and technical operational reports.</li><li>Updated CRM databases to streamline data privacy compliance.</li></ul>
+        <div class="tlt"><span class="tltg">Power BI</span><span class="tltg">Advanced Excel</span><span class="tltg">CRM</span><span class="tltg">Data Privacy</span></div>
+      </div>
+    </div>
+    <div class="tli rv"><div class="tld"></div>
+      <div class="tlm"><span class="tlp">Feb 2024 – Jul 2024</span><span class="tg g">Cybersecurity</span></div>
+      <div class="tlc"><div class="tlr">Jr. Technical Support</div><div class="tlco">BESPOKE IT Project Corp. · GC Corporate Plaza, Makati</div>
+        <ul class="tll"><li>Deployed and configured secure workspaces, POS systems, servers, and firewalls.</li><li>Diagnosed and resolved complex hardware and software issues to minimize downtime.</li><li>Developed comprehensive technical documentation to standardize troubleshooting procedures.</li></ul>
+        <div class="tlt"><span class="tltg">Cybersecurity</span><span class="tltg">Server Config</span><span class="tltg">Firewall</span><span class="tltg">POS Systems</span></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" id="skills" style="background:linear-gradient(180deg,var(--bg2),var(--bg))"><div class="wrap">
+  <div class="kk rv">03 · Capabilities</div><h2 class="stitle rv">Core Skills</h2>
+  <div class="skgrid">
+    <div class="skc rv"><div class="skn">01</div><span class="ski">🤖</span><div class="skname">AI &amp; LLM Optimization</div>
+      <div class="skdesc">Prompt engineering, model evaluation, supervised fine-tuning, data annotation, AI quality assurance.</div>
+      <div class="sbars">
+        <div class="sbar"><div class="sbm"><span>Prompt Engineering</span><span>92%</span></div><div class="sbtr"><div class="sbfi" data-w=".92"></div></div></div>
+        <div class="sbar"><div class="sbm"><span>LLM Evaluation</span><span>88%</span></div><div class="sbtr"><div class="sbfi" data-w=".88"></div></div></div>
+        <div class="sbar"><div class="sbm"><span>Data Annotation</span><span>90%</span></div><div class="sbtr"><div class="sbfi" data-w=".90"></div></div></div>
+        <div class="sbar"><div class="sbm"><span>AI QA / Testing</span><span>85%</span></div><div class="sbtr"><div class="sbfi" data-w=".85"></div></div></div>
+      </div>
+    </div>
+    <div class="skc rv"><div class="skn">02</div><span class="ski">🛠️</span><div class="skname">Technical Support &amp; IT Ops</div>
+      <div class="skdesc">Hardware/software troubleshooting, network configuration, firewall and server deployment.</div>
+      <div class="sbars">
+        <div class="sbar"><div class="sbm"><span>Troubleshooting</span><span>90%</span></div><div class="sbtr"><div class="sbfi" data-w=".90"></div></div></div>
+        <div class="sbar"><div class="sbm"><span>Network / Servers</span><span>82%</span></div><div class="sbtr"><div class="sbfi" data-w=".82"></div></div></div>
+        <div class="sbar"><div class="sbm"><span>Cybersecurity</span><span>78%</span></div><div class="sbtr"><div class="sbfi" data-w=".78"></div></div></div>
+        <div class="sbar"><div class="sbm"><span>Documentation</span><span>86%</span></div><div class="sbtr"><div class="sbfi" data-w=".86"></div></div></div>
+      </div>
+    </div>
+    <div class="skc rv"><div class="skn">03</div><span class="ski">📊</span><div class="skname">Financial IT &amp; Data Mgmt</div>
+      <div class="skdesc">Power BI reporting, Advanced Excel analytics, CRM database maintenance, account security.</div>
+      <div class="sbars">
+        <div class="sbar"><div class="sbm"><span>Power BI</span><span>84%</span></div><div class="sbtr"><div class="sbfi" data-w=".84"></div></div></div>
+        <div class="sbar"><div class="sbm"><span>Advanced Excel</span><span>88%</span></div><div class="sbtr"><div class="sbfi" data-w=".88"></div></div></div>
+        <div class="sbar"><div class="sbm"><span>CRM Systems</span><span>80%</span></div><div class="sbtr"><div class="sbfi" data-w=".80"></div></div></div>
+        <div class="sbar"><div class="sbm"><span>Data Privacy</span><span>82%</span></div><div class="sbtr"><div class="sbfi" data-w=".82"></div></div></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" id="education"><div class="wrap">
+  <div class="kk rv">04 · Background</div><h2 class="stitle rv">Education</h2>
+  <div class="edh rv"><div class="edi">
+    <div class="edb"><div class="bico">🎓</div><div class="blbl">BS IT<br>Graduate<br>2025</div></div>
+    <div class="edbody"><div class="edsc">Pamantasan ng Lungsod ng Maynila · Intramuros, Manila</div><div class="eddg">Bachelor of Science in<br>Information Technology</div><div class="edyr">Graduated: 2025</div><div class="edtgs"><span class="tg c">BS IT</span><span class="tg v">PLM Alumni</span><span class="tg g">Manila, PH</span></div></div>
+  </div></div>
+</div></section>
+
+<section class="sec" id="contact" style="background:linear-gradient(180deg,var(--bg),var(--bg2))"><div class="wrap">
+  <div class="kk rv">05 · Reach Out</div><h2 class="stitle rv">Contact</h2>
+  <div class="clo">
+    <div class="rv">
+      <div class="cit">Let's Build Something</div>
+      <div class="cis">Open to full-time, freelance, and remote roles. Connect on any platform.</div>
+      <div class="csg">
+        <a class="csc" href="https://www.linkedin.com/feed/" target="_blank"><span class="csci">💼</span><div><div class="cscl">LinkedIn</div><div class="cscv">James Earl Medrano</div></div></a>
+        <a class="csc" href="https://github.com/youngNwis31" target="_blank"><span class="csci">🐙</span><div><div class="cscl">GitHub</div><div class="cscv">youngNwis31</div></div></a>
+        <a class="csc" href="https://www.facebook.com/eaarlsuuu" target="_blank"><span class="csci">📘</span><div><div class="cscl">Facebook</div><div class="cscv">eaarlsuuu</div></div></a>
+        <a class="csc" href="https://www.instagram.com/eaarlsu/" target="_blank"><span class="csci">📸</span><div><div class="cscl">Instagram</div><div class="cscv">@eaarlsu</div></div></a>
+        <a class="csc" href="https://x.com/eaarlsuu" target="_blank" style="grid-column:1/-1"><span class="csci">𝕏</span><div><div class="cscl">X / Twitter</div><div class="cscv">@eaarlsuu</div></div></a>
+      </div>
+      <div class="cics">
+        <a class="cic" href="mailto:Workwitheaaarl@gmail.com"><div class="cicn">✉️</div><div><div class="cicl">Email</div><div class="cicv">Workwitheaaarl@gmail.com</div></div><button class="cpb" data-copy="Workwitheaaarl@gmail.com" onclick="event.preventDefault();event.stopPropagation()">Copy</button></a>
+        <a class="cic" href="tel:+639763189033"><div class="cicn">📱</div><div><div class="cicl">Phone</div><div class="cicv">+63 976 318 9033</div></div><button class="cpb" data-copy="+639763189033" onclick="event.preventDefault();event.stopPropagation()">Copy</button></a>
+        <div class="cic"><div class="cicn">📍</div><div><div class="cicl">Location</div><div class="cicv">Malate, Manila, Philippines</div></div></div>
+      </div>
+    </div>
+    <div class="fw rv">
+      <div class="ftitle">// Send Message via Gmail</div>
+      <div class="frow"><div class="fg"><label class="fl">Your Name</label><input class="fi" id="fn" type="text" placeholder="Maria Santos"/></div><div class="fg"><label class="fl">Your Email</label><input class="fi" id="fe" type="email" placeholder="you@email.com"/></div></div>
+      <div class="fg"><label class="fl">Subject</label><input class="fi" id="fs" type="text" placeholder="Job Opportunity · Collaboration…"/></div>
+      <div class="fg"><label class="fl">Message</label><textarea class="fta" id="fm" placeholder="Tell me about the role or project…"></textarea></div>
+      <button class="btn bp" style="width:100%;justify-content:center;margin-top:2px" id="fsub">▶ Open Gmail &amp; Send</button>
+      <div class="fst" id="fst"></div>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="ftop">
+    <div><div class="fbl"><div class="bdot"></div>JEM</div><div class="ftag">AI Operations Analyst and IT Specialist. BS IT 2025, Malate Manila.</div>
+      <div class="fsoc"><a href="https://www.linkedin.com/feed/" target="_blank">💼</a><a href="https://github.com/youngNwis31" target="_blank">🐙</a><a href="https://www.facebook.com/eaarlsuuu" target="_blank">📘</a><a href="https://www.instagram.com/eaarlsu/" target="_blank">📸</a><a href="https://x.com/eaarlsuu" target="_blank">𝕏</a></div>
+    </div>
+    <div><div class="fct">Navigation</div><div class="flinks"><a href="#hire">Why Hire Me</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#education">Education</a><a href="#contact">Contact</a></div></div>
+    <div><div class="fct">Connect</div><div class="flinks"><a href="https://www.linkedin.com/feed/" target="_blank">LinkedIn</a><a href="https://github.com/youngNwis31" target="_blank">GitHub</a><a href="https://www.facebook.com/eaarlsuuu" target="_blank">Facebook</a><a href="https://www.instagram.com/eaarlsu/" target="_blank">Instagram</a><a href="https://x.com/eaarlsuu" target="_blank">X / Twitter</a><a href="mailto:Workwitheaaarl@gmail.com">Email</a></div></div>
+  </div>
+  <div class="fbot"><div class="fcp">© 2026 <span>James Earl Medrano</span> · All rights reserved · Malate, Manila PH</div><div class="fcp">BS IT 2025 · Built with <span>♥</span></div></div>
+</div></footer>
+</div><!-- end portfolio page --><!-- ══════════ DASHBOARD PAGE ══════════ -->
+<div id="page-dashboard" class="page">
+<div class="dash-wrap">
+<div class="dsb">
+  <span class="dsb-lbl">Overview</span>
+  <div class="dsi act" data-dp="overview"><span class="dsi-ico">📊</span>Dashboard<span class="dsbadge">Live</span></div>
+  <div class="dsi" data-dp="tracker"><span class="dsi-ico">📋</span>Job Tracker</div>
+  <div class="dsi" data-dp="activity"><span class="dsi-ico">🔔</span>HR Activity<span class="dsbadge">8</span></div>
+  <div class="dsb-div"></div>
+  <span class="dsb-lbl">AI Tools</span>
+  <div class="dsi" data-dp="jobfit"><span class="dsi-ico">🎯</span>Job Fit Analyzer</div>
+  <div class="dsi" data-dp="coverletter"><span class="dsi-ico">✍️</span>Cover Letter</div>
+  <div class="dsi" data-dp="interview"><span class="dsi-ico">🎤</span>Interview Coach</div>
+  <div class="dsi" data-dp="coldemail"><span class="dsi-ico">📧</span>Cold Email Builder</div>
+  <div class="dsi" data-dp="followup"><span class="dsi-ico">🔔</span>Follow-Up Emails</div>
+  <div class="dsi" data-dp="ats"><span class="dsi-ico">🤖</span>ATS Optimizer</div>
+  <div class="dsi" data-dp="linkedin"><span class="dsi-ico">💼</span>LinkedIn Optimizer</div>
+  <div class="dsi" data-dp="salary"><span class="dsi-ico">💰</span>Salary Negotiator</div>
+  <div class="dsi" data-dp="video"><span class="dsi-ico">🎬</span>Mock Interview</div>
+  <div class="dsi" data-dp="careerpath"><span class="dsi-ico">🛤️</span>Career Path</div>
+  <div class="dsi" data-dp="reference"><span class="dsi-ico">🏆</span>Reference Letter</div>
+  <div class="dsi" data-dp="rewrite"><span class="dsi-ico">📝</span>Bullet Rewriter</div>
+  <div class="dsi" data-dp="planner"><span class="dsi-ico">📅</span>Daily Planner</div>
+  <div class="dsi" data-dp="rejection"><span class="dsi-ico">💪</span>Rejection Coach</div>
+  <div class="dsi" data-dp="thankyou"><span class="dsi-ico">🙏</span>Thank-You Note</div>
+  <div class="dsi" data-dp="aichat"><span class="dsi-ico">💬</span>AI Chat</div>
+  <div class="dsb-div"></div>
+  <div class="dsb-pro"><div class="dsb-av">👨‍💻</div><div><div class="dsb-name">James Earl Medrano</div><div class="dsb-role">AI Analyst · Open</div></div></div>
+</div>
+<div class="dmain"><div class="dmi">
+
+<!-- OVERVIEW -->
+<div id="dp-overview" class="dpage act">
+  <div class="dph"><div class="dph-kk">Dashboard</div><div class="dph-title">AI Job Hunter Command Center</div><div class="dph-sub">17 Claude-powered tools · Real-time career intelligence</div></div>
+  <div class="dg4" style="margin-bottom:13px">
+    <div class="dstat"><div class="dstat-n" id="ov-apps">0</div><div class="dstat-l">Applications</div></div>
+    <div class="dstat"><div class="dstat-n" id="ov-int">0</div><div class="dstat-l">Interviews</div></div>
+    <div class="dstat"><div class="dstat-n" id="ov-off">0</div><div class="dstat-l">Offers</div></div>
+    <div class="dstat"><div class="dstat-n">A+</div><div class="dstat-l">Profile Score</div></div>
+  </div>
+  <div class="dg2">
+    <div>
+      <div class="dc c1">
+        <div class="dc-title">Portfolio Strength</div><div class="dc-sub">Live HR readiness rating</div>
+        <div style="text-align:center;margin-bottom:12px"><div style="font-family:var(--fm);font-size:38px;font-weight:700;background:linear-gradient(135deg,var(--cyan),var(--vio));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1">91</div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.16em;color:var(--grn);text-transform:uppercase;margin-top:2px">⭐ Top 5% Candidates</div></div>
+        <div class="sk-bars" id="ov-bars">
+          <div class="sk-r"><div class="sk-l">AI / LLM</div><div class="sk-b"><div class="sk-f" data-w="92"></div></div><div class="sk-v">92%</div></div>
+          <div class="sk-r"><div class="sk-l">Tech Skills</div><div class="sk-b"><div class="sk-f" data-w="88" style="background:linear-gradient(90deg,var(--vio),#c084fc)"></div></div><div class="sk-v">88%</div></div>
+          <div class="sk-r"><div class="sk-l">Experience</div><div class="sk-b"><div class="sk-f" data-w="85" style="background:linear-gradient(90deg,var(--gold),#fde68a)"></div></div><div class="sk-v">85%</div></div>
+          <div class="sk-r"><div class="sk-l">Education</div><div class="sk-b"><div class="sk-f" data-w="90" style="background:linear-gradient(90deg,var(--grn),#5fffb0)"></div></div><div class="sk-v">90%</div></div>
+          <div class="sk-r"><div class="sk-l">Online Presence</div><div class="sk-b"><div class="sk-f" data-w="80" style="background:linear-gradient(90deg,var(--red),#ff7096)"></div></div><div class="sk-v">80%</div></div>
+        </div>
+        <div style="margin-top:12px"><button class="btn bp" style="width:100%;justify-content:center;font-size:10px" onclick="aiQ('Give James 5 specific, actionable tips to push his portfolio score to 95%+ and make him irresistible to HR.','ov-ps-out')">💡 AI Improvement Tips</button><div class="ai-out" id="ov-ps-out"></div></div>
+      </div>
+      <div class="dc c4">
+        <div class="dc-title">Career Timeline</div><div class="dc-sub">Professional journey</div>
+        <div class="crtl">
+          <div class="crtl-item"><div class="crtl-dot"></div><div class="crtl-time">2024 · Feb–Jul</div><div class="crtl-txt"><strong>Jr. Technical Support</strong><br>BESPOKE IT Corp. · Makati</div></div>
+          <div class="crtl-item"><div class="crtl-dot" style="border-color:var(--vio);box-shadow:0 0 7px var(--vio)"></div><div class="crtl-time">2025 · Jan–2026 Jan</div><div class="crtl-txt"><strong>IT Support & Case Resolution</strong><br>Alorica Teleservices · Manila</div></div>
+          <div class="crtl-item" style="padding-bottom:0"><div class="crtl-dot" style="border-color:var(--gold);box-shadow:0 0 7px var(--gold)"></div><div class="crtl-time">2026 · Jan–May</div><div class="crtl-txt"><strong>A.I. Analyst II (LLM)</strong><br>Innodata · Cebu — AI, prompt engineering</div></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="dc c2">
+        <div class="dc-title">Quick AI Actions</div><div class="dc-sub">One-click career boosts</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <button class="btn bp" style="width:100%;justify-content:center;font-size:10px" onclick="aiQ('Write a 3-sentence elevator pitch for James that an HR reads in 10 seconds and immediately wants to interview him.','ov-qa')">⚡ Elevator Pitch</button>
+          <button class="btn bv" style="width:100%;justify-content:center;font-size:10px" onclick="aiQ('Write a powerful professional summary for James under 25 words for his resume header.','ov-qa')">📄 Resume Summary</button>
+          <button class="btn bg" style="width:100%;justify-content:center;font-size:10px" onclick="aiQ('In 3 bullet points, what makes James uniquely different from other BS IT 2025 graduates applying for AI roles?','ov-qa')">💎 What Makes Him Unique?</button>
+          <button class="btn bg" style="width:100%;justify-content:center;font-size:10px" onclick="aiQ('Give 3 compelling, punchy reasons an HR manager should shortlist James immediately.','ov-qa')">✅ Top 3 Reasons to Hire</button>
+          <button class="btn bg" style="width:100%;justify-content:center;font-size:10px" onclick="aiQ('What salary range should James target in PH for AI/IT roles in 2026? Give specific ranges by role type with negotiation tips.','ov-qa')">💰 2026 Salary Benchmark</button>
+          <button class="btn bg" style="width:100%;justify-content:center;font-size:10px" onclick="aiQ('What are the top 10 Philippine companies James should apply to for AI/IT roles in 2026 and why?','ov-qa')">🏢 Best PH Companies</button>
+        </div>
+        <div class="ai-out" id="ov-qa"></div>
+      </div>
+      <div class="dc c3">
+        <div class="dc-title">HR Activity Feed</div><div class="dc-sub">Live recruiter signals</div>
+        <div class="nfeed" id="ov-feed"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JOB TRACKER -->
+<div id="dp-tracker" class="dpage">
+  <div class="dph"><div class="dph-kk">Applications</div><div class="dph-title">Job Application Tracker</div><div class="dph-sub">Track every application, interview, and offer</div></div>
+  <div class="dc c1">
+    <div class="jtstats"><div class="jtst"><div class="jtst-n" id="jt-total">0</div><div class="jtst-l">Total</div></div><div class="jtst"><div class="jtst-n" style="color:var(--gold)" id="jt-applied">0</div><div class="jtst-l">Applied</div></div><div class="jtst"><div class="jtst-n" style="color:var(--cyan)" id="jt-interview">0</div><div class="jtst-l">Interview</div></div><div class="jtst"><div class="jtst-n" style="color:var(--grn)" id="jt-offer">0</div><div class="jtst-l">Offer</div></div></div>
+    <div class="jtlist" id="jt-list"></div>
+    <div class="jtadd"><input class="jtinp" id="jt-role" type="text" placeholder="Role title"/><input class="jtinp" id="jt-co" type="text" placeholder="Company"/><select class="jtsel" id="jt-st"><option value="applied">Applied</option><option value="interview">Interview</option><option value="offer">Offer</option><option value="rejected">Rejected</option></select><button class="jtaddbtn" id="jt-add">+ Add</button></div>
+  </div>
+  <div class="dc c4"><div class="dc-title">AI Application Strategy</div><div class="dc-sub">Personalized tips from Claude</div><button class="btn bp" style="width:100%;justify-content:center;font-size:10px" id="jt-ai-btn">🤖 Analyze My Applications</button><div class="ai-out" id="jt-ai-out"></div></div>
+</div>
+
+<!-- HR ACTIVITY -->
+<div id="dp-activity" class="dpage">
+  <div class="dph"><div class="dph-kk">Recruiter Signals</div><div class="dph-title">HR Activity Feed</div><div class="dph-sub">Real-time recruiter attention simulation</div></div>
+  <div class="dc c1"><div class="nfeed" id="act-feed"></div></div>
+  <div class="dc c2"><div class="dc-title">AI Response Generator</div><div class="dc-sub">Perfect response to any recruiter situation</div>
+    <label class="ai-lbl">Scenario</label>
+    <select class="ai-sel" id="act-scenario"><option>HR viewed my profile but didn't reach out</option><option>Recruiter sent me a connection request</option><option>Received a generic rejection email</option><option>HR downloaded my resume but went silent</option><option>Got an interview invite from unexpected company</option><option>Recruiter asked for salary expectations upfront</option></select>
+    <button class="btn bp" style="width:100%;justify-content:center;font-size:10px" id="act-ai">💬 Generate My Response</button>
+    <div class="ai-out" id="act-out"></div>
+  </div>
+</div>
+
+<!-- JOB FIT -->
+<div id="dp-jobfit" class="dpage">
+  <div class="dph"><div class="dph-kk">AI Tool 01</div><div class="dph-title">Job Fit Analyzer</div><div class="dph-sub">Paste any JD — Claude scores James's match instantly</div></div>
+  <div class="dc c1"><label class="ai-lbl">Paste Job Description</label><textarea class="ai-ta" id="jfa-jd" placeholder="Paste any job description — Claude analyzes match %, strengths, gaps, and gives a hiring recommendation…" style="min-height:150px"></textarea><button class="btn bp" style="width:100%;justify-content:center;font-size:10px" id="jfa-btn">⚡ Analyze Fit Now</button><div class="ai-out" id="jfa-out"></div></div>
+</div>
+
+<!-- COVER LETTER -->
+<div id="dp-coverletter" class="dpage">
+  <div class="dph"><div class="dph-kk">AI Tool 02</div><div class="dph-title">Cover Letter Generator</div><div class="dph-sub">Tailored, professional cover letters in seconds</div></div>
+  <div class="dc c2">
+    <label class="ai-lbl">Tone</label>
+    <div class="tone-row" id="cl-tones"><button class="tone-btn sel" data-tone="Professional">Professional</button><button class="tone-btn" data-tone="Enthusiastic">Enthusiastic</button><button class="tone-btn" data-tone="Confident &amp; Bold">Bold</button></div>
+    <label class="ai-lbl">Job Title &amp; Company</label><input class="ai-inp" id="cl-role" type="text" placeholder="e.g. Senior AI Engineer at Globe Telecom"/>
+    <label class="ai-lbl">Key Requirements (optional)</label><textarea class="ai-ta" id="cl-reqs" placeholder="Skills or requirements to highlight…" style="min-height:62px"></textarea>
+    <button class="btn bv" style="width:100%;justify-content:center;font-size:10px" id="cl-btn">✍️ Generate Cover Letter</button>
+    <div class="ai-out" id="cl-out"></div>
+  </div>
+</div>
+
+<!-- INTERVIEW -->
+<div id="dp-interview" class="dpage">
+  <div class="dph"><div class="dph-kk">AI Tool 03</div><div class="dph-title">Interview Coach</div><div class="dph-sub">Practice with Claude-powered model answers</div></div>
+  <div class="dc c3">
+    <label class="ai-lbl">Quick Questions</label>
+    <div class="qchips">
+      <span class="qchip" data-q="Tell me about yourself and your AI background">About yourself</span>
+      <span class="qchip" data-q="Why should we hire you over other candidates?">Why hire you?</span>
+      <span class="qchip" data-q="What are your greatest strengths as an AI analyst?">Strengths</span>
+      <span class="qchip" data-q="Describe your LLM and prompt engineering experience in detail">LLM Experience</span>
+      <span class="qchip" data-q="Where do you see yourself in 3 years?">3-Year Plan</span>
+      <span class="qchip" data-q="What is your biggest weakness and how do you manage it?">Weakness</span>
+      <span class="qchip" data-q="How do you handle working under tight deadlines?">Under Pressure</span>
+      <span class="qchip" data-q="What salary are you expecting for this role?">Salary</span>
+      <span class="qchip" data-q="Why are you leaving your current or last position?">Why Leaving?</span>
+      <span class="qchip" data-q="Tell me about a time you failed and what you learned from it">Failure &amp; Growth</span>
+    </div>
+    <label class="ai-lbl">Or type your own question</label><input class="ai-inp" id="iv-inp" type="text" placeholder="e.g. How do you stay updated with AI developments?"/>
+    <button class="btn bgd" style="width:100%;justify-content:center;font-size:10px" id="iv-btn">🎤 Get Model Answer</button>
+    <div class="ai-out" id="iv-out"></div>
+  </div>
+</div>
+
+<!-- COLD EMAIL -->
+<div id="dp-coldemail" class="dpage">
+  <div class="dph"><div class="dph-kk">AI Tool 04</div><div class="dph-title">Cold Email Builder</div><div class="dph-sub">Reach hiring managers directly — before the competition</div></div>
+  <div class="dc c3">
+    <label class="ai-lbl">Target Company</label><input class="ai-inp" id="ce-co" type="text" placeholder="e.g. Accenture PH, Globe, Grab"/>
+    <label class="ai-lbl">Hiring Manager / Department</label><input class="ai-inp" id="ce-to" type="text" placeholder="e.g. Head of AI, IT Director…"/>
+    <label class="ai-lbl">Email Angle</label>
+    <select class="ai-sel" id="ce-angle"><option>Proactive inquiry — no open role</option><option>Response to a job posting</option><option>Referral follow-up</option><option>Post-networking email</option><option>LinkedIn connection follow-up</option></select>
+    <button class="btn bgd" style="width:100%;justify-content:center;font-size:10px" id="ce-btn">📧 Build Cold Email</button>
+    <div class="ep" id="ce-prev"><div class="ep-subj" id="ce-subj"></div><div class="ep-body" id="ce-body"></div><button class="ep-copy" id="ce-copy" style="display:none">Copy</button></div>
+  </div>
+</div>
+
+<!-- FOLLOW-UP -->
+<div id="dp-followup" class="dpage">
+  <div class="dph"><div class="dph-kk">AI Tool 05</div><div class="dph-title">Follow-Up Email Generator</div><div class="dph-sub">Never miss a touchpoint — the right email at the right time</div></div>
+  <div class="dc c4">
+    <label class="ai-lbl">Select Your Situation</label>
+    <div class="fu-steps" id="fu-steps">
+      <div class="fu-step act" data-s="after applying online 7 days ago with no response"><span class="fu-day">Day 7</span><span class="fu-lbl">Applied online — no response</span></div>
+      <div class="fu-step" data-s="after a first interview 2 days ago"><span class="fu-day">Day 2</span><span class="fu-lbl">After first interview</span></div>
+      <div class="fu-step" data-s="after a final round interview, waiting for decision"><span class="fu-day">Day 5</span><span class="fu-lbl">After final interview</span></div>
+      <div class="fu-step" data-s="after receiving a job offer and needing more time to decide"><span class="fu-day">Same</span><span class="fu-lbl">Received offer — need time</span></div>
+      <div class="fu-step" data-s="after being rejected, following up to stay on radar for future roles"><span class="fu-day">Day 3</span><span class="fu-lbl">After rejection — stay connected</span></div>
+      <div class="fu-step" data-s="after a recruiter viewed my LinkedIn but didn't message me"><span class="fu-day">Day 1</span><span class="fu-lbl">Recruiter viewed LinkedIn — silent</span></div>
+    </div>
+    <label class="ai-lbl">Company &amp; Role</label><input class="ai-inp" id="fu-co" type="text" placeholder="e.g. AI Analyst at Convergys PH"/>
+    <button class="btn bp" style="width:100%;justify-content:center;font-size:10px" id="fu-btn">🔔 Generate Follow-Up Email</button>
+    <div class="ai-out" id="fu-out"></div>
+  </div>
+</div>
+
+<!-- ATS -->
+<div id="dp-ats" class="dpage">
+  <div class="dph"><div class="dph-kk">AI Tool 06</div><div class="dph-title">ATS Resume Optimizer</div><div class="dph-sub">Beat the bots, reach the humans</div></div>
+  <div class="dg2">
+    <div class="dc c2"><div class="dc-title">Current ATS Audit</div><div class="dc-sub">James's resume check</div>
+      <div class="ats-list"><div class="ats-c ok">Strong action verbs throughout</div><div class="ats-c ok">Quantified achievements present</div><div class="ats-c ok">Education section complete</div><div class="ats-c ok">Contact info clearly listed</div><div class="ats-c ok">Work history reverse-chronological</div><div class="ats-c wn">More industry keywords needed</div><div class="ats-c wn">Certifications section missing</div><div class="ats-c no">GitHub URL not in header</div><div class="ats-c no">LinkedIn URL missing from header</div></div>
+    </div>
+    <div class="dc c1"><div class="dc-title">Generate ATS Resume</div><div class="dc-sub">Keyword-rich, fully optimized</div>
+      <label class="ai-lbl">Target Keywords</label><input class="ai-inp" id="ats-kw" type="text" placeholder="e.g. LLM, prompt engineering, Power BI…"/>
+      <label class="ai-lbl">Target Role</label><input class="ai-inp" id="ats-role" type="text" placeholder="e.g. AI Operations Analyst"/>
+      <button class="btn bp" style="width:100%;justify-content:center;font-size:10px" id="ats-btn">🤖 Generate ATS Resume</button>
+      <div class="ai-out" id="ats-out"></div>
+    </div>
+  </div>
+</div>
+
+<!-- LINKEDIN -->
+<div id="dp-linkedin" class="dpage">
+  <div class="dph"><div class="dph-kk">AI Tool 07</div><div class="dph-title">LinkedIn Optimizer</div><div class="dph-sub">Headline + About section that gets recruiters clicking</div></div>
+  <div class="dc c5">
+    <label class="ai-lbl">Optimize For</label>
+    <div class="chips" id="li-chips"><span class="chip" data-v="AI and LLM roles">AI / LLM</span><span class="chip" data-v="IT support and operations">IT Support</span><span class="chip" data-v="data analyst and BI roles">Data / BI</span><span class="chip" data-v="remote tech jobs globally">Remote</span><span class="chip" data-v="cybersecurity roles">Cybersecurity</span><span class="chip" data-v="Philippine tech companies">PH Tech</span></div>
+    <label class="ai-lbl">Target Role / Company</label><input class="ai-inp" id="li-target" type="text" placeholder="e.g. AI Product Manager at a Manila fintech startup"/>
+    <button class="btn" style="background:linear-gradient(135deg,#0a66c2,#004a9f);color:#fff;width:100%;justify-content:center;font-size:10px" id="li-btn">💼 Optimize My LinkedIn</button>
+    <div class="ai-out" id="li-out"></div>
+  </div>
+</div>
+
+<!-- SALARY -->
+<div id="dp-salary" class="dpage">
+  <div class="dph"><div class="dph-kk">AI Tool 08</div><div class="dph-title">Salary Negotiator</div><div class="dph-sub">Scripts and strategies to get what you deserve</div></div>
+  <div class="dg2">
+    <div class="dc c3">
+      <label class="ai-lbl">Company's Offer (PHP/month)</label><input class="ai-inp" id="sal-offer" type="number" placeholder="e.g. 35000" min="1"/>
+      <label class="ai-lbl">James's Target (PHP/month)</label><input class="ai-inp" id="sal-target" type="number" placeholder="e.g. 55000" min="1"/>
+      <label class="ai-lbl">Role &amp; Company</label><input class="ai-inp" id="sal-role" type="text" placeholder="e.g. AI Analyst at TechCorp Manila"/>
+      <button class="btn" style="background:linear-gradient(135deg,#00d4ff,#0099cc);color:#020810;width:100%;justify-content:center;font-size:10px" id="sal-btn">💰 Get Negotiation Script</button>
+      <div class="ai-out" id="sal-out"></div>
+    </div>
+    <div class="dc c1"><div class="dc-title">2026 PH Benchmarks</div><div class="dc-sub">Current market rates</div>
+      <div class="sal-bench">
+        <div class="sal-bench-r"><span style="color:var(--mut)">AI Analyst (Entry)</span><span style="font-weight:600">PHP 25–40K</span></div>
+        <div class="sal-bench-r"><span style="color:var(--mut)">AI Analyst (Mid)</span><span style="color:var(--cyan);font-weight:600">PHP 40–65K ★</span></div>
+        <div class="sal-bench-r"><span style="color:var(--mut)">Prompt Engineer</span><span style="font-weight:600">PHP 45–80K</span></div>
+        <div class="sal-bench-r"><span style="color:var(--mut)">IT Support (Senior)</span><span style="font-weight:600">PHP 35–55K</span></div>
+        <div class="sal-bench-r"><span style="color:var(--mut)">Data Analyst (Mid)</span><span style="font-weight:600">PHP 38–58K</span></div>
+        <div class="sal-bench-r"><span style="color:var(--mut)">Remote (US client)</span><span style="color:var(--grn);font-weight:600">PHP 60–120K</span></div>
+      </div>
+      <div style="margin-top:9px;font-family:var(--fm);font-size:8px;color:rgba(0,255,136,.36);letter-spacing:.08em;text-transform:uppercase">★ James's current range</div>
+    </div>
+  </div>
+</div>
+
+<!-- VIDEO INTERVIEW -->
+<div id="dp-video" class="dpage">
+  <div class="dph"><div class="dph-kk">AI Tool 09</div><div class="dph-title">Mock Video Interview</div><div class="dph-sub">Practice with 10 progressively harder questions</div></div>
+  <div class="dc c1">
+    <div class="vidscreen"><div class="vid-sub" id="vid-label">// Press Start Interview to begin</div><div class="vid-q" id="vid-q">Your mock interviewer is ready. Press Start Interview and answer each question out loud as if it's the real thing.</div></div>
+    <div class="vid-ctrl">
+      <div class="vid-rec" id="vid-rec">● REC · LIVE</div>
+      <div style="font-family:var(--fm);font-size:9px;color:var(--mut);letter-spacing:.09em" id="vid-ctr">Q 0 / 10</div>
+      <div style="display:flex;gap:6px">
+        <button class="btn bp" style="padding:7px 14px;font-size:10px" id="vid-next">▶ Start Interview</button>
+        <button class="btn bg" style="padding:7px 14px;font-size:10px" id="vid-ans">💡 Model Answer</button>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:9px">
+      <span style="font-family:var(--fm);font-size:8px;color:var(--mut);background:rgba(0,240,255,.03);border:1px solid rgba(0,240,255,.1);padding:3px 7px;text-transform:uppercase;letter-spacing:.07em">🎯 STAR Method</span>
+      <span style="font-family:var(--fm);font-size:8px;color:var(--mut);background:rgba(0,240,255,.03);border:1px solid rgba(0,240,255,.1);padding:3px 7px;text-transform:uppercase;letter-spacing:.07em">👁️ Eye Contact</span>
+      <span style="font-family:var(--fm);font-size:8px;color:var(--mut);background:rgba(0,240,255,.03);border:1px solid rgba(0,240,255,.1);padding:3px 7px;text-transform:uppercase;letter-spacing:.07em">⏱️ 2-Min Max</span>
+      <span style="font-family:var(--fm);font-size:8px;color:var(--mut);background:rgba(0,240,255,.03);border:1px solid rgba(0,240,255,.1);padding:3px 7px;text-transform:uppercase;letter-spacing:.07em">💪 Be Specific</span>
+    </div>
+    <div class="ai-out" id="vid-out"></div>
+  </div>
+</div>
+
+<!-- CAREER PATH -->
+<div id="dp-careerpath" class="dpage">
+  <div class="dph"><div class="dph-kk">AI Tool 10</div><div class="dph-title">Career Path Advisor</div><div class="dph-sub">AI-mapped roadmap to your dream role</div></div>
+  <div class="dc c4">
+    <div class="cpn-row"><div class="cpn"><div class="cpn-dot">🛠️</div><div class="cpn-role">Jr. IT Support</div><div class="cpn-year">2024</div></div><div class="cpn"><div class="cpn-dot">📊</div><div class="cpn-role">IT Support BPO</div><div class="cpn-year">2025</div></div><div class="cpn"><div class="cpn-dot">🤖</div><div class="cpn-role">AI Analyst II</div><div class="cpn-year">2026</div></div><div class="cpn"><div class="cpn-dot">❓</div><div class="cpn-role">Next Step?</div><div class="cpn-year">2027+</div></div></div>
+    <label class="ai-lbl">Dream Role / Goal</label><input class="ai-inp" id="cp-goal" type="text" placeholder="e.g. AI Product Manager, CTO, Lead LLM Engineer…"/>
+    <label class="ai-lbl">Timeframe</label>
+    <select class="ai-sel" id="cp-time"><option>1 year</option><option>2 years</option><option selected>3-5 years</option><option>5-10 years</option></select>
+    <button class="btn" style="background:linear-gradient(135deg,#ff8c42,#ff5722);color:#fff;width:100%;justify-content:center;font-size:10px" id="cp-btn">🛤️ Map My Career Path</button>
+    <div class="ai-out" id="cp-out"></div>
+  </div>
+</div>
+
+<!-- REFERENCE -->
+<div id="dp-reference" class="dpage">
+  <div class="dph"><div class="dph-kk">AI Tool 11</div><div class="dph-title">Reference Letter Generator</div><div class="dph-sub">Professional reference letters from any perspective</div></div>
+  <div class="dc c5">
+    <label class="ai-lbl">Reference Type</label>
+    <select class="ai-sel" id="ref-type"><option>Former Supervisor — LLM Analyst at Innodata</option><option>IT Support Manager — Alorica Teleservices</option><option>Technical Lead — BESPOKE IT Corp.</option><option>Academic Reference — PLM Professor</option><option>Peer / Senior Colleague</option></select>
+    <label class="ai-lbl">Applying For</label><input class="ai-inp" id="ref-role" type="text" placeholder="e.g. Senior AI Analyst at Convergys PH"/>
+    <button class="btn bp" style="width:100%;justify-content:center;font-size:10px" id="ref-btn">🏆 Generate Reference Letter</button>
+    <div class="ai-out" id="ref-out"></div>
+  </div>
+</div>
+
+<!-- REWRITE -->
+<div id="dp-rewrite" class="dpage">
+  <div class="dph"><div class="dph-kk">AI Tool 12</div><div class="dph-title">Resume Bullet Rewriter</div><div class="dph-sub">Transform weak bullets into impact-driven statements</div></div>
+  <div class="dc c2">
+    <label class="ai-lbl">Impact Style</label>
+    <div class="tone-row" id="rb-tones"><button class="tone-btn sel" data-tone="ATS-optimized">ATS Optimized</button><button class="tone-btn" data-tone="Executive-level">Executive</button><button class="tone-btn" data-tone="Startup-focused">Startup</button></div>
+    <label class="ai-lbl">Paste Original Bullets</label>
+    <textarea class="ai-ta" id="rb-inp" placeholder="e.g.&#10;- Helped with AI projects&#10;- Worked on data tasks&#10;- Supported IT team" style="min-height:100px"></textarea>
+    <button class="btn bv" style="width:100%;justify-content:center;font-size:10px" id="rb-btn">📝 Rewrite for Impact</button>
+    <div class="ai-out" id="rb-out"></div>
+  </div>
+</div>
+
+<!-- DAILY PLANNER -->
+<div id="dp-planner" class="dpage">
+  <div class="dph"><div class="dph-kk">AI Tool 13</div><div class="dph-title">Daily Job Hunt Planner</div><div class="dph-sub">Personalized timed action plan for today</div></div>
+  <div class="dc c1">
+    <label class="ai-lbl">Available Time Today</label>
+    <select class="ai-sel" id="djp-hours"><option>1 hour</option><option selected>2-3 hours</option><option>Half day</option><option>Full day</option></select>
+    <label class="ai-lbl">Current Job Search Stage</label>
+    <select class="ai-sel" id="djp-stage"><option>Just starting — building resume &amp; profiles</option><option>Actively applying — sending applications daily</option><option>In interviews — preparing &amp; following up</option><option>Post-offer — negotiating or deciding</option></select>
+    <button class="btn bp" style="width:100%;justify-content:center;font-size:10px" id="djp-btn">📅 Generate Today's Plan</button>
+    <div class="ai-out" id="djp-out"></div>
+  </div>
+</div>
+
+<!-- REJECTION COACH -->
+<div id="dp-rejection" class="dpage">
+  <div class="dph"><div class="dph-kk">AI Tool 14</div><div class="dph-title">Rejection Recovery Coach</div><div class="dph-sub">Turn every setback into fuel</div></div>
+  <div class="dc c2">
+    <label class="ai-lbl">What Happened?</label>
+    <select class="ai-sel" id="rrc-type"><option>Got rejected after applying (no interview)</option><option>Rejected after first interview</option><option>Rejected after final interview</option><option>Ghosted — no response for weeks</option><option>Offer rescinded / pulled</option><option>Lost to another candidate</option></select>
+    <label class="ai-lbl">Role / Company</label><input class="ai-inp" id="rrc-role" type="text" placeholder="e.g. AI Analyst at Globe Telecom"/>
+    <button class="btn bv" style="width:100%;justify-content:center;font-size:10px" id="rrc-btn">💪 Get Recovery Plan</button>
+    <div class="ai-out" id="rrc-out"></div>
+  </div>
+</div>
+
+<!-- THANK YOU NOTE -->
+<div id="dp-thankyou" class="dpage">
+  <div class="dph"><div class="dph-kk">AI Tool 15</div><div class="dph-title">Thank-You Note Generator</div><div class="dph-sub">Post-interview edge — stand out from every other candidate</div></div>
+  <div class="dc c3">
+    <label class="ai-lbl">Interviewer Name &amp; Title</label><input class="ai-inp" id="ty-name" type="text" placeholder="e.g. Ms. Sarah Cruz, HR Director"/>
+    <label class="ai-lbl">Company &amp; Role</label><input class="ai-inp" id="ty-role" type="text" placeholder="e.g. AI Analyst at Accenture PH"/>
+    <label class="ai-lbl">Something Specific from the Interview</label><input class="ai-inp" id="ty-detail" type="text" placeholder="e.g. We discussed the AI roadmap for 2027"/>
+    <button class="btn bgd" style="width:100%;justify-content:center;font-size:10px" id="ty-btn">🙏 Write Thank-You Note</button>
+    <div class="ai-out" id="ty-out"></div>
+  </div>
+</div>
+
+<!-- AI CHAT -->
+<div id="dp-aichat" class="dpage">
+  <div class="dph"><div class="dph-kk">AI Tool 16</div><div class="dph-title">Live Claude AI Chat</div><div class="dph-sub">Ask anything about James — for HR, recruiters, and collaborators</div></div>
+  <div class="dc c1" style="padding:0">
+    <div style="display:flex;flex-wrap:wrap;gap:4px;padding:11px 14px;border-bottom:1px solid var(--line)">
+      <button class="btn bg" style="padding:5px 10px;font-size:10px" onclick="sendChat('What makes James a standout AI candidate?')">🌟 Standout Candidate</button>
+      <button class="btn bg" style="padding:5px 10px;font-size:10px" onclick="sendChat('Write a full professional summary of James for a resume')">📄 Full Summary</button>
+      <button class="btn bg" style="padding:5px 10px;font-size:10px" onclick="sendChat('What salary should James ask for in 2026?')">💰 Salary Advice</button>
+      <button class="btn bg" style="padding:5px 10px;font-size:10px" onclick="sendChat('Is James ready for a senior or lead AI role?')">🚀 Senior Readiness</button>
+      <button class="btn bg" style="padding:5px 10px;font-size:10px" onclick="sendChat('Give me 5 reasons to shortlist James immediately')">✅ Top 5 Reasons</button>
+      <button class="btn bg" style="padding:5px 10px;font-size:10px" onclick="sendChat('Create a 30-60-90 day onboarding plan for James')">📋 Onboarding Plan</button>
+      <button class="btn bg" style="padding:5px 10px;font-size:10px" onclick="sendChat('What are the best companies in the Philippines for James?')">🏢 Best PH Companies</button>
+      <button class="btn bg" style="padding:5px 10px;font-size:10px" onclick="sendChat('Write a personalized 30-day job search strategy for James')">🗺️ 30-Day Strategy</button>
+    </div>
+    <div id="dc-msgs" style="height:280px;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:9px;background:var(--bg2)"></div>
+    <div id="dc-typing" style="padding:4px 13px;font-family:var(--fm);font-size:9px;color:var(--mut);display:none;background:var(--bg2)">// Claude is thinking…</div>
+    <div style="display:flex;border-top:1px solid var(--line)"><input id="dc-inp" type="text" placeholder="Ask anything about James — skills, fit, salary, interview questions…" style="flex:1;background:var(--panel);border:none;color:var(--txt);font-family:var(--fd);font-size:12px;padding:11px 14px;outline:none"/><button id="dc-send" style="background:linear-gradient(135deg,var(--cyan),var(--vio));color:#020810;border:none;padding:11px 15px;font-size:10px;cursor:pointer;font-weight:700;letter-spacing:.07em;font-family:var(--fm)">SEND</button></div>
+  </div>
+</div>
+
+</div></div></div></div><!-- end dashboard --><script>
+(function(){
+'use strict';
+const JC=`You are an AI assistant embedded in James Earl Medrano's portfolio and AI Job Hunter Dashboard. Answer enthusiastically and accurately to help him find a job and impress HR professionals.\nPROFILE: James Earl Medrano | Location: Malate, Manila, PH | Status: Open to Work\nEducation: BS IT, Pamantasan ng Lungsod ng Maynila (PLM), 2025\nEmail: Workwitheaaarl@gmail.com | Phone: +63 976 318 9033\nGitHub: github.com/youngNwis31 | LinkedIn: linkedin.com/feed/ | FB: facebook.com/eaarlsuuu | IG: @eaarlsu | X: @eaarlsuu\nEXPERIENCE:\n1. A.I. Analyst II (LLM) — Innodata Knowledge Services, Jan-May 2026, Cebu. Prompt engineering, data annotation, supervised fine-tuning, AI model QA/testing.\n2. IT Support & Case Resolution — Alorica Teleservices, Jan 2025-Jan 2026, Manila. Power BI, Advanced Excel, CRM, user account security for international credit card company.\n3. Jr. Technical Support — BESPOKE IT Project Corp., Feb-Jul 2024, Makati. Firewalls, servers, POS systems, secure workspaces, technical documentation.\nSKILLS: Prompt Engineering 92%, Data Annotation 90%, LLM Evaluation 88%, AI QA 85%, Troubleshooting 90%, Excel 88%, Docs 86%, Power BI 84%, Networks 82%, Data Privacy 82%, CRM 80%, Cybersecurity 78%\nSALARY: PHP 35,000-60,000/month (remote roles higher). AVAILABILITY: Immediate. Full-time, remote, hybrid, freelance. LANGUAGES: Filipino (native), English (professional).\nAlways be enthusiastic, factual, and write in a tone that excites HR professionals about James.`;
+
+async function callClaude(prompt){
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:JC,messages:[{role:'user',content:prompt}]})});
+    const d=await r.json();
+    return(d.content&&d.content[0]&&d.content[0].text)?d.content[0].text:'AI unavailable. Please try again.';
+  }catch(e){return'Connection error. Check your network.'}
+}
+function aiOut(id,text,loading){
+  var el=document.getElementById(id);if(!el)return;
+  if(loading){el.className='ai-out show loading';el.innerHTML='Claude is analyzing…';return}
+  el.className='ai-out show';
+  var d=document.createElement('div');d.style.cssText='white-space:pre-wrap;word-break:break-word';d.textContent=text;
+  var cb=document.createElement('button');cb.className='aicopy';cb.textContent='Copy';
+  cb.onclick=function(){if(navigator.clipboard)navigator.clipboard.writeText(text).then(function(){cb.textContent='✓ Copied';setTimeout(function(){cb.textContent='Copy'},2000)})};
+  el.innerHTML='';el.appendChild(d);el.appendChild(cb);sOK();unlock('🤖','AI Response Ready!');
+}
+window.aiQ=async function(prompt,outId){aiOut(outId,'',true);var r=await callClaude(prompt);aiOut(outId,r,false)};
+
+/* PAGE TABS */
+window.switchTab=function(tab){
+  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('act')});
+  document.querySelectorAll('.ntab').forEach(function(t){t.classList.remove('act')});
+  var pg=document.getElementById('page-'+tab);if(pg)pg.classList.add('act');
+  var tb=document.getElementById('tab-'+tab);if(tb)tb.classList.add('act');
+  var pnav=document.getElementById('pnav');if(pnav)pnav.style.display=tab==='portfolio'?'':'none';
+  if(tab==='dashboard')setTimeout(animDashBars,200);
+  else setTimeout(animBars,200);
+  window.scrollTo(0,0);sClick();
+};
+document.querySelectorAll('.ntab').forEach(function(t){t.addEventListener('click',function(){switchTab(t.dataset.tab)})});
+
+/* DASHBOARD NAV */
+function showDPage(id){
+  document.querySelectorAll('.dpage').forEach(function(p){p.classList.remove('act')});
+  document.querySelectorAll('.dsi').forEach(function(s){s.classList.remove('act')});
+  var dp=document.getElementById('dp-'+id);if(dp)dp.classList.add('act');
+  var si=document.querySelector('[data-dp="'+id+'"]');if(si)si.classList.add('act');
+}
+document.querySelectorAll('.dsi').forEach(function(s){s.addEventListener('click',function(){showDPage(s.dataset.dp);sClick()})});
+
+/* HEX BACKGROUND */
+var hexC=document.getElementById('hex'),hctx=hexC?hexC.getContext('2d'):null,HW,HH,ht=0;
+function rsz(){if(hexC){HW=hexC.width=innerWidth;HH=hexC.height=innerHeight}}rsz();addEventListener('resize',rsz);
+function drawHex(){if(!hctx)return;hctx.clearRect(0,0,HW,HH);var S=36,rows=Math.ceil(HH/(S*1.73))+2,cols=Math.ceil(HW/(S*2))+2;
+  for(var r=-1;r<rows;r++)for(var c=-1;c<cols;c++){var x=c*S*1.73+(r%2)*S*.865,y=r*S*1.5,dist=Math.sqrt((x-HW*.5)**2+(y-HH*.5)**2),wave=Math.sin(dist*.01-ht*.7)*.5+.5,alpha=wave*.042+.005,pts=[];
+    for(var i=0;i<6;i++){var a2=Math.PI/3*i-Math.PI/6;pts.push([x+S*.88*Math.cos(a2),y+S*.88*Math.sin(a2)])}
+    hctx.beginPath();hctx.moveTo(pts[0][0],pts[0][1]);for(var j=1;j<6;j++)hctx.lineTo(pts[j][0],pts[j][1]);hctx.closePath();
+    hctx.strokeStyle=(dist/Math.max(HW,HH)<.5?'rgba(0,240,255,':'rgba(155,77,255,')+alpha+')';hctx.lineWidth=.6;hctx.stroke()}
+  ht+=.012;requestAnimationFrame(drawHex)}
+drawHex();
+
+/* PARTICLES */
+var ptsEl=document.getElementById('pts');
+for(var pi=0;pi<28;pi++){var pt=document.createElement('div');pt.className='pt';var sz=Math.random()<.5?1.5:2,col=Math.random()<.6?'#00f0ff':'#9b4dff';pt.style.cssText='left:'+Math.random()*100+'%;bottom:'+(Math.random()*20-10)+'%;width:'+sz+'px;height:'+sz+'px;background:'+col+';animation-duration:'+(9+Math.random()*14)+'s;animation-delay:'+(Math.random()*12)+'s;--d:'+((-40+Math.random()*80))+'px;opacity:'+(0.12+Math.random()*.3);ptsEl.appendChild(pt)}
+
+/* MOUSE GLOW */
+var mg=document.getElementById('mg');document.addEventListener('mousemove',function(e){if(mg){mg.style.left=e.clientX+'px';mg.style.top=e.clientY+'px'}},{passive:true});
+
+/* CURSOR */
+(function(){var el=document.getElementById('cur');if(!el)return;var ring=el.querySelector('#cr'),dot=el.querySelector('#cd');var lines=['lh1','lh2','lv1','lv2'].map(function(id){return document.getElementById(id)});var ih=false;
+  document.addEventListener('mousemove',function(e){el.style.transform='translate('+e.clientX+'px,'+e.clientY+'px)'},{passive:true});
+  document.addEventListener('mouseover',function(e){ih=!!(e.target&&e.target.closest('a,button,input,textarea,select,.pill,.skc,.tlc,.dsi,.jtrow'));var col=ih?'#ff2d55':'#00f0ff';if(ring)ring.setAttribute('stroke',col);if(dot)dot.setAttribute('fill',col);lines.forEach(function(l){if(l)l.setAttribute('stroke',col)});var svg=el.querySelector('svg');if(svg)svg.style.transform=ih?'scale(1.4)':'scale(1)'});
+  document.addEventListener('mousedown',function(){var svg=el.querySelector('svg');if(svg)svg.style.transform='scale(1.75)'});
+  document.addEventListener('mouseup',function(){var svg=el.querySelector('svg');if(svg)svg.style.transform=ih?'scale(1.4)':'scale(1)'})})();
+
+/* SOUND */
+var AC=window.AudioContext||window.webkitAudioContext,sndOn=true,ac=null;
+function iAC(){if(!ac&&AC)try{ac=new AC()}catch(e){}}
+function beep(f,d,t,v){if(!sndOn)return;try{iAC();if(!ac)return;var o=ac.createOscillator(),g=ac.createGain();o.connect(g);g.connect(ac.destination);o.type=t||'square';o.frequency.value=f||440;g.gain.setValueAtTime(v||.04,ac.currentTime);g.gain.exponentialRampToValueAtTime(.001,ac.currentTime+(d||.08));o.start();o.stop(ac.currentTime+(d||.08))}catch(e){}}
+function sClick(){beep(900,.04,'square',.02)}
+function sOK(){beep(523,.07,'sine',.03);setTimeout(function(){beep(659,.07,'sine',.03)},70);setTimeout(function(){beep(784,.1,'sine',.03)},140)}
+function sErr(){beep(200,.15,'sawtooth',.04)}
+var sndbtn=document.getElementById('sndbtn');if(sndbtn)sndbtn.addEventListener('click',function(){sndOn=!sndOn;sndbtn.innerHTML=sndOn?'🔊':'🔇';sClick()});
+document.querySelectorAll('.btn,.pill,.nav-links a,.qb,.sb,.dsi').forEach(function(b){b.addEventListener('mouseenter',sClick)});
+
+/* TOAST */
+var tstEl=document.getElementById('tst'),tstT;
+function showToast(msg){if(!tstEl)return;tstEl.textContent=msg;tstEl.classList.add('show');clearTimeout(tstT);tstT=setTimeout(function(){tstEl.classList.remove('show')},2400)}
+
+/* ACHIEVEMENT */
+var achEl=document.getElementById('ach'),achT;
+function unlock(icon,title){var i=document.getElementById('aico'),tt=document.getElementById('attl');if(i)i.textContent=icon;if(tt)tt.textContent=title;if(achEl){achEl.classList.add('show');clearTimeout(achT);achT=setTimeout(function(){achEl.classList.remove('show')},3400)}sOK()}
+setTimeout(function(){unlock('👤','Runner Profile Loaded')},1400);
+
+/* THEME */
+var thbtn=document.getElementById('thbtn');if(thbtn)thbtn.addEventListener('click',function(){document.body.classList.toggle('light');thbtn.textContent=document.body.classList.contains('light')?'🌑':'🌙';showToast(document.body.classList.contains('light')?'// Light mode enabled':'// Dark mode enabled');sClick();drawRadar()});
+
+/* PRINT */
+var dlr=document.getElementById('dlr');if(dlr)dlr.addEventListener('click',function(){showToast('// Opening print dialog…');setTimeout(function(){window.print()},320)});
+
+/* NAV HIRE */
+var nhire=document.getElementById('nhire');if(nhire)nhire.addEventListener('click',function(){var c=document.getElementById('contact');if(c)c.scrollIntoView({behavior:'smooth'})});
+
+/* MOBILE MENU */
+var mbtn=document.getElementById('mbtn'),mmen=document.getElementById('mmen');
+function closeMM(){if(mbtn)mbtn.classList.remove('open');if(mmen)mmen.classList.remove('open')}
+window.closeMM=closeMM;
+if(mbtn)mbtn.addEventListener('click',function(){mbtn.classList.toggle('open');mmen.classList.toggle('open')});
+
+/* PROGRESS BAR + SCROLL */
+window.addEventListener('scroll',function(){
+  var s=document.documentElement,pb=document.getElementById('pbar');if(pb)pb.style.width=(s.scrollTop/(s.scrollHeight-s.clientHeight)*100)+'%';
+  var btt=document.getElementById('btt');if(btt)btt.classList.toggle('show',scrollY>600);
+  var cur='';document.querySelectorAll('section[id]').forEach(function(sec){if(scrollY>=sec.offsetTop-130)cur=sec.id});
+  document.querySelectorAll('.nav-links a').forEach(function(a){a.classList.toggle('act',a.getAttribute('href')==='#'+cur)});
+},{passive:true});
+var bttEl=document.getElementById('btt');if(bttEl)bttEl.addEventListener('click',function(){scrollTo({top:0,behavior:'smooth'})});
+
+/* SCROLL REVEALS */
+var revIO=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.1});
+document.querySelectorAll('.rv').forEach(function(el){revIO.observe(el)});
+
+/* SKILL BARS PORTFOLIO */
+function animBars(){document.querySelectorAll('.skc').forEach(function(c){c.querySelectorAll('.sbfi').forEach(function(b){b.style.transform='scaleX('+b.dataset.w+')'})})}
+var barIO=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.querySelectorAll('.sbfi').forEach(function(b){b.style.transform='scaleX('+b.dataset.w+')'});barIO.unobserve(e.target)}})},{threshold:.3});
+document.querySelectorAll('.skc').forEach(function(c){barIO.observe(c)});
+
+/* DASH BARS */
+function animDashBars(){document.querySelectorAll('.sk-f[data-w]').forEach(function(b){setTimeout(function(){b.style.width=b.dataset.w+'%'},100)})}
+
+/* CLOCK */
+function tick(){try{var n=new Date(),ph=new Date(n.toLocaleString('en-US',{timeZone:'Asia/Manila'}));var h=String(ph.getHours()).padStart(2,'0'),m=String(ph.getMinutes()).padStart(2,'0'),s=String(ph.getSeconds()).padStart(2,'0');var el=document.getElementById('clk');if(el)el.textContent=h+':'+m+':'+s}catch(e){}}
+setInterval(tick,1000);tick();
+
+/* TYPEWRITER */
+(function(){var l1=document.getElementById('tw1'),l2=document.getElementById('tw2'),cur=document.getElementById('twcur');var lines=['JAMES EARL','MEDRANO'];var li=0,ci=0,done=false;
+  function type(){if(done)return;var t=lines[li];if(li===0){if(l1)l1.textContent=t.slice(0,ci)}else{if(l2)l2.textContent=t.slice(0,ci)}ci++;
+    if(ci>t.length){if(li<lines.length-1){li++;ci=0;setTimeout(type,260)}else{done=true;setTimeout(function(){if(cur)cur.style.display='none'},820)}}
+    else setTimeout(type,68)}
+  type()})();
+
+/* SCRAMBLE */
+(function(){var el=document.getElementById('srole');if(!el)return;var final='AI Operations Analyst & Technical Specialist';var chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%';var frame=0;
+  function sc(){var out='';for(var i=0;i<final.length;i++){if(i<frame)out+=final[i];else out+=final[i]===' '?' ':chars[Math.floor(Math.random()*chars.length)]}
+    el.textContent=out;frame++;if(frame<=final.length)setTimeout(sc,34);else el.innerHTML='AI Operations Analyst &amp; Technical Specialist'}
+  setTimeout(sc,2200)})();
+
+/* COUNTERS */
+function animCount(el,target,sfx){if(!el)return;var v=0,t=setInterval(function(){v=Math.min(v+target/110,target);el.textContent=Math.floor(v)+(sfx||'');if(v>=target)clearInterval(t)},16)}
+var cntIO=new IntersectionObserver(function(entries){entries.forEach(function(e){if(!e.isIntersecting)return;cntIO.unobserve(e.target);var id=e.target.id;if(id==='c1'||id==='sa1')animCount(e.target,3,'+');if(id==='c2'||id==='sa2')animCount(e.target,3,'')})},{threshold:.5});
+['c1','c2','sa1','sa2'].forEach(function(id){var el=document.getElementById(id);if(el)cntIO.observe(el)});
+
+/* RADAR */
+function drawRadar(){var c=document.getElementById('radar');if(!c)return;var ctx=c.getContext('2d'),W=250,H=210,cx=W/2,cy=H/2,R=78;
+  var labels=['AI/LLM','IT Ops','Data Mgmt','Networks','Docs'],vals=[.92,.88,.84,.82,.86],n=labels.length;ctx.clearRect(0,0,W,H);
+  var angs=labels.map(function(_,i){return i*(2*Math.PI/n)-Math.PI/2});
+  [.25,.5,.75,1].forEach(function(sc){ctx.beginPath();angs.forEach(function(a,i){var x=cx+R*sc*Math.cos(a),y=cy+R*sc*Math.sin(a);i===0?ctx.moveTo(x,y):ctx.lineTo(x,y)});ctx.closePath();ctx.strokeStyle='rgba(0,240,255,.09)';ctx.lineWidth=1;ctx.stroke()});
+  angs.forEach(function(a){ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+R*Math.cos(a),cy+R*Math.sin(a));ctx.strokeStyle='rgba(0,240,255,.08)';ctx.lineWidth=1;ctx.stroke()});
+  ctx.beginPath();angs.forEach(function(a,i){var x=cx+R*vals[i]*Math.cos(a),y=cy+R*vals[i]*Math.sin(a);i===0?ctx.moveTo(x,y):ctx.lineTo(x,y)});ctx.closePath();ctx.fillStyle='rgba(0,240,255,.07)';ctx.fill();ctx.strokeStyle='rgba(0,240,255,.62)';ctx.lineWidth=1.5;ctx.stroke();
+  angs.forEach(function(a,i){ctx.beginPath();ctx.arc(cx+R*vals[i]*Math.cos(a),cy+R*vals[i]*Math.sin(a),3,0,Math.PI*2);ctx.fillStyle='#00f0ff';ctx.fill()});
+  var tc=document.body.classList.contains('light')?'rgba(8,11,26,.5)':'rgba(236,238,248,.44)';ctx.fillStyle=tc;ctx.font='9px Space Mono,monospace';ctx.textAlign='center';
+  angs.forEach(function(a,i){ctx.fillText(labels[i],cx+(R+16)*Math.cos(a),cy+(R+16)*Math.sin(a)+3)})}
+drawRadar();new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)drawRadar()})},{threshold:.3}).observe(document.getElementById('radar')||document.body);
+
+/* SECTION ACHIEVEMENTS */
+var sAch={hire:'👔 HR Intel Loaded',about:'🖥️ Profile Accessed',experience:'💼 Career History Unlocked',skills:'⚡ Skills Matrix Loaded',education:'🎓 Education Verified',contact:'📡 Contact Node Found'};
+var achDone={};
+Object.keys(sAch).forEach(function(id){var el=document.getElementById(id);if(!el)return;new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting&&!achDone[id]){achDone[id]=true;var m=sAch[id];setTimeout(function(){unlock(m.split(' ')[0],m.slice(m.indexOf(' ')+1))},500)}})},{threshold:.3}).observe(el)});
+
+/* COPY BUTTONS */
+document.querySelectorAll('.cpb').forEach(function(btn){btn.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();var val=btn.dataset.copy;if(!val)return;if(navigator.clipboard)navigator.clipboard.writeText(val).then(function(){btn.textContent='✓ Copied';btn.classList.add('done');showToast('// Copied: '+val);unlock('📋','Copied to Clipboard!');setTimeout(function(){btn.textContent='Copy';btn.classList.remove('done')},2000)})})});
+
+/* GMAIL FORM */
+var fsub=document.getElementById('fsub');if(fsub)fsub.addEventListener('click',function(){
+  var n=(document.getElementById('fn')||{}).value||'',em=(document.getElementById('fe')||{}).value||'',subj=(document.getElementById('fs')||{}).value||'',msg=(document.getElementById('fm')||{}).value||'',st=document.getElementById('fst');
+  if(!n.trim()||!em.trim()||!msg.trim()){if(st){st.className='fst er';st.textContent='// ERROR: Please fill in your name, email, and message.'}sErr();return}
+  var to='Workwitheaaarl@gmail.com',sub=encodeURIComponent(subj||'Inquiry from '+n+' via Portfolio'),body=encodeURIComponent('Hi James,\n\nMy name is '+n+' ('+em+').\n\n'+msg+'\n\nBest regards,\n'+n);
+  window.open('https://mail.google.com/mail/?view=cm&fs=1&to='+to+'&su='+sub+'&body='+body,'_blank');
+  if(st){st.className='fst ok';st.textContent='// Gmail compose opened! Message pre-filled and ready to send.'}sOK();unlock('📧','Message Ready via Gmail!');});
+
+/* HR NOTIFICATIONS */
+var HR_NOTIFS=[  {ico:'👀',txt:'HR Manager is viewing your portfolio',sub:'📍 Makati City · Just now'},  {ico:'💼',txt:'Recruiter from Globe Telecom opened your profile',sub:'📍 BGC, Taguig · 1 min ago'},  {ico:'⭐',txt:'Your profile was saved by a hiring manager',sub:'📍 Ortigas Center · 2 mins ago'},  {ico:'📩',txt:'New message from an HR recruiter',sub:'📍 Mandaluyong City · Just now'},  {ico:'🔥',txt:'Your portfolio ranked #1 for "AI Analyst Manila"',sub:'🏆 Top candidate this week'},  {ico:'🤝',txt:'TechCorp Philippines wants to connect',sub:'📍 Pasig City · 3 mins ago'},  {ico:'🎯',txt:'98% match found for Prompt Engineer role',sub:'📍 Multiple companies · Now'},  {ico:'📞',txt:'Interview invite from a BGC tech startup',sub:'📍 Bonifacio Global City · 5 mins ago'} ];
+var hrIdx=0,hrT;
+function showHRNotif(){var n=HR_NOTIFS[hrIdx%HR_NOTIFS.length];var ico=document.getElementById('hrn-ico'),txt=document.getElementById('hrn-txt'),sub=document.getElementById('hrn-sub'),hrn=document.getElementById('hr-notif');
+  if(ico)ico.textContent=n.ico;if(txt)txt.textContent=n.txt;if(sub)sub.textContent=n.sub;
+  if(hrn){hrn.classList.add('show');clearTimeout(hrT);hrT=setTimeout(function(){hrn.classList.remove('show')},4000)}hrIdx++}
+setTimeout(showHRNotif,4000);setInterval(showHRNotif,15000);
+
+/* AI FAB */
+var aiOrb=document.getElementById('ai-orb'),afpEl=document.getElementById('afp'),afpRes=document.getElementById('afp-res');
+if(aiOrb)aiOrb.addEventListener('click',function(){if(afpEl)afpEl.classList.toggle('open')});
+var afpX=document.getElementById('afp-x');if(afpX)afpX.addEventListener('click',function(){if(afpEl)afpEl.classList.remove('open')});
+var FAB_ACTIONS={
+  pitch:'Write a 3-sentence elevator pitch for James that an HR reads in 10 seconds and immediately wants to interview him.',
+  summary:'Write a single powerful professional summary for James under 25 words for his resume header.',
+  unique:'In 3 bullet points, what makes James uniquely different from other BS IT 2025 graduates applying for AI roles?',
+  hire:'Give exactly 3 compelling, punchy reasons an HR manager should shortlist James immediately.',
+  salary:'What salary range should James target in PH for AI/IT roles in 2026? Give specific ranges by role type.',
+  linkedin:'Write an optimized LinkedIn headline for James under 220 characters targeting AI and IT roles in the Philippines.',
+  cold:'Write a compelling opening line for a cold email James could send to a hiring manager at any Philippine tech company.',
+  ats:'List the top 10 ATS keywords James must include in his resume for AI/IT roles in 2026, with a brief note for each.'
+};
+document.querySelectorAll('.afp-btn').forEach(function(b){b.addEventListener('click',async function(){if(!afpRes)return;afpRes.className='afp-res show loading';afpRes.textContent='Claude is thinking…';var r=await callClaude(FAB_ACTIONS[b.dataset.a]||b.dataset.a);afpRes.className='afp-res show';afpRes.textContent=r;sOK()})});
+
+/* TERMINAL */
+var trm=document.getElementById('trm'),tro=document.getElementById('tro'),trin=document.getElementById('trin');
+var CMDS={help:'Commands: help | whoami | skills | experience | contact | social | time | ping | ls | clear | exit',whoami:'James Earl Medrano\nAI Ops Analyst & IT Specialist\nBS IT 2025 · Malate, Manila, PH\nEmail: Workwitheaaarl@gmail.com\nPhone: +63 976 318 9033',skills:'[01] AI & LLM — Prompt Eng 92% · Annotation 90% · LLM Eval 88%\n[02] IT Ops  — Troubleshooting 90% · Networks 82% · Cybersec 78%\n[03] Data   — Excel 88% · Power BI 84% · CRM 80%',experience:'[1] A.I. Analyst II   — Innodata (Jan-May 2026)\n[2] IT Support        — Alorica Teleservices (2025)\n[3] Jr. Tech Support  — BESPOKE IT Corp. (2024)',contact:'EMAIL: Workwitheaaarl@gmail.com\nPHONE: +63 976 318 9033\nLOC:   Malate, Manila, PH',social:'LinkedIn:  linkedin.com/feed/\nGitHub:    github.com/youngNwis31\nFacebook:  facebook.com/eaarlsuuu\nInstagram: @eaarlsu\nX:         @eaarlsuu',ls:'portfolio_root/\n  00_hire.dat  01_about.dat  02_experience.log\n  03_skills.json  04_education.cert  05_contact.enc\n  dashboard/  (17 AI tools)',clear:'__clear__',exit:'__close__'};
+CMDS.time=function(){return'MANILA: '+new Date().toLocaleTimeString('en-PH',{timeZone:'Asia/Manila'})+' · '+new Date().toLocaleDateString('en-PH',{timeZone:'Asia/Manila',weekday:'long',year:'numeric',month:'long',day:'numeric'})};
+function tPrint(msg){if(!tro)return;var d=document.createElement('div');d.innerHTML=msg.replace(/\n/g,'<br>');tro.appendChild(d);tro.scrollTop=tro.scrollHeight}
+if(trin)trin.addEventListener('keydown',function(e){if(e.key!=='Enter')return;var cmd=trin.value.trim().toLowerCase();trin.value='';tPrint('<span style="color:var(--cyan)">james@manila:~$</span> '+cmd);var r=CMDS[cmd];if(typeof r==='function')r=r();if(r==='__clear__')tro.innerHTML='';else if(r==='__close__')trm.classList.remove('open');else if(r)tPrint(r);else tPrint('not found: <span style="color:var(--red)">'+cmd+'</span> — type "help"');sClick()});
+var trc=document.getElementById('trc');if(trc)trc.addEventListener('click',function(){trm.classList.remove('open')});
+var KONAMI=[38,38,40,40,37,39,37,39,66,65];var ki=0;
+document.addEventListener('keydown',function(e){if(e.keyCode===KONAMI[ki])ki++;else ki=0;if(ki===KONAMI.length){ki=0;if(trm)trm.classList.toggle('open');if(trm&&trm.classList.contains('open')){tPrint('<span style="color:var(--gold)">// KONAMI CODE — JAMES_OS v4.0 UNLOCKED</span>');unlock('🎮','Secret Terminal Unlocked!')}}});
+
+/* CHATBOT */
+var cbt=document.getElementById('cbt'),cwin=document.getElementById('cwin'),cms=document.getElementById('cms'),cin=document.getElementById('cin'),ctyp=document.getElementById('ctyp');
+if(cbt)cbt.addEventListener('click',function(){if(cwin)cwin.classList.toggle('open');var cn=document.getElementById('cbno');if(cn)cn.style.display='none';if(cms&&cms.children.length===0)addBotMsg("Hey! I am JEM-BOT powered by Claude. Ask me about James skills, experience, social media, or how to hire him. 🚀")});
+var cwx=document.getElementById('cwx');if(cwx)cwx.addEventListener('click',function(){if(cwin)cwin.classList.remove('open')});
+var KB={skills:"James top skills:\n🤖 AI/LLM: Prompt engineering 92%, Annotation 90%, LLM eval 88%\n🛠️ IT Ops: Troubleshooting 90%, Networks 82%, Cybersec 78%\n📊 Data: Excel 88%, Power BI 84%, CRM 80%",experience:"Work history:\n[1] A.I. Analyst II — Innodata (2026)\n[2] IT Support — Alorica Teleservices (2025)\n[3] Jr. Tech Support — BESPOKE IT Corp. (2024)",contact:"Reach James:\n📧 Workwitheaaarl@gmail.com\n📱 +63 976 318 9033\n📍 Malate, Manila, PH",social:"James socials:\n💼 LinkedIn: linkedin.com/feed/\n🐙 GitHub: github.com/youngNwis31\n📘 Facebook: facebook.com/eaarlsuuu\n📸 Instagram: @eaarlsu\n𝕏 X: @eaarlsuu",hire:"Why hire James?\n✅ Real LLM fine-tuning & prompt engineering\n✅ 3 industries in 2 years: cybersec, BPO, AI\n✅ BS IT 2025 · Open to work immediately\n✅ Bilingual: Filipino & English"};
+function botReply(q){var t=q.toLowerCase();if(t.includes('hire')||t.includes('why'))return KB.hire;if(t.includes('skill')||t.includes('capab'))return KB.skills;if(t.includes('exp')||t.includes('work')||t.includes('career'))return KB.experience;if(t.includes('contact')||t.includes('email')||t.includes('phone'))return KB.contact;if(t.includes('social')||t.includes('linkedin')||t.includes('github'))return KB.social;if(t.includes('hi')||t.includes('hello')||t.includes('hey'))return"Hey! I am JEM-BOT. Ask me anything about James!";return"I can tell you about James skills, experience, social links, or how to hire him. What do you need?"}
+function addBotMsg(text){if(!cms)return;var m=document.createElement('div');m.className='msg';var av=document.createElement('div');av.className='mav';av.textContent='🤖';var bub=document.createElement('div');bub.className='mbub b';bub.innerHTML=text.replace(/\n/g,'<br>');m.appendChild(av);m.appendChild(bub);cms.appendChild(m);cms.scrollTop=cms.scrollHeight}
+function sendBotMsg(txt){if(!txt||!txt.trim())return;var m=document.createElement('div');m.className='msg u';var av=document.createElement('div');av.className='mav';av.textContent='👤';var bub=document.createElement('div');bub.className='mbub u';bub.textContent=txt;m.appendChild(av);m.appendChild(bub);if(cms)cms.appendChild(m);if(cin)cin.value='';if(ctyp)ctyp.classList.add('show');if(cms)cms.scrollTop=cms.scrollHeight;setTimeout(function(){if(ctyp)ctyp.classList.remove('show');addBotMsg(botReply(txt))},700+Math.random()*400)}
+var cse=document.getElementById('cse');if(cse)cse.addEventListener('click',function(){if(cin)sendBotMsg(cin.value)});
+if(cin)cin.addEventListener('keydown',function(e){if(e.key==='Enter')sendBotMsg(cin.value)});
+document.querySelectorAll('.qb').forEach(function(b){b.addEventListener('click',function(){sendBotMsg(b.dataset.q)})});
+
+/* HR FEED */
+var HR_FEED=[{ico:'👀',txt:'Talent Acquisition from Accenture PH viewed your portfolio',sub:'📍 BGC · Just now',col:'var(--cyan)'},{ico:'💼',txt:'Globe Telecom recruiter opened your LinkedIn',sub:'📍 Mandaluyong · 1 min ago',col:'rgba(10,102,194,.8)'},{ico:'⭐',txt:'HR Manager saved your profile to shortlist',sub:'📍 Ortigas Center · 2 mins ago',col:'var(--gold)'},{ico:'🔥',txt:'Profile ranked #1 for "AI Analyst Manila 2026"',sub:'🏆 Top 5% candidate',col:'var(--red)'},{ico:'📞',txt:'Interview invite from BGC tech startup',sub:'📍 Bonifacio Global City · 5 mins ago',col:'var(--grn)'},{ico:'🎯',txt:'97% match for Senior Prompt Engineer role',sub:'💡 3 companies looking for you',col:'var(--vio)'},{ico:'🌟',txt:'AI skills scored above 90th percentile',sub:'📊 vs. other BS IT 2025 graduates',col:'var(--gold)'},{ico:'📨',txt:'Grab PH Tech team wants to connect',sub:'📍 Pasig City · 3 mins ago',col:'var(--grn)'}];
+function buildFeed(containerId,count){var feed=document.getElementById(containerId);if(!feed)return;feed.innerHTML='';HR_FEED.slice(0,count||5).forEach(function(ev){var d=document.createElement('div');d.className='nitem';d.style.borderLeftColor=ev.col;d.innerHTML='<div class="nicon">'+ev.ico+'</div><div><div class="ntime">Live Activity</div><div class="ntxt">'+ev.txt+'</div><div class="nsub">'+ev.sub+'</div></div>';feed.appendChild(d)})}
+buildFeed('ov-feed',5);buildFeed('act-feed',8);
+var feedIdx=5;setInterval(function(){var ev=HR_FEED[feedIdx%HR_FEED.length];['ov-feed','act-feed'].forEach(function(fid){var feed=document.getElementById(fid);if(!feed)return;var d=document.createElement('div');d.className='nitem';d.style.borderLeftColor=ev.col;d.innerHTML='<div class="nicon">'+ev.ico+'</div><div><div class="ntime">Just now</div><div class="ntxt">'+ev.txt+'</div><div class="nsub">'+ev.sub+'</div></div>';feed.insertBefore(d,feed.firstChild);if(feed.children.length>8)feed.removeChild(feed.lastChild)});feedIdx++},9000);
+
+/* JOB TRACKER */
+var jobs=[];
+function renderJobs(){
+  var counts={applied:0,interview:0,offer:0,rejected:0};jobs.forEach(function(j){if(counts[j.st]!==undefined)counts[j.st]++});
+  ['jt-total','ov-apps'].forEach(function(id){var el=document.getElementById(id);if(el)el.textContent=jobs.length});
+  ['jt-applied'].forEach(function(id){var el=document.getElementById(id);if(el)el.textContent=counts.applied});
+  ['jt-interview','ov-int'].forEach(function(id){var el=document.getElementById(id);if(el)el.textContent=counts.interview});
+  ['jt-offer','ov-off'].forEach(function(id){var el=document.getElementById(id);if(el)el.textContent=counts.offer});
+  var list=document.getElementById('jt-list');if(!list)return;
+  if(!jobs.length){list.innerHTML='<div style="font-family:var(--fm);font-size:8px;color:var(--mut);text-align:center;padding:13px;letter-spacing:.11em;text-transform:uppercase">No applications yet — add one below</div>';return}
+  list.innerHTML='';
+  jobs.forEach(function(j,i){var el=document.createElement('div');el.className='jtrow';var diff=Math.floor((Date.now()-j.ts)/864e5);var ds=diff===0?'Today':diff===1?'Yesterday':diff+'d ago';el.innerHTML='<div class="jtdot '+j.st+'"></div><div class="jtinfo"><div class="jtrl">'+j.role+'</div><div class="jtco">'+j.co+'</div></div><div class="jtdt">'+ds+'</div><button class="jtdel" data-i="'+i+'">×</button>';list.appendChild(el)});
+  list.querySelectorAll('.jtdel').forEach(function(b){b.addEventListener('click',function(){jobs.splice(parseInt(b.dataset.i),1);renderJobs()})});
+}
+var jtAdd=document.getElementById('jt-add');
+if(jtAdd)jtAdd.addEventListener('click',function(){var role=(document.getElementById('jt-role')||{}).value||'',co=(document.getElementById('jt-co')||{}).value||'',st=(document.getElementById('jt-st')||{}).value||'applied';if(!role.trim()||!co.trim())return;jobs.push({role:role.trim(),co:co.trim(),st:st,ts:Date.now()});var ri=document.getElementById('jt-role');var ci2=document.getElementById('jt-co');if(ri)ri.value='';if(ci2)ci2.value='';renderJobs();sClick()});
+renderJobs();
+var jtAI=document.getElementById('jt-ai-btn');if(jtAI)jtAI.addEventListener('click',async function(){aiOut('jt-ai-out','',true);var sum=jobs.length?jobs.map(function(j){return j.role+' at '+j.co+' ('+j.st+')'}).join('; '):'No applications tracked yet';var r=await callClaude('James has these job applications: '+sum+'. Give 5 personalized, actionable tips to improve his job search strategy and increase interview rate. Be specific.');aiOut('jt-ai-out',r,false)});
+
+/* TONE HELPERS */
+function initTones(gid){var g=document.getElementById(gid);if(!g)return;g.querySelectorAll('.tone-btn').forEach(function(b){b.addEventListener('click',function(){g.querySelectorAll('.tone-btn').forEach(function(x){x.classList.remove('sel')});b.classList.add('sel')})})}
+function getTone(gid){var g=document.getElementById(gid);if(!g)return'Professional';var a=g.querySelector('.sel');return a?a.dataset.tone:'Professional'}
+initTones('cl-tones');initTones('rb-tones');
+
+/* INTERVIEW QCHIPS */
+document.querySelectorAll('.qchip[data-q]').forEach(function(c){c.addEventListener('click',function(){var inp=document.getElementById('iv-inp');if(inp)inp.value=c.dataset.q;sClick()})});
+
+/* ACTIVITY AI */
+var actAI=document.getElementById('act-ai');if(actAI)actAI.addEventListener('click',async function(){aiOut('act-out','',true);var scenario=(document.getElementById('act-scenario')||{}).value||'';var r=await callClaude('James is in this situation: "'+scenario+'". Write the perfect professional response/action. Include: what to say, how to say it, what to avoid, concrete next steps.');aiOut('act-out',r,false)});
+
+/* AI TOOL BUTTONS */
+async function runTool(btnId,outId,pFn){var btn=document.getElementById(btnId);if(!btn)return;btn.addEventListener('click',async function(){var prompt=pFn();if(!prompt){showToast('// Please fill in the required fields');sErr();return}aiOut(outId,'',true);var r=await callClaude(prompt);aiOut(outId,r,false)})}
+
+runTool('jfa-btn','jfa-out',function(){var jd=(document.getElementById('jfa-jd')||{}).value||'';return jd.trim()?'Analyze James fit for this job: 1) Match % + verdict, 2) Matching skills/experience, 3) Key strengths, 4) Gaps and how to address, 5) 2-sentence hiring recommendation.\n\nJOB DESCRIPTION:\n'+jd:''});
+runTool('cl-btn','cl-out',function(){var role=(document.getElementById('cl-role')||{}).value||'';var reqs=(document.getElementById('cl-reqs')||{}).value||'';var tone=getTone('cl-tones');return role.trim()?'Write a '+tone+' cover letter from James for: '+role+(reqs?'. Requirements: '+reqs:'.')+' Under 350 words. Strong opening, 2-3 body paragraphs with specific experience, confident close. Ready to send.':''});
+runTool('iv-btn','iv-out',function(){var q=(document.getElementById('iv-inp')||{}).value||'';return q.trim()?'Model answer (150-250 words) for James to: "'+q+'". STAR method. Reference real experience. Natural for speaking aloud. End confidently.':''});
+runTool('ats-btn','ats-out',function(){var kw=(document.getElementById('ats-kw')||{}).value||'';var role=(document.getElementById('ats-role')||{}).value||'AI Operations Analyst';return'Generate a complete ATS-optimized resume for James targeting "'+role+'"'+(kw?' with keywords: '+kw:'')+'. Include: professional summary, work experience with action verbs and quantified results, skills, education, certifications recommendation.'});
+runTool('li-btn','li-out',function(){var t=(document.getElementById('li-target')||{}).value||'';var chips=Array.from(document.querySelectorAll('#li-chips .chip.sel')).map(function(c){return c.dataset.v}).join(', ');return(t||chips)?'Optimize James LinkedIn for "'+(t||chips)+'". Give: 1) Headline (under 220 chars), 2) About section (3 paragraphs, CTA at end), 3) Top 5 skills, 4) 3 profile tips.':''});
+runTool('sal-btn','sal-out',function(){var offer=(document.getElementById('sal-offer')||{}).value||'',target=(document.getElementById('sal-target')||{}).value||'',role=(document.getElementById('sal-role')||{}).value||'';return(offer&&target)?'James got PHP '+offer+'/mo offer for "'+role+'", wants PHP '+target+'/mo. Write: 1) Negotiation email script, 2) Key talking points, 3) Counter-offer strategy, 4) Response if pushed back.':''});
+runTool('cp-btn','cp-out',function(){var goal=(document.getElementById('cp-goal')||{}).value||'';var time=(document.getElementById('cp-time')||{}).value||'3-5 years';return goal.trim()?'James wants to be "'+goal+'" in '+time+'. Create: 1) Step-by-step roadmap with milestones, 2) Skills to acquire per stage, 3) Certifications recommended, 4) Timeline with checkpoints, 5) One bold accelerator move. Be specific.':''});
+runTool('ref-btn','ref-out',function(){var type=(document.getElementById('ref-type')||{}).value||'';var role=(document.getElementById('ref-role')||{}).value||'';return'Reference letter for James from "'+type+'" for "'+role+'" role. 3-4 paragraphs. Specific, glowing, credible. Real examples. Strong endorsement close with contact offer.'});
+runTool('rb-btn','rb-out',function(){var bullets=(document.getElementById('rb-inp')||{}).value||'';var tone=getTone('rb-tones');return bullets.trim()?'Rewrite resume bullets for James in '+tone+' style. Strong action verbs, quantified where possible, ATS-friendly:\n\n'+bullets:''});
+runTool('djp-btn','djp-out',function(){var hours=(document.getElementById('djp-hours')||{}).value||'2-3 hours';var stage=(document.getElementById('djp-stage')||{}).value||'Actively applying';return'Create a specific, actionable daily job hunt plan for James. He has '+hours+' today at stage: "'+stage+'". Give: 1) Timed hourly schedule, 2) Exact tasks (platforms: LinkedIn, JobStreet, Kalibrr, Indeed PH), 3) One networking action, 4) One skill-building task, 5) Motivational closer. Specific to an AI/IT specialist in Manila.'});
+runTool('rrc-btn','rrc-out',function(){var type=(document.getElementById('rrc-type')||{}).value||'';var role=(document.getElementById('rrc-role')||{}).value||'';return'James experienced: "'+type+'" for "'+role+'". As his career coach: 1) Honest, empathetic acknowledgment, 2) What this means (and does NOT mean), 3) 3 concrete actions in the next 24 hours, 4) How to turn this into momentum, 5) Powerful encouragement tailored to his AI/IT background. Tone: warm, honest, energizing.'});
+runTool('ty-btn','ty-out',function(){var name=(document.getElementById('ty-name')||{}).value||'the interviewer';var role=(document.getElementById('ty-role')||{}).value||'';var detail=(document.getElementById('ty-detail')||{}).value||'';return'Thank-you email for James after interview. Interviewer: '+name+'. Role/Company: '+role+'. Interview detail: "'+detail+'". Include: SUBJECT: line first, under 150 words, reference the detail naturally, reaffirm enthusiasm and top qualification, confident close. Format: SUBJECT: [subject]\n\n[email body]'});
+
+/* COLD EMAIL */
+var ceBtn=document.getElementById('ce-btn');
+if(ceBtn)ceBtn.addEventListener('click',async function(){
+  var co=(document.getElementById('ce-co')||{}).value||'',to=(document.getElementById('ce-to')||{}).value||'Hiring Manager',angle=(document.getElementById('ce-angle')||{}).value||'';
+  if(!co.trim()){showToast('// Enter a target company');sErr();return}
+  var prev=document.getElementById('ce-prev'),subj=document.getElementById('ce-subj'),body=document.getElementById('ce-body'),copy=document.getElementById('ce-copy');
+  if(prev)prev.className='ep show';if(subj)subj.textContent='Generating…';if(body)body.textContent='';
+  var r=await callClaude('Cold email from James to '+to+' at '+co+'. Angle: '+angle+'. First line: SUBJECT: [subject]. Under 200 words. Compelling, name-drop AI/LLM experience, strong CTA. Format: SUBJECT: [subject]\n\n[body]');
+var lines=r.split('\n');var sub='',bd=[];var found=false;
+lines.forEach(function(l){if(!found&&l.toLowerCase().startsWith('subject:')){sub=l.replace(/^subject:\s*/i,'');found=true}else bd.push(l)});
+if(subj)subj.textContent='Subject: '+(sub||'James Earl Medrano — AI Professional');
+if(body)body.textContent=bd.join('\n').trim();
+if(copy){copy.style.display='block';copy.onclick=function(){if(navigator.clipboard)navigator.clipboard.writeText((sub?'Subject: '+sub+'\n\n':'')+bd.join('\n').trim()).then(function(){copy.textContent='✓ Copied';setTimeout(function(){copy.textContent='Copy'},2000)})}};
+sOK();unlock('📧','Cold Email Ready!');
+});
+
+/* LINKEDIN CHIPS */
+document.querySelectorAll('#li-chips .chip').forEach(function(c){c.addEventListener('click',function(){c.classList.toggle('sel')})});
+
+/* FOLLOW-UP */
+var fuSel='after applying online 7 days ago with no response';
+document.querySelectorAll('.fu-step').forEach(function(s){s.addEventListener('click',function(){document.querySelectorAll('.fu-step').forEach(function(x){x.classList.remove('act')});s.classList.add('act');fuSel=s.dataset.s;sClick()})});
+var fuBtn=document.getElementById('fu-btn');if(fuBtn)fuBtn.addEventListener('click',async function(){aiOut('fu-out','',true);var co=(document.getElementById('fu-co')||{}).value||'';var r=await callClaude('Follow-up email for James for: "'+fuSel+'" for role: "'+co+'". SUBJECT: line first. Under 180 words. Warm, professional, specific qualifications, clear ask, confident close.');aiOut('fu-out',r,false)});
+
+/* VIDEO INTERVIEW */
+var VQS=['Tell me about yourself and your journey into AI and technology.','Why are you the ideal candidate for this specific role?','Describe the most complex AI task you have completed. Walk me through your process.','How do you stay current with fast-moving AI developments?','Tell me about a time you identified and resolved a critical technical issue.','How do you approach working with incomplete or ambiguous requirements?','Describe your data annotation experience and how you ensure quality.','What is your greatest professional achievement in the past 2 years?','Where do you see yourself in 3 years?','Why should we choose you over a candidate with a computer science degree?'];
+var vIdx=0,vStarted=false;var vidQ=document.getElementById('vid-q'),vidLabel=document.getElementById('vid-label'),vidCtr=document.getElementById('vid-ctr'),vidRec=document.getElementById('vid-rec'),vidNext=document.getElementById('vid-next'),vidAns=document.getElementById('vid-ans');
+if(vidNext)vidNext.addEventListener('click',function(){if(vIdx>=VQS.length){showToast('// Session complete! Great practice!');return}if(vidQ)vidQ.textContent=VQS[vIdx];if(vidLabel)vidLabel.textContent='// QUESTION '+(vIdx+1)+' OF '+VQS.length;if(vidCtr)vidCtr.textContent='Q '+(vIdx+1)+' / '+VQS.length;if(vidRec)vidRec.classList.add('show');if(!vStarted){vStarted=true;if(vidNext)vidNext.textContent='▶ Next Question'}vIdx++;sClick();if(vIdx===1)unlock('🎬','Mock Interview Started!');if(vIdx===VQS.length)showToast('// Last question — make it count!')});
+if(vidAns)vidAns.addEventListener('click',async function(){var q=vidQ?vidQ.textContent:'';if(!q||q.includes('Press Start'))return;aiOut('vid-out','',true);var r=await callClaude('Model answer (under 200 words, natural speech) for James to: "'+q+'". STAR where applicable. Reference real experience. Sound genuine. End forward-looking.');aiOut('vid-out',r,false)});
+
+/* DASHBOARD AI CHAT */
+var dcMsgs=document.getElementById('dc-msgs'),dcInp=document.getElementById('dc-inp'),dcTyping=document.getElementById('dc-typing');
+function addDCMsg(text,type){if(!dcMsgs)return;var m=document.createElement('div');m.style.cssText='display:flex;gap:8px;align-items:flex-end'+(type==='u'?';flex-direction:row-reverse':'');var av=document.createElement('div');av.style.cssText='width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;border:1px solid var(--line);background:var(--panel)';av.textContent=type==='u'?'👤':'🤖';var bub=document.createElement('div');bub.style.cssText='max-width:75%;padding:8px 12px;font-size:11px;line-height:1.65;font-weight:300;'+(type==='u'?'background:linear-gradient(135deg,rgba(0,240,255,.1),rgba(155,77,255,.1));border:1px solid var(--lc);border-radius:10px 0 10px 10px;color:var(--cyan)':'background:var(--panel);border:1px solid var(--line);border-radius:0 10px 10px 10px;color:var(--txt)');bub.innerHTML=text.replace(/\n/g,'<br>');m.appendChild(av);m.appendChild(bub);dcMsgs.appendChild(m);dcMsgs.scrollTop=dcMsgs.scrollHeight}
+window.sendChat=async function(txt){if(!txt||!txt.trim())return;addDCMsg(txt,'u');if(dcInp)dcInp.value='';if(dcTyping)dcTyping.style.display='block';if(dcMsgs)dcMsgs.scrollTop=dcMsgs.scrollHeight;var r=await callClaude(txt);if(dcTyping)dcTyping.style.display='none';addDCMsg(r,'ai');sOK()};
+var dcSend=document.getElementById('dc-send');if(dcSend)dcSend.addEventListener('click',function(){if(dcInp)sendChat(dcInp.value)});
+if(dcInp)dcInp.addEventListener('keydown',function(e){if(e.key==='Enter')sendChat(dcInp.value)});
+setTimeout(function(){if(dcMsgs&&dcMsgs.children.length===0)addDCMsg("Hello! I am Claude AI. I know everything about James Earl Medrano. Ask me anything — his skills, salary expectations, why you should hire him, or how he fits a specific role! 🚀",'ai')},400);
+
+})();
+</script>
+</body>
+</html>
