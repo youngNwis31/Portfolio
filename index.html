@@ -16,7 +16,7 @@ a{text-decoration:none;color:inherit;transition:.2s}
 button{font-family:var(--fd)}
 ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--cyan),var(--vio))}
 #pbar{position:fixed;top:0;left:0;height:2px;z-index:9999;width:0%;background:linear-gradient(90deg,var(--cyan),var(--vio));box-shadow:0 0 10px var(--cyan);transition:width .08s}
-#hex{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.35}
+#hex{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0.18}
 .pts{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
 .pt{position:absolute;border-radius:50%;animation:ptrise linear infinite}
 @keyframes ptrise{0%{transform:translateY(0) translateX(0);opacity:1}100%{transform:translateY(-110vh) translateX(var(--d));opacity:0}}
@@ -83,16 +83,16 @@ button{font-family:var(--fd)}
 .cin{flex:1;background:var(--panel);border:none;color:var(--txt);font-family:var(--fd);font-size:12px;padding:10px 12px;outline:none}
 .cse{background:linear-gradient(135deg,var(--cyan),var(--vio));color:#020810;border:none;padding:10px 13px;font-size:10px;cursor:pointer;font-weight:700;letter-spacing:.07em;font-family:var(--fm)}
 /* ACHIEVEMENT + TOAST + HR NOTIF */
-.ach{position:fixed;top:82px;right:22px;z-index:600;background:var(--panel);border:1px solid rgba(0,240,255,.38);padding:13px 17px;display:flex;align-items:center;gap:12px;transform:translateX(130%);transition:.45s cubic-bezier(.34,1.56,.64,1);max-width:280px;box-shadow:0 0 32px rgba(0,240,255,.1)}
-.ach::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--vio))}
-.ach.show{transform:none}
-.ach-ico{font-size:24px;flex:none}.ach-lbl{font-family:var(--fm);font-size:8px;letter-spacing:.16em;color:var(--cyan);text-transform:uppercase;margin-bottom:2px}.ach-ttl{font-size:12px;font-weight:700}
-.tst{position:fixed;bottom:88px;left:50%;transform:translateX(-50%) translateY(12px);z-index:700;background:var(--panel);border:1px solid rgba(0,255,136,.38);color:var(--grn);font-family:var(--fm);font-size:10px;letter-spacing:.11em;padding:9px 18px;opacity:0;transition:.28s;pointer-events:none;white-space:nowrap}
-.tst.show{opacity:1;transform:translateX(-50%) translateY(0)}
-.hr-notif{position:fixed;top:82px;left:50%;transform:translateX(-50%) translateY(-150px);z-index:700;background:var(--panel);border:1px solid rgba(0,255,136,.4);padding:12px 20px;display:flex;align-items:center;gap:12px;box-shadow:0 0 36px rgba(0,255,136,.12);transition:.5s cubic-bezier(.34,1.56,.64,1);pointer-events:none;min-width:295px;max-width:88vw}
-.hr-notif::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--grn),var(--cyan))}
-.hr-notif.show{transform:translateX(-50%) translateY(0)}
-.hrn-ico{font-size:21px;flex-shrink:0}.hrn-lbl{font-family:var(--fm);font-size:7px;letter-spacing:.17em;color:var(--grn);text-transform:uppercase;margin-bottom:2px}.hrn-txt{font-size:12px;font-weight:700;color:var(--txt)}.hrn-sub{font-family:var(--fm);font-size:8px;color:var(--mut);margin-top:1px}
+
+
+
+
+
+
+
+
+
+
 /* SOCIAL SIDEBAR */
 .ssb{position:fixed;left:16px;top:50%;transform:translateY(-50%);z-index:200;display:flex;flex-direction:column;align-items:center;gap:9px}
 .ssb::before,.ssb::after{content:"";width:1px;height:44px;background:linear-gradient(180deg,transparent,rgba(0,240,255,.28))}
@@ -488,22 +488,131 @@ footer{background:var(--bg);border-top:1px solid var(--line);padding:32px 0 20px
 .cpn-role{font-family:var(--fm);font-size:8px;letter-spacing:.07em;color:var(--mut);text-transform:uppercase;line-height:1.4}
 .cpn-year{font-family:var(--fm);font-size:8px;color:var(--cyan);margin-top:2px}
 /* Print */
-@media print{body{cursor:auto!important;background:#fff!important;color:#000!important}#cur,.ssb,.pts,.mglow,.ach,.tst,.sndbtn,.btt,.dlr,.trm,.cbt,.cwin,.ai-orb,.afp,#hex,.nav,.hr-notif{display:none!important}.wrap{padding:0 16px!important}.sec{padding:28px 0!important}.hero{min-height:unset!important;padding:24px 0!important}.rv{opacity:1!important;transform:none!important}.sbfi{transform:scaleX(1)!important}.hud{display:none!important}.dash-wrap{display:none!important}#page-portfolio{display:block!important}}
+@media print{body{cursor:auto!important;background:#fff!important;color:#000!important}#cur,.ssb,.pts,.mglow,.ach,.tst,.sndbtn,.btt,.dlr,.trm,.cbt,.cwin,.ai-orb,.afp,#hex,.nav,.wrap{padding:0 16px!important}.sec{padding:28px 0!important}.hero{min-height:unset!important;padding:24px 0!important}.rv{opacity:1!important;transform:none!important}.sbfi{transform:scaleX(1)!important}.hud{display:none!important}.dash-wrap{display:none!important}#page-portfolio{display:block!important}}
 /* Responsive */
 @media(max-width:980px){.dg2,.dg3,.dg4{grid-template-columns:1fr}.hg,.ag,.clo,.skgrid,.ftop{grid-template-columns:1fr}.sstrip{grid-template-columns:repeat(2,1fr)}.edi{flex-direction:column}.edb{width:100%;flex-direction:row;justify-content:flex-start;border-right:none;border-bottom:1px solid var(--lc);padding:14px}.csg{grid-template-columns:1fr}.dash-wrap{grid-template-columns:1fr}.dsb{display:none}}
 @media(max-width:700px){.wrap{padding:0 15px}.ssb{display:none}.mbtn{display:flex}.nav-links,.nhire,.ntabs{display:none}.frow{grid-template-columns:1fr}.cwin{width:calc(100vw - 26px);left:14px}.trm{width:calc(100vw - 26px);left:14px}.cbt{left:22px;bottom:76px}.ai-orb{left:22px;bottom:22px}.afp{left:14px}.hud{display:none}.sstrip{grid-template-columns:1fr 1fr}}
+
+/* ══════════════════════════════════════
+   MOBILE DASHBOARD — bottom nav + drawer
+══════════════════════════════════════ */
+
+/* Mobile bottom tab bar */
+.mob-tabs{display:none;position:fixed;bottom:0;left:0;right:0;z-index:300;background:var(--panel);border-top:1px solid var(--lc);height:58px;align-items:stretch}
+.mob-tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;border:none;background:transparent;color:var(--mut);font-family:var(--fm);font-size:7px;letter-spacing:.06em;text-transform:uppercase;transition:.2s;position:relative;padding:6px 2px}
+.mob-tab.act{color:var(--cyan)}
+.mob-tab.act::before{content:"";position:absolute;top:0;left:20%;right:20%;height:2px;background:var(--cyan);border-radius:0 0 2px 2px}
+.mob-tab-ico{font-size:18px;line-height:1}
+.mob-tab-lbl{font-size:8px;letter-spacing:.05em}
+
+/* Tool drawer (slides up from bottom) */
+.mob-drawer{display:none;position:fixed;bottom:58px;left:0;right:0;z-index:299;background:var(--panel);border-top:1px solid var(--lc);transform:translateY(100%);transition:.35s cubic-bezier(.4,0,.2,1);max-height:65vh;overflow-y:auto}
+.mob-drawer::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--vio))}
+.mob-drawer.open{transform:translateY(0)}
+.mob-drawer-head{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--panel);z-index:1}
+.mob-drawer-title{font-family:var(--fm);font-size:9px;letter-spacing:.15em;color:var(--cyan);text-transform:uppercase}
+.mob-drawer-x{background:none;border:none;color:var(--mut);font-size:16px;cursor:pointer;padding:4px}
+.mob-tool-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);padding-bottom:env(safe-area-inset-bottom,0)}
+.mob-tool-btn{background:var(--panel2);border:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:14px 8px;cursor:pointer;transition:.2s;text-align:center}
+.mob-tool-btn:active{background:rgba(0,240,255,.1)}
+.mob-tool-btn.act{background:rgba(0,240,255,.08)}
+.mob-tool-ico{font-size:22px;line-height:1}
+.mob-tool-lbl{font-family:var(--fm);font-size:8px;letter-spacing:.06em;color:var(--mut);text-transform:uppercase;line-height:1.3}
+.mob-tool-btn.act .mob-tool-lbl{color:var(--cyan)}
+
+/* Dashboard main content — add bottom padding for tab bar */
+@media(max-width:700px){
+  .mob-tabs{display:flex}
+  .mob-drawer{display:block}
+  .dsb{display:none!important}
+  .dash-wrap{grid-template-columns:1fr!important;min-height:calc(100vh - 62px - 58px)}
+  .dmain{padding-bottom:68px}
+  .dmi{padding:16px 14px 80px}
+  /* Fix nav on mobile — show portfolio/dashboard tabs */
+  .ntabs{display:flex!important}
+  /* Dashboard overview cards stack properly */
+  .dg4{grid-template-columns:repeat(2,1fr)!important}
+  /* Input fields full width */
+  .ai-inp,.ai-ta,.ai-sel{font-size:16px!important}/* prevent iOS zoom */
+  /* AI output readable */
+  .ai-out{font-size:13px!important;line-height:1.7!important}
+  /* Tone buttons */
+  .tone-row{grid-template-columns:repeat(3,1fr)}
+  /* Chips wrap nicely */
+  .chips,.qchips{gap:6px}
+  .chip,.qchip{padding:6px 10px;font-size:9px}
+  /* Video screen */
+  .vidscreen{min-height:130px}
+  .vid-ctrl{flex-wrap:wrap;gap:8px}
+  /* Salary grid */
+  .dg2{grid-template-columns:1fr!important}
+  /* Career nodes scroll */
+  .cpn-row{gap:0;padding-bottom:6px}
+  /* Dashboard header */
+  .dph-title{font-size:20px!important}
+}
 </style>
 </head>
 <body>
 <!-- CURSOR -->
 <div id="cur"><svg width="30" height="30" viewBox="-15 -15 30 30" fill="none"><circle id="cr" r="10" stroke="#00f0ff" stroke-width="1" fill="none" opacity=".85"/><circle id="cd" r="2" fill="#00f0ff"/><line id="lh1" x1="-15" y1="0" x2="-12" y2="0" stroke="#00f0ff" stroke-width="1"/><line id="lh2" x1="12" y1="0" x2="15" y2="0" stroke="#00f0ff" stroke-width="1"/><line id="lv1" x1="0" y1="-15" x2="0" y2="-12" stroke="#00f0ff" stroke-width="1"/><line id="lv2" x1="0" y1="12" x2="0" y2="15" stroke="#00f0ff" stroke-width="1"/></svg></div>
+
+<!-- MOBILE DASHBOARD BOTTOM NAV -->
+<div class="mob-tabs" id="mob-tabs">
+  <button class="mob-tab act" data-mob="overview" id="mobt-overview">
+    <span class="mob-tab-ico">📊</span>
+    <span class="mob-tab-lbl">Home</span>
+  </button>
+  <button class="mob-tab" data-mob="tracker" id="mobt-tracker">
+    <span class="mob-tab-ico">📋</span>
+    <span class="mob-tab-lbl">Tracker</span>
+  </button>
+  <button class="mob-tab" id="mobt-tools-open">
+    <span class="mob-tab-ico">🤖</span>
+    <span class="mob-tab-lbl">AI Tools</span>
+  </button>
+  <button class="mob-tab" data-mob="aichat" id="mobt-chat">
+    <span class="mob-tab-ico">💬</span>
+    <span class="mob-tab-lbl">AI Chat</span>
+  </button>
+  <button class="mob-tab" data-mob="activity" id="mobt-activity">
+    <span class="mob-tab-ico">🔔</span>
+    <span class="mob-tab-lbl">HR Feed</span>
+  </button>
+</div>
+
+<!-- TOOL PICKER DRAWER -->
+<div class="mob-drawer" id="mob-drawer">
+  <div class="mob-drawer-head">
+    <span class="mob-drawer-title">// Select AI Tool</span>
+    <button class="mob-drawer-x" id="mob-drawer-x">✕</button>
+  </div>
+  <div class="mob-tool-grid">
+    <button class="mob-tool-btn" data-dp="jobfit"><span class="mob-tool-ico">🎯</span><span class="mob-tool-lbl">Job Fit</span></button>
+    <button class="mob-tool-btn" data-dp="coverletter"><span class="mob-tool-ico">✍️</span><span class="mob-tool-lbl">Cover Letter</span></button>
+    <button class="mob-tool-btn" data-dp="interview"><span class="mob-tool-ico">🎤</span><span class="mob-tool-lbl">Interview Coach</span></button>
+    <button class="mob-tool-btn" data-dp="coldemail"><span class="mob-tool-ico">📧</span><span class="mob-tool-lbl">Cold Email</span></button>
+    <button class="mob-tool-btn" data-dp="followup"><span class="mob-tool-ico">🔔</span><span class="mob-tool-lbl">Follow-Up</span></button>
+    <button class="mob-tool-btn" data-dp="ats"><span class="mob-tool-ico">🤖</span><span class="mob-tool-lbl">ATS Resume</span></button>
+    <button class="mob-tool-btn" data-dp="linkedin"><span class="mob-tool-ico">💼</span><span class="mob-tool-lbl">LinkedIn</span></button>
+    <button class="mob-tool-btn" data-dp="salary"><span class="mob-tool-ico">💰</span><span class="mob-tool-lbl">Salary Nego</span></button>
+    <button class="mob-tool-btn" data-dp="video"><span class="mob-tool-ico">🎬</span><span class="mob-tool-lbl">Mock Interview</span></button>
+    <button class="mob-tool-btn" data-dp="careerpath"><span class="mob-tool-ico">🛤️</span><span class="mob-tool-lbl">Career Path</span></button>
+    <button class="mob-tool-btn" data-dp="reference"><span class="mob-tool-ico">🏆</span><span class="mob-tool-lbl">Reference</span></button>
+    <button class="mob-tool-btn" data-dp="rewrite"><span class="mob-tool-ico">📝</span><span class="mob-tool-lbl">Bullet Rewriter</span></button>
+    <button class="mob-tool-btn" data-dp="planner"><span class="mob-tool-ico">📅</span><span class="mob-tool-lbl">Daily Plan</span></button>
+    <button class="mob-tool-btn" data-dp="rejection"><span class="mob-tool-ico">💪</span><span class="mob-tool-lbl">Rejection Coach</span></button>
+    <button class="mob-tool-btn" data-dp="thankyou"><span class="mob-tool-ico">🙏</span><span class="mob-tool-lbl">Thank-You</span></button>
+  </div>
+</div>
+
 <canvas id="hex"></canvas>
 <div id="pbar"></div>
 <div class="pts" id="pts"></div>
 <div class="mglow" id="mg"></div>
-<div class="tst" id="tst"></div>
-<div class="ach" id="ach"><div class="ach-ico" id="aico">🏆</div><div><div class="ach-lbl">Achievement Unlocked</div><div class="ach-ttl" id="attl"></div></div></div>
-<div class="hr-notif" id="hr-notif"><div class="hrn-ico" id="hrn-ico">👀</div><div><div class="hrn-lbl">Live Activity</div><div class="hrn-txt" id="hrn-txt">HR Manager is viewing your profile</div><div class="hrn-sub" id="hrn-sub">📍 Makati City · Just now</div></div></div>
+
+
+
 <div class="ssb">
   <a class="sb" href="https://www.linkedin.com/feed/" target="_blank" rel="noopener">💼<span class="tip">LinkedIn</span></a>
   <a class="sb" href="https://github.com/youngNwis31" target="_blank" rel="noopener">🐙<span class="tip">GitHub</span></a>
@@ -1158,313 +1267,1014 @@ footer{background:var(--bg);border-top:1px solid var(--line);padding:32px 0 20px
 </div></div></div></div><!-- end dashboard --><script>
 (function(){
 'use strict';
-const JC=`You are an AI assistant embedded in James Earl Medrano's portfolio and AI Job Hunter Dashboard. Answer enthusiastically and accurately to help him find a job and impress HR professionals.\nPROFILE: James Earl Medrano | Location: Malate, Manila, PH | Status: Open to Work\nEducation: BS IT, Pamantasan ng Lungsod ng Maynila (PLM), 2025\nEmail: Workwitheaaarl@gmail.com | Phone: +63 976 318 9033\nGitHub: github.com/youngNwis31 | LinkedIn: linkedin.com/feed/ | FB: facebook.com/eaarlsuuu | IG: @eaarlsu | X: @eaarlsuu\nEXPERIENCE:\n1. A.I. Analyst II (LLM) — Innodata Knowledge Services, Jan-May 2026, Cebu. Prompt engineering, data annotation, supervised fine-tuning, AI model QA/testing.\n2. IT Support & Case Resolution — Alorica Teleservices, Jan 2025-Jan 2026, Manila. Power BI, Advanced Excel, CRM, user account security for international credit card company.\n3. Jr. Technical Support — BESPOKE IT Project Corp., Feb-Jul 2024, Makati. Firewalls, servers, POS systems, secure workspaces, technical documentation.\nSKILLS: Prompt Engineering 92%, Data Annotation 90%, LLM Evaluation 88%, AI QA 85%, Troubleshooting 90%, Excel 88%, Docs 86%, Power BI 84%, Networks 82%, Data Privacy 82%, CRM 80%, Cybersecurity 78%\nSALARY: PHP 35,000-60,000/month (remote roles higher). AVAILABILITY: Immediate. Full-time, remote, hybrid, freelance. LANGUAGES: Filipino (native), English (professional).\nAlways be enthusiastic, factual, and write in a tone that excites HR professionals about James.`;
 
-async function callClaude(prompt){
-  try{
-    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:JC,messages:[{role:'user',content:prompt}]})});
-    const d=await r.json();
-    return(d.content&&d.content[0]&&d.content[0].text)?d.content[0].text:'AI unavailable. Please try again.';
-  }catch(e){return'Connection error. Check your network.'}
-}
-function aiOut(id,text,loading){
-  var el=document.getElementById(id);if(!el)return;
-  if(loading){el.className='ai-out show loading';el.innerHTML='Claude is analyzing…';return}
-  el.className='ai-out show';
-  var d=document.createElement('div');d.style.cssText='white-space:pre-wrap;word-break:break-word';d.textContent=text;
-  var cb=document.createElement('button');cb.className='aicopy';cb.textContent='Copy';
-  cb.onclick=function(){if(navigator.clipboard)navigator.clipboard.writeText(text).then(function(){cb.textContent='✓ Copied';setTimeout(function(){cb.textContent='Copy'},2000)})};
-  el.innerHTML='';el.appendChild(d);el.appendChild(cb);sOK();unlock('🤖','AI Response Ready!');
-}
-window.aiQ=async function(prompt,outId){aiOut(outId,'',true);var r=await callClaude(prompt);aiOut(outId,r,false)};
+/* ═══════════════════════════════════════════════
+   JAMES EARL MEDRANO — Context for Claude AI
+═══════════════════════════════════════════════ */
+var JC = "You are an AI career assistant embedded in James Earl Medrano's portfolio and Job Hunter Dashboard. " +
+"Always answer helpfully and accurately based on his real background.\n\n" +
+"PROFILE: James Earl Medrano | Location: Malate, Manila, PH | Status: Open to Work\n" +
+"Education: BS IT, Pamantasan ng Lungsod ng Maynila (PLM), 2025\n" +
+"Email: Workwitheaaarl@gmail.com | Phone: +63 976 318 9033\n" +
+"GitHub: github.com/youngNwis31 | LinkedIn: linkedin.com/feed/\n" +
+"Facebook: facebook.com/eaarlsuuu | Instagram: @eaarlsu | X: @eaarlsuu\n\n" +
+"EXPERIENCE:\n" +
+"1. A.I. Analyst II (LLM) - Innodata Knowledge Services, Jan-May 2026, Cebu.\n" +
+"   Prompt engineering, data annotation, fine-tuning, AI model QA/testing.\n" +
+"2. IT Support and Case Resolution - Alorica Teleservices, Jan 2025-Jan 2026, Manila.\n" +
+"   Power BI, Advanced Excel, CRM, user account security for credit card company.\n" +
+"3. Jr. Technical Support - BESPOKE IT Project Corp., Feb-Jul 2024, Makati.\n" +
+"   Firewalls, servers, POS systems, secure workspaces, technical documentation.\n\n" +
+"SKILLS: Prompt Engineering 92%, Data Annotation 90%, LLM Evaluation 88%, AI QA 85%,\n" +
+"Troubleshooting 90%, Advanced Excel 88%, Documentation 86%, Power BI 84%,\n" +
+"Networks 82%, Data Privacy 82%, CRM 80%, Cybersecurity 78%\n\n" +
+"SALARY TARGET: PHP 35,000-60,000/month (remote roles command higher).\n" +
+"AVAILABILITY: Immediate. Full-time, remote, hybrid, freelance.\n" +
+"LANGUAGES: Filipino (native), English (professional).";
 
-/* PAGE TABS */
-window.switchTab=function(tab){
-  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('act')});
-  document.querySelectorAll('.ntab').forEach(function(t){t.classList.remove('act')});
-  var pg=document.getElementById('page-'+tab);if(pg)pg.classList.add('act');
-  var tb=document.getElementById('tab-'+tab);if(tb)tb.classList.add('act');
-  var pnav=document.getElementById('pnav');if(pnav)pnav.style.display=tab==='portfolio'?'':'none';
-  if(tab==='dashboard')setTimeout(animDashBars,200);
-  else setTimeout(animBars,200);
-  window.scrollTo(0,0);sClick();
+/* ═══ CLAUDE API ═══ */
+async function callClaude(prompt) {
+  try {
+    var r = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: JC,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    var d = await r.json();
+    return (d.content && d.content[0] && d.content[0].text) ? d.content[0].text : 'AI unavailable. Please try again.';
+  } catch(e) {
+    return 'Connection error. Check your network and try again.';
+  }
+}
+
+function aiOut(id, text, loading) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  if (loading) {
+    el.className = 'ai-out show loading';
+    el.textContent = '';
+    return;
+  }
+  el.className = 'ai-out show';
+  var d = document.createElement('div');
+  d.style.cssText = 'white-space:pre-wrap;word-break:break-word';
+  d.textContent = text;
+  var cb = document.createElement('button');
+  cb.className = 'aicopy';
+  cb.textContent = 'Copy';
+  cb.onclick = function() {
+    if (navigator.clipboard) navigator.clipboard.writeText(text).then(function() {
+      cb.textContent = 'Copied!';
+      setTimeout(function() { cb.textContent = 'Copy'; }, 2000);
+    });
+  };
+  el.innerHTML = '';
+  el.appendChild(d);
+  el.appendChild(cb);
+}
+
+window.aiQ = async function(prompt, outId) {
+  aiOut(outId, '', true);
+  var r = await callClaude(prompt);
+  aiOut(outId, r, false);
 };
-document.querySelectorAll('.ntab').forEach(function(t){t.addEventListener('click',function(){switchTab(t.dataset.tab)})});
 
-/* DASHBOARD NAV */
-function showDPage(id){
-  document.querySelectorAll('.dpage').forEach(function(p){p.classList.remove('act')});
-  document.querySelectorAll('.dsi').forEach(function(s){s.classList.remove('act')});
-  var dp=document.getElementById('dp-'+id);if(dp)dp.classList.add('act');
-  var si=document.querySelector('[data-dp="'+id+'"]');if(si)si.classList.add('act');
-}
-document.querySelectorAll('.dsi').forEach(function(s){s.addEventListener('click',function(){showDPage(s.dataset.dp);sClick()})});
-
-/* HEX BACKGROUND */
-var hexC=document.getElementById('hex'),hctx=hexC?hexC.getContext('2d'):null,HW,HH,ht=0;
-function rsz(){if(hexC){HW=hexC.width=innerWidth;HH=hexC.height=innerHeight}}rsz();addEventListener('resize',rsz);
-function drawHex(){if(!hctx)return;hctx.clearRect(0,0,HW,HH);var S=36,rows=Math.ceil(HH/(S*1.73))+2,cols=Math.ceil(HW/(S*2))+2;
-  for(var r=-1;r<rows;r++)for(var c=-1;c<cols;c++){var x=c*S*1.73+(r%2)*S*.865,y=r*S*1.5,dist=Math.sqrt((x-HW*.5)**2+(y-HH*.5)**2),wave=Math.sin(dist*.01-ht*.7)*.5+.5,alpha=wave*.042+.005,pts=[];
-    for(var i=0;i<6;i++){var a2=Math.PI/3*i-Math.PI/6;pts.push([x+S*.88*Math.cos(a2),y+S*.88*Math.sin(a2)])}
-    hctx.beginPath();hctx.moveTo(pts[0][0],pts[0][1]);for(var j=1;j<6;j++)hctx.lineTo(pts[j][0],pts[j][1]);hctx.closePath();
-    hctx.strokeStyle=(dist/Math.max(HW,HH)<.5?'rgba(0,240,255,':'rgba(155,77,255,')+alpha+')';hctx.lineWidth=.6;hctx.stroke()}
-  ht+=.012;requestAnimationFrame(drawHex)}
-drawHex();
-
-/* PARTICLES */
-var ptsEl=document.getElementById('pts');
-for(var pi=0;pi<28;pi++){var pt=document.createElement('div');pt.className='pt';var sz=Math.random()<.5?1.5:2,col=Math.random()<.6?'#00f0ff':'#9b4dff';pt.style.cssText='left:'+Math.random()*100+'%;bottom:'+(Math.random()*20-10)+'%;width:'+sz+'px;height:'+sz+'px;background:'+col+';animation-duration:'+(9+Math.random()*14)+'s;animation-delay:'+(Math.random()*12)+'s;--d:'+((-40+Math.random()*80))+'px;opacity:'+(0.12+Math.random()*.3);ptsEl.appendChild(pt)}
-
-/* MOUSE GLOW */
-var mg=document.getElementById('mg');document.addEventListener('mousemove',function(e){if(mg){mg.style.left=e.clientX+'px';mg.style.top=e.clientY+'px'}},{passive:true});
-
-/* CURSOR */
-(function(){var el=document.getElementById('cur');if(!el)return;var ring=el.querySelector('#cr'),dot=el.querySelector('#cd');var lines=['lh1','lh2','lv1','lv2'].map(function(id){return document.getElementById(id)});var ih=false;
-  document.addEventListener('mousemove',function(e){el.style.transform='translate('+e.clientX+'px,'+e.clientY+'px)'},{passive:true});
-  document.addEventListener('mouseover',function(e){ih=!!(e.target&&e.target.closest('a,button,input,textarea,select,.pill,.skc,.tlc,.dsi,.jtrow'));var col=ih?'#ff2d55':'#00f0ff';if(ring)ring.setAttribute('stroke',col);if(dot)dot.setAttribute('fill',col);lines.forEach(function(l){if(l)l.setAttribute('stroke',col)});var svg=el.querySelector('svg');if(svg)svg.style.transform=ih?'scale(1.4)':'scale(1)'});
-  document.addEventListener('mousedown',function(){var svg=el.querySelector('svg');if(svg)svg.style.transform='scale(1.75)'});
-  document.addEventListener('mouseup',function(){var svg=el.querySelector('svg');if(svg)svg.style.transform=ih?'scale(1.4)':'scale(1)'})})();
-
-/* SOUND */
-var AC=window.AudioContext||window.webkitAudioContext,sndOn=true,ac=null;
-function iAC(){if(!ac&&AC)try{ac=new AC()}catch(e){}}
-function beep(f,d,t,v){if(!sndOn)return;try{iAC();if(!ac)return;var o=ac.createOscillator(),g=ac.createGain();o.connect(g);g.connect(ac.destination);o.type=t||'square';o.frequency.value=f||440;g.gain.setValueAtTime(v||.04,ac.currentTime);g.gain.exponentialRampToValueAtTime(.001,ac.currentTime+(d||.08));o.start();o.stop(ac.currentTime+(d||.08))}catch(e){}}
-function sClick(){beep(900,.04,'square',.02)}
-function sOK(){beep(523,.07,'sine',.03);setTimeout(function(){beep(659,.07,'sine',.03)},70);setTimeout(function(){beep(784,.1,'sine',.03)},140)}
-function sErr(){beep(200,.15,'sawtooth',.04)}
-var sndbtn=document.getElementById('sndbtn');if(sndbtn)sndbtn.addEventListener('click',function(){sndOn=!sndOn;sndbtn.innerHTML=sndOn?'🔊':'🔇';sClick()});
-document.querySelectorAll('.btn,.pill,.nav-links a,.qb,.sb,.dsi').forEach(function(b){b.addEventListener('mouseenter',sClick)});
-
-/* TOAST */
-var tstEl=document.getElementById('tst'),tstT;
-function showToast(msg){if(!tstEl)return;tstEl.textContent=msg;tstEl.classList.add('show');clearTimeout(tstT);tstT=setTimeout(function(){tstEl.classList.remove('show')},2400)}
-
-/* ACHIEVEMENT */
-var achEl=document.getElementById('ach'),achT;
-function unlock(icon,title){var i=document.getElementById('aico'),tt=document.getElementById('attl');if(i)i.textContent=icon;if(tt)tt.textContent=title;if(achEl){achEl.classList.add('show');clearTimeout(achT);achT=setTimeout(function(){achEl.classList.remove('show')},3400)}sOK()}
-setTimeout(function(){unlock('👤','Runner Profile Loaded')},1400);
-
-/* THEME */
-var thbtn=document.getElementById('thbtn');if(thbtn)thbtn.addEventListener('click',function(){document.body.classList.toggle('light');thbtn.textContent=document.body.classList.contains('light')?'🌑':'🌙';showToast(document.body.classList.contains('light')?'// Light mode enabled':'// Dark mode enabled');sClick();drawRadar()});
-
-/* PRINT */
-var dlr=document.getElementById('dlr');if(dlr)dlr.addEventListener('click',function(){showToast('// Opening print dialog…');setTimeout(function(){window.print()},320)});
-
-/* NAV HIRE */
-var nhire=document.getElementById('nhire');if(nhire)nhire.addEventListener('click',function(){var c=document.getElementById('contact');if(c)c.scrollIntoView({behavior:'smooth'})});
-
-/* MOBILE MENU */
-var mbtn=document.getElementById('mbtn'),mmen=document.getElementById('mmen');
-function closeMM(){if(mbtn)mbtn.classList.remove('open');if(mmen)mmen.classList.remove('open')}
-window.closeMM=closeMM;
-if(mbtn)mbtn.addEventListener('click',function(){mbtn.classList.toggle('open');mmen.classList.toggle('open')});
-
-/* PROGRESS BAR + SCROLL */
-window.addEventListener('scroll',function(){
-  var s=document.documentElement,pb=document.getElementById('pbar');if(pb)pb.style.width=(s.scrollTop/(s.scrollHeight-s.clientHeight)*100)+'%';
-  var btt=document.getElementById('btt');if(btt)btt.classList.toggle('show',scrollY>600);
-  var cur='';document.querySelectorAll('section[id]').forEach(function(sec){if(scrollY>=sec.offsetTop-130)cur=sec.id});
-  document.querySelectorAll('.nav-links a').forEach(function(a){a.classList.toggle('act',a.getAttribute('href')==='#'+cur)});
-},{passive:true});
-var bttEl=document.getElementById('btt');if(bttEl)bttEl.addEventListener('click',function(){scrollTo({top:0,behavior:'smooth'})});
-
-/* SCROLL REVEALS */
-var revIO=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.1});
-document.querySelectorAll('.rv').forEach(function(el){revIO.observe(el)});
-
-/* SKILL BARS PORTFOLIO */
-function animBars(){document.querySelectorAll('.skc').forEach(function(c){c.querySelectorAll('.sbfi').forEach(function(b){b.style.transform='scaleX('+b.dataset.w+')'})})}
-var barIO=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.querySelectorAll('.sbfi').forEach(function(b){b.style.transform='scaleX('+b.dataset.w+')'});barIO.unobserve(e.target)}})},{threshold:.3});
-document.querySelectorAll('.skc').forEach(function(c){barIO.observe(c)});
-
-/* DASH BARS */
-function animDashBars(){document.querySelectorAll('.sk-f[data-w]').forEach(function(b){setTimeout(function(){b.style.width=b.dataset.w+'%'},100)})}
-
-/* CLOCK */
-function tick(){try{var n=new Date(),ph=new Date(n.toLocaleString('en-US',{timeZone:'Asia/Manila'}));var h=String(ph.getHours()).padStart(2,'0'),m=String(ph.getMinutes()).padStart(2,'0'),s=String(ph.getSeconds()).padStart(2,'0');var el=document.getElementById('clk');if(el)el.textContent=h+':'+m+':'+s}catch(e){}}
-setInterval(tick,1000);tick();
-
-/* TYPEWRITER */
-(function(){var l1=document.getElementById('tw1'),l2=document.getElementById('tw2'),cur=document.getElementById('twcur');var lines=['JAMES EARL','MEDRANO'];var li=0,ci=0,done=false;
-  function type(){if(done)return;var t=lines[li];if(li===0){if(l1)l1.textContent=t.slice(0,ci)}else{if(l2)l2.textContent=t.slice(0,ci)}ci++;
-    if(ci>t.length){if(li<lines.length-1){li++;ci=0;setTimeout(type,260)}else{done=true;setTimeout(function(){if(cur)cur.style.display='none'},820)}}
-    else setTimeout(type,68)}
-  type()})();
-
-/* SCRAMBLE */
-(function(){var el=document.getElementById('srole');if(!el)return;var final='AI Operations Analyst & Technical Specialist';var chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%';var frame=0;
-  function sc(){var out='';for(var i=0;i<final.length;i++){if(i<frame)out+=final[i];else out+=final[i]===' '?' ':chars[Math.floor(Math.random()*chars.length)]}
-    el.textContent=out;frame++;if(frame<=final.length)setTimeout(sc,34);else el.innerHTML='AI Operations Analyst &amp; Technical Specialist'}
-  setTimeout(sc,2200)})();
-
-/* COUNTERS */
-function animCount(el,target,sfx){if(!el)return;var v=0,t=setInterval(function(){v=Math.min(v+target/110,target);el.textContent=Math.floor(v)+(sfx||'');if(v>=target)clearInterval(t)},16)}
-var cntIO=new IntersectionObserver(function(entries){entries.forEach(function(e){if(!e.isIntersecting)return;cntIO.unobserve(e.target);var id=e.target.id;if(id==='c1'||id==='sa1')animCount(e.target,3,'+');if(id==='c2'||id==='sa2')animCount(e.target,3,'')})},{threshold:.5});
-['c1','c2','sa1','sa2'].forEach(function(id){var el=document.getElementById(id);if(el)cntIO.observe(el)});
-
-/* RADAR */
-function drawRadar(){var c=document.getElementById('radar');if(!c)return;var ctx=c.getContext('2d'),W=250,H=210,cx=W/2,cy=H/2,R=78;
-  var labels=['AI/LLM','IT Ops','Data Mgmt','Networks','Docs'],vals=[.92,.88,.84,.82,.86],n=labels.length;ctx.clearRect(0,0,W,H);
-  var angs=labels.map(function(_,i){return i*(2*Math.PI/n)-Math.PI/2});
-  [.25,.5,.75,1].forEach(function(sc){ctx.beginPath();angs.forEach(function(a,i){var x=cx+R*sc*Math.cos(a),y=cy+R*sc*Math.sin(a);i===0?ctx.moveTo(x,y):ctx.lineTo(x,y)});ctx.closePath();ctx.strokeStyle='rgba(0,240,255,.09)';ctx.lineWidth=1;ctx.stroke()});
-  angs.forEach(function(a){ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+R*Math.cos(a),cy+R*Math.sin(a));ctx.strokeStyle='rgba(0,240,255,.08)';ctx.lineWidth=1;ctx.stroke()});
-  ctx.beginPath();angs.forEach(function(a,i){var x=cx+R*vals[i]*Math.cos(a),y=cy+R*vals[i]*Math.sin(a);i===0?ctx.moveTo(x,y):ctx.lineTo(x,y)});ctx.closePath();ctx.fillStyle='rgba(0,240,255,.07)';ctx.fill();ctx.strokeStyle='rgba(0,240,255,.62)';ctx.lineWidth=1.5;ctx.stroke();
-  angs.forEach(function(a,i){ctx.beginPath();ctx.arc(cx+R*vals[i]*Math.cos(a),cy+R*vals[i]*Math.sin(a),3,0,Math.PI*2);ctx.fillStyle='#00f0ff';ctx.fill()});
-  var tc=document.body.classList.contains('light')?'rgba(8,11,26,.5)':'rgba(236,238,248,.44)';ctx.fillStyle=tc;ctx.font='9px Space Mono,monospace';ctx.textAlign='center';
-  angs.forEach(function(a,i){ctx.fillText(labels[i],cx+(R+16)*Math.cos(a),cy+(R+16)*Math.sin(a)+3)})}
-drawRadar();new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)drawRadar()})},{threshold:.3}).observe(document.getElementById('radar')||document.body);
-
-/* SECTION ACHIEVEMENTS */
-var sAch={hire:'👔 HR Intel Loaded',about:'🖥️ Profile Accessed',experience:'💼 Career History Unlocked',skills:'⚡ Skills Matrix Loaded',education:'🎓 Education Verified',contact:'📡 Contact Node Found'};
-var achDone={};
-Object.keys(sAch).forEach(function(id){var el=document.getElementById(id);if(!el)return;new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting&&!achDone[id]){achDone[id]=true;var m=sAch[id];setTimeout(function(){unlock(m.split(' ')[0],m.slice(m.indexOf(' ')+1))},500)}})},{threshold:.3}).observe(el)});
-
-/* COPY BUTTONS */
-document.querySelectorAll('.cpb').forEach(function(btn){btn.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();var val=btn.dataset.copy;if(!val)return;if(navigator.clipboard)navigator.clipboard.writeText(val).then(function(){btn.textContent='✓ Copied';btn.classList.add('done');showToast('// Copied: '+val);unlock('📋','Copied to Clipboard!');setTimeout(function(){btn.textContent='Copy';btn.classList.remove('done')},2000)})})});
-
-/* GMAIL FORM */
-var fsub=document.getElementById('fsub');if(fsub)fsub.addEventListener('click',function(){
-  var n=(document.getElementById('fn')||{}).value||'',em=(document.getElementById('fe')||{}).value||'',subj=(document.getElementById('fs')||{}).value||'',msg=(document.getElementById('fm')||{}).value||'',st=document.getElementById('fst');
-  if(!n.trim()||!em.trim()||!msg.trim()){if(st){st.className='fst er';st.textContent='// ERROR: Please fill in your name, email, and message.'}sErr();return}
-  var to='Workwitheaaarl@gmail.com',sub=encodeURIComponent(subj||'Inquiry from '+n+' via Portfolio'),body=encodeURIComponent('Hi James,\n\nMy name is '+n+' ('+em+').\n\n'+msg+'\n\nBest regards,\n'+n);
-  window.open('https://mail.google.com/mail/?view=cm&fs=1&to='+to+'&su='+sub+'&body='+body,'_blank');
-  if(st){st.className='fst ok';st.textContent='// Gmail compose opened! Message pre-filled and ready to send.'}sOK();unlock('📧','Message Ready via Gmail!');});
-
-/* HR NOTIFICATIONS */
-var HR_NOTIFS=[  {ico:'👀',txt:'HR Manager is viewing your portfolio',sub:'📍 Makati City · Just now'},  {ico:'💼',txt:'Recruiter from Globe Telecom opened your profile',sub:'📍 BGC, Taguig · 1 min ago'},  {ico:'⭐',txt:'Your profile was saved by a hiring manager',sub:'📍 Ortigas Center · 2 mins ago'},  {ico:'📩',txt:'New message from an HR recruiter',sub:'📍 Mandaluyong City · Just now'},  {ico:'🔥',txt:'Your portfolio ranked #1 for "AI Analyst Manila"',sub:'🏆 Top candidate this week'},  {ico:'🤝',txt:'TechCorp Philippines wants to connect',sub:'📍 Pasig City · 3 mins ago'},  {ico:'🎯',txt:'98% match found for Prompt Engineer role',sub:'📍 Multiple companies · Now'},  {ico:'📞',txt:'Interview invite from a BGC tech startup',sub:'📍 Bonifacio Global City · 5 mins ago'} ];
-var hrIdx=0,hrT;
-function showHRNotif(){var n=HR_NOTIFS[hrIdx%HR_NOTIFS.length];var ico=document.getElementById('hrn-ico'),txt=document.getElementById('hrn-txt'),sub=document.getElementById('hrn-sub'),hrn=document.getElementById('hr-notif');
-  if(ico)ico.textContent=n.ico;if(txt)txt.textContent=n.txt;if(sub)sub.textContent=n.sub;
-  if(hrn){hrn.classList.add('show');clearTimeout(hrT);hrT=setTimeout(function(){hrn.classList.remove('show')},4000)}hrIdx++}
-setTimeout(showHRNotif,4000);setInterval(showHRNotif,15000);
-
-/* AI FAB */
-var aiOrb=document.getElementById('ai-orb'),afpEl=document.getElementById('afp'),afpRes=document.getElementById('afp-res');
-if(aiOrb)aiOrb.addEventListener('click',function(){if(afpEl)afpEl.classList.toggle('open')});
-var afpX=document.getElementById('afp-x');if(afpX)afpX.addEventListener('click',function(){if(afpEl)afpEl.classList.remove('open')});
-var FAB_ACTIONS={
-  pitch:'Write a 3-sentence elevator pitch for James that an HR reads in 10 seconds and immediately wants to interview him.',
-  summary:'Write a single powerful professional summary for James under 25 words for his resume header.',
-  unique:'In 3 bullet points, what makes James uniquely different from other BS IT 2025 graduates applying for AI roles?',
-  hire:'Give exactly 3 compelling, punchy reasons an HR manager should shortlist James immediately.',
-  salary:'What salary range should James target in PH for AI/IT roles in 2026? Give specific ranges by role type.',
-  linkedin:'Write an optimized LinkedIn headline for James under 220 characters targeting AI and IT roles in the Philippines.',
-  cold:'Write a compelling opening line for a cold email James could send to a hiring manager at any Philippine tech company.',
-  ats:'List the top 10 ATS keywords James must include in his resume for AI/IT roles in 2026, with a brief note for each.'
+/* ═══ PAGE TABS ═══ */
+window.switchTab = function(tab) {
+  document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('act'); });
+  document.querySelectorAll('.ntab').forEach(function(t) { t.classList.remove('act'); });
+  var pg = document.getElementById('page-' + tab);
+  if (pg) pg.classList.add('act');
+  var tb = document.getElementById('tab-' + tab);
+  if (tb) tb.classList.add('act');
+  if (tab === 'dashboard') setTimeout(animDashBars, 200);
+  window.scrollTo(0, 0);
 };
-document.querySelectorAll('.afp-btn').forEach(function(b){b.addEventListener('click',async function(){if(!afpRes)return;afpRes.className='afp-res show loading';afpRes.textContent='Claude is thinking…';var r=await callClaude(FAB_ACTIONS[b.dataset.a]||b.dataset.a);afpRes.className='afp-res show';afpRes.textContent=r;sOK()})});
-
-/* TERMINAL */
-var trm=document.getElementById('trm'),tro=document.getElementById('tro'),trin=document.getElementById('trin');
-var CMDS={help:'Commands: help | whoami | skills | experience | contact | social | time | ping | ls | clear | exit',whoami:'James Earl Medrano\nAI Ops Analyst & IT Specialist\nBS IT 2025 · Malate, Manila, PH\nEmail: Workwitheaaarl@gmail.com\nPhone: +63 976 318 9033',skills:'[01] AI & LLM — Prompt Eng 92% · Annotation 90% · LLM Eval 88%\n[02] IT Ops  — Troubleshooting 90% · Networks 82% · Cybersec 78%\n[03] Data   — Excel 88% · Power BI 84% · CRM 80%',experience:'[1] A.I. Analyst II   — Innodata (Jan-May 2026)\n[2] IT Support        — Alorica Teleservices (2025)\n[3] Jr. Tech Support  — BESPOKE IT Corp. (2024)',contact:'EMAIL: Workwitheaaarl@gmail.com\nPHONE: +63 976 318 9033\nLOC:   Malate, Manila, PH',social:'LinkedIn:  linkedin.com/feed/\nGitHub:    github.com/youngNwis31\nFacebook:  facebook.com/eaarlsuuu\nInstagram: @eaarlsu\nX:         @eaarlsuu',ls:'portfolio_root/\n  00_hire.dat  01_about.dat  02_experience.log\n  03_skills.json  04_education.cert  05_contact.enc\n  dashboard/  (17 AI tools)',clear:'__clear__',exit:'__close__'};
-CMDS.time=function(){return'MANILA: '+new Date().toLocaleTimeString('en-PH',{timeZone:'Asia/Manila'})+' · '+new Date().toLocaleDateString('en-PH',{timeZone:'Asia/Manila',weekday:'long',year:'numeric',month:'long',day:'numeric'})};
-function tPrint(msg){if(!tro)return;var d=document.createElement('div');d.innerHTML=msg.replace(/\n/g,'<br>');tro.appendChild(d);tro.scrollTop=tro.scrollHeight}
-if(trin)trin.addEventListener('keydown',function(e){if(e.key!=='Enter')return;var cmd=trin.value.trim().toLowerCase();trin.value='';tPrint('<span style="color:var(--cyan)">james@manila:~$</span> '+cmd);var r=CMDS[cmd];if(typeof r==='function')r=r();if(r==='__clear__')tro.innerHTML='';else if(r==='__close__')trm.classList.remove('open');else if(r)tPrint(r);else tPrint('not found: <span style="color:var(--red)">'+cmd+'</span> — type "help"');sClick()});
-var trc=document.getElementById('trc');if(trc)trc.addEventListener('click',function(){trm.classList.remove('open')});
-var KONAMI=[38,38,40,40,37,39,37,39,66,65];var ki=0;
-document.addEventListener('keydown',function(e){if(e.keyCode===KONAMI[ki])ki++;else ki=0;if(ki===KONAMI.length){ki=0;if(trm)trm.classList.toggle('open');if(trm&&trm.classList.contains('open')){tPrint('<span style="color:var(--gold)">// KONAMI CODE — JAMES_OS v4.0 UNLOCKED</span>');unlock('🎮','Secret Terminal Unlocked!')}}});
-
-/* CHATBOT */
-var cbt=document.getElementById('cbt'),cwin=document.getElementById('cwin'),cms=document.getElementById('cms'),cin=document.getElementById('cin'),ctyp=document.getElementById('ctyp');
-if(cbt)cbt.addEventListener('click',function(){if(cwin)cwin.classList.toggle('open');var cn=document.getElementById('cbno');if(cn)cn.style.display='none';if(cms&&cms.children.length===0)addBotMsg("Hey! I am JEM-BOT powered by Claude. Ask me about James skills, experience, social media, or how to hire him. 🚀")});
-var cwx=document.getElementById('cwx');if(cwx)cwx.addEventListener('click',function(){if(cwin)cwin.classList.remove('open')});
-var KB={skills:"James top skills:\n🤖 AI/LLM: Prompt engineering 92%, Annotation 90%, LLM eval 88%\n🛠️ IT Ops: Troubleshooting 90%, Networks 82%, Cybersec 78%\n📊 Data: Excel 88%, Power BI 84%, CRM 80%",experience:"Work history:\n[1] A.I. Analyst II — Innodata (2026)\n[2] IT Support — Alorica Teleservices (2025)\n[3] Jr. Tech Support — BESPOKE IT Corp. (2024)",contact:"Reach James:\n📧 Workwitheaaarl@gmail.com\n📱 +63 976 318 9033\n📍 Malate, Manila, PH",social:"James socials:\n💼 LinkedIn: linkedin.com/feed/\n🐙 GitHub: github.com/youngNwis31\n📘 Facebook: facebook.com/eaarlsuuu\n📸 Instagram: @eaarlsu\n𝕏 X: @eaarlsuu",hire:"Why hire James?\n✅ Real LLM fine-tuning & prompt engineering\n✅ 3 industries in 2 years: cybersec, BPO, AI\n✅ BS IT 2025 · Open to work immediately\n✅ Bilingual: Filipino & English"};
-function botReply(q){var t=q.toLowerCase();if(t.includes('hire')||t.includes('why'))return KB.hire;if(t.includes('skill')||t.includes('capab'))return KB.skills;if(t.includes('exp')||t.includes('work')||t.includes('career'))return KB.experience;if(t.includes('contact')||t.includes('email')||t.includes('phone'))return KB.contact;if(t.includes('social')||t.includes('linkedin')||t.includes('github'))return KB.social;if(t.includes('hi')||t.includes('hello')||t.includes('hey'))return"Hey! I am JEM-BOT. Ask me anything about James!";return"I can tell you about James skills, experience, social links, or how to hire him. What do you need?"}
-function addBotMsg(text){if(!cms)return;var m=document.createElement('div');m.className='msg';var av=document.createElement('div');av.className='mav';av.textContent='🤖';var bub=document.createElement('div');bub.className='mbub b';bub.innerHTML=text.replace(/\n/g,'<br>');m.appendChild(av);m.appendChild(bub);cms.appendChild(m);cms.scrollTop=cms.scrollHeight}
-function sendBotMsg(txt){if(!txt||!txt.trim())return;var m=document.createElement('div');m.className='msg u';var av=document.createElement('div');av.className='mav';av.textContent='👤';var bub=document.createElement('div');bub.className='mbub u';bub.textContent=txt;m.appendChild(av);m.appendChild(bub);if(cms)cms.appendChild(m);if(cin)cin.value='';if(ctyp)ctyp.classList.add('show');if(cms)cms.scrollTop=cms.scrollHeight;setTimeout(function(){if(ctyp)ctyp.classList.remove('show');addBotMsg(botReply(txt))},700+Math.random()*400)}
-var cse=document.getElementById('cse');if(cse)cse.addEventListener('click',function(){if(cin)sendBotMsg(cin.value)});
-if(cin)cin.addEventListener('keydown',function(e){if(e.key==='Enter')sendBotMsg(cin.value)});
-document.querySelectorAll('.qb').forEach(function(b){b.addEventListener('click',function(){sendBotMsg(b.dataset.q)})});
-
-/* HR FEED */
-var HR_FEED=[{ico:'👀',txt:'Talent Acquisition from Accenture PH viewed your portfolio',sub:'📍 BGC · Just now',col:'var(--cyan)'},{ico:'💼',txt:'Globe Telecom recruiter opened your LinkedIn',sub:'📍 Mandaluyong · 1 min ago',col:'rgba(10,102,194,.8)'},{ico:'⭐',txt:'HR Manager saved your profile to shortlist',sub:'📍 Ortigas Center · 2 mins ago',col:'var(--gold)'},{ico:'🔥',txt:'Profile ranked #1 for "AI Analyst Manila 2026"',sub:'🏆 Top 5% candidate',col:'var(--red)'},{ico:'📞',txt:'Interview invite from BGC tech startup',sub:'📍 Bonifacio Global City · 5 mins ago',col:'var(--grn)'},{ico:'🎯',txt:'97% match for Senior Prompt Engineer role',sub:'💡 3 companies looking for you',col:'var(--vio)'},{ico:'🌟',txt:'AI skills scored above 90th percentile',sub:'📊 vs. other BS IT 2025 graduates',col:'var(--gold)'},{ico:'📨',txt:'Grab PH Tech team wants to connect',sub:'📍 Pasig City · 3 mins ago',col:'var(--grn)'}];
-function buildFeed(containerId,count){var feed=document.getElementById(containerId);if(!feed)return;feed.innerHTML='';HR_FEED.slice(0,count||5).forEach(function(ev){var d=document.createElement('div');d.className='nitem';d.style.borderLeftColor=ev.col;d.innerHTML='<div class="nicon">'+ev.ico+'</div><div><div class="ntime">Live Activity</div><div class="ntxt">'+ev.txt+'</div><div class="nsub">'+ev.sub+'</div></div>';feed.appendChild(d)})}
-buildFeed('ov-feed',5);buildFeed('act-feed',8);
-var feedIdx=5;setInterval(function(){var ev=HR_FEED[feedIdx%HR_FEED.length];['ov-feed','act-feed'].forEach(function(fid){var feed=document.getElementById(fid);if(!feed)return;var d=document.createElement('div');d.className='nitem';d.style.borderLeftColor=ev.col;d.innerHTML='<div class="nicon">'+ev.ico+'</div><div><div class="ntime">Just now</div><div class="ntxt">'+ev.txt+'</div><div class="nsub">'+ev.sub+'</div></div>';feed.insertBefore(d,feed.firstChild);if(feed.children.length>8)feed.removeChild(feed.lastChild)});feedIdx++},9000);
-
-/* JOB TRACKER */
-var jobs=[];
-function renderJobs(){
-  var counts={applied:0,interview:0,offer:0,rejected:0};jobs.forEach(function(j){if(counts[j.st]!==undefined)counts[j.st]++});
-  ['jt-total','ov-apps'].forEach(function(id){var el=document.getElementById(id);if(el)el.textContent=jobs.length});
-  ['jt-applied'].forEach(function(id){var el=document.getElementById(id);if(el)el.textContent=counts.applied});
-  ['jt-interview','ov-int'].forEach(function(id){var el=document.getElementById(id);if(el)el.textContent=counts.interview});
-  ['jt-offer','ov-off'].forEach(function(id){var el=document.getElementById(id);if(el)el.textContent=counts.offer});
-  var list=document.getElementById('jt-list');if(!list)return;
-  if(!jobs.length){list.innerHTML='<div style="font-family:var(--fm);font-size:8px;color:var(--mut);text-align:center;padding:13px;letter-spacing:.11em;text-transform:uppercase">No applications yet — add one below</div>';return}
-  list.innerHTML='';
-  jobs.forEach(function(j,i){var el=document.createElement('div');el.className='jtrow';var diff=Math.floor((Date.now()-j.ts)/864e5);var ds=diff===0?'Today':diff===1?'Yesterday':diff+'d ago';el.innerHTML='<div class="jtdot '+j.st+'"></div><div class="jtinfo"><div class="jtrl">'+j.role+'</div><div class="jtco">'+j.co+'</div></div><div class="jtdt">'+ds+'</div><button class="jtdel" data-i="'+i+'">×</button>';list.appendChild(el)});
-  list.querySelectorAll('.jtdel').forEach(function(b){b.addEventListener('click',function(){jobs.splice(parseInt(b.dataset.i),1);renderJobs()})});
-}
-var jtAdd=document.getElementById('jt-add');
-if(jtAdd)jtAdd.addEventListener('click',function(){var role=(document.getElementById('jt-role')||{}).value||'',co=(document.getElementById('jt-co')||{}).value||'',st=(document.getElementById('jt-st')||{}).value||'applied';if(!role.trim()||!co.trim())return;jobs.push({role:role.trim(),co:co.trim(),st:st,ts:Date.now()});var ri=document.getElementById('jt-role');var ci2=document.getElementById('jt-co');if(ri)ri.value='';if(ci2)ci2.value='';renderJobs();sClick()});
-renderJobs();
-var jtAI=document.getElementById('jt-ai-btn');if(jtAI)jtAI.addEventListener('click',async function(){aiOut('jt-ai-out','',true);var sum=jobs.length?jobs.map(function(j){return j.role+' at '+j.co+' ('+j.st+')'}).join('; '):'No applications tracked yet';var r=await callClaude('James has these job applications: '+sum+'. Give 5 personalized, actionable tips to improve his job search strategy and increase interview rate. Be specific.');aiOut('jt-ai-out',r,false)});
-
-/* TONE HELPERS */
-function initTones(gid){var g=document.getElementById(gid);if(!g)return;g.querySelectorAll('.tone-btn').forEach(function(b){b.addEventListener('click',function(){g.querySelectorAll('.tone-btn').forEach(function(x){x.classList.remove('sel')});b.classList.add('sel')})})}
-function getTone(gid){var g=document.getElementById(gid);if(!g)return'Professional';var a=g.querySelector('.sel');return a?a.dataset.tone:'Professional'}
-initTones('cl-tones');initTones('rb-tones');
-
-/* INTERVIEW QCHIPS */
-document.querySelectorAll('.qchip[data-q]').forEach(function(c){c.addEventListener('click',function(){var inp=document.getElementById('iv-inp');if(inp)inp.value=c.dataset.q;sClick()})});
-
-/* ACTIVITY AI */
-var actAI=document.getElementById('act-ai');if(actAI)actAI.addEventListener('click',async function(){aiOut('act-out','',true);var scenario=(document.getElementById('act-scenario')||{}).value||'';var r=await callClaude('James is in this situation: "'+scenario+'". Write the perfect professional response/action. Include: what to say, how to say it, what to avoid, concrete next steps.');aiOut('act-out',r,false)});
-
-/* AI TOOL BUTTONS */
-async function runTool(btnId,outId,pFn){var btn=document.getElementById(btnId);if(!btn)return;btn.addEventListener('click',async function(){var prompt=pFn();if(!prompt){showToast('// Please fill in the required fields');sErr();return}aiOut(outId,'',true);var r=await callClaude(prompt);aiOut(outId,r,false)})}
-
-runTool('jfa-btn','jfa-out',function(){var jd=(document.getElementById('jfa-jd')||{}).value||'';return jd.trim()?'Analyze James fit for this job: 1) Match % + verdict, 2) Matching skills/experience, 3) Key strengths, 4) Gaps and how to address, 5) 2-sentence hiring recommendation.\n\nJOB DESCRIPTION:\n'+jd:''});
-runTool('cl-btn','cl-out',function(){var role=(document.getElementById('cl-role')||{}).value||'';var reqs=(document.getElementById('cl-reqs')||{}).value||'';var tone=getTone('cl-tones');return role.trim()?'Write a '+tone+' cover letter from James for: '+role+(reqs?'. Requirements: '+reqs:'.')+' Under 350 words. Strong opening, 2-3 body paragraphs with specific experience, confident close. Ready to send.':''});
-runTool('iv-btn','iv-out',function(){var q=(document.getElementById('iv-inp')||{}).value||'';return q.trim()?'Model answer (150-250 words) for James to: "'+q+'". STAR method. Reference real experience. Natural for speaking aloud. End confidently.':''});
-runTool('ats-btn','ats-out',function(){var kw=(document.getElementById('ats-kw')||{}).value||'';var role=(document.getElementById('ats-role')||{}).value||'AI Operations Analyst';return'Generate a complete ATS-optimized resume for James targeting "'+role+'"'+(kw?' with keywords: '+kw:'')+'. Include: professional summary, work experience with action verbs and quantified results, skills, education, certifications recommendation.'});
-runTool('li-btn','li-out',function(){var t=(document.getElementById('li-target')||{}).value||'';var chips=Array.from(document.querySelectorAll('#li-chips .chip.sel')).map(function(c){return c.dataset.v}).join(', ');return(t||chips)?'Optimize James LinkedIn for "'+(t||chips)+'". Give: 1) Headline (under 220 chars), 2) About section (3 paragraphs, CTA at end), 3) Top 5 skills, 4) 3 profile tips.':''});
-runTool('sal-btn','sal-out',function(){var offer=(document.getElementById('sal-offer')||{}).value||'',target=(document.getElementById('sal-target')||{}).value||'',role=(document.getElementById('sal-role')||{}).value||'';return(offer&&target)?'James got PHP '+offer+'/mo offer for "'+role+'", wants PHP '+target+'/mo. Write: 1) Negotiation email script, 2) Key talking points, 3) Counter-offer strategy, 4) Response if pushed back.':''});
-runTool('cp-btn','cp-out',function(){var goal=(document.getElementById('cp-goal')||{}).value||'';var time=(document.getElementById('cp-time')||{}).value||'3-5 years';return goal.trim()?'James wants to be "'+goal+'" in '+time+'. Create: 1) Step-by-step roadmap with milestones, 2) Skills to acquire per stage, 3) Certifications recommended, 4) Timeline with checkpoints, 5) One bold accelerator move. Be specific.':''});
-runTool('ref-btn','ref-out',function(){var type=(document.getElementById('ref-type')||{}).value||'';var role=(document.getElementById('ref-role')||{}).value||'';return'Reference letter for James from "'+type+'" for "'+role+'" role. 3-4 paragraphs. Specific, glowing, credible. Real examples. Strong endorsement close with contact offer.'});
-runTool('rb-btn','rb-out',function(){var bullets=(document.getElementById('rb-inp')||{}).value||'';var tone=getTone('rb-tones');return bullets.trim()?'Rewrite resume bullets for James in '+tone+' style. Strong action verbs, quantified where possible, ATS-friendly:\n\n'+bullets:''});
-runTool('djp-btn','djp-out',function(){var hours=(document.getElementById('djp-hours')||{}).value||'2-3 hours';var stage=(document.getElementById('djp-stage')||{}).value||'Actively applying';return'Create a specific, actionable daily job hunt plan for James. He has '+hours+' today at stage: "'+stage+'". Give: 1) Timed hourly schedule, 2) Exact tasks (platforms: LinkedIn, JobStreet, Kalibrr, Indeed PH), 3) One networking action, 4) One skill-building task, 5) Motivational closer. Specific to an AI/IT specialist in Manila.'});
-runTool('rrc-btn','rrc-out',function(){var type=(document.getElementById('rrc-type')||{}).value||'';var role=(document.getElementById('rrc-role')||{}).value||'';return'James experienced: "'+type+'" for "'+role+'". As his career coach: 1) Honest, empathetic acknowledgment, 2) What this means (and does NOT mean), 3) 3 concrete actions in the next 24 hours, 4) How to turn this into momentum, 5) Powerful encouragement tailored to his AI/IT background. Tone: warm, honest, energizing.'});
-runTool('ty-btn','ty-out',function(){var name=(document.getElementById('ty-name')||{}).value||'the interviewer';var role=(document.getElementById('ty-role')||{}).value||'';var detail=(document.getElementById('ty-detail')||{}).value||'';return'Thank-you email for James after interview. Interviewer: '+name+'. Role/Company: '+role+'. Interview detail: "'+detail+'". Include: SUBJECT: line first, under 150 words, reference the detail naturally, reaffirm enthusiasm and top qualification, confident close. Format: SUBJECT: [subject]\n\n[email body]'});
-
-/* COLD EMAIL */
-var ceBtn=document.getElementById('ce-btn');
-if(ceBtn)ceBtn.addEventListener('click',async function(){
-  var co=(document.getElementById('ce-co')||{}).value||'',to=(document.getElementById('ce-to')||{}).value||'Hiring Manager',angle=(document.getElementById('ce-angle')||{}).value||'';
-  if(!co.trim()){showToast('// Enter a target company');sErr();return}
-  var prev=document.getElementById('ce-prev'),subj=document.getElementById('ce-subj'),body=document.getElementById('ce-body'),copy=document.getElementById('ce-copy');
-  if(prev)prev.className='ep show';if(subj)subj.textContent='Generating…';if(body)body.textContent='';
-  var r=await callClaude('Cold email from James to '+to+' at '+co+'. Angle: '+angle+'. First line: SUBJECT: [subject]. Under 200 words. Compelling, name-drop AI/LLM experience, strong CTA. Format: SUBJECT: [subject]\n\n[body]');
-var lines=r.split('\n');var sub='',bd=[];var found=false;
-lines.forEach(function(l){if(!found&&l.toLowerCase().startsWith('subject:')){sub=l.replace(/^subject:\s*/i,'');found=true}else bd.push(l)});
-if(subj)subj.textContent='Subject: '+(sub||'James Earl Medrano — AI Professional');
-if(body)body.textContent=bd.join('\n').trim();
-if(copy){copy.style.display='block';copy.onclick=function(){if(navigator.clipboard)navigator.clipboard.writeText((sub?'Subject: '+sub+'\n\n':'')+bd.join('\n').trim()).then(function(){copy.textContent='✓ Copied';setTimeout(function(){copy.textContent='Copy'},2000)})}};
-sOK();unlock('📧','Cold Email Ready!');
+document.querySelectorAll('.ntab').forEach(function(t) {
+  t.addEventListener('click', function() { switchTab(t.dataset.tab); });
 });
 
-/* LINKEDIN CHIPS */
-document.querySelectorAll('#li-chips .chip').forEach(function(c){c.addEventListener('click',function(){c.classList.toggle('sel')})});
+/* ═══ DASHBOARD SIDEBAR NAV ═══ */
+function showDPage(id) {
+  document.querySelectorAll('.dpage').forEach(function(p) { p.classList.remove('act'); });
+  document.querySelectorAll('.dsi').forEach(function(s) { s.classList.remove('act'); });
+  var dp = document.getElementById('dp-' + id);
+  if (dp) dp.classList.add('act');
+  var si = document.querySelector('[data-dp="' + id + '"]');
+  if (si) si.classList.add('act');
+  var dm = document.getElementById('dmain');
+  if (dm) dm.scrollTop = 0;
+}
+document.querySelectorAll('.dsi').forEach(function(s) {
+  s.addEventListener('click', function() { showDPage(s.dataset.dp); });
+});
 
-/* FOLLOW-UP */
-var fuSel='after applying online 7 days ago with no response';
-document.querySelectorAll('.fu-step').forEach(function(s){s.addEventListener('click',function(){document.querySelectorAll('.fu-step').forEach(function(x){x.classList.remove('act')});s.classList.add('act');fuSel=s.dataset.s;sClick()})});
-var fuBtn=document.getElementById('fu-btn');if(fuBtn)fuBtn.addEventListener('click',async function(){aiOut('fu-out','',true);var co=(document.getElementById('fu-co')||{}).value||'';var r=await callClaude('Follow-up email for James for: "'+fuSel+'" for role: "'+co+'". SUBJECT: line first. Under 180 words. Warm, professional, specific qualifications, clear ask, confident close.');aiOut('fu-out',r,false)});
+/* ═══ HEX CANVAS BACKGROUND ═══ */
+var hexC = document.getElementById('hex');
+var hctx = hexC ? hexC.getContext('2d') : null;
+var HW, HH, ht = 0;
+function rsz() { if (hexC) { HW = hexC.width = innerWidth; HH = hexC.height = innerHeight; } }
+rsz();
+addEventListener('resize', rsz);
+function drawHex() {
+  if (!hctx) return;
+  hctx.clearRect(0, 0, HW, HH);
+  var S = 36, rows = Math.ceil(HH / (S * 1.73)) + 2, cols = Math.ceil(HW / (S * 2)) + 2;
+  for (var r = -1; r < rows; r++) {
+    for (var c = -1; c < cols; c++) {
+      var x = c * S * 1.73 + (r % 2) * S * 0.865, y = r * S * 1.5;
+      var dist = Math.sqrt((x - HW * 0.5) * (x - HW * 0.5) + (y - HH * 0.5) * (y - HH * 0.5));
+      var wave = Math.sin(dist * 0.01 - ht * 0.7) * 0.5 + 0.5;
+      var alpha = wave * 0.03 + 0.004;
+      var pts = [];
+      for (var i = 0; i < 6; i++) {
+        var a = Math.PI / 3 * i - Math.PI / 6;
+        pts.push([x + S * 0.88 * Math.cos(a), y + S * 0.88 * Math.sin(a)]);
+      }
+      hctx.beginPath();
+      hctx.moveTo(pts[0][0], pts[0][1]);
+      for (var j = 1; j < 6; j++) hctx.lineTo(pts[j][0], pts[j][1]);
+      hctx.closePath();
+      hctx.strokeStyle = (dist / Math.max(HW, HH) < 0.5 ? 'rgba(0,240,255,' : 'rgba(155,77,255,') + alpha + ')';
+      hctx.lineWidth = 0.6;
+      hctx.stroke();
+    }
+  }
+  ht += 0.012;
+  requestAnimationFrame(drawHex);
+}
+drawHex();
 
-/* VIDEO INTERVIEW */
-var VQS=['Tell me about yourself and your journey into AI and technology.','Why are you the ideal candidate for this specific role?','Describe the most complex AI task you have completed. Walk me through your process.','How do you stay current with fast-moving AI developments?','Tell me about a time you identified and resolved a critical technical issue.','How do you approach working with incomplete or ambiguous requirements?','Describe your data annotation experience and how you ensure quality.','What is your greatest professional achievement in the past 2 years?','Where do you see yourself in 3 years?','Why should we choose you over a candidate with a computer science degree?'];
-var vIdx=0,vStarted=false;var vidQ=document.getElementById('vid-q'),vidLabel=document.getElementById('vid-label'),vidCtr=document.getElementById('vid-ctr'),vidRec=document.getElementById('vid-rec'),vidNext=document.getElementById('vid-next'),vidAns=document.getElementById('vid-ans');
-if(vidNext)vidNext.addEventListener('click',function(){if(vIdx>=VQS.length){showToast('// Session complete! Great practice!');return}if(vidQ)vidQ.textContent=VQS[vIdx];if(vidLabel)vidLabel.textContent='// QUESTION '+(vIdx+1)+' OF '+VQS.length;if(vidCtr)vidCtr.textContent='Q '+(vIdx+1)+' / '+VQS.length;if(vidRec)vidRec.classList.add('show');if(!vStarted){vStarted=true;if(vidNext)vidNext.textContent='▶ Next Question'}vIdx++;sClick();if(vIdx===1)unlock('🎬','Mock Interview Started!');if(vIdx===VQS.length)showToast('// Last question — make it count!')});
-if(vidAns)vidAns.addEventListener('click',async function(){var q=vidQ?vidQ.textContent:'';if(!q||q.includes('Press Start'))return;aiOut('vid-out','',true);var r=await callClaude('Model answer (under 200 words, natural speech) for James to: "'+q+'". STAR where applicable. Reference real experience. Sound genuine. End forward-looking.');aiOut('vid-out',r,false)});
+/* ═══ PARTICLES (10 — subtle) ═══ */
+var ptsEl = document.getElementById('pts');
+if (ptsEl) {
+  for (var pi = 0; pi < 10; pi++) {
+    var pt = document.createElement('div');
+    pt.className = 'pt';
+    var sz = Math.random() < 0.5 ? 1.5 : 2;
+    var col = Math.random() < 0.6 ? '#00f0ff' : '#9b4dff';
+    pt.style.cssText = 'left:' + Math.random() * 100 + '%;bottom:' + (Math.random() * 20 - 10) + '%;width:' + sz + 'px;height:' + sz + 'px;background:' + col + ';animation-duration:' + (12 + Math.random() * 16) + 's;animation-delay:' + (Math.random() * 14) + 's;--d:' + ((-40 + Math.random() * 80)) + 'px;opacity:' + (0.1 + Math.random() * 0.2);
+    ptsEl.appendChild(pt);
+  }
+}
 
-/* DASHBOARD AI CHAT */
-var dcMsgs=document.getElementById('dc-msgs'),dcInp=document.getElementById('dc-inp'),dcTyping=document.getElementById('dc-typing');
-function addDCMsg(text,type){if(!dcMsgs)return;var m=document.createElement('div');m.style.cssText='display:flex;gap:8px;align-items:flex-end'+(type==='u'?';flex-direction:row-reverse':'');var av=document.createElement('div');av.style.cssText='width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;border:1px solid var(--line);background:var(--panel)';av.textContent=type==='u'?'👤':'🤖';var bub=document.createElement('div');bub.style.cssText='max-width:75%;padding:8px 12px;font-size:11px;line-height:1.65;font-weight:300;'+(type==='u'?'background:linear-gradient(135deg,rgba(0,240,255,.1),rgba(155,77,255,.1));border:1px solid var(--lc);border-radius:10px 0 10px 10px;color:var(--cyan)':'background:var(--panel);border:1px solid var(--line);border-radius:0 10px 10px 10px;color:var(--txt)');bub.innerHTML=text.replace(/\n/g,'<br>');m.appendChild(av);m.appendChild(bub);dcMsgs.appendChild(m);dcMsgs.scrollTop=dcMsgs.scrollHeight}
-window.sendChat=async function(txt){if(!txt||!txt.trim())return;addDCMsg(txt,'u');if(dcInp)dcInp.value='';if(dcTyping)dcTyping.style.display='block';if(dcMsgs)dcMsgs.scrollTop=dcMsgs.scrollHeight;var r=await callClaude(txt);if(dcTyping)dcTyping.style.display='none';addDCMsg(r,'ai');sOK()};
-var dcSend=document.getElementById('dc-send');if(dcSend)dcSend.addEventListener('click',function(){if(dcInp)sendChat(dcInp.value)});
-if(dcInp)dcInp.addEventListener('keydown',function(e){if(e.key==='Enter')sendChat(dcInp.value)});
-setTimeout(function(){if(dcMsgs&&dcMsgs.children.length===0)addDCMsg("Hello! I am Claude AI. I know everything about James Earl Medrano. Ask me anything — his skills, salary expectations, why you should hire him, or how he fits a specific role! 🚀",'ai')},400);
+/* ═══ MOUSE GLOW ═══ */
+var mg = document.getElementById('mg');
+document.addEventListener('mousemove', function(e) {
+  if (mg) { mg.style.left = e.clientX + 'px'; mg.style.top = e.clientY + 'px'; }
+}, { passive: true });
+
+/* ═══ CUSTOM CURSOR ═══ */
+var curEl = document.getElementById('cur');
+if (curEl) {
+  var ring = curEl.querySelector('#cr'), dot = curEl.querySelector('#cd');
+  var clines = ['lh1','lh2','lv1','lv2'].map(function(id) { return document.getElementById(id); });
+  document.addEventListener('mousemove', function(e) {
+    curEl.style.transform = 'translate(' + e.clientX + 'px,' + e.clientY + 'px)';
+  }, { passive: true });
+  document.addEventListener('mouseover', function(e) {
+    var ih = !!(e.target && e.target.closest('a,button,input,textarea,select,.pill,.dsi'));
+    var col = ih ? '#ff2d55' : '#00f0ff';
+    if (ring) ring.setAttribute('stroke', col);
+    if (dot) dot.setAttribute('fill', col);
+    clines.forEach(function(l) { if (l) l.setAttribute('stroke', col); });
+    var svg = curEl.querySelector('svg');
+    if (svg) svg.style.transform = ih ? 'scale(1.35)' : 'scale(1)';
+  });
+}
+
+/* ═══ SOUND (subtle click only) ═══ */
+var AC = window.AudioContext || window.webkitAudioContext;
+var sndOn = true, ac = null;
+function iAC() { if (!ac && AC) try { ac = new AC(); } catch(e) {} }
+function sClick() {
+  if (!sndOn) return;
+  try {
+    iAC(); if (!ac) return;
+    var o = ac.createOscillator(), g = ac.createGain();
+    o.connect(g); g.connect(ac.destination);
+    o.type = 'sine'; o.frequency.value = 660;
+    g.gain.setValueAtTime(0.02, ac.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001, ac.currentTime + 0.06);
+    o.start(); o.stop(ac.currentTime + 0.06);
+  } catch(e) {}
+}
+var sndbtn = document.getElementById('sndbtn');
+if (sndbtn) sndbtn.addEventListener('click', function() {
+  sndOn = !sndOn;
+  sndbtn.textContent = sndOn ? '🔊' : '🔇';
+});
+
+/* ═══ THEME TOGGLE ═══ */
+var thbtn = document.getElementById('thbtn');
+if (thbtn) thbtn.addEventListener('click', function() {
+  document.body.classList.toggle('light');
+  thbtn.textContent = document.body.classList.contains('light') ? '🌑' : '🌙';
+  drawRadar();
+});
+
+/* ═══ PRINT ═══ */
+var dlr = document.getElementById('dlr');
+if (dlr) dlr.addEventListener('click', function() { window.print(); });
+
+/* ═══ HIRE ME BUTTON ═══ */
+var nhire = document.getElementById('nhire');
+if (nhire) nhire.addEventListener('click', function() {
+  var c = document.getElementById('contact');
+  if (c) c.scrollIntoView({ behavior: 'smooth' });
+});
+
+/* ═══ MOBILE MENU ═══ */
+var mbtn = document.getElementById('mbtn'), mmen = document.getElementById('mmen');
+function closeMM() {
+  if (mbtn) mbtn.classList.remove('open');
+  if (mmen) mmen.classList.remove('open');
+}
+window.closeMM = closeMM;
+if (mbtn) mbtn.addEventListener('click', function() {
+  mbtn.classList.toggle('open');
+  if (mmen) mmen.classList.toggle('open');
+});
+
+/* ═══ SCROLL: progress bar + back-to-top + nav active ═══ */
+var pbar = document.getElementById('pbar');
+var bttEl = document.getElementById('btt');
+window.addEventListener('scroll', function() {
+  var sc = document.documentElement;
+  if (pbar) pbar.style.width = (sc.scrollTop / (sc.scrollHeight - sc.clientHeight) * 100) + '%';
+  if (bttEl) bttEl.classList.toggle('show', scrollY > 600);
+  var cur = '';
+  document.querySelectorAll('section[id]').forEach(function(sec) {
+    if (scrollY >= sec.offsetTop - 130) cur = sec.id;
+  });
+  document.querySelectorAll('.nav-links a').forEach(function(a) {
+    a.classList.toggle('act', a.getAttribute('href') === '#' + cur);
+  });
+}, { passive: true });
+if (bttEl) bttEl.addEventListener('click', function() { scrollTo({ top: 0, behavior: 'smooth' }); });
+
+/* ═══ SCROLL REVEALS ═══ */
+var revIO = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.rv').forEach(function(el) { revIO.observe(el); });
+
+/* ═══ SKILL BARS (portfolio) ═══ */
+var barIO = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.sbfi').forEach(function(b) {
+        b.style.transform = 'scaleX(' + b.dataset.w + ')';
+      });
+      barIO.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.skc').forEach(function(c) { barIO.observe(c); });
+
+/* ═══ SKILL BARS (dashboard) ═══ */
+function animDashBars() {
+  document.querySelectorAll('.sk-f[data-w]').forEach(function(b) {
+    setTimeout(function() { b.style.width = b.dataset.w + '%'; }, 100);
+  });
+}
+var dashIO = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if (e.isIntersecting) animDashBars(); });
+}, { threshold: 0.2 });
+var ovBars = document.getElementById('ov-bars');
+if (ovBars) dashIO.observe(ovBars);
+
+/* ═══ LIVE MANILA CLOCK ═══ */
+function tick() {
+  try {
+    var n = new Date();
+    var ph = new Date(n.toLocaleString('en-US', { timeZone: 'Asia/Manila' }));
+    var hh = String(ph.getHours()).padStart(2, '0');
+    var mm = String(ph.getMinutes()).padStart(2, '0');
+    var ss = String(ph.getSeconds()).padStart(2, '0');
+    var el = document.getElementById('clk');
+    if (el) el.textContent = hh + ':' + mm + ':' + ss;
+  } catch(e) {}
+}
+setInterval(tick, 1000);
+tick();
+
+/* ═══ TYPEWRITER HERO NAME ═══ */
+(function() {
+  var l1 = document.getElementById('tw1');
+  var l2 = document.getElementById('tw2');
+  var cur = document.getElementById('twcur');
+  var lines = ['JAMES EARL', 'MEDRANO'];
+  var li = 0, ci = 0, done = false;
+  function type() {
+    if (done) return;
+    var t = lines[li];
+    if (li === 0) { if (l1) l1.textContent = t.slice(0, ci); }
+    else { if (l2) l2.textContent = t.slice(0, ci); }
+    ci++;
+    if (ci > t.length) {
+      if (li < lines.length - 1) { li++; ci = 0; setTimeout(type, 280); }
+      else { done = true; setTimeout(function() { if (cur) cur.style.display = 'none'; }, 900); }
+    } else { setTimeout(type, 70); }
+  }
+  type();
+})();
+
+/* ═══ SCRAMBLE ROLE TEXT ═══ */
+(function() {
+  var el = document.getElementById('srole');
+  if (!el) return;
+  var final = 'AI Operations Analyst & Technical Specialist';
+  var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%';
+  var frame = 0;
+  function sc() {
+    var out = '';
+    for (var i = 0; i < final.length; i++) {
+      if (i < frame) out += final[i];
+      else out += final[i] === ' ' ? ' ' : chars[Math.floor(Math.random() * chars.length)];
+    }
+    el.textContent = out;
+    frame++;
+    if (frame <= final.length) setTimeout(sc, 36);
+    else el.innerHTML = 'AI Operations Analyst &amp; Technical Specialist';
+  }
+  setTimeout(sc, 2200);
+})();
+
+/* ═══ STAT COUNTERS ═══ */
+function animCount(el, target, sfx) {
+  if (!el) return;
+  var v = 0;
+  var t = setInterval(function() {
+    v = Math.min(v + target / 110, target);
+    el.textContent = Math.floor(v) + (sfx || '');
+    if (v >= target) clearInterval(t);
+  }, 16);
+}
+var cntIO = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (!e.isIntersecting) return;
+    cntIO.unobserve(e.target);
+    var id = e.target.id;
+    if (id === 'c1' || id === 'sa1') animCount(e.target, 3, '+');
+    if (id === 'c2' || id === 'sa2') animCount(e.target, 3, '');
+  });
+}, { threshold: 0.5 });
+['c1','c2','sa1','sa2'].forEach(function(id) {
+  var el = document.getElementById(id);
+  if (el) cntIO.observe(el);
+});
+
+/* ═══ RADAR CHART ═══ */
+function drawRadar() {
+  var c = document.getElementById('radar');
+  if (!c) return;
+  var ctx = c.getContext('2d'), W = 250, H = 210, cx = W/2, cy = H/2, R = 78;
+  var labels = ['AI/LLM','IT Ops','Data Mgmt','Networks','Docs'];
+  var vals = [0.92, 0.88, 0.84, 0.82, 0.86];
+  var n = labels.length;
+  ctx.clearRect(0, 0, W, H);
+  var angs = labels.map(function(_, i) { return i * (2 * Math.PI / n) - Math.PI / 2; });
+  [0.25, 0.5, 0.75, 1].forEach(function(sc) {
+    ctx.beginPath();
+    angs.forEach(function(a, i) {
+      var x = cx + R * sc * Math.cos(a), y = cy + R * sc * Math.sin(a);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    ctx.closePath();
+    ctx.strokeStyle = 'rgba(0,240,255,0.09)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  });
+  angs.forEach(function(a) {
+    ctx.beginPath(); ctx.moveTo(cx, cy);
+    ctx.lineTo(cx + R * Math.cos(a), cy + R * Math.sin(a));
+    ctx.strokeStyle = 'rgba(0,240,255,0.08)'; ctx.lineWidth = 1; ctx.stroke();
+  });
+  ctx.beginPath();
+  angs.forEach(function(a, i) {
+    var x = cx + R * vals[i] * Math.cos(a), y = cy + R * vals[i] * Math.sin(a);
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  });
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(0,240,255,0.07)'; ctx.fill();
+  ctx.strokeStyle = 'rgba(0,240,255,0.62)'; ctx.lineWidth = 1.5; ctx.stroke();
+  angs.forEach(function(a, i) {
+    ctx.beginPath();
+    ctx.arc(cx + R * vals[i] * Math.cos(a), cy + R * vals[i] * Math.sin(a), 3, 0, Math.PI * 2);
+    ctx.fillStyle = '#00f0ff'; ctx.fill();
+  });
+  var tc = document.body.classList.contains('light') ? 'rgba(8,11,26,0.5)' : 'rgba(236,238,248,0.44)';
+  ctx.fillStyle = tc; ctx.font = '9px Space Mono,monospace'; ctx.textAlign = 'center';
+  angs.forEach(function(a, i) {
+    ctx.fillText(labels[i], cx + (R + 16) * Math.cos(a), cy + (R + 16) * Math.sin(a) + 3);
+  });
+}
+drawRadar();
+new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if (e.isIntersecting) drawRadar(); });
+}, { threshold: 0.3 }).observe(document.getElementById('radar') || document.body);
+
+/* ═══ COPY CONTACT BUTTONS ═══ */
+document.querySelectorAll('.cpb').forEach(function(btn) {
+  btn.addEventListener('click', function(e) {
+    e.preventDefault(); e.stopPropagation();
+    var val = btn.dataset.copy;
+    if (!val) return;
+    if (navigator.clipboard) navigator.clipboard.writeText(val).then(function() {
+      btn.textContent = 'Copied!';
+      btn.classList.add('done');
+      setTimeout(function() { btn.textContent = 'Copy'; btn.classList.remove('done'); }, 2000);
+    });
+  });
+});
+
+/* ═══ GMAIL CONTACT FORM ═══ */
+var fsub = document.getElementById('fsub');
+if (fsub) fsub.addEventListener('click', function() {
+  var n = (document.getElementById('fn') || {}).value || '';
+  var em = (document.getElementById('fe') || {}).value || '';
+  var subj = (document.getElementById('fs') || {}).value || '';
+  var msg = (document.getElementById('fm') || {}).value || '';
+  var st = document.getElementById('fst');
+  if (!n.trim() || !em.trim() || !msg.trim()) {
+    if (st) { st.className = 'fst er'; st.textContent = '// Please fill in name, email, and message.'; }
+    return;
+  }
+  var to = 'Workwitheaaarl@gmail.com';
+  var sub = encodeURIComponent(subj || 'Inquiry from ' + n + ' via Portfolio');
+  var body = encodeURIComponent('Hi James,\n\nMy name is ' + n + ' (' + em + ').\n\n' + msg + '\n\nBest regards,\n' + n);
+  window.open('https://mail.google.com/mail/?view=cm&fs=1&to=' + to + '&su=' + sub + '&body=' + body, '_blank');
+  if (st) { st.className = 'fst ok'; st.textContent = '// Gmail opened! Your message is pre-filled and ready to send.'; }
+});
+
+/* ═══ AI QUICK FAB (bottom-left orb) ═══ */
+var aiOrb = document.getElementById('ai-orb');
+var afpEl = document.getElementById('afp');
+if (aiOrb) aiOrb.addEventListener('click', function() {
+  if (afpEl) afpEl.classList.toggle('open');
+});
+var afpX = document.getElementById('afp-x');
+if (afpX) afpX.addEventListener('click', function() {
+  if (afpEl) afpEl.classList.remove('open');
+});
+var FAB_ACTIONS = {
+  pitch:   'Write a 3-sentence elevator pitch for James that an HR reads in 10 seconds and immediately wants to interview him.',
+  summary: 'Write a powerful professional summary for James under 25 words for his resume header.',
+  unique:  'In 3 bullet points, what makes James uniquely different from other BS IT 2025 graduates applying for AI roles?',
+  hire:    'Give exactly 3 compelling, punchy reasons an HR manager should shortlist James immediately.',
+  salary:  'What salary range should James target in PH for AI and IT roles in 2026? Give specific ranges by role type.',
+  linkedin:'Write an optimized LinkedIn headline for James under 220 characters targeting AI and IT roles in the Philippines.',
+  cold:    'Write a compelling opening line for a cold email James could send to a hiring manager at any Philippine tech company.',
+  ats:     'List the top 10 ATS keywords James must include in his resume for AI and IT roles in 2026, with a brief note for each.'
+};
+var afpRes = document.getElementById('afp-res');
+document.querySelectorAll('.afp-btn').forEach(function(b) {
+  b.addEventListener('click', async function() {
+    if (!afpRes) return;
+    afpRes.className = 'afp-res show loading';
+    var r = await callClaude(FAB_ACTIONS[b.dataset.a] || b.dataset.a);
+    afpRes.className = 'afp-res show';
+    afpRes.textContent = r;
+  });
+});
+
+/* ═══ CHATBOT (JEM-BOT) ═══ */
+var cbt = document.getElementById('cbt');
+var cwin = document.getElementById('cwin');
+var cms = document.getElementById('cms');
+var cin = document.getElementById('cin');
+var ctyp = document.getElementById('ctyp');
+if (cbt) cbt.addEventListener('click', function() {
+  if (cwin) cwin.classList.toggle('open');
+  var cn = document.getElementById('cbno');
+  if (cn) cn.style.display = 'none';
+  if (cms && cms.children.length === 0) addBotMsg('Hi! I am JEM-BOT, powered by Claude AI. Ask me anything about James — his skills, experience, social links, or why you should hire him.');
+});
+var cwx = document.getElementById('cwx');
+if (cwx) cwx.addEventListener('click', function() { if (cwin) cwin.classList.remove('open'); });
+
+var KB = {
+  skills:     'James top skills:\n  AI/LLM: Prompt Engineering 92%, Annotation 90%, LLM Eval 88%\n  IT Ops: Troubleshooting 90%, Networks 82%, Cybersec 78%\n  Data: Excel 88%, Power BI 84%, CRM 80%',
+  experience: 'Work history:\n  1. A.I. Analyst II — Innodata (Jan-May 2026)\n  2. IT Support — Alorica Teleservices (2025)\n  3. Jr. Tech Support — BESPOKE IT Corp. (2024)',
+  contact:    'Reach James:\n  Email: Workwitheaaarl@gmail.com\n  Phone: +63 976 318 9033\n  Location: Malate, Manila, PH',
+  social:     'James socials:\n  LinkedIn: linkedin.com/feed/\n  GitHub: github.com/youngNwis31\n  Facebook: facebook.com/eaarlsuuu\n  Instagram: @eaarlsu\n  X: @eaarlsuu',
+  hire:       'Why hire James?\n  - Real LLM fine-tuning and prompt engineering experience\n  - 3 industries in 2 years: cybersec, BPO, AI research\n  - BS IT 2025, open to work immediately\n  - Bilingual: Filipino and English'
+};
+function botReply(q) {
+  var t = q.toLowerCase();
+  if (t.includes('hire') || t.includes('why')) return KB.hire;
+  if (t.includes('skill') || t.includes('capab')) return KB.skills;
+  if (t.includes('exp') || t.includes('work') || t.includes('career')) return KB.experience;
+  if (t.includes('contact') || t.includes('email') || t.includes('phone')) return KB.contact;
+  if (t.includes('social') || t.includes('linkedin') || t.includes('github')) return KB.social;
+  if (t.includes('hi') || t.includes('hello') || t.includes('hey')) return 'Hi there! Ask me about James — his skills, experience, or how to hire him.';
+  return 'I can tell you about James skills, experience, social links, or how to contact him. What do you need?';
+}
+function addBotMsg(text) {
+  if (!cms) return;
+  var m = document.createElement('div'); m.className = 'msg';
+  var av = document.createElement('div'); av.className = 'mav'; av.textContent = 'J';
+  av.style.cssText = 'background:linear-gradient(135deg,rgba(0,240,255,.14),rgba(155,77,255,.14));border:1px solid var(--lc)';
+  var bub = document.createElement('div'); bub.className = 'mbub b';
+  bub.innerHTML = text.replace(/\n/g, '<br>');
+  m.appendChild(av); m.appendChild(bub);
+  cms.appendChild(m); cms.scrollTop = cms.scrollHeight;
+}
+function sendBotMsg(txt) {
+  if (!txt || !txt.trim()) return;
+  var m = document.createElement('div'); m.className = 'msg u';
+  var av = document.createElement('div'); av.className = 'mav'; av.textContent = 'You';
+  av.style.cssText = 'background:var(--panel);border:1px solid var(--line);font-size:9px';
+  var bub = document.createElement('div'); bub.className = 'mbub u'; bub.textContent = txt;
+  m.appendChild(av); m.appendChild(bub);
+  if (cms) cms.appendChild(m);
+  if (cin) cin.value = '';
+  if (ctyp) ctyp.classList.add('show');
+  if (cms) cms.scrollTop = cms.scrollHeight;
+  setTimeout(function() {
+    if (ctyp) ctyp.classList.remove('show');
+    addBotMsg(botReply(txt));
+  }, 600 + Math.random() * 400);
+}
+var cse = document.getElementById('cse');
+if (cse) cse.addEventListener('click', function() { if (cin) sendBotMsg(cin.value); });
+if (cin) cin.addEventListener('keydown', function(e) { if (e.key === 'Enter') sendBotMsg(cin.value); });
+document.querySelectorAll('.qb').forEach(function(b) {
+  b.addEventListener('click', function() { sendBotMsg(b.dataset.q); });
+});
+
+/* ═══ TERMINAL (Konami easter egg) ═══ */
+var trm = document.getElementById('trm');
+var tro = document.getElementById('tro');
+var trin = document.getElementById('trin');
+var CMDS = {
+  help:       'Commands: help | whoami | skills | experience | contact | social | time | ping | ls | clear | exit',
+  whoami:     'James Earl Medrano\nAI Ops Analyst & IT Specialist\nBS IT 2025 - Malate, Manila, PH\nEmail: Workwitheaaarl@gmail.com',
+  skills:     '[01] AI & LLM  — Prompt Eng 92% · Annotation 90% · LLM Eval 88%\n[02] IT Ops   — Troubleshooting 90% · Networks 82% · Cybersec 78%\n[03] Data     — Excel 88% · Power BI 84% · CRM 80%',
+  experience: '[1] A.I. Analyst II   — Innodata (Jan-May 2026)\n[2] IT Support       — Alorica Teleservices (2025)\n[3] Jr. Tech Support — BESPOKE IT Corp. (2024)',
+  contact:    'EMAIL: Workwitheaaarl@gmail.com\nPHONE: +63 976 318 9033\nLOC:   Malate, Manila, PH',
+  social:     'LinkedIn:  linkedin.com/feed/\nGitHub:    github.com/youngNwis31\nFacebook:  facebook.com/eaarlsuuu\nInstagram: @eaarlsu\nX:         @eaarlsuu',
+  ls:         'portfolio/\n  00_hire.dat  01_about.dat  02_experience.log\n  03_skills.json  04_education.cert  05_contact.enc\n  dashboard/ (17 AI tools)',
+  ping:       'PONG // LAT 14.5764N · LON 120.9831E · 1ms · MALATE_NODE',
+  clear:      '__clear__',
+  exit:       '__close__'
+};
+CMDS.time = function() {
+  return 'MANILA: ' + new Date().toLocaleTimeString('en-PH', { timeZone: 'Asia/Manila' });
+};
+function tPrint(msg) {
+  if (!tro) return;
+  var d = document.createElement('div');
+  d.innerHTML = msg.replace(/\n/g, '<br>');
+  tro.appendChild(d);
+  tro.scrollTop = tro.scrollHeight;
+}
+if (trin) trin.addEventListener('keydown', function(e) {
+  if (e.key !== 'Enter') return;
+  var cmd = trin.value.trim().toLowerCase();
+  trin.value = '';
+  tPrint('<span style="color:var(--cyan)">james@manila:~$</span> ' + cmd);
+  var r = CMDS[cmd];
+  if (typeof r === 'function') r = r();
+  if (r === '__clear__') tro.innerHTML = '';
+  else if (r === '__close__') { if (trm) trm.classList.remove('open'); }
+  else if (r) tPrint(r);
+  else tPrint('command not found: <span style="color:var(--red)">' + cmd + '</span> — type "help"');
+});
+var trc = document.getElementById('trc');
+if (trc) trc.addEventListener('click', function() { if (trm) trm.classList.remove('open'); });
+var KONAMI = [38,38,40,40,37,39,37,39,66,65], ki = 0;
+document.addEventListener('keydown', function(e) {
+  if (e.keyCode === KONAMI[ki]) ki++; else ki = 0;
+  if (ki === KONAMI.length) {
+    ki = 0;
+    if (trm) trm.classList.toggle('open');
+    if (trm && trm.classList.contains('open')) tPrint('<span style="color:var(--gold)">// KONAMI CODE — JAMES_OS v4.0 UNLOCKED</span>');
+  }
+});
+
+/* ═══ JOB TRACKER ═══ */
+var jobs = [];
+function renderJobs() {
+  var counts = { applied: 0, interview: 0, offer: 0, rejected: 0 };
+  jobs.forEach(function(j) { if (counts[j.st] !== undefined) counts[j.st]++; });
+  ['jt-total','ov-apps'].forEach(function(id) { var el = document.getElementById(id); if (el) el.textContent = jobs.length; });
+  var jtApp = document.getElementById('jt-applied'); if (jtApp) jtApp.textContent = counts.applied;
+  ['jt-interview','ov-int'].forEach(function(id) { var el = document.getElementById(id); if (el) el.textContent = counts.interview; });
+  ['jt-offer','ov-off'].forEach(function(id) { var el = document.getElementById(id); if (el) el.textContent = counts.offer; });
+  var list = document.getElementById('jt-list');
+  if (!list) return;
+  if (!jobs.length) {
+    list.innerHTML = '<div style="font-family:var(--fm);font-size:9px;color:var(--mut);text-align:center;padding:14px;letter-spacing:.1em;text-transform:uppercase">No applications yet — add one below</div>';
+    return;
+  }
+  list.innerHTML = '';
+  jobs.forEach(function(j, i) {
+    var el = document.createElement('div'); el.className = 'jtrow';
+    var diff = Math.floor((Date.now() - j.ts) / 86400000);
+    var ds = diff === 0 ? 'Today' : diff === 1 ? 'Yesterday' : diff + 'd ago';
+    el.innerHTML = '<div class="jtdot ' + j.st + '"></div><div class="jtinfo"><div class="jtrl">' + j.role + '</div><div class="jtco">' + j.co + '</div></div><div class="jtdt">' + ds + '</div><button class="jtdel" data-i="' + i + '">x</button>';
+    list.appendChild(el);
+  });
+  list.querySelectorAll('.jtdel').forEach(function(b) {
+    b.addEventListener('click', function() { jobs.splice(parseInt(b.dataset.i), 1); renderJobs(); });
+  });
+}
+var jtAdd = document.getElementById('jt-add');
+if (jtAdd) jtAdd.addEventListener('click', function() {
+  var role = (document.getElementById('jt-role') || {}).value || '';
+  var co   = (document.getElementById('jt-co')   || {}).value || '';
+  var st   = (document.getElementById('jt-st')   || {}).value || 'applied';
+  if (!role.trim() || !co.trim()) return;
+  jobs.push({ role: role.trim(), co: co.trim(), st: st, ts: Date.now() });
+  var ri = document.getElementById('jt-role'); if (ri) ri.value = '';
+  var ci = document.getElementById('jt-co');   if (ci) ci.value = '';
+  renderJobs();
+});
+renderJobs();
+
+var jtAI = document.getElementById('jt-ai-btn');
+if (jtAI) jtAI.addEventListener('click', async function() {
+  aiOut('jt-ai-out', '', true);
+  var sum = jobs.length ? jobs.map(function(j) { return j.role + ' at ' + j.co + ' (' + j.st + ')'; }).join('; ') : 'No applications tracked yet';
+  var r = await callClaude('James has these job applications: ' + sum + '. Give 5 specific, actionable tips to improve his job search strategy and increase his interview rate.');
+  aiOut('jt-ai-out', r, false);
+});
+
+/* ═══ HR ACTIVITY FEED (static — no auto-rotating popups) ═══ */
+var HR_FEED = [
+  { ico: '👀', txt: 'Talent Acquisition from Accenture PH viewed your profile', sub: 'BGC, Taguig', col: 'var(--cyan)' },
+  { ico: '💼', txt: 'Globe Telecom recruiter opened your LinkedIn', sub: 'Mandaluyong', col: 'rgba(10,102,194,.8)' },
+  { ico: '⭐', txt: 'HR Manager saved your profile to shortlist', sub: 'Ortigas Center', col: 'var(--gold)' },
+  { ico: '🎯', txt: 'High match score for Prompt Engineer role', sub: '3 companies looking', col: 'var(--vio)' },
+  { ico: '📞', txt: 'Interview inquiry from BGC tech startup', sub: 'Bonifacio Global City', col: 'var(--grn)' },
+  { ico: '🌟', txt: 'AI skills scored in the 90th percentile', sub: 'vs. other BS IT 2025 graduates', col: 'var(--gold)' },
+  { ico: '📨', txt: 'Grab Philippines tech team sent a connection request', sub: 'Pasig City', col: 'var(--grn)' },
+  { ico: '🏆', txt: 'Portfolio ranked in top candidates this week', sub: 'AI Analyst Manila 2026', col: 'var(--red)' }
+];
+function buildFeed(containerId, count) {
+  var feed = document.getElementById(containerId);
+  if (!feed) return;
+  feed.innerHTML = '';
+  HR_FEED.slice(0, count || 5).forEach(function(ev) {
+    var d = document.createElement('div'); d.className = 'nitem';
+    d.style.borderLeftColor = ev.col;
+    d.innerHTML = '<div class="nicon">' + ev.ico + '</div><div><div class="ntxt">' + ev.txt + '</div><div class="nsub">' + ev.sub + '</div></div>';
+    feed.appendChild(d);
+  });
+}
+buildFeed('ov-feed', 5);
+buildFeed('act-feed', 8);
+
+/* ═══ ACTIVITY AI RESPONDER ═══ */
+var actAI = document.getElementById('act-ai');
+if (actAI) actAI.addEventListener('click', async function() {
+  aiOut('act-out', '', true);
+  var scenario = (document.getElementById('act-scenario') || {}).value || '';
+  var r = await callClaude('James is in this situation: "' + scenario + '". Write the perfect professional response. Include what to say, how to say it, what to avoid, and clear next steps.');
+  aiOut('act-out', r, false);
+});
+
+/* ═══ TONE / CHIP HELPERS ═══ */
+function initTones(gid) {
+  var g = document.getElementById(gid);
+  if (!g) return;
+  g.querySelectorAll('.tone-btn').forEach(function(b) {
+    b.addEventListener('click', function() {
+      g.querySelectorAll('.tone-btn').forEach(function(x) { x.classList.remove('sel'); });
+      b.classList.add('sel');
+    });
+  });
+}
+function getTone(gid) {
+  var g = document.getElementById(gid);
+  if (!g) return 'Professional';
+  var a = g.querySelector('.sel');
+  return a ? a.dataset.tone : 'Professional';
+}
+initTones('cl-tones');
+initTones('rb-tones');
+
+document.querySelectorAll('#li-chips .chip').forEach(function(c) {
+  c.addEventListener('click', function() { c.classList.toggle('sel'); });
+});
+document.querySelectorAll('.qchip[data-q]').forEach(function(c) {
+  c.addEventListener('click', function() {
+    var inp = document.getElementById('iv-inp');
+    if (inp) inp.value = c.dataset.q;
+  });
+});
+
+/* ═══ AI TOOL: generic runner ═══ */
+async function runTool(btnId, outId, promptFn) {
+  var btn = document.getElementById(btnId);
+  if (!btn) return;
+  btn.addEventListener('click', async function() {
+    var prompt = promptFn();
+    if (!prompt) { return; }
+    aiOut(outId, '', true);
+    var r = await callClaude(prompt);
+    aiOut(outId, r, false);
+  });
+}
+
+/* ═══ ALL 15 AI TOOLS ═══ */
+runTool('jfa-btn', 'jfa-out', function() {
+  var jd = (document.getElementById('jfa-jd') || {}).value || '';
+  return jd.trim() ? 'Analyze James fit for this job description. Give: 1) Match percentage and verdict, 2) Matching skills and experience, 3) Key strengths, 4) Gaps to address, 5) A 2-sentence hiring recommendation.\n\nJOB DESCRIPTION:\n' + jd : '';
+});
+runTool('cl-btn', 'cl-out', function() {
+  var role = (document.getElementById('cl-role') || {}).value || '';
+  var reqs = (document.getElementById('cl-reqs') || {}).value || '';
+  var tone = getTone('cl-tones');
+  return role.trim() ? 'Write a ' + tone + ' cover letter from James for: ' + role + (reqs ? '. Key requirements: ' + reqs : '.') + ' Under 350 words. Strong opening, 2-3 body paragraphs using real experience, confident close. Ready to send.' : '';
+});
+runTool('iv-btn', 'iv-out', function() {
+  var q = (document.getElementById('iv-inp') || {}).value || '';
+  return q.trim() ? 'Model answer (150-250 words) for James to this interview question: "' + q + '". Use STAR method where relevant. Reference real experience. Natural for speaking aloud. End confidently.' : '';
+});
+runTool('ats-btn', 'ats-out', function() {
+  var kw   = (document.getElementById('ats-kw')   || {}).value || '';
+  var role = (document.getElementById('ats-role') || {}).value || 'AI Operations Analyst';
+  return 'Generate a complete ATS-optimized resume for James targeting "' + role + '"' + (kw ? ' with keywords: ' + kw : '') + '. Include professional summary, work experience with action verbs and quantified results, skills section, and education.';
+});
+runTool('li-btn', 'li-out', function() {
+  var t     = (document.getElementById('li-target') || {}).value || '';
+  var chips = Array.from(document.querySelectorAll('#li-chips .chip.sel')).map(function(c) { return c.dataset.v; }).join(', ');
+  return (t || chips) ? 'Optimize James LinkedIn for "' + (t || chips) + '". Give: 1) Headline under 220 characters, 2) About section with 3 paragraphs and a call-to-action, 3) Top 5 skills to list, 4) 3 specific profile improvement tips.' : '';
+});
+runTool('sal-btn', 'sal-out', function() {
+  var offer  = (document.getElementById('sal-offer')  || {}).value || '';
+  var target = (document.getElementById('sal-target') || {}).value || '';
+  var role   = (document.getElementById('sal-role')   || {}).value || '';
+  return (offer && target) ? 'James received an offer of PHP ' + offer + ' per month for "' + role + '" but wants PHP ' + target + ' per month. Write: 1) A negotiation email script, 2) Key talking points, 3) Counter-offer strategy, 4) How to respond if pushed back. Tone: confident and professional.' : '';
+});
+runTool('cp-btn', 'cp-out', function() {
+  var goal = (document.getElementById('cp-goal') || {}).value || '';
+  var time = (document.getElementById('cp-time') || {}).value || '3-5 years';
+  return goal.trim() ? 'James wants to become "' + goal + '" in ' + time + '. Create a specific roadmap: 1) Step-by-step milestones, 2) Skills to acquire at each stage, 3) Recommended certifications, 4) Timeline with checkpoints, 5) One bold accelerator move.' : '';
+});
+runTool('ref-btn', 'ref-out', function() {
+  var type = (document.getElementById('ref-type') || {}).value || '';
+  var role = (document.getElementById('ref-role') || {}).value || '';
+  return 'Write a professional reference letter for James from "' + type + '" for his application for "' + role + '". Make it 3-4 paragraphs, specific and credible with real examples. End with a strong endorsement.';
+});
+runTool('rb-btn', 'rb-out', function() {
+  var bullets = (document.getElementById('rb-inp') || {}).value || '';
+  var tone    = getTone('rb-tones');
+  return bullets.trim() ? 'Rewrite these resume bullets for James in ' + tone + ' style. Use strong action verbs and quantify results where possible:\n\n' + bullets : '';
+});
+runTool('djp-btn', 'djp-out', function() {
+  var hours = (document.getElementById('djp-hours') || {}).value || '2-3 hours';
+  var stage = (document.getElementById('djp-stage') || {}).value || 'Actively applying';
+  return 'Create a specific, actionable daily job hunt plan for James. He has ' + hours + ' today and is at stage: "' + stage + '". Include: timed hourly schedule, exact tasks on platforms like LinkedIn, JobStreet, Kalibrr, and Indeed PH, one networking action, one skill-building task. Be specific to an AI and IT specialist in Manila.';
+});
+runTool('rrc-btn', 'rrc-out', function() {
+  var type = (document.getElementById('rrc-type') || {}).value || '';
+  var role = (document.getElementById('rrc-role') || {}).value || '';
+  return 'James experienced: "' + type + '"' + (role ? ' for the role "' + role + '"' : '') + '. As his career coach give: 1) Honest empathetic acknowledgment, 2) What this means and does NOT mean, 3) 3 concrete actions in the next 24 hours, 4) How to turn this into momentum, 5) Encouraging close tailored to his AI and IT background.';
+});
+runTool('ty-btn', 'ty-out', function() {
+  var name   = (document.getElementById('ty-name')   || {}).value || 'the interviewer';
+  var role   = (document.getElementById('ty-role')   || {}).value || '';
+  var detail = (document.getElementById('ty-detail') || {}).value || '';
+  return 'Write a thank-you email for James after an interview. Interviewer: ' + name + '. Role and company: ' + role + '. Specific detail from the interview: "' + detail + '". Format: start with SUBJECT: [subject line], then the email body. Under 150 words. Reference the detail naturally, reaffirm enthusiasm, end confidently.';
+});
+
+/* ═══ COLD EMAIL (custom handler — shows preview) ═══ */
+var ceBtn = document.getElementById('ce-btn');
+if (ceBtn) ceBtn.addEventListener('click', async function() {
+  var co    = (document.getElementById('ce-co')    || {}).value || '';
+  var to    = (document.getElementById('ce-to')    || {}).value || 'Hiring Manager';
+  var angle = (document.getElementById('ce-angle') || {}).value || '';
+  if (!co.trim()) return;
+  var prev  = document.getElementById('ce-prev');
+  var subjEl= document.getElementById('ce-subj');
+  var bodyEl= document.getElementById('ce-body');
+  var copyEl= document.getElementById('ce-copy');
+  if (prev) prev.className = 'ep show';
+  if (subjEl) subjEl.textContent = 'Generating...';
+  if (bodyEl) bodyEl.textContent = '';
+  var r = await callClaude('Write a cold email from James to ' + to + ' at ' + co + '. Angle: ' + angle + '. Start with SUBJECT: [subject line] on the first line, then a blank line, then the email body. Under 200 words. Compelling, mention AI and LLM experience, strong call to action.');
+  var lines = r.split('\n');
+  var sub = '', bd = [], found = false;
+  lines.forEach(function(l) {
+    if (!found && l.toLowerCase().startsWith('subject:')) { sub = l.replace(/^subject:\s*/i, ''); found = true; }
+    else bd.push(l);
+  });
+  if (subjEl) subjEl.textContent = 'Subject: ' + (sub || 'James Earl Medrano — AI Professional');
+  if (bodyEl) bodyEl.textContent = bd.join('\n').trim();
+  if (copyEl) {
+    copyEl.style.display = 'block';
+    copyEl.onclick = function() {
+      if (navigator.clipboard) navigator.clipboard.writeText((sub ? 'Subject: ' + sub + '\n\n' : '') + bd.join('\n').trim()).then(function() {
+        copyEl.textContent = 'Copied!';
+        setTimeout(function() { copyEl.textContent = 'Copy'; }, 2000);
+      });
+    };
+  }
+});
+
+/* ═══ FOLLOW-UP EMAILS ═══ */
+var fuSel = 'after applying online 7 days ago with no response';
+document.querySelectorAll('.fu-step').forEach(function(s) {
+  s.addEventListener('click', function() {
+    document.querySelectorAll('.fu-step').forEach(function(x) { x.classList.remove('act'); });
+    s.classList.add('act');
+    fuSel = s.dataset.s;
+  });
+});
+var fuBtn = document.getElementById('fu-btn');
+if (fuBtn) fuBtn.addEventListener('click', async function() {
+  aiOut('fu-out', '', true);
+  var co = (document.getElementById('fu-co') || {}).value || '';
+  var r = await callClaude('Write a follow-up email for James for this situation: "' + fuSel + '" for the role: "' + co + '". Start with SUBJECT: on the first line. Under 180 words. Warm, professional, specific about qualifications, clear ask, confident close.');
+  aiOut('fu-out', r, false);
+});
+
+/* ═══ MOCK VIDEO INTERVIEW ═══ */
+var VQS = [
+  'Tell me about yourself and your journey into AI and technology.',
+  'Why are you the ideal candidate for this specific role?',
+  'Describe the most complex AI task you have completed. Walk me through your process.',
+  'How do you stay current with fast-moving AI developments?',
+  'Tell me about a time you identified and resolved a critical technical issue.',
+  'How do you approach working with incomplete or ambiguous requirements?',
+  'Describe your data annotation experience and how you ensure quality.',
+  'What is your greatest professional achievement in the past 2 years?',
+  'Where do you see yourself in 3 years?',
+  'Why should we choose you over a candidate with a computer science degree?'
+];
+var vIdx = 0, vStarted = false;
+var vidQ   = document.getElementById('vid-q');
+var vidLbl = document.getElementById('vid-label');
+var vidCtr = document.getElementById('vid-ctr');
+var vidRec = document.getElementById('vid-rec');
+var vidNxt = document.getElementById('vid-next');
+var vidAns = document.getElementById('vid-ans');
+if (vidNxt) vidNxt.addEventListener('click', function() {
+  if (vIdx >= VQS.length) return;
+  if (vidQ)   vidQ.textContent   = VQS[vIdx];
+  if (vidLbl) vidLbl.textContent = 'Question ' + (vIdx + 1) + ' of ' + VQS.length;
+  if (vidCtr) vidCtr.textContent = 'Q ' + (vIdx + 1) + ' / ' + VQS.length;
+  if (vidRec) vidRec.classList.add('show');
+  if (!vStarted) { vStarted = true; if (vidNxt) vidNxt.textContent = 'Next Question'; }
+  vIdx++;
+});
+if (vidAns) vidAns.addEventListener('click', async function() {
+  var q = vidQ ? vidQ.textContent : '';
+  if (!q || q.includes('Press Start')) return;
+  aiOut('vid-out', '', true);
+  var r = await callClaude('Write a model answer for James to this interview question (under 200 words, natural spoken language): "' + q + '". Use STAR method where relevant. Reference his real experience. End forward-looking.');
+  aiOut('vid-out', r, false);
+});
+
+/* ═══ DASHBOARD AI CHAT ═══ */
+var dcMsgs   = document.getElementById('dc-msgs');
+var dcInp    = document.getElementById('dc-inp');
+var dcTyping = document.getElementById('dc-typing');
+function addDCMsg(text, type) {
+  if (!dcMsgs) return;
+  var m = document.createElement('div');
+  m.style.cssText = 'display:flex;gap:8px;align-items:flex-end' + (type === 'u' ? ';flex-direction:row-reverse' : '');
+  var av = document.createElement('div');
+  av.style.cssText = 'width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0;border:1px solid var(--line);background:var(--panel)';
+  av.textContent = type === 'u' ? 'You' : 'AI';
+  var bub = document.createElement('div');
+  bub.style.cssText = 'max-width:78%;padding:8px 12px;font-size:11px;line-height:1.65;font-weight:300;' +
+    (type === 'u'
+      ? 'background:linear-gradient(135deg,rgba(0,240,255,.1),rgba(155,77,255,.1));border:1px solid var(--lc);border-radius:10px 0 10px 10px;color:var(--cyan)'
+      : 'background:var(--panel);border:1px solid var(--line);border-radius:0 10px 10px 10px;color:var(--txt)');
+  bub.innerHTML = text.replace(/\n/g, '<br>');
+  m.appendChild(av); m.appendChild(bub);
+  dcMsgs.appendChild(m);
+  dcMsgs.scrollTop = dcMsgs.scrollHeight;
+}
+window.sendChat = async function(txt) {
+  if (!txt || !txt.trim()) return;
+  addDCMsg(txt, 'u');
+  if (dcInp) dcInp.value = '';
+  if (dcTyping) dcTyping.style.display = 'block';
+  dcMsgs.scrollTop = dcMsgs.scrollHeight;
+  var r = await callClaude(txt);
+  if (dcTyping) dcTyping.style.display = 'none';
+  addDCMsg(r, 'ai');
+};
+var dcSend = document.getElementById('dc-send');
+if (dcSend) dcSend.addEventListener('click', function() { if (dcInp) sendChat(dcInp.value); });
+if (dcInp)  dcInp.addEventListener('keydown', function(e) { if (e.key === 'Enter') sendChat(dcInp.value); });
+setTimeout(function() {
+  if (dcMsgs && dcMsgs.children.length === 0) {
+    addDCMsg('Hello! I am Claude AI. Ask me anything about James — his skills, fit for a role, salary expectations, or why you should hire him.', 'ai');
+  }
+}, 400);
+
+
+/* ═══ MOBILE DASHBOARD NAVIGATION ═══ */
+(function() {
+  var mobTabs     = document.getElementById('mob-tabs');
+  var mobDrawer   = document.getElementById('mob-drawer');
+  var mobDrawerX  = document.getElementById('mob-drawer-x');
+  var mobToolsBtn = document.getElementById('mobt-tools-open');
+
+  if (!mobTabs) return; // not on mobile, skip
+
+  // Show mob nav only when dashboard tab is active
+  function syncMobNav() {
+    var isDash = document.getElementById('page-dashboard') &&
+                 document.getElementById('page-dashboard').classList.contains('act');
+    if (mobTabs) mobTabs.style.display = isDash ? 'flex' : 'none';
+  }
+  syncMobNav();
+
+  // Hook into switchTab to show/hide mob nav
+  var _origSwitch = window.switchTab;
+  window.switchTab = function(tab) {
+    if (_origSwitch) _origSwitch(tab);
+    syncMobNav();
+    if (mobDrawer) mobDrawer.classList.remove('open');
+  };
+
+  // Bottom tab: direct page buttons (overview, tracker, chat, activity)
+  document.querySelectorAll('.mob-tab[data-mob]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var target = btn.dataset.mob;
+      // activate dpage
+      document.querySelectorAll('.dpage').forEach(function(p) { p.classList.remove('act'); });
+      document.querySelectorAll('.dsi').forEach(function(s) { s.classList.remove('act'); });
+      var dp = document.getElementById('dp-' + target);
+      if (dp) dp.classList.add('act');
+      var si = document.querySelector('[data-dp="' + target + '"]');
+      if (si) si.classList.add('act');
+      // activate mob tab
+      document.querySelectorAll('.mob-tab').forEach(function(t) { t.classList.remove('act'); });
+      btn.classList.add('act');
+      // close drawer
+      if (mobDrawer) mobDrawer.classList.remove('open');
+      // scroll to top of main
+      var dm = document.getElementById('dmain');
+      if (dm) dm.scrollTop = 0;
+    });
+  });
+
+  // Open tool drawer
+  if (mobToolsBtn) mobToolsBtn.addEventListener('click', function() {
+    if (mobDrawer) mobDrawer.classList.toggle('open');
+  });
+
+  // Close drawer X
+  if (mobDrawerX) mobDrawerX.addEventListener('click', function() {
+    if (mobDrawer) mobDrawer.classList.remove('open');
+  });
+
+  // Tool picker buttons inside drawer
+  document.querySelectorAll('.mob-tool-btn[data-dp]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var target = btn.dataset.dp;
+      // activate dpage
+      document.querySelectorAll('.dpage').forEach(function(p) { p.classList.remove('act'); });
+      document.querySelectorAll('.dsi').forEach(function(s) { s.classList.remove('act'); });
+      document.querySelectorAll('.mob-tool-btn').forEach(function(b) { b.classList.remove('act'); });
+      var dp = document.getElementById('dp-' + target);
+      if (dp) dp.classList.add('act');
+      var si = document.querySelector('[data-dp="' + target + '"]');
+      if (si) si.classList.add('act');
+      btn.classList.add('act');
+      // close drawer, mark AI Tools tab as active
+      if (mobDrawer) mobDrawer.classList.remove('open');
+      document.querySelectorAll('.mob-tab').forEach(function(t) { t.classList.remove('act'); });
+      if (mobToolsBtn) mobToolsBtn.classList.add('act');
+      // scroll to top
+      var dm = document.getElementById('dmain');
+      if (dm) dm.scrollTop = 0;
+    });
+  });
+
+  // Close drawer on outside tap
+  document.addEventListener('click', function(e) {
+    if (mobDrawer && mobDrawer.classList.contains('open')) {
+      if (!mobDrawer.contains(e.target) && e.target !== mobToolsBtn && !mobToolsBtn.contains(e.target)) {
+        mobDrawer.classList.remove('open');
+      }
+    }
+  });
+
+  // Also hook showDPage so sidebar clicks (desktop) keep in sync
+  var _origShowD = window.showDPage;
+  window.showDPage = function(id) {
+    if (_origShowD) _origShowD(id);
+    // sync mobile drawer active state
+    document.querySelectorAll('.mob-tool-btn').forEach(function(b) {
+      b.classList.toggle('act', b.dataset.dp === id);
+    });
+  };
+})();
 
 })();
 </script>

@@ -1,119 +1,115 @@
-# James Earl Medrano — AI Portfolio + Job Hunter Dashboard
+# 🤖 James Earl Medrano — AI Portfolio + Job Hunter Dashboard
 
-> 🌐 **Live site:** [your-name.netlify.app](https://your-name.netlify.app)  
-> 📁 **One single HTML file** — no build tools, no dependencies, deploys anywhere in seconds.
+<div align="center">
+
+![Status](https://img.shields.io/badge/Status-Open%20to%20Work-brightgreen?style=for-the-badge)
+![Built With](https://img.shields.io/badge/Built%20With-HTML%20%2B%20Claude%20AI-00f0ff?style=for-the-badge)
+![Location](https://img.shields.io/badge/Location-Manila%2C%20PH-9b4dff?style=for-the-badge)
+
+**Live Site → [jamesmedrano.netlify.app](https://jamesmedrano.netlify.app)**
+
+A unified cyberpunk-themed portfolio + AI-powered job hunter dashboard.  
+One single HTML file. Zero build tools. 17 live Claude AI tools. Fully mobile-friendly.
+
+</div>
 
 ---
 
-## 🚀 What This Is
+## 📸 What It Looks Like
 
-A fully unified, cyberpunk-themed **personal portfolio + AI-powered job hunter dashboard** built as a single `index.html` file. Powered by the **Claude Sonnet AI API** with 19 live AI tools that help James — and impress any HR who lands on the page.
+| Portfolio Page | AI Dashboard (Desktop) | AI Dashboard (Mobile) |
+|---|---|---|
+| Cyberpunk hero, skills, timeline | 17 AI tools in sidebar nav | Bottom tab bar + tool drawer |
 
 ---
 
-## ✨ Features
+## ✨ Features at a Glance
 
 ### 🎨 Portfolio Page
-| Feature | Details |
-|---|---|
-| Animated hex grid canvas | Procedurally drawn cyberpunk background |
-| Floating particles | 28 color particles with randomized paths |
-| Custom cyberpunk cursor | Crosshair that turns red on hover |
-| Live Manila clock | Real-time PHT timezone clock in the hero |
-| Typewriter hero name | Letter-by-letter animation for "JAMES EARL MEDRANO" |
-| Scramble role text | Matrix-style text scramble for the job title |
-| Scroll reveal animations | `.rv` elements fade up on scroll via IntersectionObserver |
-| Animated skill bars | Canvas-based bars animate when scrolled into view |
-| Radar chart | 5-axis skill radar drawn on `<canvas>` |
-| Animated stat counters | Numbers count up when visible |
-| Social sidebar | Fixed left sidebar with LinkedIn, GitHub, Facebook, Instagram, X |
-| HR notification simulator | Rotating fake recruiter activity every 15 seconds |
-| Achievement toasts | Section achievements fire as you scroll |
-| Light/dark theme toggle | CSS variable swap with localStorage |
-| Print resume button | Print stylesheet hides all UI chrome |
-| Back-to-top button | Appears after 600px scroll |
-| Sound toggle | Web Audio API beeps on interactions |
-| Mobile hamburger menu | Full-screen mobile nav with social links |
-| Konami code easter egg | ↑↑↓↓←→←→BA → opens secret terminal |
-| JAMES_OS terminal | Retro terminal with 10+ commands |
-| JEM-BOT chatbot | Keyword-based chat about James |
+- Animated hex grid canvas background
+- Custom cyberpunk cursor (crosshair, turns red on hover)
+- Live Manila clock (PHT timezone)
+- Typewriter + scramble animation on hero name
+- Animated skill bars + 5-axis radar chart
+- Scroll-reveal animations on every section
+- Social sidebar (LinkedIn, GitHub, Facebook, Instagram, X)
+- Mobile hamburger menu
+- Light / dark theme toggle
+- Print resume button
+- Back-to-top button
+- Gmail contact form (pre-fills compose window)
+- Konami code easter egg → secret terminal (↑↑↓↓←→←→BA)
 
-### 🤖 AI Dashboard (17 Claude-Powered Tools)
-| # | Tool | What it does |
+### 🤖 AI Dashboard — 17 Claude-Powered Tools
+
+| # | Tool | What It Does |
 |---|---|---|
-| 1 | 🎯 **Job Fit Analyzer** | Paste any JD → match % + hiring recommendation |
-| 2 | ✍️ **Cover Letter Generator** | Tone selector + role → full tailored letter |
-| 3 | 🎤 **Interview Coach** | 10 question chips + custom → model STAR answers |
-| 4 | 📧 **Cold Email Builder** | Company + angle → subject + body with copy button |
-| 5 | 🔔 **Follow-Up Email** | 6 situational steps → the right email at the right time |
-| 6 | 🤖 **ATS Optimizer** | Keywords + role → full ATS-optimized resume |
-| 7 | 💼 **LinkedIn Optimizer** | Target + chips → headline + About section |
-| 8 | 💰 **Salary Negotiator** | Offer vs target → negotiation script + 2026 PH benchmarks |
-| 9 | 🎬 **Mock Video Interview** | 10 progressive questions + model answers |
-| 10 | 🛤️ **Career Path Advisor** | Goal + timeframe → step-by-step roadmap |
-| 11 | 🏆 **Reference Letter** | Reference type + role → full professional letter |
-| 12 | 📝 **Bullet Rewriter** | Weak bullets → ATS/Executive/Startup style |
-| 13 | 📅 **Daily Job Hunt Planner** | Hours + stage → timed daily plan |
-| 14 | 💪 **Rejection Recovery Coach** | Rejection type → honest recovery plan |
-| 15 | 🙏 **Thank-You Note Generator** | Interviewer + detail → post-interview email |
-| 16 | 💬 **Live AI Chat** | Full Claude chat — 8 HR-focused quick prompts |
-| 17 | ⚡ **Quick AI Orb** | 8 instant one-tap AI actions (bottom-left fab) |
+| 1 | 🎯 Job Fit Analyzer | Paste any JD → match % + hiring recommendation |
+| 2 | ✍️ Cover Letter | Tone selector + role → full tailored letter |
+| 3 | 🎤 Interview Coach | 10 question chips + model STAR answers |
+| 4 | 📧 Cold Email Builder | Company + angle → subject + body with copy |
+| 5 | 🔔 Follow-Up Emails | 6 situational templates → right email every time |
+| 6 | 🤖 ATS Resume Optimizer | Keywords + role → full ATS-optimized resume |
+| 7 | 💼 LinkedIn Optimizer | Target role → headline + About section |
+| 8 | 💰 Salary Negotiator | Offer vs target → negotiation script + PH benchmarks |
+| 9 | 🎬 Mock Video Interview | 10 progressive questions + model answers |
+| 10 | 🛤️ Career Path Advisor | Dream role + timeframe → step-by-step roadmap |
+| 11 | 🏆 Reference Letter | Reference type + role → full professional letter |
+| 12 | 📝 Bullet Rewriter | Weak bullets → ATS / Executive / Startup style |
+| 13 | 📅 Daily Job Hunt Planner | Hours + stage → timed daily plan |
+| 14 | 💪 Rejection Recovery Coach | What happened → honest recovery plan |
+| 15 | 🙏 Thank-You Note | Interviewer + detail → post-interview email |
+| 16 | 💬 Live AI Chat | Full Claude chat with 8 quick-prompt buttons |
+| 17 | ⚡ Quick AI Orb | 8 instant one-tap AI actions (bottom-left fab) |
 
 ### 📋 Dashboard Extras
-- **Job Application Tracker** — add/track applications by status with live stats
-- **HR Activity Feed** — rotating recruiter attention simulation
-- **Portfolio Strength Scorer** — animated bars with AI improvement tips
+- **Job Application Tracker** — add/track by status (Applied, Interview, Offer, Rejected)
+- **HR Activity Feed** — static recruiter signal showcase
+- **Portfolio Strength Scorer** — animated bars + AI improvement tips
 - **2026 PH Salary Benchmarks** — built-in reference table
+
+### 📱 Mobile-Optimized Dashboard
+- **Bottom tab bar** — Home | Tracker | AI Tools | Chat | HR Feed
+- **Tool picker drawer** — 15 tools in a 3-column thumb-friendly grid, slides up
+- **iOS zoom fix** — inputs set to 16px to prevent auto-zoom
+- No sidebar clutter on small screens
 
 ---
 
-## 🗂️ File Structure
+## 🗂️ Repository Structure
 
 ```
 james-earl-medrano-portfolio/
 │
-├── index.html          ← The entire site (150KB, self-contained)
-├── README.md           ← This file
-└── .github/
-    └── (optional CI for auto-deploy to Netlify)
+├── index.html        ← Entire website (159KB, self-contained)
+└── README.md         ← This file
 ```
 
-Everything — HTML, CSS, JavaScript, animations, AI tools — lives in **one file**.  
-No npm, no webpack, no React build step.
+Everything — HTML, CSS, JavaScript, animations, AI API calls — in **one file**.  
+No npm. No webpack. No dependencies. Loads instantly anywhere.
 
 ---
 
-## 🛠️ How It Was Built
+## 🛠️ Tech Stack
 
-### Tech Stack
 | Layer | Technology |
 |---|---|
-| **Structure** | Semantic HTML5 |
-| **Styling** | Pure CSS3 — CSS Variables, Grid, Flexbox, animations |
-| **Fonts** | Chakra Petch (body) + Space Mono (monospace/terminal) — Google Fonts |
-| **Animation** | CSS keyframes + IntersectionObserver + requestAnimationFrame |
-| **Canvas** | Native HTML5 Canvas API — hex grid, particles, radar chart |
-| **AI Engine** | Anthropic Claude Sonnet (`claude-sonnet-4-20250514`) via REST API |
-| **Sound** | Web Audio API — oscillator beeps on UI interactions |
-| **Icons** | Emoji (zero external dependencies) |
-| **Hosting** | Netlify (static, free tier) |
+| Structure | Semantic HTML5 |
+| Styling | Pure CSS3 — Custom Properties, Grid, Flexbox, keyframe animations |
+| Fonts | Chakra Petch + Space Mono via Google Fonts |
+| Animation | CSS keyframes + IntersectionObserver + requestAnimationFrame |
+| Canvas | HTML5 Canvas API — hex grid, radar chart, particles |
+| AI Engine | Anthropic Claude Sonnet (`claude-sonnet-4-20250514`) |
+| Sound | Web Audio API — subtle oscillator click |
+| Deployment | Netlify (static, free tier) |
 
 ### Key CSS Techniques
-- **CSS Variables** — entire theme (colors, fonts) in `:root` with instant light/dark swap
+- **CSS Variables** — full theme in `:root`, instant light/dark swap
 - **`clip-path: polygon()`** — angular cyberpunk button shapes
 - **`backdrop-filter: blur()`** — frosted glass nav bar
-- **`IntersectionObserver`** — scroll reveals and skill bar animations
-- **`@keyframes`** — 15+ named animations (orbp, pip, bdota, ptrise, etc.)
-- **Custom scrollbar** — 3px gradient scrollbar via `::-webkit-scrollbar`
-
-### Key JavaScript Techniques
-- **IIFE pattern** — `(function(){ 'use strict'; })()` — no global pollution
-- **Async/await** — clean Claude API calls with error handling
-- **IntersectionObserver** — performant scroll detection for reveals + counters
-- **Web Audio API** — synthesized sound effects without audio files
-- **Canvas 2D API** — hex grid (trigonometry), radar chart, particle system
-- **requestAnimationFrame** — smooth 60fps hex grid animation loop
-- **Event delegation** — efficient click handling across dynamic content
+- **IntersectionObserver** — scroll reveals + skill bar animations
+- **`@keyframes`** — 12+ named animations (hex grid, particles, cursor, typewriter)
+- **Mobile-first breakpoints** — 980px (tablet) and 700px (mobile)
 
 ### Claude API Integration
 ```javascript
@@ -124,7 +120,7 @@ async function callClaude(prompt) {
     body: JSON.stringify({
       model: 'claude-sonnet-4-20250514',
       max_tokens: 1000,
-      system: JAMES_CONTEXT,   // full profile injected as system prompt
+      system: JAMES_CONTEXT,   // Full profile injected as system prompt
       messages: [{ role: 'user', content: prompt }]
     })
   });
@@ -132,97 +128,56 @@ async function callClaude(prompt) {
   return data.content[0].text;
 }
 ```
-The `JAMES_CONTEXT` system prompt contains James's full profile — experience, skills, salary expectations, availability — so every AI response is personalized and accurate.
 
-### UI Layout — Fixed Button Positions (No Overlap)
+### UI Layout — Fixed Button Positions
 ```
-RIGHT SIDE (utility controls):
-  bottom:22px  right:22px  → ↑ Back to Top
-  bottom:72px  right:22px  → 🔊 Sound Toggle
-  bottom:122px right:22px  → ⬇ Print Resume
+RIGHT SIDE (no overlap, stacked):
+  bottom: 22px  right: 22px  → ↑ Back to Top
+  bottom: 72px  right: 22px  → 🔊 Sound Toggle
+  bottom: 122px right: 22px  → ⬇ Print Resume
 
-LEFT SIDE (AI tools — completely separate):
-  bottom:22px  left:68px   → 🤖 AI Quick Panel (orb)
-  bottom:22px  left:122px  → 🗨️ JEM-BOT Chat
+LEFT SIDE (AI tools, separate side):
+  bottom: 22px  left: 68px   → 🤖 AI Quick Panel orb
+  bottom: 22px  left: 122px  → 🗨️ JEM-BOT Chat
 ```
 
 ---
 
-## 🌐 Deploying to Netlify
+## 🚀 How to Deploy (Netlify)
 
-### Step 1 — GitHub Setup
-```bash
-# Create a new repo at github.com/youngNwis31
-# Name it: james-earl-medrano-portfolio  (or just: portfolio)
-
-git init
-git add index.html README.md
-git commit -m "🚀 Launch: AI Portfolio + Job Hunter Dashboard"
-git branch -M main
-git remote add origin https://github.com/youngNwis31/james-earl-medrano-portfolio.git
-git push -u origin main
-```
-
-### Step 2 — Netlify Deploy
-1. Go to **netlify.com** → Log in with GitHub
+### First-Time Setup
+1. Go to **[netlify.com](https://netlify.com)** → sign up / log in with GitHub
 2. Click **"Add new site"** → **"Import an existing project"**
-3. Choose **GitHub** → Select `james-earl-medrano-portfolio`
+3. Choose **GitHub** → select this repository
 4. Settings:
    - Build command: *(leave blank)*
-   - Publish directory: `.` *(root)*
+   - Publish directory: `.` (root)
 5. Click **"Deploy site"**
-6. Netlify gives you: `random-name.netlify.app`
-7. Go to **Site settings → Domain** → Change to: `jamesmedrano.netlify.app`
+6. Netlify gives you a random URL like `amazing-name-123.netlify.app`
+7. Go to **Site settings → Domain management** → click **"Change site name"**
+8. Rename to: `jamesmedrano` → your site is now at `jamesmedrano.netlify.app` ✅
 
-### Step 3 — Add Netlify URL to README
-Update the top of this README:
-```markdown
-> 🌐 **Live site:** [jamesmedrano.netlify.app](https://jamesmedrano.netlify.app)
-```
+### Updating Your Site (after changes)
+Every time you push to this GitHub repo, **Netlify auto-deploys within 60 seconds**.
 
-### Step 4 — Add to Your Resume
-In your resume header/contact section:
-```
-Portfolio: jamesmedrano.netlify.app
-GitHub:    github.com/youngNwis31
-```
-
----
-
-## 🔄 How to Update
-
-To make changes and redeploy:
 ```bash
-# 1. Edit index.html locally
-# 2. Commit and push
+# Option A — Command line (if you have git installed)
 git add index.html
-git commit -m "Update: [describe what you changed]"
+git commit -m "Update: describe what you changed"
 git push
 
-# Netlify auto-deploys within 30 seconds ✅
+# Option B — GitHub web UI (no terminal needed)
+# 1. Open this repo on github.com
+# 2. Click index.html → click the pencil ✏️ icon → paste new content
+# 3. Click "Commit changes"
+# Netlify picks it up automatically ✅
 ```
 
----
-
-## 🔑 Claude API Key Setup
-
-The site uses the Anthropic Claude API. For the AI tools to work:
-
-**Option A — Browser-based (current setup)**  
-The API is called directly from the browser. Anthropic's API supports browser calls when deployed on a public site. The API key is managed by Anthropic's infrastructure when using Claude.ai artifacts.
-
-**Option B — If you want your own API key**  
-1. Get a key at [console.anthropic.com](https://console.anthropic.com)
-2. In `index.html`, find the `callClaude` function
-3. Add your key to the headers:
-```javascript
-headers: {
-  'Content-Type': 'application/json',
-  'x-api-key': 'YOUR_KEY_HERE',
-  'anthropic-version': '2023-06-01'
-}
-```
-> ⚠️ Never commit real API keys to a public repo. Use environment variables or a backend proxy for production.
+### Manual Drag-and-Drop Deploy
+If you don't want to touch GitHub at all:
+1. Go to **netlify.com** → your site → **"Deploys"** tab
+2. Drag and drop your updated `index.html` file onto the deploy area
+3. Done — live in 30 seconds ✅
 
 ---
 
@@ -231,21 +186,38 @@ headers: {
 | | |
 |---|---|
 | **Role** | AI Operations Analyst & IT Specialist |
-| **Education** | BS IT — Pamantasan ng Lungsod ng Maynila, 2025 |
+| **Education** | BS Information Technology — PLM, 2025 |
 | **Location** | Malate, Manila, Philippines |
 | **Status** | Open to Work — Full-time, Remote, Hybrid, Freelance |
 | **Email** | Workwitheaaarl@gmail.com |
 | **Phone** | +63 976 318 9033 |
 | **GitHub** | [github.com/youngNwis31](https://github.com/youngNwis31) |
 | **LinkedIn** | [linkedin.com/feed/](https://www.linkedin.com/feed/) |
+| **Facebook** | [facebook.com/eaarlsuuu](https://facebook.com/eaarlsuuu) |
+| **Instagram** | [@eaarlsu](https://instagram.com/eaarlsu) |
+| **X / Twitter** | [@eaarlsuu](https://x.com/eaarlsuu) |
 
-### Experience
-- **A.I. Analyst II (LLM)** — Innodata Knowledge Services · Jan–May 2026
-- **IT Support & Case Resolution** — Alorica Teleservices · Jan 2025–Jan 2026
-- **Jr. Technical Support** — BESPOKE IT Project Corp. · Feb–Jul 2024
+### Work Experience
+| Period | Role | Company |
+|---|---|---|
+| Jan–May 2026 | A.I. Analyst II (LLM) | Innodata Knowledge Services · Cebu |
+| Jan 2025–Jan 2026 | IT Support & Case Resolution | Alorica Teleservices · Manila |
+| Feb–Jul 2024 | Jr. Technical Support | BESPOKE IT Project Corp. · Makati |
 
-### Top Skills
-`Prompt Engineering 92%` `Data Annotation 90%` `LLM Evaluation 88%` `Troubleshooting 90%` `Advanced Excel 88%` `Power BI 84%`
+### Core Skills
+| Skill | Level |
+|---|---|
+| Prompt Engineering | 92% |
+| Data Annotation | 90% |
+| Troubleshooting | 90% |
+| LLM Evaluation | 88% |
+| Advanced Excel | 88% |
+| Documentation | 86% |
+| Power BI | 84% |
+| Networks / Servers | 82% |
+| Data Privacy | 82% |
+| CRM Systems | 80% |
+| Cybersecurity | 78% |
 
 ---
 
@@ -255,4 +227,5 @@ MIT — free to use, modify, and share.
 
 ---
 
-*Built with ♥ from Malate, Manila — 2026*
+*Built with ♥ from Malate, Manila — 2026*  
+*Powered by Anthropic Claude AI*
