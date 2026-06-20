@@ -146,4 +146,35 @@ No build tools, no `node_modules`, no bundler. **One file, zero dependencies, de
 
                                                   ---
 
-                                                  *This log is updated whenever a significant architectural or UX change is made to the site.*
+                                                  ### Phase 7 — Ongoing Projects Showcase
+
+**What changed:** Added a new Projects section to the portfolio (between Experience and Skills) featuring the two other active builds: CourtBook (a tennis court booking web app) and Arangkada AI (an offline-first rider assistant app for Filipino motorcycle delivery drivers).
+
+**What was built:**
+- A Figma-canvas-style step-by-step flow diagram for each app: a dot-grid canvas background, a title bar with traffic-light dots styled like a real Figma tab, numbered frame labels above each screen mockup, and curved dashed SVG connector arrows between frames — mimicking how Figma actually displays prototype flows
+- A dedicated 3-tier AI fallback architecture diagram for Arangkada AI, showing how its AI assistant escalates from an offline knowledge base, to Gemini Flash when online, to an on-device LLM, to a rule-based fallback
+- Full how-it-works writeups, tech stack pill lists, and 4 highlight callouts per project
+- Live demo and GitHub repo links for CourtBook; GitHub repo link for Arangkada AI (mobile app, no web demo)
+
+**Bug caught and fixed during this update:** an early draft of the CourtBook description accidentally used language from the Arangkada AI rider app ("a rider opens the app") instead of describing CourtBook's actual users. Caught and corrected to "a player opens the app" before this went live, with the surrounding paragraph double-checked to confirm no other cross-contamination between the two project descriptions.
+
+---
+
+### Phase 8 — Mobile UI/UX Overlap Fix
+
+**Problem reported:** On mobile devices, multiple floating UI elements were overlapping each other and the new bottom tab bar, making parts of the site unusable on phones.
+
+**Root cause found:** the site has two responsive breakpoints, 980px and 700px. When the mobile bottom tab bar (for the AI Dashboard) was added in an earlier session, the floating action buttons (back-to-top, sound toggle, print button, AI quick-orb, chatbot toggle) were never given mobile-specific positions. They kept their desktop coordinates, which placed them directly on top of the new 58px-tall bottom tab bar. Separately, two contradictory CSS rules existed in the same breakpoint: one hid the Portfolio/AI Dashboard tab switcher on mobile, while a second, later rule forced it back on screen, fighting for space with the hamburger menu icon in a way that caused crowding in the navigation bar.
+
+**What was fixed:**
+- Removed the contradictory tab-switcher visibility rule entirely
+- Hid the desktop Portfolio/AI Dashboard tab switcher on mobile and replaced it with two clear buttons inside the slide-out mobile menu instead, so switching between Portfolio and Dashboard is still one tap away without crowding the top bar
+- Repositioned every floating button (back-to-top, sound toggle, print, AI orb, chatbot, terminal, AI quick panel) to sit safely above the 58px bottom tab bar with consistent spacing between each one, so nothing stacks on top of anything else
+- Added a small JavaScript change so the right-side utility buttons (back-to-top, sound, print) automatically hide while the AI Dashboard is open on mobile, since the bottom tab bar already provides navigation there and the extra buttons were unnecessary clutter in that view
+- Added a dedicated tablet-width rule (701–1980px) to fix the navigation bar spacing in that in-between range, which had been overlooked previously
+
+**Verification:** confirmed via the live deployed site that the new Projects section renders correctly with working Figma-style diagrams, and that the corrected mobile CSS removes both conflicting rules that were causing the overlap.
+
+---
+
+*This log is updated whenever a significant architectural or UX change is made to the site.*
