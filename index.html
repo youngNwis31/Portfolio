@@ -551,6 +551,71 @@ footer{background:var(--bg);border-top:1px solid var(--line);padding:32px 0 20px
   /* Dashboard header */
   .dph-title{font-size:20px!important}
 }
+
+/* PROJECTS SECTION */
+.prgrid{display:flex;flex-direction:column;gap:64px}
+.prcard{background:var(--panel);border:1px solid var(--line);overflow:hidden;position:relative}
+.prcard::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--vio))}
+.prcard.v2::before{background:linear-gradient(90deg,var(--vio),var(--cyan))}
+.prhead{padding:30px 30px 24px;border-bottom:1px solid var(--line)}
+.pricon{font-size:38px;margin-bottom:14px;display:block;filter:drop-shadow(0 0 14px rgba(0,240,255,.3))}
+.prcard.v2 .pricon{filter:drop-shadow(0 0 14px rgba(155,77,255,.3))}
+.prname{font-size:24px;font-weight:700;letter-spacing:-.01em;margin-bottom:6px;line-height:1.15}
+.prtag{font-family:var(--fm);font-size:10px;letter-spacing:.14em;color:var(--cyan);text-transform:uppercase;margin-bottom:14px}
+.prcard.v2 .prtag{color:var(--vio)}
+.prdesc{font-size:13px;color:var(--mut);line-height:1.85;font-weight:300;max-width:680px;margin-bottom:16px}
+.prlinks{display:flex;gap:8px;flex-wrap:wrap}
+.prbadges{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.prbody{padding:28px 30px}
+.prsub{font-family:var(--fm);font-size:9px;letter-spacing:.2em;color:var(--cyan);text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;gap:9px}
+.prcard.v2 .prsub{color:var(--vio)}
+.prsub::before{content:"";width:18px;height:1px;background:currentColor;opacity:.5}
+.prhow{font-size:13px;color:var(--mut);line-height:1.85;font-weight:300;margin-bottom:28px}
+.prhow strong{color:var(--txt);font-weight:600}
+.figbar{display:flex;align-items:center;gap:8px;background:var(--panel2);border:1px solid var(--line);border-bottom:none;padding:8px 12px;font-family:var(--fm);font-size:9px;color:var(--mut)}
+.figbar .fdot{width:7px;height:7px;border-radius:50%}
+.figbar .fdot.r{background:#ff5f57}.figbar .fdot.y{background:#febc2e}.figbar .fdot.g{background:#28c840}
+.figbar .figtitle{margin-left:6px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt)}
+.figbar .figzoom{margin-left:auto;letter-spacing:.06em;opacity:.6}
+.flowwrap{margin-bottom:30px}
+.figcanvas{position:relative;background:radial-gradient(circle,rgba(0,240,255,.16) 1px,transparent 1.2px);background-size:22px 22px;background-color:#070811;border:1px solid var(--lc);border-top:none;padding:34px 20px 26px;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin}
+.prcard.v2 .figcanvas{border-color:var(--lv)}
+.prcard.v2 .figcanvas{background-image:radial-gradient(circle,rgba(155,77,255,.16) 1px,transparent 1.2px)}
+.figcanvas::-webkit-scrollbar{height:5px}
+.figcanvas::-webkit-scrollbar-thumb{background:var(--cyan);border-radius:3px}
+.prcard.v2 .figcanvas::-webkit-scrollbar-thumb{background:var(--vio)}
+.flow{display:flex;align-items:flex-start;gap:0;position:relative;width:max-content}
+.fnode{flex:0 0 174px;position:relative;margin-right:46px}
+.fnode:last-child{margin-right:0}
+.fframelbl{font-family:var(--fm);font-size:9px;letter-spacing:.04em;color:var(--cyan);margin-bottom:7px;display:flex;align-items:center;gap:6px}
+.prcard.v2 .fframelbl{color:var(--vio)}
+.fframelbl .fstep-n{position:static;width:16px;height:16px;font-size:8px;box-shadow:none}
+.fconn{position:absolute;top:53px;left:174px;width:46px;height:24px;pointer-events:none;z-index:1}
+.fconn svg{width:100%;height:100%;display:block;overflow:visible}
+.fscreen{background:var(--bg2);border:1.5px solid var(--lc);border-radius:6px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.5);position:relative}
+.prcard.v2 .fscreen{border-color:var(--lv)}
+.fscreen-bar{height:17px;background:var(--panel2);display:flex;align-items:center;gap:3px;padding:0 8px;border-bottom:1px solid var(--line)}
+.fscreen-bar i{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.16);font-style:normal}
+.fscreen-body{padding:14px 10px;min-height:120px;display:flex;flex-direction:column;gap:7px;align-items:center;justify-content:center;text-align:center;position:relative}
+.fscreen-ico{font-size:25px;line-height:1}
+.fscreen-lbl{font-family:var(--fm);font-size:8px;letter-spacing:.05em;color:var(--mut);text-transform:uppercase;line-height:1.55}
+.fstep-n{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--cy2));color:#020810;font-family:var(--fm);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 0 10px rgba(0,240,255,.4);flex-shrink:0}
+.prcard.v2 .fstep-n{background:linear-gradient(135deg,var(--vio),#c084fc);box-shadow:0 0 10px rgba(155,77,255,.4)}
+.fcap{font-family:var(--fm);font-size:8px;letter-spacing:.05em;color:var(--mut);text-align:left;margin-top:9px;line-height:1.6;padding:0 1px}
+.fcursor{position:absolute;top:30px;right:14px;display:flex;align-items:center;gap:5px;background:var(--cyan);color:#020810;font-family:var(--fm);font-size:8px;font-weight:700;padding:3px 8px 3px 4px;border-radius:0 10px 10px 10px;letter-spacing:.05em;white-space:nowrap;box-shadow:0 4px 14px rgba(0,240,255,.35);transform:rotate(-3deg)}
+.prcard.v2 .fcursor{background:var(--vio);box-shadow:0 4px 14px rgba(155,77,255,.35)}
+.archflow{display:flex;flex-direction:column;gap:0;max-width:440px;margin:18px 0}
+.archnode{background:var(--bg2);border:1px solid var(--line);border-left:3px solid var(--vio);padding:10px 14px;font-family:var(--fm);font-size:10px;color:var(--txt);display:flex;align-items:center;justify-content:space-between;gap:10px}
+.archnode b{color:var(--vio);font-weight:700}
+.archarrow{text-align:center;color:var(--mut);font-size:11px;padding:3px 0;font-family:var(--fm)}
+.archtag{font-size:8px;color:var(--mut);letter-spacing:.06em;text-transform:uppercase;flex-shrink:0}
+.prstack{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.prstack span{font-family:var(--fm);font-size:9px;letter-spacing:.07em;color:var(--txt);background:var(--bg2);border:1px solid var(--line);padding:5px 11px;text-transform:uppercase}
+.prhl{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:22px}
+.prhli{display:flex;align-items:flex-start;gap:9px;font-size:12px;color:var(--mut);line-height:1.6;padding:11px 12px;background:var(--bg2);border:1px solid var(--line)}
+.prhli::before{content:"✓";color:var(--cyan);font-weight:700;flex-shrink:0}
+.prcard.v2 .prhli::before{color:var(--vio)}
+@media(max-width:700px){.prhead,.prbody{padding:22px 18px}.prhl{grid-template-columns:1fr}.fnode{flex:0 0 148px;margin-right:38px}.fconn{left:148px;width:38px}.fscreen-body{min-height:108px}}
 </style>
 </head>
 <body>
@@ -664,6 +729,7 @@ footer{background:var(--bg);border-top:1px solid var(--line);padding:32px 0 20px
     <a href="#hire" onclick="closeMM()">Why Hire <span>→</span></a>
     <a href="#about" onclick="closeMM()">About <span>→</span></a>
     <a href="#experience" onclick="closeMM()">Experience <span>→</span></a>
+    <a href="#projects" onclick="closeMM()">Projects <span>→</span></a>
     <a href="#skills" onclick="closeMM()">Skills <span>→</span></a>
     <a href="#contact" onclick="closeMM()">Contact <span>→</span></a>
   </div>
@@ -687,6 +753,7 @@ footer{background:var(--bg);border-top:1px solid var(--line);padding:32px 0 20px
       <li><a href="#hire">Why Hire</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -831,6 +898,112 @@ footer{background:var(--bg);border-top:1px solid var(--line);padding:32px 0 20px
   </div>
 </div></section>
 
+<section class="sec" id="projects"><div class="wrap">
+  <div class="kk rv">03 · Side Projects</div><h2 class="stitle rv">Ongoing<br>Builds</h2>
+  <div class="prgrid">
+
+    <!-- COURTBOOK -->
+    <div class="prcard rv">
+      <div class="prhead">
+        <span class="pricon">🎾</span>
+        <div class="prname">CourtBook — Tennis Court Booking App</div>
+        <div class="prtag">// Full-Stack Web App · React + Supabase</div>
+        <p class="prdesc">A full-stack booking platform for tennis courts across Metro Manila. Browse 18 real courts on an interactive map, book a 1-hour slot, and get AI-powered playing tips, smart price alerts, and personalized court recommendations — all in Filipino or English.</p>
+        <div class="prlinks">
+          <a class="btn bp" href="https://tenniscourtbooker.netlify.app" target="_blank" rel="noopener">▶ Live Demo</a>
+          <a class="btn bg" href="https://github.com/youngNwis31/tennis-court-booker" target="_blank" rel="noopener">🐙 View Code</a>
+        </div>
+        <div class="prbadges">
+          <span class="tg c">Live</span><span class="tg v">18 Real Courts</span><span class="tg gr">AI-Powered</span><span class="tg g">FIL/EN</span>
+        </div>
+      </div>
+      <div class="prbody">
+        <div class="prsub">User Flow — How It Works</div>
+        <p class="prhow">A player opens the app, <strong>browses or searches courts</strong> by city, surface, or distance, taps a court to see live <strong>time-slot availability</strong>, picks a date and hour, adds optional equipment, then <strong>confirms the booking</strong> — all backed by Supabase auth and row-level security so each user only ever sees and manages their own reservations.</p>
+        <div class="flowwrap">
+          <div class="figbar"><span class="fdot r"></span><span class="fdot y"></span><span class="fdot g"></span><span class="figtitle">CourtBook.fig — Booking Flow</span><span class="figzoom">100%</span></div>
+          <div class="figcanvas"><div class="flow">
+            <div class="fnode"><div class="fframelbl"><span class="fstep-n">1</span>Home</div><div class="fscreen"><div class="fscreen-bar"><i>•</i><i>•</i><i>•</i></div><div class="fscreen-body"><div class="fcursor">👆 Browse</div><div class="fscreen-ico">🏠</div><div class="fscreen-lbl">Court Grid<br>+ Filters</div></div></div><div class="fcap">Browse 18 courts, filter by city / surface</div></div>
+            <div class="fconn"><svg viewBox="0 0 46 24" fill="none"><path d="M2 12H40" stroke="var(--cyan)" stroke-width="1.5" stroke-dasharray="3 3" opacity=".65"/><path d="M34 6L42 12L34 18" stroke="var(--cyan)" stroke-width="1.5" fill="none" opacity=".8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="fnode"><div class="fframelbl"><span class="fstep-n">2</span>Map</div><div class="fscreen"><div class="fscreen-bar"><i>•</i><i>•</i><i>•</i></div><div class="fscreen-body"><div class="fscreen-ico">🗺️</div><div class="fscreen-lbl">Map View<br>Leaflet Pins</div></div></div><div class="fcap">Interactive map with court pins</div></div>
+            <div class="fconn"><svg viewBox="0 0 46 24" fill="none"><path d="M2 12H40" stroke="var(--cyan)" stroke-width="1.5" stroke-dasharray="3 3" opacity=".65"/><path d="M34 6L42 12L34 18" stroke="var(--cyan)" stroke-width="1.5" fill="none" opacity=".8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="fnode"><div class="fframelbl"><span class="fstep-n">3</span>Detail</div><div class="fscreen"><div class="fscreen-bar"><i>•</i><i>•</i><i>•</i></div><div class="fscreen-body"><div class="fscreen-ico">📋</div><div class="fscreen-lbl">Court Detail<br>Reviews + Weather</div></div></div><div class="fcap">Ratings, 3-day forecast, AI tips</div></div>
+            <div class="fconn"><svg viewBox="0 0 46 24" fill="none"><path d="M2 12H40" stroke="var(--cyan)" stroke-width="1.5" stroke-dasharray="3 3" opacity=".65"/><path d="M34 6L42 12L34 18" stroke="var(--cyan)" stroke-width="1.5" fill="none" opacity=".8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="fnode"><div class="fframelbl"><span class="fstep-n">4</span>Booking</div><div class="fscreen"><div class="fscreen-bar"><i>•</i><i>•</i><i>•</i></div><div class="fscreen-body"><div class="fscreen-ico">🕐</div><div class="fscreen-lbl">Time Slots<br>7AM – 8PM Grid</div></div></div><div class="fcap">Pick date + hourly slot, real-time</div></div>
+            <div class="fconn"><svg viewBox="0 0 46 24" fill="none"><path d="M2 12H40" stroke="var(--cyan)" stroke-width="1.5" stroke-dasharray="3 3" opacity=".65"/><path d="M34 6L42 12L34 18" stroke="var(--cyan)" stroke-width="1.5" fill="none" opacity=".8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="fnode"><div class="fframelbl"><span class="fstep-n">5</span>Add-ons</div><div class="fscreen"><div class="fscreen-bar"><i>•</i><i>•</i><i>•</i></div><div class="fscreen-body"><div class="fscreen-ico">🎒</div><div class="fscreen-lbl">Equipment<br>Racket · Balls</div></div></div><div class="fcap">Optional equipment rental</div></div>
+            <div class="fconn"><svg viewBox="0 0 46 24" fill="none"><path d="M2 12H40" stroke="var(--cyan)" stroke-width="1.5" stroke-dasharray="3 3" opacity=".65"/><path d="M34 6L42 12L34 18" stroke="var(--cyan)" stroke-width="1.5" fill="none" opacity=".8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="fnode"><div class="fframelbl"><span class="fstep-n">6</span>Success</div><div class="fscreen"><div class="fscreen-bar"><i>•</i><i>•</i><i>•</i></div><div class="fscreen-body"><div class="fscreen-ico">✅</div><div class="fscreen-lbl">Confirmed<br>Countdown Timer</div></div></div><div class="fcap">Booking saved, live countdown begins</div></div>
+          </div></div>
+        </div>
+        <div class="prsub">What It's Built With</div>
+        <div class="prstack"><span>React 19</span><span>TypeScript</span><span>Vite</span><span>Tailwind CSS v4</span><span>React Router v7</span><span>Supabase (Postgres)</span><span>Supabase Auth + RLS</span><span>Leaflet.js</span><span>Open-Meteo API</span><span>Netlify</span></div>
+        <div class="prhl">
+          <div class="prhli">AI court recommender quiz + smart price alerts</div>
+          <div class="prhli">Google OAuth + email auth, row-level security</div>
+          <div class="prhli">Dark mode, achievement badges, player matchmaking</div>
+          <div class="prhli">GPS distance sorting + court comparison tool</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARANGKADA AI -->
+    <div class="prcard v2 rv">
+      <div class="prhead">
+        <span class="pricon">🏍️</span>
+        <div class="prname">Arangkada AI — Rider Road Assistant</div>
+        <div class="prtag">// Offline-First Mobile App · Flutter + 3-Tier AI</div>
+        <p class="prdesc">A Flutter navigation app built for Filipino motorcycle riders on Grab, Angkas, FoodPanda, JoyRide, MoveIt, and Lalamove. Fully offline-capable maps, a 3-tier AI assistant, hands-free voice commands, a trip-worth fare estimator, and live flood alerts — built entirely on a ₱0 budget using free and open-source tools.</p>
+        <div class="prlinks">
+          <a class="btn bv" href="https://github.com/youngNwis31/arangkada-ai" target="_blank" rel="noopener">🐙 View Code</a>
+        </div>
+        <div class="prbadges">
+          <span class="tg v">v0.05</span><span class="tg c">Offline-First</span><span class="tg gr">3-Tier AI</span><span class="tg g">₱0 Budget</span>
+        </div>
+      </div>
+      <div class="prbody">
+        <div class="prsub">User Flow — How It Works</div>
+        <p class="prhow">A rider opens the app to a <strong>live map with weather and flood markers</strong>, searches a destination or taps the mic for a <strong>voice command</strong>, gets <strong>turn-by-turn navigation</strong> with flood-zone warnings, can ask the <strong>AI assistant</strong> anything about routes, traffic rules, or earnings, and checks the <strong>fare estimator</strong> before accepting a trip to see if it's actually worth taking.</p>
+        <div class="flowwrap">
+          <div class="figbar"><span class="fdot r"></span><span class="fdot y"></span><span class="fdot g"></span><span class="figtitle">Arangkada.fig — Rider Flow</span><span class="figzoom">100%</span></div>
+          <div class="figcanvas"><div class="flow">
+            <div class="fnode"><div class="fframelbl"><span class="fstep-n">1</span>Home</div><div class="fscreen"><div class="fscreen-bar"><i>•</i><i>•</i><i>•</i></div><div class="fscreen-body"><div class="fcursor">👆 Tap mic</div><div class="fscreen-ico">🗺️</div><div class="fscreen-lbl">Map<br>Weather + Flood Pins</div></div></div><div class="fcap">Offline tiles, POI overlay, live weather</div></div>
+            <div class="fconn"><svg viewBox="0 0 46 24" fill="none"><path d="M2 12H40" stroke="var(--vio)" stroke-width="1.5" stroke-dasharray="3 3" opacity=".65"/><path d="M34 6L42 12L34 18" stroke="var(--vio)" stroke-width="1.5" fill="none" opacity=".8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="fnode"><div class="fframelbl"><span class="fstep-n">2</span>Search</div><div class="fscreen"><div class="fscreen-bar"><i>•</i><i>•</i><i>•</i></div><div class="fscreen-body"><div class="fscreen-ico">🎤</div><div class="fscreen-lbl">Voice / Search<br>"Papunta sa Makati"</div></div></div><div class="fcap">Speak or type, English or Taglish</div></div>
+            <div class="fconn"><svg viewBox="0 0 46 24" fill="none"><path d="M2 12H40" stroke="var(--vio)" stroke-width="1.5" stroke-dasharray="3 3" opacity=".65"/><path d="M34 6L42 12L34 18" stroke="var(--vio)" stroke-width="1.5" fill="none" opacity=".8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="fnode"><div class="fframelbl"><span class="fstep-n">3</span>Navigate</div><div class="fscreen"><div class="fscreen-bar"><i>•</i><i>•</i><i>•</i></div><div class="fscreen-body"><div class="fscreen-ico">🧭</div><div class="fscreen-lbl">Navigation<br>Flood Zone Banner</div></div></div><div class="fcap">Turn-by-turn, Taglish voice guidance</div></div>
+            <div class="fconn"><svg viewBox="0 0 46 24" fill="none"><path d="M2 12H40" stroke="var(--vio)" stroke-width="1.5" stroke-dasharray="3 3" opacity=".65"/><path d="M34 6L42 12L34 18" stroke="var(--vio)" stroke-width="1.5" fill="none" opacity=".8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="fnode"><div class="fframelbl"><span class="fstep-n">4</span>Assistant</div><div class="fscreen"><div class="fscreen-bar"><i>•</i><i>•</i><i>•</i></div><div class="fscreen-body"><div class="fscreen-ico">💬</div><div class="fscreen-lbl">AI Chat<br>Source Badge: KB</div></div></div><div class="fcap">Ask anything, 3-tier fallback answers</div></div>
+            <div class="fconn"><svg viewBox="0 0 46 24" fill="none"><path d="M2 12H40" stroke="var(--vio)" stroke-width="1.5" stroke-dasharray="3 3" opacity=".65"/><path d="M34 6L42 12L34 18" stroke="var(--vio)" stroke-width="1.5" fill="none" opacity=".8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="fnode"><div class="fframelbl"><span class="fstep-n">5</span>Estimate</div><div class="fscreen"><div class="fscreen-bar"><i>•</i><i>•</i><i>•</i></div><div class="fscreen-body"><div class="fscreen-ico">💰</div><div class="fscreen-lbl">Fare Estimator<br>SULIT / LUGI</div></div></div><div class="fcap">Worth-it verdict before accepting trip</div></div>
+            <div class="fconn"><svg viewBox="0 0 46 24" fill="none"><path d="M2 12H40" stroke="var(--vio)" stroke-width="1.5" stroke-dasharray="3 3" opacity=".65"/><path d="M34 6L42 12L34 18" stroke="var(--vio)" stroke-width="1.5" fill="none" opacity=".8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="fnode"><div class="fframelbl"><span class="fstep-n">6</span>Dashboard</div><div class="fscreen"><div class="fscreen-bar"><i>•</i><i>•</i><i>•</i></div><div class="fscreen-body"><div class="fscreen-ico">📊</div><div class="fscreen-lbl">Earnings<br>+ Weekly Streak</div></div></div><div class="fcap">Log rides, weekly chart analytics</div></div>
+          </div></div>
+        </div>
+        <div class="prsub">3-Tier AI Fallback Architecture</div>
+        <div class="archflow">
+          <div class="archnode"><span><b>1.</b> Knowledge Base — 100+ PH rider topics</span><span class="archtag">Instant · Offline</span></div>
+          <div class="archarrow">↓ no match</div>
+          <div class="archnode"><span><b>2.</b> Gemini Flash — cloud AI response</span><span class="archtag">Best Quality · Online</span></div>
+          <div class="archarrow">↓ offline / rate-limited</div>
+          <div class="archnode"><span><b>3.</b> On-device LLM — Qwen2.5-0.5B</span><span class="archtag">Streaming · Offline</span></div>
+          <div class="archarrow">↓ not downloaded</div>
+          <div class="archnode"><span><b>4.</b> Rule-based fallback</span><span class="archtag">Always Works</span></div>
+        </div>
+        <div class="prsub">What It's Built With</div>
+        <div class="prstack"><span>Flutter / Dart</span><span>OpenStreetMap</span><span>flutter_map</span><span>OSRM Routing</span><span>Nominatim</span><span>SQLite (sqflite)</span><span>Gemini 2.0 Flash</span><span>Qwen2.5-0.5B GGUF</span><span>speech_to_text</span><span>Open-Meteo API</span></div>
+        <div class="prhl">
+          <div class="prhli">Offline-first: maps, search, and AI work with zero signal</div>
+          <div class="prhli">Voice commands for nav, ride logs, hazards, earnings</div>
+          <div class="prhli">3 flood severity levels with live map markers</div>
+          <div class="prhli">Storage optimized from ~2.1GB down to ~280MB total</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div></section>
+
 <section class="sec" id="skills" style="background:linear-gradient(180deg,var(--bg2),var(--bg))"><div class="wrap">
   <div class="kk rv">03 · Capabilities</div><h2 class="stitle rv">Core Skills</h2>
   <div class="skgrid">
@@ -907,7 +1080,7 @@ footer{background:var(--bg);border-top:1px solid var(--line);padding:32px 0 20px
     <div><div class="fbl"><div class="bdot"></div>JEM</div><div class="ftag">AI Operations Analyst and IT Specialist. BS IT 2025, Malate Manila.</div>
       <div class="fsoc"><a href="https://www.linkedin.com/feed/" target="_blank">💼</a><a href="https://github.com/youngNwis31" target="_blank">🐙</a><a href="https://www.facebook.com/eaarlsuuu" target="_blank">📘</a><a href="https://www.instagram.com/eaarlsu/" target="_blank">📸</a><a href="https://x.com/eaarlsuu" target="_blank">𝕏</a></div>
     </div>
-    <div><div class="fct">Navigation</div><div class="flinks"><a href="#hire">Why Hire Me</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#education">Education</a><a href="#contact">Contact</a></div></div>
+    <div><div class="fct">Navigation</div><div class="flinks"><a href="#hire">Why Hire Me</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#education">Education</a><a href="#contact">Contact</a></div></div>
     <div><div class="fct">Connect</div><div class="flinks"><a href="https://www.linkedin.com/feed/" target="_blank">LinkedIn</a><a href="https://github.com/youngNwis31" target="_blank">GitHub</a><a href="https://www.facebook.com/eaarlsuuu" target="_blank">Facebook</a><a href="https://www.instagram.com/eaarlsu/" target="_blank">Instagram</a><a href="https://x.com/eaarlsuu" target="_blank">X / Twitter</a><a href="mailto:Workwitheaaarl@gmail.com">Email</a></div></div>
   </div>
   <div class="fbot"><div class="fcp">© 2026 <span>James Earl Medrano</span> · All rights reserved · Malate, Manila PH</div><div class="fcp">BS IT 2025 · Built with <span>♥</span></div></div>
