@@ -491,7 +491,7 @@ footer{background:var(--bg);border-top:1px solid var(--line);padding:32px 0 20px
 @media print{body{cursor:auto!important;background:#fff!important;color:#000!important}#cur,.ssb,.pts,.mglow,.ach,.tst,.sndbtn,.btt,.dlr,.trm,.cbt,.cwin,.ai-orb,.afp,#hex,.nav,.wrap{padding:0 16px!important}.sec{padding:28px 0!important}.hero{min-height:unset!important;padding:24px 0!important}.rv{opacity:1!important;transform:none!important}.sbfi{transform:scaleX(1)!important}.hud{display:none!important}.dash-wrap{display:none!important}#page-portfolio{display:block!important}}
 /* Responsive */
 @media(max-width:980px){.dg2,.dg3,.dg4{grid-template-columns:1fr}.hg,.ag,.clo,.skgrid,.ftop{grid-template-columns:1fr}.sstrip{grid-template-columns:repeat(2,1fr)}.edi{flex-direction:column}.edb{width:100%;flex-direction:row;justify-content:flex-start;border-right:none;border-bottom:1px solid var(--lc);padding:14px}.csg{grid-template-columns:1fr}.dash-wrap{grid-template-columns:1fr}.dsb{display:none}}
-@media(max-width:700px){.wrap{padding:0 15px}.ssb{display:none}.mbtn{display:flex}.nav-links,.nhire,.ntabs{display:none}.frow{grid-template-columns:1fr}.cwin{width:calc(100vw - 26px);left:14px}.trm{width:calc(100vw - 26px);left:14px}.cbt{left:22px;bottom:76px}.ai-orb{left:22px;bottom:22px}.afp{left:14px}.hud{display:none}.sstrip{grid-template-columns:1fr 1fr}}
+/* old mobile rule removed */
 
 /* ══════════════════════════════════════
    MOBILE DASHBOARD — bottom nav + drawer
@@ -528,27 +528,16 @@ footer{background:var(--bg);border-top:1px solid var(--line);padding:32px 0 20px
   .dash-wrap{grid-template-columns:1fr!important;min-height:calc(100vh - 62px - 58px)}
   .dmain{padding-bottom:68px}
   .dmi{padding:16px 14px 80px}
-  /* Fix nav on mobile — show portfolio/dashboard tabs */
-  .ntabs{display:flex!important}
-  /* Dashboard overview cards stack properly */
   .dg4{grid-template-columns:repeat(2,1fr)!important}
-  /* Input fields full width */
-  .ai-inp,.ai-ta,.ai-sel{font-size:16px!important}/* prevent iOS zoom */
-  /* AI output readable */
+  .ai-inp,.ai-ta,.ai-sel{font-size:16px!important}
   .ai-out{font-size:13px!important;line-height:1.7!important}
-  /* Tone buttons */
   .tone-row{grid-template-columns:repeat(3,1fr)}
-  /* Chips wrap nicely */
   .chips,.qchips{gap:6px}
   .chip,.qchip{padding:6px 10px;font-size:9px}
-  /* Video screen */
   .vidscreen{min-height:130px}
   .vid-ctrl{flex-wrap:wrap;gap:8px}
-  /* Salary grid */
   .dg2{grid-template-columns:1fr!important}
-  /* Career nodes scroll */
   .cpn-row{gap:0;padding-bottom:6px}
-  /* Dashboard header */
   .dph-title{font-size:20px!important}
 }
 
@@ -616,6 +605,45 @@ footer{background:var(--bg);border-top:1px solid var(--line);padding:32px 0 20px
 .prhli::before{content:"✓";color:var(--cyan);font-weight:700;flex-shrink:0}
 .prcard.v2 .prhli::before{color:var(--vio)}
 @media(max-width:700px){.prhead,.prbody{padding:22px 18px}.prhl{grid-template-columns:1fr}.fnode{flex:0 0 148px;margin-right:38px}.fconn{left:148px;width:38px}.fscreen-body{min-height:108px}}
+
+/* ====== MOBILE UI/UX OVERHAUL - zero overlap fix ====== */
+@media(max-width:700px){
+  .nav-links,.nhire{display:none!important}
+  .ntabs{display:none!important}
+  .mbtn{display:flex}
+  .nav-in{padding:0 14px;gap:8px}
+  .brand{font-size:13px}
+  .mmen-tabs{display:flex;gap:8px;margin-bottom:24px}
+  .mmen-tab{flex:1;text-align:center;padding:12px;border:1px solid var(--line);background:var(--panel);color:var(--mut);font-family:var(--fm);font-size:10px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+  .mmen-tab.act{border-color:var(--cyan);color:var(--cyan);background:rgba(0,240,255,.06)}
+  .btt{bottom:80px;right:14px;width:38px;height:38px;font-size:14px}
+  .sndbtn{bottom:128px;right:14px;width:38px;height:38px;font-size:13px}
+  .dlr{bottom:176px;right:14px;height:38px;font-size:7px;padding:0 9px}
+  .ai-orb{left:14px;bottom:80px;width:42px;height:42px;font-size:17px}
+  .cbt{left:64px;bottom:80px;width:40px;height:40px;font-size:15px}
+  .afp{left:10px;bottom:128px;width:calc(100vw - 20px);max-width:300px}
+  .cwin{left:10px;bottom:128px;width:calc(100vw - 20px);max-width:320px}
+  .trm{left:10px;bottom:80px;width:calc(100vw - 20px);max-width:420px}
+  body.dash-active .btt{display:none}
+  body.dash-active .sndbtn{display:none}
+  body.dash-active .dlr{display:none}
+  .hud{display:none}
+  .ssb{display:none}
+  .wrap{padding:0 16px}
+  .frow{grid-template-columns:1fr}
+  .sstrip{grid-template-columns:1fr 1fr}
+  .hctas{flex-direction:column;align-items:stretch}
+  .hctas .btn{width:100%;justify-content:center;text-align:center}
+  .hsoc{justify-content:flex-start}
+  .hsoc a{font-size:8px;padding:5px 9px}
+}
+@media(min-width:701px) and (max-width:980px){
+  .nav-links{gap:12px;font-size:10px}
+  .nhire{padding:8px 12px;font-size:10px}
+  .ntab{padding:7px 9px;font-size:8px}
+  .brand{font-size:13px}
+  .nav-in{padding:0 14px 0 16px;gap:8px}
+}
 </style>
 </head>
 <body>
@@ -725,6 +753,10 @@ footer{background:var(--bg);border-top:1px solid var(--line);padding:32px 0 20px
   <div class="trr"><span class="trpr">james@manila:~$</span><input class="trin" id="trin" type="text" placeholder="command…" autocomplete="off" spellcheck="false"/></div>
 </div>
 <div class="mmen" id="mmen">
+  <div class="mmen-tabs">
+    <button class="mmen-tab act" id="mmt-portfolio" onclick="switchTab('portfolio');closeMM()">Portfolio</button>
+    <button class="mmen-tab" id="mmt-dashboard" onclick="switchTab('dashboard');closeMM()">AI Dashboard</button>
+  </div>
   <div class="mml">
     <a href="#hire" onclick="closeMM()">Why Hire <span>→</span></a>
     <a href="#about" onclick="closeMM()">About <span>→</span></a>
@@ -1521,10 +1553,14 @@ window.aiQ = async function(prompt, outId) {
 window.switchTab = function(tab) {
   document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('act'); });
   document.querySelectorAll('.ntab').forEach(function(t) { t.classList.remove('act'); });
+  document.querySelectorAll('.mmen-tab').forEach(function(t) { t.classList.remove('act'); });
   var pg = document.getElementById('page-' + tab);
   if (pg) pg.classList.add('act');
   var tb = document.getElementById('tab-' + tab);
   if (tb) tb.classList.add('act');
+  var mt = document.getElementById('mmt-' + tab);
+  if (mt) mt.classList.add('act');
+  document.body.classList.toggle('dash-active', tab === 'dashboard');
   if (tab === 'dashboard') setTimeout(animDashBars, 200);
   window.scrollTo(0, 0);
 };
