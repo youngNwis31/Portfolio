@@ -177,4 +177,20 @@ No build tools, no `node_modules`, no bundler. **One file, zero dependencies, de
 
 ---
 
+### Phase 9 — Theme-Accurate Wireframes from Real Source Code
+
+**What changed:** Replaced the generic cyan/violet Figma-style flow diagrams for CourtBook and Arangkada AI with versions styled in each app's actual real colors, pulled directly from the live deployed app and the real source code rather than approximated.
+
+**Research method:** Rather than guessing at a visual style, the actual running CourtBook app was opened at its live Netlify URL and inspected screen by screen (home, court detail, weather, booking). For Arangkada AI, since it has no public web build, the real Flutter theme file was fetched directly from GitHub (lib/config/theme/malate_colors.dart) to extract its exact named color palette.
+
+**Real colors found and used:**
+- CourtBook: dark navy background, emerald-to-teal gradient hero, purple "AI Playing Tips" card, amber rain-warning banner, and the real busy/quiet availability heatmap colors, all taken from the live site
+- Arangkada AI ("Malate Street Style" theme): near-black backgrounds (midnight #0D0D0D, asphalt #141414, gutter #1A1A1A), neon mint primary (#00FF94), cyber cyan (#00E5FF), electric amber (#FFB300), and hazard red (#FF3D3D) — named exactly as they appear in the Dart source
+
+**What was built:** Both flow diagrams keep the existing Figma-canvas presentation (dot-grid background, title bar with traffic-light dots, numbered frame labels, dashed connector arrows) but every screen mockup inside now uses the real hex values and real component styling instead of the portfolio's generic cyan/violet palette. A caption was added under each diagram noting the colors come directly from the live app or its real source file, not from approximation.
+
+**Why this matters:** A generic-colored mockup risks looking decorative or invented. Using the actual production colors makes the wireframe an honest visual reference rather than a guess — useful for a client who wants to see what each app genuinely looks like before judging the work.
+
+---
+
 *This log is updated whenever a significant architectural or UX change is made to the site.*
