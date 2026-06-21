@@ -74,13 +74,20 @@ Highlights: offline-first architecture where maps, search, and AI all work witho
 
 Tech stack: Flutter (Dart), OpenStreetMap via flutter_map, OSRM, Nominatim, Overpass API, SQLite (sqflite), Gemini 2.0 Flash REST API, an on-device Qwen2.5-0.5B GGUF model, Provider state management, and the Open-Meteo API.
 
+**In-Page Walkthrough (new):** the Arangkada AI card now has a "▶ Walkthrough" button that smooth-scrolls to a dedicated `#arangkada-walkthrough` section further down the same page, styled in the app's real Malate Street Style colors. It includes:
+- An embedded screen recording of the actual running app (~3:34, both WebM and MP4 sources so it plays across browsers, with a poster frame so it doesn't autoplay)
+- All 11 real in-app screenshots (Home, Search, Fare Estimator, Hazard Reporting, Dashboard, Earnings, Fuel Calculator, Booking Hotspots, Settings, Rider Safety, AI Assistant), each with a short caption describing what's shown
+- A stat strip (version, screen count, Dart file count, lines of code, budget) and a "← Back to Projects" link to return
+
+Everything — video, poster frame, and all 11 screenshots — is embedded as base64 directly inside `index.html`. No separate asset folder to keep in sync, no broken relative paths if the repo is cloned or moved; the page is still one self-contained file, just heavier (~3.2MB instead of ~190KB) because of the embedded media.
+
 ---
 
 ## Repository Structure
 
-This Portfolio repository contains index.html (the entire website, self-contained), README.md (this file), and BUILD_LOG.md (the full system build log documenting how this site was engineered).
+This Portfolio repository contains index.html (the entire website, self-contained — now ~3.2MB due to the embedded Arangkada AI walkthrough video and screenshots), README.md (this file), and BUILD_LOG.md (the full system build log documenting how this site was engineered).
 
-Everything is in one file. No npm, no webpack, no dependencies. Loads instantly anywhere. See BUILD_LOG.md for the full engineering changelog on how this was built, debugged, and deployed.
+Everything is in one file. No npm, no webpack, no dependencies, no separate asset folders to keep in sync. See BUILD_LOG.md for the full engineering changelog on how this was built, debugged, and deployed.
 
 ---
 

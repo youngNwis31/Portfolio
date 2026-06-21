@@ -193,4 +193,26 @@ No build tools, no `node_modules`, no bundler. **One file, zero dependencies, de
 
 ---
 
+### Phase 10 — Arangkada AI In-Page Walkthrough + Real Demo Video
+
+**What was requested:** A "Walkthrough" button on the Arangkada AI project card (parallel to CourtBook's "Live Demo" pattern) that takes the visitor to a new in-page section showing the actual app — real screenshots and a real screen recording, not more mockup diagrams.
+
+**Source material:** Four files were provided for this: a 3:34 portrait screen recording of the running app, a standalone HTML showcase page with 12 embedded base64 screenshots (one duplicate — the app icon, reused), a matching PDF export of that showcase, and a separate UI/UX wireframe PDF (v0.05) documenting all 15 screens, the full color system, and component library. The 11 unique screenshots were extracted directly from the showcase HTML's base64 data rather than redrawn, so every image in the new section is a pixel-accurate capture of the real build.
+
+**What was built:**
+- A new `#arangkada-walkthrough` section, placed in normal document flow right after Projects, styled entirely in the real Malate Street Style palette (`#0D0D0D` / `#141414` backgrounds, `#00FF94` neon mint, `#00E5FF` cyber cyan, `#FFB300` electric amber, `#FF3D3D` hazard red)
+- A "▶ Walkthrough" button added next to "View Code" on the Arangkada card, using a new outlined `.btn.bw` style in neon mint so it doesn't compete visually with the existing violet "View Code" button
+- The section opens with a stat strip (v0.05, 15 screens, 63 Dart files, ~14.5K LOC, ₱0 budget), then the embedded demo video, then an 11-card grid of real screenshots with macOS-style window chrome and short captions describing each screen
+- A "← Back to Projects" link at the bottom, returning to `#projects`
+
+**Bug found and fixed — video wouldn't play after first deploy:** the first version linked the video as an external file (`arangkada-assets/arangkada-demo.mp4`) next to `index.html`. After the user reported playback failure, two separate issues were diagnosed:
+1. The most likely real-world cause: the external `arangkada-assets/` folder wasn't uploaded to the same path as `index.html` on the live host, so the relative path resolved to nothing.
+2. While testing the fix, a sandboxed headless Chromium in the build environment was found to have zero H.264 decoding support at all (`canPlayType('video/mp4; codecs="avc1.42E01E"')` returned empty), making it impossible to visually confirm MP4 playback from that environment — a limitation of the test sandbox, not real-world browsers, which all ship H.264 support.
+
+**Fix shipped:** the video and its poster frame are now embedded directly inside `index.html` as base64 data URIs — same approach already used for the 11 screenshots — removing the external-folder dependency entirely. The `<video>` tag offers two sources: WebM/VP9 first (verified playable end-to-end in-browser, including seeking to an arbitrary timestamp and confirming a real decoded frame), then the original MP4/H.264 as a fallback for browsers without WebM support. The source video was also re-encoded smaller in the process (23MB original → ~915KB MP4 / ~755KB WebM at 540px width) to keep page weight reasonable despite being fully inlined.
+
+**Trade-off accepted:** `index.html` grew from ~190KB to ~3.2MB as a result of embedding all media inline. This was a deliberate choice over keeping a lighter page with an external video file, because a single self-contained file that can never have a broken relative path was judged more valuable than the smaller download size for a portfolio site.
+
+---
+
 *This log is updated whenever a significant architectural or UX change is made to the site.*
