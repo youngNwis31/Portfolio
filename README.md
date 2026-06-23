@@ -166,6 +166,29 @@ This was a targeted 2-line change across the codebase:
 
 ---
 
+### v6.0 — HR Optimization: 6-Fix Battle Plan
+**Date:** 2026-06-23
+
+Portfolio redesigned to convert HR into callbacks. 6 targeted fixes based on audit of what was hurting conversion:
+
+**Fix 1 — LinkedIn URL (all 11 occurrences):** Every LinkedIn link was pointing to  — HR clicking it saw a random news feed, not James's profile. All replaced with .
+
+**Fix 2 — Hero headline rewritten:** Changed from "IT graduate bridging AI systems" (reads as IT support) to **"LLM Engineer · Prompt Specialist · AI Analyst II"** — the exact titles AI job posts search for. Subtitle updated to lead with real credentials: Innodata experience, live tools in production, 3 industries before 25.
+
+**Fix 3 — AI Tools CTA surfaced in hero:** Added **"⚡ Try My Live AI Tools"** button directly in the hero CTA row — styled with the cyan/violet gradient so it stands out. HR now sees the live tools within 3 seconds of landing, without needing to find the dashboard tab.
+
+**Fix 4 — Innodata metrics block:** Added 4 stat cards inside the Innodata experience entry: 500+ prompts engineered · 1,000+ annotation tasks · 5 LLM models tested · 5 months production work. Quantified numbers make the experience real to HR.
+
+**Fix 5 — "Champion Me" hire pitch:** Added a one-paragraph pitch block in the Why Hire Me section with a Copy button. HR can copy-paste the pitch into a Slack message to their hiring manager — makes it easy to internally champion James without rewriting anything.
+
+**Fix 6 — Job Fit Analyzer surfaced on portfolio page:** Added a full live Job Fit section between Projects and Ask James's AI. HR can paste any job description and get Claude's match analysis without navigating to the dashboard. Includes a "Try sample JD" button and a link to open the full tool.
+
+**Files changed:**
+-  — all 6 fixes applied
+-  — v6.0 build log entry added
+
+---
+
 ### v5.0 — Resume Update: Work Experience Refreshed
 **Date:** 2026-06-23
 
