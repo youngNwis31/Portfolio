@@ -1,18 +1,120 @@
 # James Earl Medrano — AI Portfolio + Job Hunter Dashboard
 
-Live Site: https://jamesmedrano.netlify.app
+**Live Site:** https://jamesmedrano.netlify.app  
+**GitHub:** https://github.com/youngNwis31/Portfolio  
+**Stack:** Pure HTML5 · CSS3 · Vanilla JS · Claude API · Netlify
 
-A unified cyberpunk-themed portfolio and AI-powered tool showcase. One single HTML file. Zero build tools. 4 live Claude AI tools. Fully mobile-friendly.
+> A single self-contained HTML file. Zero build tools. Zero npm. Zero frameworks.  
+> Just raw code, real AI, and a cyberpunk aesthetic — built from scratch by someone who needed a job and decided to build something worth hiring for.
 
 ---
 
-## System Build Log
+## 🧠 Origin Story — How This Portfolio Was Born
 
-### 2026-06-23 — AI Dashboard Overhaul & Portfolio Upgrades
+### The Problem
 
-**Root bug fixed:** All 17 original AI tools were silently failing due to a CORS block. The Anthropic API rejects direct browser requests without the `anthropic-dangerous-direct-browser-access: true` header. One line added to `callClaude()` — all tools now work.
+In early 2026, James Earl Medrano was wrapping up a contract as an **AI Analyst II (LLM)** at Innodata Knowledge Services in Cebu — doing prompt engineering, LLM fine-tuning, and model QA on real production AI systems. When the contract ended in May 2026, he needed to find the next role fast.
 
-**Dashboard redesigned:** Removed 13 generic job-hunt tools that were serving the applicant, not showcasing the builder. Dashboard renamed from "AI Job Hunter Command Center" to "AI Tools I Built." Reframed as a capability demo, not a personal utility.
+The typical approach — a PDF resume and a LinkedIn profile — felt wrong for someone whose whole identity was being an AI-native builder. Generic templates don't show that you can actually build things. They tell. They don't show.
+
+So instead of just applying, James built.
+
+### The Goal
+
+Build a portfolio that:
+- **Proves** the claims on the resume by shipping real, working AI tools
+- **Lets recruiters talk to an AI version of James** instead of reading a bio
+- **Works as a job application in itself** — every tool in the dashboard is a live demonstration of what he can build
+- **Runs entirely in one HTML file** with no backend, no database, no build step
+
+### The Approach
+
+The entire site lives in a single `index.html` file — ~3.2MB of hand-written HTML, CSS, and JavaScript. No React, no Vue, no webpack, no package.json. The decision was intentional: it's a statement. If you can build something this complex without a framework, you understand the fundamentals deeply enough to use any framework.
+
+The Anthropic Claude API is called directly from the browser using `anthropic-dangerous-direct-browser-access: true` — also intentional. This is a portfolio demo, not a production app. The CORS header exists for exactly this use case.
+
+---
+
+## 🏗️ System Build Log
+
+### v1.0 — Initial Build: Portfolio Foundation
+**Date:** Early 2026 (pre-launch)
+
+The site started as a static portfolio page — no AI, no dashboard, just the core sections:
+- Hero section with typewriter animation and scramble text effect
+- About section with skill bars
+- Projects section for CourtBook and Arangkada AI
+- Contact form via Gmail mailto
+- Cyberpunk visual theme: hex grid canvas background, `#00b4c8` cyan accent, `Chakra Petch` + `Space Mono` fonts
+- Custom animated cursor
+- Animated skill bars and radar chart (HTML5 Canvas)
+- Social sidebar (LinkedIn, GitHub, Facebook, Instagram, X)
+- Light/dark theme toggle
+- Back-to-top button
+- Mobile hamburger menu
+- Live Manila clock (PHT) in the nav
+
+**Files:** `index.html` (static, no AI)
+
+---
+
+### v2.0 — AI Dashboard: 17 Tools Launch
+**Date:** 2026 (pre-CORS fix)
+
+Added a full AI-powered dashboard tab with **17 Claude-powered tools**:
+
+| # | Tool |
+|---|---|
+| 1 | Job Fit Analyzer |
+| 2 | Cover Letter Generator |
+| 3 | Follow-Up Email Templates |
+| 4 | ATS Resume Optimizer |
+| 5 | Salary Negotiator |
+| 6 | Interview Coach |
+| 7 | Mock Video Interview |
+| 8 | Career Path Advisor |
+| 9 | Reference Letter Writer |
+| 10 | Cold Email Builder |
+| 11 | Daily Job Hunt Planner |
+| 12 | Rejection Recovery Coach |
+| 13 | Thank-You Note Generator |
+| 14 | Job Tracker (local state) |
+| 15 | HR Activity Feed (static) |
+| 16 | Portfolio Strength Scorer |
+| 17 | Live AI Chat |
+
+**Problem:** All 17 tools were silently failing. The Anthropic API rejects direct browser requests without `anthropic-dangerous-direct-browser-access: true`. Tools appeared to load but returned no AI output.
+
+**Files:** `index.html` — dashboard added, CORS bug present
+
+---
+
+### v3.0 — CORS Fix + Dashboard Redesign
+**Date:** 2026-06-23
+
+**Root bug fixed:** One missing header was killing all 17 tools. Added `anthropic-dangerous-direct-browser-access: true` to `callClaude()`:
+
+```javascript
+async function callClaude(prompt) {
+  const response = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'anthropic-dangerous-direct-browser-access': 'true'  // ← this was the fix
+    },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-6',
+      max_tokens: 1000,
+      system: JAMES_CONTEXT,
+      messages: [{ role: 'user', content: prompt }]
+    })
+  });
+  const data = await response.json();
+  return data.content[0].text;
+}
+```
+
+**Dashboard redesigned:** 13 tools removed. The ones removed were serving James the applicant — not showcasing James the builder. The dashboard was renamed from **"AI Job Hunter Command Center"** to **"AI Tools I Built"** and reframed as a capability demo.
 
 | Removed (13) | Kept & Fixed (4) |
 |---|---|
@@ -30,78 +132,145 @@ A unified cyberpunk-themed portfolio and AI-powered tool showcase. One single HT
 | HR Activity Feed (static) | |
 | Portfolio Strength Scorer | |
 
-**New: "Ask James's AI" section on the main portfolio page.** A live Claude-powered chat widget now sits between the Skills and Contact sections. HR can talk directly to James's portfolio — quick-prompt buttons for availability, top skills, salary range, remote/hybrid, why hire, and projects. Added nav link in desktop and mobile menus.
+**New: "Ask James's AI"** — A live Claude chat widget added between the Skills and Contact sections. HR and recruiters can talk directly to the portfolio. Quick-prompt buttons: Available now? · Top skills? · Why hire James? · Salary range? · Remote/hybrid? · His projects?
 
-**Print Resume:** Clicking "Print Resume" now hides the entire portfolio and renders a clean, ATS-friendly resume layout via @media print. Matches Medrano_James_Earl_Resume.pdf in content.
+**New: Print Resume** — Clicking "⬇ Print Resume" hides the entire portfolio and renders a clean ATS-friendly resume via `@media print`. Matches the standalone `Medrano_James_Earl_Resume.pdf`.
+
+**Nav update:** Added `🤖 Ask AI` link to both desktop and mobile menus.
+
+**Deployment:** Pushed to GitHub → Netlify auto-deployed.
 
 **Files changed:**
-- index.html — CORS fix, dashboard overhaul, Ask James AI section, print resume CSS + HTML, nav updates
-- README.md — this changelog
-- Medrano_James_Earl_Resume.pdf — standalone resume PDF (built with ReportLab)
+- `index.html` — CORS fix, dashboard redesign, Ask James AI, print resume
+- `README.md` — first changelog
+- `Medrano_James_Earl_Resume.pdf` — standalone resume (built with ReportLab)
 
 ---
 
-## Features at a Glance
+### v4.0 — Model Upgrade: claude-sonnet-4-6
+**Date:** 2026-06-23
+
+**Model string updated:** `claude-sonnet-4-20250514` → `claude-sonnet-4-6`
+
+This was a targeted 2-line change across the codebase:
+- API call in `callClaude()`: model field updated
+- Display label in Ask James's AI section: "Powered by claude-sonnet-4" → "Powered by claude-sonnet-4-6"
+
+**README updated** with system build log.
+
+**Deployment method:** GitHub API (PUT `/repos/.../contents/index.html`) with a Personal Access Token — the only reliable way to push a 3.14MB file since GitHub's web editor silently fails to load files over ~1MB.
+
+**Files changed:**
+- `index.html` — 2 occurrences updated
+- `README.md` — v4.0 build log entry added
+
+---
+
+### v5.0 — Resume Update: Work Experience Refreshed
+**Date:** 2026-06-23
+
+**Resume section overhauled.** The print resume embedded in `index.html` was updated to reflect the latest real-world experience. This is the version shown when a recruiter clicks "⬇ Print Resume."
+
+**Updated experience entries:**
+
+| Role | Company | Period |
+|---|---|---|
+| A.I. Analyst II (LLM) | Innodata Knowledge Services, Inc. · Mandaue City, Cebu | Jan 2026 – May 2026 |
+| IT Support & Case Resolution | Alorica Teleservices, Inc. · Cyberpod Centris, Manila | Jan 2025 – Jan 2026 |
+| Jr. Technical Support | BESPOKE IT Project Corp. · GC Corporate Plaza, Makati | Feb 2024 – Jul 2024 |
+
+**Skills section refreshed:**
+- AI & LLM: Advanced Prompt Engineering · RLHF & Data Annotation · Side-by-Side Response Analysis · Vulnerability & QA Testing · AI Model Evaluation
+- Software & Web: HTML5 · CSS3 · JavaScript · Web APIs · Git & GitHub · Netlify CI/CD · React · TypeScript · Flutter/Dart
+- Technical Support: Enterprise Hardware · Network & Endpoint Security · POS Systems · Firewall Admin · Technical Documentation
+- Data Analytics: PowerBI · Advanced Excel · Salesforce · Optis · Fraud Mitigation · Risk Analysis
+
+**Deployment:** Full `index.html` pushed via GitHub API with PAT. Netlify auto-deployed within 60 seconds.
+
+**Files changed:**
+- `index.html` — resume section fully updated, model string kept at `claude-sonnet-4-6`
+- `README.md` — v5.0 build log entry added (this entry)
+
+---
+
+## 🔧 Features
 
 ### Portfolio Page
 
-Animated hex grid canvas background, custom cyberpunk cursor, live Manila clock (PHT), typewriter and scramble hero animation, animated skill bars and radar chart, scroll-reveal animations, social sidebar (LinkedIn, GitHub, Facebook, Instagram, X), mobile hamburger menu, light/dark theme toggle, print resume button, back-to-top button, Gmail contact form, Konami code easter egg, and **Ask James's AI** live chat section.
+| Feature | Detail |
+|---|---|
+| Hex grid background | HTML5 Canvas, animated |
+| Custom cursor | Cyberpunk crosshair |
+| Live Manila clock | PHT timezone, updates every second |
+| Hero animation | Typewriter + character scramble |
+| Skill bars | Animated on scroll |
+| Radar chart | HTML5 Canvas, 6-axis skills |
+| Scroll-reveal | IntersectionObserver on all sections |
+| Social sidebar | LinkedIn, GitHub, Facebook, Instagram, X |
+| Mobile nav | Hamburger menu with slide-in drawer |
+| Theme toggle | Light / dark |
+| Print resume | `@media print` — full ATS resume, no portfolio chrome |
+| Back-to-top | Smooth scroll |
+| Contact form | Gmail mailto |
+| Easter egg | Konami code |
+| Ask James's AI | Live Claude chat widget, 6 quick-prompt buttons |
+| BUILD tag | HUD badge showing current version (`v5.0`) |
 
 ### AI Tools I Built — 4 Live Claude-Powered Demos
 
 | # | Tool | What It Does |
 |---|---|---|
-| 1 | Job Fit Analyzer | Paste any JD, get match % + hiring recommendation |
-| 2 | Interview Coach | 10 question chips + model STAR answers |
-| 3 | Cold Email Builder | Company + angle, subject + body with copy |
-| 4 | Live AI Chat | Full Claude chat with 8 quick-prompt buttons |
+| 1 | Job Fit Analyzer | Paste any JD → match %, hiring recommendation, strengths, gaps |
+| 2 | Interview Coach | 10 question chips → model STAR answers tailored to James's real experience |
+| 3 | Cold Email Builder | Company + angle → subject line + body with one-click copy |
+| 4 | Live AI Chat | Full Claude conversation with 8 quick-prompt buttons |
 
-### Ask James's AI (on Portfolio Page)
+### Ask James's AI (Portfolio Page)
 
-Visible Claude chat widget between Skills and Contact sections. HR can ask anything — James's full profile is injected as context.
+Live chat widget between Skills and Contact. Quick-prompts:
+- Available now?
+- Top skills?
+- Why hire James?
+- Salary range?
+- Remote/hybrid?
+- His projects?
 
----
+### Mobile-Optimized Dashboard
 
-## Ongoing Projects
-
-### CourtBook — Tennis Court Booking App
-
-Live: https://tenniscourtbooker.netlify.app
-Repo: https://github.com/youngNwis31/tennis-court-booker
-
-React 19, TypeScript, Supabase, Tailwind CSS v4. 18 real Metro Manila courts on an interactive Leaflet map. AI layer adds playing tips, court recommender quiz, price alerts, and personalized recommendations.
-
-### Arangkada AI — Rider Road Assistant
-
-Repo: https://github.com/youngNwis31/arangkada-ai
-
-Flutter-based offline-first navigation and AI assistant for Filipino motorcycle riders. v0.05 · 63 Dart files · ~14,500 LOC · 0 peso budget. 3-tier AI fallback chain (Knowledge Base → Gemini Flash → on-device Qwen2.5-0.5B → rule-based). Voice commands, fare estimator (SULIT/PUWEDE NA/LUGI verdict), flood and weather alerts.
+- Bottom tab bar: Home · Tracker · AI Tools · Chat · HR Feed
+- Slide-up tool picker drawer with 4 tools in a grid
+- iOS zoom fix on inputs (`font-size: 16px` minimum)
 
 ---
 
-## Repository Structure
+## 🗂️ Repository Structure
 
-`index.html` — entire website, self-contained (~3.2MB)
-`README.md` — this file + build changelog
-`Medrano_James_Earl_Resume.pdf` — standalone resume PDF
-`BUILD_LOG.md` — original engineering build log
+```
+Portfolio/
+├── index.html              ← Entire site (~3.2MB, self-contained)
+├── README.md               ← This file + system build log
+├── Medrano_James_Earl_Resume.pdf  ← Standalone resume PDF
+└── BUILD_LOG.md            ← Original engineering build log
+```
 
 ---
 
-## Tech Stack
+## ⚙️ Tech Stack
 
 | Layer | Technology |
 |---|---|
 | Structure | Semantic HTML5 |
 | Styling | Pure CSS3, Custom Properties, Grid, Flexbox |
-| Fonts | Chakra Petch and Space Mono |
-| Animation | CSS keyframes, IntersectionObserver, requestAnimationFrame |
-| Canvas | HTML5 Canvas API for hex grid and radar chart |
-| AI Engine | Anthropic Claude Sonnet (claude-sonnet-4-20250514) |
+| Fonts | Chakra Petch · Space Mono (Google Fonts) |
+| Animation | CSS keyframes · IntersectionObserver · requestAnimationFrame |
+| Canvas | HTML5 Canvas API — hex grid background + radar chart |
+| AI Engine | Anthropic Claude Sonnet (`claude-sonnet-4-6`) |
 | Sound | Web Audio API |
-| Deployment | Netlify, static, free tier |
+| Deployment | Netlify — static, free tier, auto-deploy from GitHub main |
 
-### Claude API Integration (Fixed)
+---
+
+## 🚀 Claude API Integration
 
 ```javascript
 async function callClaude(prompt) {
@@ -112,7 +281,7 @@ async function callClaude(prompt) {
       'anthropic-dangerous-direct-browser-access': 'true'
     },
     body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-sonnet-4-6',
       max_tokens: 1000,
       system: JAMES_CONTEXT,
       messages: [{ role: 'user', content: prompt }]
@@ -123,203 +292,82 @@ async function callClaude(prompt) {
 }
 ```
 
----
-
-## About James Earl Medrano
-
-| Field | Value |
-|---|---|
-| Role | AI Operations Analyst & IT Specialist |
-| Education | BS Information Technology, PLM, 2025 |
-| Location | Malate, Manila, Philippines |
-| Status | Open to Work — Full-time, Remote, Hybrid, Freelance |
-| Email | Workwitheaaarl@gmail.com |
-| Phone | +63 976 318 9033 |
-| GitHub | github.com/youngNwis31 |
+> **Note:** `anthropic-dangerous-direct-browser-access: true` is required for browser-to-API calls. Without it, all requests return a CORS error with no visible failure. This was the root bug that silenced all 17 original tools for weeks.
 
 ---
 
-Built with love from Malate, Manila. Powered by Anthropic Claude AI.# James Earl Medrano — AI Portfolio + Job Hunter Dashboard
+## 📦 How to Deploy on Netlify
 
-Live Site: https://jamesmedrano.netlify.app
+### First time
+1. Push to GitHub
+2. netlify.com → Add new site → Import from GitHub
+3. Build command: *(leave blank)*
+4. Publish directory: `.`
+5. Deploy
 
-A unified cyberpunk-themed portfolio and AI-powered job hunter dashboard. One single HTML file. Zero build tools. 17 live Claude AI tools. Fully mobile-friendly.
+### Updates
+Push any commit to `main` → Netlify auto-deploys within ~60 seconds.
 
----
+### Pushing large files (>1MB)
+GitHub's web editor silently fails on files over ~1MB. Use the GitHub API:
 
-## Features at a Glance
+```python
+import base64, urllib.request, json
 
-### Portfolio Page
+with open('index.html', 'rb') as f:
+    b64 = base64.b64encode(f.read()).decode()
 
-Animated hex grid canvas background, custom cyberpunk cursor, live Manila clock (PHT), typewriter and scramble hero animation, animated skill bars and radar chart, scroll-reveal animations, social sidebar (LinkedIn, GitHub, Facebook, Instagram, X), mobile hamburger menu, light/dark theme toggle, print resume button, back-to-top button, Gmail contact form, and a Konami code easter egg that opens a secret terminal.
+# Get current SHA
+req = urllib.request.Request(
+    'https://api.github.com/repos/USERNAME/Portfolio/contents/index.html',
+    headers={'Authorization': 'Bearer YOUR_PAT', 'Accept': 'application/vnd.github+json'}
+)
+sha = json.loads(urllib.request.urlopen(req).read())['sha']
 
-### AI Dashboard — 17 Claude-Powered Tools
-
-| # | Tool | What It Does |
-|---|---|---|
-| 1 | Job Fit Analyzer | Paste any JD, get match % + hiring recommendation |
-| 2 | Cover Letter | Tone selector + role, full tailored letter |
-| 3 | Interview Coach | 10 question chips + model STAR answers |
-| 4 | Cold Email Builder | Company + angle, subject + body with copy |
-| 5 | Follow-Up Emails | 6 situational templates |
-| 6 | ATS Resume Optimizer | Keywords + role, full ATS-optimized resume |
-| 7 | LinkedIn Optimizer | Target role, headline + About section |
-| 8 | Salary Negotiator | Offer vs target, negotiation script + PH benchmarks |
-| 9 | Mock Video Interview | 10 progressive questions + model answers |
-| 10 | Career Path Advisor | Dream role + timeframe, step-by-step roadmap |
-| 11 | Reference Letter | Reference type + role, full professional letter |
-| 12 | Bullet Rewriter | Weak bullets to ATS / Executive / Startup style |
-| 13 | Daily Job Hunt Planner | Hours + stage, timed daily plan |
-| 14 | Rejection Recovery Coach | What happened, honest recovery plan |
-| 15 | Thank-You Note | Interviewer + detail, post-interview email |
-| 16 | Live AI Chat | Full Claude chat with 8 quick-prompt buttons |
-| 17 | Quick AI Orb | 8 instant one-tap AI actions |
-
-### Dashboard Extras
-
-Job Application Tracker with status tracking, a static HR Activity Feed, an animated Portfolio Strength Scorer with AI tips, and built-in 2026 PH Salary Benchmarks.
-
-### Mobile-Optimized Dashboard
-
-Bottom tab bar (Home, Tracker, AI Tools, Chat, HR Feed), a slide-up tool picker drawer with all 15 tools in a 3-column grid, an iOS zoom fix on inputs, and no sidebar clutter on small screens.
+# Push
+payload = json.dumps({'message': 'update', 'content': b64, 'sha': sha}).encode()
+req2 = urllib.request.Request(
+    'https://api.github.com/repos/USERNAME/Portfolio/contents/index.html',
+    data=payload, method='PUT',
+    headers={'Authorization': 'Bearer YOUR_PAT', 'Content-Type': 'application/json'}
+)
+urllib.request.urlopen(req2)
+```
 
 ---
 
-## Ongoing Projects
-
-Beyond this portfolio, here are two active builds also under development on GitHub.
+## 🔨 Ongoing Projects
 
 ### CourtBook — Tennis Court Booking App
+**Live:** https://tenniscourtbooker.netlify.app  
+**Repo:** https://github.com/youngNwis31/tennis-court-booker
 
-Live: https://tenniscourtbooker.netlify.app
-
-Repo: https://github.com/youngNwis31/tennis-court-booker
-
-A full-stack web app for browsing and booking tennis courts across Metro Manila. Built with React 19, TypeScript, Supabase, and Tailwind CSS v4.
-
-How it works: users browse 18 real Metro Manila courts on an interactive Leaflet map or list view, filter by city, surface type, or distance from their GPS location, then pick a date and book a 1-hour slot between 7 AM and 8 PM. Supabase handles authentication (email/password plus Google OAuth) and row-level security so each user can only manage their own bookings. An AI layer adds playing tips based on weather and surface, a 5-question court recommender quiz, smart price alerts, and personalized recommendations based on booking history. The app also supports Filipino and English, dark mode, achievement badges, player matchmaking, and a 3-day weather forecast pulled from the free Open-Meteo API.
-
-Highlights: 18 real courts across 12 Metro Manila cities priced in PHP, AI-powered quiz and price alerts and optimal slot finder, Supabase auth with row-level security, interactive Leaflet.js map with court comparison and GPS distance sorting, dark mode and Filipino/English toggle, mobile-responsive with iOS fixes, and 50+ React/TypeScript source files with a fully documented build log in its own README.
-
-Tech stack: React 19, TypeScript, Vite, Tailwind CSS v4, React Router v7, Supabase (PostgreSQL, Auth, Row Level Security), Leaflet.js, Open-Meteo API, hosted on Netlify with auto-deploy from GitHub.
+React 19 · TypeScript · Supabase · Tailwind CSS v4 · Leaflet.js  
+18 real Metro Manila courts on an interactive map. Filter by city, surface type, and distance. Book 1-hour slots between 7AM–8PM. AI layer: playing tips, court recommender quiz, price alerts, personalized recommendations.
 
 ### Arangkada AI — Rider Road Assistant
+**Repo:** https://github.com/youngNwis31/arangkada-ai
 
-Repo: https://github.com/youngNwis31/arangkada-ai
+Flutter/Dart · Offline-first · 3-tier AI fallback chain  
+`v0.05` · 63 Dart files · ~14,500 LOC · ₱0 budget
 
-A Flutter-based offline-first navigation and AI assistant app built for Filipino motorcycle riders working on Grab, FoodPanda, Angkas, JoyRide, MoveIt, and Lalamove. Currently at v0.05 with 63 Dart files and roughly 14,500 lines of code, built entirely on free and open-source tools at a 0 peso budget.
-
-How it works: the app runs on OpenStreetMap instead of paid map APIs, with OSRM for routing and Nominatim for geocoding, all fully offline-capable once map tiles are downloaded for a region. A 3-tier AI assistant first checks a built-in knowledge base of 100+ rider-specific topics for instant offline answers, then falls back to Gemini Flash when online for higher-quality responses, then falls back again to a small on-device LLM (Qwen2.5-0.5B) when fully offline, and finally to rule-based responses as a last resort. Riders can use voice commands in English or Taglish to navigate, log a ride, report a hazard, or check earnings hands-free. A built-in fare estimator calculates whether a trip offer is worth taking, labeled SULIT, PUWEDE NA, or LUGI based on projected earnings per hour after fuel cost. A flood and weather alert system pulls live data from Open-Meteo and overlays flood severity markers on the map during navigation.
-
-Highlights: offline-first architecture where maps, search, and AI all work without internet, a 3-tier AI fallback chain from Knowledge Base to Gemini Flash to on-device LLM to rule-based, voice commands for navigation and ride logging and hazard reports and earnings queries, a fare estimator with a real-time SULIT/PUWEDE NA/LUGI verdict, flood and weather alerts with 3 severity levels and live map markers, storage optimized from roughly 2.1 GB down to about 280 MB total, and a detailed day-by-day development log with 27 commits across 7 days.
-
-Tech stack: Flutter (Dart), OpenStreetMap via flutter_map, OSRM, Nominatim, Overpass API, SQLite (sqflite), Gemini 2.0 Flash REST API, an on-device Qwen2.5-0.5B GGUF model, Provider state management, and the Open-Meteo API.
-
-**In-Page Walkthrough (new):** the Arangkada AI card now has a "▶ Walkthrough" button that smooth-scrolls to a dedicated `#arangkada-walkthrough` section further down the same page, styled in the app's real Malate Street Style colors. It includes:
-- An embedded screen recording of the actual running app (~3:34, both WebM and MP4 sources so it plays across browsers, with a poster frame so it doesn't autoplay)
-- All 11 real in-app screenshots (Home, Search, Fare Estimator, Hazard Reporting, Dashboard, Earnings, Fuel Calculator, Booking Hotspots, Settings, Rider Safety, AI Assistant), each with a short caption describing what's shown
-- A stat strip (version, screen count, Dart file count, lines of code, budget) and a "← Back to Projects" link to return
-
-Everything — video, poster frame, and all 11 screenshots — is embedded as base64 directly inside `index.html`. No separate asset folder to keep in sync, no broken relative paths if the repo is cloned or moved; the page is still one self-contained file, just heavier (~3.2MB instead of ~190KB) because of the embedded media.
+Navigation and AI assistant for Filipino motorcycle riders. Works offline. 3-tier AI: Knowledge Base → Gemini Flash → on-device Qwen2.5-0.5B → rule-based fallback. Features: voice commands, fare estimator (SULIT/PUWEDE NA/LUGI verdict), flood and weather alerts, OpenStreetMap routing.
 
 ---
 
-## Repository Structure
+## 👤 About James Earl Medrano
 
-This Portfolio repository contains index.html (the entire website, self-contained — now ~3.2MB due to the embedded Arangkada AI walkthrough video and screenshots), README.md (this file), and BUILD_LOG.md (the full system build log documenting how this site was engineered).
-
-Everything is in one file. No npm, no webpack, no dependencies, no separate asset folders to keep in sync. See BUILD_LOG.md for the full engineering changelog on how this was built, debugged, and deployed.
-
----
-
-## Tech Stack
-
-| Layer | Technology |
+| | |
 |---|---|
-| Structure | Semantic HTML5 |
-| Styling | Pure CSS3, Custom Properties, Grid, Flexbox |
-| Fonts | Chakra Petch and Space Mono |
-| Animation | CSS keyframes, IntersectionObserver, requestAnimationFrame |
-| Canvas | HTML5 Canvas API for hex grid and radar chart |
-| AI Engine | Anthropic Claude Sonnet, model claude-sonnet-4-20250514 |
-| Sound | Web Audio API, subtle click only |
-| Deployment | Netlify, static, free tier |
-
-### Claude API Integration
-
-```javascript
-async function callClaude(prompt) {
-  const response = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 1000,
-      system: JAMES_CONTEXT,
-      messages: [{ role: 'user', content: prompt }]
-    })
-  });
-  const data = await response.json();
-  return data.content[0].text;
-}
-```
+| **Role** | AI Operations Analyst & IT Specialist |
+| **Education** | BS Information Technology, PLM Intramuros · Graduated 2025 |
+| **Location** | Malate, Manila, Philippines |
+| **Status** | Open to Work — Full-time · Remote · Hybrid · Freelance |
+| **Email** | Workwitheaaarl@gmail.com |
+| **Phone** | +63 976 318 9033 |
+| **GitHub** | github.com/youngNwis31 |
+| **Portfolio** | jamesmedrano.netlify.app |
 
 ---
 
-## How to Deploy on Netlify
-
-First-time setup: go to netlify.com, sign up with GitHub, click Add new site then Import an existing project, choose this repository, leave build command blank, set publish directory to a single dot, then click Deploy site. Rename the site to jamesmedrano in Site settings under Domain management.
-
-Updating after changes: every push to this GitHub repo auto-deploys on Netlify within about 60 seconds. Just edit index.html on GitHub directly using the pencil icon, paste the new content, and commit.
-
----
-
-## About James Earl Medrano
-
-| Field | Value |
-|---|---|
-| Role | AI Operations Analyst and IT Specialist |
-| Education | BS Information Technology, PLM, 2025 |
-| Location | Malate, Manila, Philippines |
-| Status | Open to Work, Full-time, Remote, Hybrid, Freelance |
-| Email | Workwitheaaarl@gmail.com |
-| Phone | +63 976 318 9033 |
-| GitHub | github.com/youngNwis31 |
-| LinkedIn | linkedin.com/feed/ |
-| Facebook | facebook.com/eaarlsuuu |
-| Instagram | @eaarlsu |
-| X / Twitter | @eaarlsuu |
-
-### Work Experience
-
-| Period | Role | Company |
-|---|---|---|
-| Jan to May 2026 | A.I. Analyst II (LLM) | Innodata Knowledge Services, Cebu |
-| Jan 2025 to Jan 2026 | IT Support and Case Resolution | Alorica Teleservices, Manila |
-| Feb to Jul 2024 | Jr. Technical Support | BESPOKE IT Project Corp., Makati |
-
-### Core Skills
-
-| Skill | Level |
-|---|---|
-| Prompt Engineering | 92% |
-| Data Annotation | 90% |
-| Troubleshooting | 90% |
-| LLM Evaluation | 88% |
-| Advanced Excel | 88% |
-| Documentation | 86% |
-| Power BI | 84% |
-| Networks and Servers | 82% |
-| Data Privacy | 82% |
-| CRM Systems | 80% |
-| Cybersecurity | 78% |
-
----
-
-## License
-
-MIT, free to use, modify, and share.
-
----
-
-Built with love from Malate, Manila, 2026. Powered by Anthropic Claude AI.
+*Built with ☕ and determination from Malate, Manila. Powered by Anthropic Claude AI.*
