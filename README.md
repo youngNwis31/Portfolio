@@ -2,6 +2,147 @@
 
 Live Site: https://jamesmedrano.netlify.app
 
+A unified cyberpunk-themed portfolio and AI-powered tool showcase. One single HTML file. Zero build tools. 4 live Claude AI tools. Fully mobile-friendly.
+
+---
+
+## System Build Log
+
+### 2026-06-23 — AI Dashboard Overhaul & Portfolio Upgrades
+
+**Root bug fixed:** All 17 original AI tools were silently failing due to a CORS block. The Anthropic API rejects direct browser requests without the `anthropic-dangerous-direct-browser-access: true` header. One line added to `callClaude()` — all tools now work.
+
+**Dashboard redesigned:** Removed 13 generic job-hunt tools that were serving the applicant, not showcasing the builder. Dashboard renamed from "AI Job Hunter Command Center" to "AI Tools I Built." Reframed as a capability demo, not a personal utility.
+
+| Removed (13) | Kept & Fixed (4) |
+|---|---|
+| Cover Letter Generator | ✅ Job Fit Analyzer |
+| Follow-Up Email Templates | ✅ Interview Coach |
+| ATS Resume Optimizer | ✅ Cold Email Builder |
+| Salary Negotiator | ✅ Live AI Chat |
+| Mock Video Interview | |
+| Career Path Advisor | |
+| Reference Letter Writer | |
+| Daily Job Hunt Planner | |
+| Rejection Recovery Coach | |
+| Thank-You Note Generator | |
+| Job Tracker (local state) | |
+| HR Activity Feed (static) | |
+| Portfolio Strength Scorer | |
+
+**New: "Ask James's AI" section on the main portfolio page.** A live Claude-powered chat widget now sits between the Skills and Contact sections. HR can talk directly to James's portfolio — quick-prompt buttons for availability, top skills, salary range, remote/hybrid, why hire, and projects. Added nav link in desktop and mobile menus.
+
+**Print Resume:** Clicking "Print Resume" now hides the entire portfolio and renders a clean, ATS-friendly resume layout via @media print. Matches Medrano_James_Earl_Resume.pdf in content.
+
+**Files changed:**
+- index.html — CORS fix, dashboard overhaul, Ask James AI section, print resume CSS + HTML, nav updates
+- README.md — this changelog
+- Medrano_James_Earl_Resume.pdf — standalone resume PDF (built with ReportLab)
+
+---
+
+## Features at a Glance
+
+### Portfolio Page
+
+Animated hex grid canvas background, custom cyberpunk cursor, live Manila clock (PHT), typewriter and scramble hero animation, animated skill bars and radar chart, scroll-reveal animations, social sidebar (LinkedIn, GitHub, Facebook, Instagram, X), mobile hamburger menu, light/dark theme toggle, print resume button, back-to-top button, Gmail contact form, Konami code easter egg, and **Ask James's AI** live chat section.
+
+### AI Tools I Built — 4 Live Claude-Powered Demos
+
+| # | Tool | What It Does |
+|---|---|---|
+| 1 | Job Fit Analyzer | Paste any JD, get match % + hiring recommendation |
+| 2 | Interview Coach | 10 question chips + model STAR answers |
+| 3 | Cold Email Builder | Company + angle, subject + body with copy |
+| 4 | Live AI Chat | Full Claude chat with 8 quick-prompt buttons |
+
+### Ask James's AI (on Portfolio Page)
+
+Visible Claude chat widget between Skills and Contact sections. HR can ask anything — James's full profile is injected as context.
+
+---
+
+## Ongoing Projects
+
+### CourtBook — Tennis Court Booking App
+
+Live: https://tenniscourtbooker.netlify.app
+Repo: https://github.com/youngNwis31/tennis-court-booker
+
+React 19, TypeScript, Supabase, Tailwind CSS v4. 18 real Metro Manila courts on an interactive Leaflet map. AI layer adds playing tips, court recommender quiz, price alerts, and personalized recommendations.
+
+### Arangkada AI — Rider Road Assistant
+
+Repo: https://github.com/youngNwis31/arangkada-ai
+
+Flutter-based offline-first navigation and AI assistant for Filipino motorcycle riders. v0.05 · 63 Dart files · ~14,500 LOC · 0 peso budget. 3-tier AI fallback chain (Knowledge Base → Gemini Flash → on-device Qwen2.5-0.5B → rule-based). Voice commands, fare estimator (SULIT/PUWEDE NA/LUGI verdict), flood and weather alerts.
+
+---
+
+## Repository Structure
+
+`index.html` — entire website, self-contained (~3.2MB)
+`README.md` — this file + build changelog
+`Medrano_James_Earl_Resume.pdf` — standalone resume PDF
+`BUILD_LOG.md` — original engineering build log
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Structure | Semantic HTML5 |
+| Styling | Pure CSS3, Custom Properties, Grid, Flexbox |
+| Fonts | Chakra Petch and Space Mono |
+| Animation | CSS keyframes, IntersectionObserver, requestAnimationFrame |
+| Canvas | HTML5 Canvas API for hex grid and radar chart |
+| AI Engine | Anthropic Claude Sonnet (claude-sonnet-4-20250514) |
+| Sound | Web Audio API |
+| Deployment | Netlify, static, free tier |
+
+### Claude API Integration (Fixed)
+
+```javascript
+async function callClaude(prompt) {
+  const response = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'anthropic-dangerous-direct-browser-access': 'true'
+    },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 1000,
+      system: JAMES_CONTEXT,
+      messages: [{ role: 'user', content: prompt }]
+    })
+  });
+  const data = await response.json();
+  return data.content[0].text;
+}
+```
+
+---
+
+## About James Earl Medrano
+
+| Field | Value |
+|---|---|
+| Role | AI Operations Analyst & IT Specialist |
+| Education | BS Information Technology, PLM, 2025 |
+| Location | Malate, Manila, Philippines |
+| Status | Open to Work — Full-time, Remote, Hybrid, Freelance |
+| Email | Workwitheaaarl@gmail.com |
+| Phone | +63 976 318 9033 |
+| GitHub | github.com/youngNwis31 |
+
+---
+
+Built with love from Malate, Manila. Powered by Anthropic Claude AI.# James Earl Medrano — AI Portfolio + Job Hunter Dashboard
+
+Live Site: https://jamesmedrano.netlify.app
+
 A unified cyberpunk-themed portfolio and AI-powered job hunter dashboard. One single HTML file. Zero build tools. 17 live Claude AI tools. Fully mobile-friendly.
 
 ---
