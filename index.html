@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>James Earl Medrano — AI Portfolio + Job Hunter Dashboard</title>
+<title>James Earl Medrano — AI Operations Analyst & IT Specialist</title>
 <meta name="description" content="James Earl Medrano — AI Operations Analyst, IT Specialist, BS IT 2025. Open to work in Manila, PH."/>
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
 <style>
@@ -488,7 +488,7 @@ footer{background:var(--bg);border-top:1px solid var(--line);padding:32px 0 20px
 .cpn-role{font-family:var(--fm);font-size:8px;letter-spacing:.07em;color:var(--mut);text-transform:uppercase;line-height:1.4}
 .cpn-year{font-family:var(--fm);font-size:8px;color:var(--cyan);margin-top:2px}
 /* Print */
-@media print{body{cursor:auto!important;background:#fff!important;color:#000!important}#cur,.ssb,.pts,.mglow,.ach,.tst,.sndbtn,.btt,.dlr,.trm,.cbt,.cwin,.ai-orb,.afp,#hex,.nav,.wrap{padding:0 16px!important}.sec{padding:28px 0!important}.hero{min-height:unset!important;padding:24px 0!important}.rv{opacity:1!important;transform:none!important}.sbfi{transform:scaleX(1)!important}.hud{display:none!important}.dash-wrap{display:none!important}#page-portfolio{display:block!important}}
+@media print{body>*:not(#print-resume){display:none!important}#print-resume{display:block!important}body{margin:0;padding:0;background:#fff;color:#000;cursor:auto!important}@page{margin:0.5in 0.55in}}
 /* Responsive */
 @media(max-width:980px){.dg2,.dg3,.dg4{grid-template-columns:1fr}.hg,.ag,.clo,.skgrid,.ftop{grid-template-columns:1fr}.sstrip{grid-template-columns:repeat(2,1fr)}.edi{flex-direction:column}.edb{width:100%;flex-direction:row;justify-content:flex-start;border-right:none;border-bottom:1px solid var(--lc);padding:14px}.csg{grid-template-columns:1fr}.dash-wrap{grid-template-columns:1fr}.dsb{display:none}}
 /* old mobile rule removed */
@@ -730,21 +730,10 @@ footer{background:var(--bg);border-top:1px solid var(--line);padding:32px 0 20px
     <button class="mob-drawer-x" id="mob-drawer-x">✕</button>
   </div>
   <div class="mob-tool-grid">
-    <button class="mob-tool-btn" data-dp="jobfit"><span class="mob-tool-ico">🎯</span><span class="mob-tool-lbl">Job Fit</span></button>
-    <button class="mob-tool-btn" data-dp="coverletter"><span class="mob-tool-ico">✍️</span><span class="mob-tool-lbl">Cover Letter</span></button>
+    <button class="mob-tool-btn" data-dp="jobfit"><span class="mob-tool-ico">🎯</span><span class="mob-tool-lbl">Job Fit Analyzer</span></button>
     <button class="mob-tool-btn" data-dp="interview"><span class="mob-tool-ico">🎤</span><span class="mob-tool-lbl">Interview Coach</span></button>
     <button class="mob-tool-btn" data-dp="coldemail"><span class="mob-tool-ico">📧</span><span class="mob-tool-lbl">Cold Email</span></button>
-    <button class="mob-tool-btn" data-dp="followup"><span class="mob-tool-ico">🔔</span><span class="mob-tool-lbl">Follow-Up</span></button>
-    <button class="mob-tool-btn" data-dp="ats"><span class="mob-tool-ico">🤖</span><span class="mob-tool-lbl">ATS Resume</span></button>
-    <button class="mob-tool-btn" data-dp="linkedin"><span class="mob-tool-ico">💼</span><span class="mob-tool-lbl">LinkedIn</span></button>
-    <button class="mob-tool-btn" data-dp="salary"><span class="mob-tool-ico">💰</span><span class="mob-tool-lbl">Salary Nego</span></button>
-    <button class="mob-tool-btn" data-dp="video"><span class="mob-tool-ico">🎬</span><span class="mob-tool-lbl">Mock Interview</span></button>
-    <button class="mob-tool-btn" data-dp="careerpath"><span class="mob-tool-ico">🛤️</span><span class="mob-tool-lbl">Career Path</span></button>
-    <button class="mob-tool-btn" data-dp="reference"><span class="mob-tool-ico">🏆</span><span class="mob-tool-lbl">Reference</span></button>
-    <button class="mob-tool-btn" data-dp="rewrite"><span class="mob-tool-ico">📝</span><span class="mob-tool-lbl">Bullet Rewriter</span></button>
-    <button class="mob-tool-btn" data-dp="planner"><span class="mob-tool-ico">📅</span><span class="mob-tool-lbl">Daily Plan</span></button>
-    <button class="mob-tool-btn" data-dp="rejection"><span class="mob-tool-ico">💪</span><span class="mob-tool-lbl">Rejection Coach</span></button>
-    <button class="mob-tool-btn" data-dp="thankyou"><span class="mob-tool-ico">🙏</span><span class="mob-tool-lbl">Thank-You</span></button>
+    <button class="mob-tool-btn" data-dp="aichat"><span class="mob-tool-ico">💬</span><span class="mob-tool-lbl">AI Chat</span></button>
   </div>
 </div>
 
@@ -765,7 +754,7 @@ footer{background:var(--bg);border-top:1px solid var(--line);padding:32px 0 20px
 <!-- RIGHT CONTROLS — perfectly stacked, no overlap -->
 <button class="btt" id="btt" title="Back to top">↑</button>
 <button class="sndbtn" id="sndbtn" title="Toggle sound">🔊</button>
-<button class="dlr" id="dlr">⬇ Print</button>
+<button class="dlr" id="dlr">⬇ Print Resume</button>
 <!-- LEFT CONTROLS — AI tools, separate from right -->
 <button class="ai-orb" id="ai-orb" title="Quick AI Actions">🤖</button>
 <div class="afp" id="afp">
@@ -804,7 +793,7 @@ footer{background:var(--bg);border-top:1px solid var(--line);padding:32px 0 20px
 <div class="mmen" id="mmen">
   <div class="mmen-tabs">
     <button class="mmen-tab act" id="mmt-portfolio" onclick="switchTab('portfolio');closeMM()">Portfolio</button>
-    <button class="mmen-tab" id="mmt-dashboard" onclick="switchTab('dashboard');closeMM()">AI Dashboard</button>
+    <button class="mmen-tab" id="mmt-dashboard" onclick="switchTab('dashboard');closeMM()">AI Tools I Built</button>
   </div>
   <div class="mml">
     <a href="#hire" onclick="closeMM()">Why Hire <span>→</span></a>
@@ -812,6 +801,7 @@ footer{background:var(--bg);border-top:1px solid var(--line);padding:32px 0 20px
     <a href="#experience" onclick="closeMM()">Experience <span>→</span></a>
     <a href="#projects" onclick="closeMM()">Projects <span>→</span></a>
     <a href="#skills" onclick="closeMM()">Skills <span>→</span></a>
+    <a href="#ask-ai" onclick="closeMM()" style="color:var(--cyan)">🤖 Ask James's AI <span>→</span></a>
     <a href="#contact" onclick="closeMM()">Contact <span>→</span></a>
   </div>
   <div class="mmsoc">
@@ -828,7 +818,7 @@ footer{background:var(--bg);border-top:1px solid var(--line);padding:32px 0 20px
     <div class="brand"><div class="bdot"></div>JEM</div>
     <div class="ntabs">
       <button class="ntab act" id="tab-portfolio" data-tab="portfolio">Portfolio</button>
-      <button class="ntab" id="tab-dashboard" data-tab="dashboard">🤖 AI Dashboard</button>
+      <button class="ntab" id="tab-dashboard" data-tab="dashboard">🤖 AI Tools I Built</button>
     </div>
     <ul class="nav-links" id="pnav">
       <li><a href="#hire">Why Hire</a></li>
@@ -836,6 +826,7 @@ footer{background:var(--bg);border-top:1px solid var(--line);padding:32px 0 20px
       <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#skills">Skills</a></li>
+      <li><a href="#ask-ai" style="color:var(--cyan)">🤖 Ask AI</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <div class="nav-r">
@@ -867,7 +858,7 @@ footer{background:var(--bg);border-top:1px solid var(--line);padding:32px 0 20px
       <a href="#contact" class="btn bp">▶ Hire Me</a>
       <a href="https://www.linkedin.com/feed/" target="_blank" class="btn bv">💼 LinkedIn</a>
       <a href="https://github.com/youngNwis31" target="_blank" class="btn bg">🐙 GitHub</a>
-      <button class="btn bg" onclick="switchTab('dashboard')">🤖 AI Dashboard</button>
+      <button class="btn bg" onclick="switchTab('dashboard')">🤖 AI Tools I Built</button>
     </div>
     <div class="sstrip">
       <div class="ssi"><div class="ssn" id="c1">0</div><div class="ssl">Years Active</div></div>
@@ -1301,6 +1292,44 @@ footer{background:var(--bg);border-top:1px solid var(--line);padding:32px 0 20px
   </div></div>
 </div></section>
 
+<!-- ASK JAMES'S AI — VISIBLE ON PORTFOLIO PAGE -->
+<section class="sec" id="ask-ai" style="background:linear-gradient(180deg,var(--bg2),var(--bg));padding:64px 0"><div class="wrap">
+  <div class="kk rv">// AI Demo</div>
+  <h2 class="stitle rv">Ask James's AI</h2>
+  <p class="rv" style="color:var(--mut);font-size:14px;font-weight:300;max-width:540px;line-height:1.85;margin-bottom:32px">This chat is powered by Anthropic Claude with James's full profile as context. Ask anything — skills, availability, salary, fit for a role. It answers as if James is right there.</p>
+  <div class="rv" style="max-width:720px;background:var(--panel);border:1px solid var(--lc);box-shadow:0 0 44px rgba(0,240,255,.07);overflow:hidden">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:13px 16px;border-bottom:1px solid var(--line);background:rgba(0,240,255,.03)">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,rgba(0,240,255,.14),rgba(155,77,255,.14));border:1px solid var(--lc);display:flex;align-items:center;justify-content:center;font-size:15px">🤖</div>
+        <div>
+          <div style="font-size:13px;font-weight:700;letter-spacing:.02em">James's AI Assistant</div>
+          <div style="font-family:var(--fm);font-size:8px;letter-spacing:.09em;color:var(--grn);display:flex;align-items:center;gap:4px"><span style="width:5px;height:5px;border-radius:50%;background:var(--grn);display:inline-block;animation:pip 1.4s infinite"></span>Claude AI · Online</div>
+        </div>
+      </div>
+      <div style="font-family:var(--fm);font-size:9px;color:var(--mut);letter-spacing:.08em">Powered by claude-sonnet-4-6</div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:5px;padding:10px 14px;border-bottom:1px solid var(--line);background:var(--bg2)">
+      <button onclick="portfolioChat('Is James available for work right now?')" style="font-family:var(--fm);font-size:8px;letter-spacing:.07em;color:var(--cyan);background:rgba(0,240,255,.05);border:1px solid rgba(0,240,255,.2);padding:5px 10px;cursor:pointer;text-transform:uppercase;transition:.2s" onmouseover="this.style.background='rgba(0,240,255,.12)'" onmouseout="this.style.background='rgba(0,240,255,.05)'">Available now?</button>
+      <button onclick="portfolioChat('What is James strongest skill?')" style="font-family:var(--fm);font-size:8px;letter-spacing:.07em;color:var(--cyan);background:rgba(0,240,255,.05);border:1px solid rgba(0,240,255,.2);padding:5px 10px;cursor:pointer;text-transform:uppercase;transition:.2s" onmouseover="this.style.background='rgba(0,240,255,.12)'" onmouseout="this.style.background='rgba(0,240,255,.05)'">Top skills?</button>
+      <button onclick="portfolioChat('Why should we hire James for an AI role?')" style="font-family:var(--fm);font-size:8px;letter-spacing:.07em;color:var(--cyan);background:rgba(0,240,255,.05);border:1px solid rgba(0,240,255,.2);padding:5px 10px;cursor:pointer;text-transform:uppercase;transition:.2s" onmouseover="this.style.background='rgba(0,240,255,.12)'" onmouseout="this.style.background='rgba(0,240,255,.05)'">Why hire James?</button>
+      <button onclick="portfolioChat('What salary range does James expect?')" style="font-family:var(--fm);font-size:8px;letter-spacing:.07em;color:var(--cyan);background:rgba(0,240,255,.05);border:1px solid rgba(0,240,255,.2);padding:5px 10px;cursor:pointer;text-transform:uppercase;transition:.2s" onmouseover="this.style.background='rgba(0,240,255,.12)'" onmouseout="this.style.background='rgba(0,240,255,.05)'">Salary range?</button>
+      <button onclick="portfolioChat('Can James work remotely or hybrid?')" style="font-family:var(--fm);font-size:8px;letter-spacing:.07em;color:var(--cyan);background:rgba(0,240,255,.05);border:1px solid rgba(0,240,255,.2);padding:5px 10px;cursor:pointer;text-transform:uppercase;transition:.2s" onmouseover="this.style.background='rgba(0,240,255,.12)'" onmouseout="this.style.background='rgba(0,240,255,.05)'">Remote/hybrid?</button>
+      <button onclick="portfolioChat('What projects has James built?')" style="font-family:var(--fm);font-size:8px;letter-spacing:.07em;color:var(--cyan);background:rgba(0,240,255,.05);border:1px solid rgba(0,240,255,.2);padding:5px 10px;cursor:pointer;text-transform:uppercase;transition:.2s" onmouseover="this.style.background='rgba(0,240,255,.12)'" onmouseout="this.style.background='rgba(0,240,255,.05)'">His projects?</button>
+    </div>
+    <div id="portfolio-chat-msgs" style="height:260px;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;background:var(--bg2)">
+      <div style="display:flex;gap:8px;align-items:flex-end">
+        <div style="width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,rgba(0,240,255,.14),rgba(155,77,255,.14));border:1px solid var(--lc);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0">🤖</div>
+        <div style="max-width:480px;padding:9px 13px;font-size:12px;line-height:1.65;font-weight:300;background:var(--panel);border:1px solid var(--line);border-radius:0 8px 8px 8px;color:var(--txt)">Hi! I'm James's AI assistant. I know everything about his background, skills, and availability. Ask me anything — I'm here to help you decide if James is the right fit for your team.</div>
+      </div>
+    </div>
+    <div id="portfolio-chat-typing" style="padding:4px 14px;font-family:var(--fm);font-size:8px;color:var(--mut);display:none;background:var(--bg2)">// Claude is thinking…</div>
+    <div style="display:flex;border-top:1px solid var(--line)">
+      <input id="portfolio-chat-inp" type="text" placeholder="Ask about James's skills, experience, availability, salary expectations…" style="flex:1;background:var(--panel);border:none;color:var(--txt);font-family:var(--fd);font-size:12px;padding:12px 14px;outline:none"/>
+      <button id="portfolio-chat-send" style="background:linear-gradient(135deg,var(--cyan),var(--vio));color:#020810;border:none;padding:12px 16px;font-size:10px;cursor:pointer;font-weight:700;letter-spacing:.07em;font-family:var(--fm)">SEND</button>
+    </div>
+  </div>
+</div></section>
+
 <section class="sec" id="contact" style="background:linear-gradient(180deg,var(--bg),var(--bg2))"><div class="wrap">
   <div class="kk rv">05 · Reach Out</div><h2 class="stitle rv">Contact</h2>
   <div class="clo">
@@ -1346,26 +1375,12 @@ footer{background:var(--bg);border-top:1px solid var(--line);padding:32px 0 20px
 <div class="dash-wrap">
 <div class="dsb">
   <span class="dsb-lbl">Overview</span>
-  <div class="dsi act" data-dp="overview"><span class="dsi-ico">📊</span>Dashboard<span class="dsbadge">Live</span></div>
-  <div class="dsi" data-dp="tracker"><span class="dsi-ico">📋</span>Job Tracker</div>
-  <div class="dsi" data-dp="activity"><span class="dsi-ico">🔔</span>HR Activity<span class="dsbadge">8</span></div>
+  <div class="dsi act" data-dp="overview"><span class="dsi-ico">📊</span>About This Section<span class="dsbadge">Live</span></div>
   <div class="dsb-div"></div>
-  <span class="dsb-lbl">AI Tools</span>
+  <span class="dsb-lbl">AI Tools I Built</span>
   <div class="dsi" data-dp="jobfit"><span class="dsi-ico">🎯</span>Job Fit Analyzer</div>
-  <div class="dsi" data-dp="coverletter"><span class="dsi-ico">✍️</span>Cover Letter</div>
   <div class="dsi" data-dp="interview"><span class="dsi-ico">🎤</span>Interview Coach</div>
   <div class="dsi" data-dp="coldemail"><span class="dsi-ico">📧</span>Cold Email Builder</div>
-  <div class="dsi" data-dp="followup"><span class="dsi-ico">🔔</span>Follow-Up Emails</div>
-  <div class="dsi" data-dp="ats"><span class="dsi-ico">🤖</span>ATS Optimizer</div>
-  <div class="dsi" data-dp="linkedin"><span class="dsi-ico">💼</span>LinkedIn Optimizer</div>
-  <div class="dsi" data-dp="salary"><span class="dsi-ico">💰</span>Salary Negotiator</div>
-  <div class="dsi" data-dp="video"><span class="dsi-ico">🎬</span>Mock Interview</div>
-  <div class="dsi" data-dp="careerpath"><span class="dsi-ico">🛤️</span>Career Path</div>
-  <div class="dsi" data-dp="reference"><span class="dsi-ico">🏆</span>Reference Letter</div>
-  <div class="dsi" data-dp="rewrite"><span class="dsi-ico">📝</span>Bullet Rewriter</div>
-  <div class="dsi" data-dp="planner"><span class="dsi-ico">📅</span>Daily Planner</div>
-  <div class="dsi" data-dp="rejection"><span class="dsi-ico">💪</span>Rejection Coach</div>
-  <div class="dsi" data-dp="thankyou"><span class="dsi-ico">🙏</span>Thank-You Note</div>
   <div class="dsi" data-dp="aichat"><span class="dsi-ico">💬</span>AI Chat</div>
   <div class="dsb-div"></div>
   <div class="dsb-pro"><div class="dsb-av">👨‍💻</div><div><div class="dsb-name">James Earl Medrano</div><div class="dsb-role">AI Analyst · Open</div></div></div>
@@ -1374,102 +1389,61 @@ footer{background:var(--bg);border-top:1px solid var(--line);padding:32px 0 20px
 
 <!-- OVERVIEW -->
 <div id="dp-overview" class="dpage act">
-  <div class="dph"><div class="dph-kk">Dashboard</div><div class="dph-title">AI Job Hunter Command Center</div><div class="dph-sub">17 Claude-powered tools · Real-time career intelligence</div></div>
-  <div class="dg4" style="margin-bottom:13px">
-    <div class="dstat"><div class="dstat-n" id="ov-apps">0</div><div class="dstat-l">Applications</div></div>
-    <div class="dstat"><div class="dstat-n" id="ov-int">0</div><div class="dstat-l">Interviews</div></div>
-    <div class="dstat"><div class="dstat-n" id="ov-off">0</div><div class="dstat-l">Offers</div></div>
-    <div class="dstat"><div class="dstat-n">A+</div><div class="dstat-l">Profile Score</div></div>
+  <div class="dph"><div class="dph-kk">AI Tools I Built</div><div class="dph-title">Live Claude-Powered Demos</div><div class="dph-sub">4 working tools · Built with Anthropic Claude API · Try them now</div></div>
+  <div class="dg2" style="margin-bottom:16px">
+    <div class="dc c1">
+      <div class="dc-title">What This Shows HR</div><div class="dc-sub">Why this section exists</div>
+      <p style="font-size:12px;color:var(--mut);line-height:1.75;font-weight:300;margin-bottom:12px">This section demonstrates that James can <strong style="color:var(--txt)">actually build AI-powered products</strong> — not just talk about AI. Each tool below calls the Claude API in real-time and returns useful output in seconds. Try one.</p>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:var(--mut)"><span style="color:var(--grn);font-size:11px;font-weight:700">✓</span> <span>Built with vanilla HTML, CSS, JS — no frameworks</span></div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:var(--mut)"><span style="color:var(--grn);font-size:11px;font-weight:700">✓</span> <span>Anthropic Claude Sonnet API — live, real responses</span></div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:var(--mut)"><span style="color:var(--grn);font-size:11px;font-weight:700">✓</span> <span>James's full profile injected as context — personalized output</span></div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:var(--mut)"><span style="color:var(--grn);font-size:11px;font-weight:700">✓</span> <span>Zero dependencies, deploys instantly on any static host</span></div>
+      </div>
+    </div>
+    <div class="dc c4">
+      <div class="dc-title">Career Timeline</div><div class="dc-sub">Professional journey</div>
+      <div class="crtl">
+        <div class="crtl-item"><div class="crtl-dot"></div><div class="crtl-time">2024 · Feb–Jul</div><div class="crtl-txt"><strong>Jr. Technical Support</strong><br>BESPOKE IT Corp. · Makati</div></div>
+        <div class="crtl-item"><div class="crtl-dot" style="border-color:var(--vio);box-shadow:0 0 7px var(--vio)"></div><div class="crtl-time">2025 · Jan–2026 Jan</div><div class="crtl-txt"><strong>IT Support & Case Resolution</strong><br>Alorica Teleservices · Manila</div></div>
+        <div class="crtl-item" style="padding-bottom:0"><div class="crtl-dot" style="border-color:var(--gold);box-shadow:0 0 7px var(--gold)"></div><div class="crtl-time">2026 · Jan–May</div><div class="crtl-txt"><strong>A.I. Analyst II (LLM)</strong><br>Innodata · Cebu — AI &amp; prompt engineering</div></div>
+      </div>
+    </div>
   </div>
   <div class="dg2">
-    <div>
-      <div class="dc c1">
-        <div class="dc-title">Portfolio Strength</div><div class="dc-sub">Live HR readiness rating</div>
-        <div style="text-align:center;margin-bottom:12px"><div style="font-family:var(--fm);font-size:38px;font-weight:700;background:linear-gradient(135deg,var(--cyan),var(--vio));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1">91</div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.16em;color:var(--grn);text-transform:uppercase;margin-top:2px">⭐ Top 5% Candidates</div></div>
-        <div class="sk-bars" id="ov-bars">
-          <div class="sk-r"><div class="sk-l">AI / LLM</div><div class="sk-b"><div class="sk-f" data-w="92"></div></div><div class="sk-v">92%</div></div>
-          <div class="sk-r"><div class="sk-l">Tech Skills</div><div class="sk-b"><div class="sk-f" data-w="88" style="background:linear-gradient(90deg,var(--vio),#c084fc)"></div></div><div class="sk-v">88%</div></div>
-          <div class="sk-r"><div class="sk-l">Experience</div><div class="sk-b"><div class="sk-f" data-w="85" style="background:linear-gradient(90deg,var(--gold),#fde68a)"></div></div><div class="sk-v">85%</div></div>
-          <div class="sk-r"><div class="sk-l">Education</div><div class="sk-b"><div class="sk-f" data-w="90" style="background:linear-gradient(90deg,var(--grn),#5fffb0)"></div></div><div class="sk-v">90%</div></div>
-          <div class="sk-r"><div class="sk-l">Online Presence</div><div class="sk-b"><div class="sk-f" data-w="80" style="background:linear-gradient(90deg,var(--red),#ff7096)"></div></div><div class="sk-v">80%</div></div>
-        </div>
-        <div style="margin-top:12px"><button class="btn bp" style="width:100%;justify-content:center;font-size:10px" onclick="aiQ('Give James 5 specific, actionable tips to push his portfolio score to 95%+ and make him irresistible to HR.','ov-ps-out')">💡 AI Improvement Tips</button><div class="ai-out" id="ov-ps-out"></div></div>
-      </div>
-      <div class="dc c4">
-        <div class="dc-title">Career Timeline</div><div class="dc-sub">Professional journey</div>
-        <div class="crtl">
-          <div class="crtl-item"><div class="crtl-dot"></div><div class="crtl-time">2024 · Feb–Jul</div><div class="crtl-txt"><strong>Jr. Technical Support</strong><br>BESPOKE IT Corp. · Makati</div></div>
-          <div class="crtl-item"><div class="crtl-dot" style="border-color:var(--vio);box-shadow:0 0 7px var(--vio)"></div><div class="crtl-time">2025 · Jan–2026 Jan</div><div class="crtl-txt"><strong>IT Support & Case Resolution</strong><br>Alorica Teleservices · Manila</div></div>
-          <div class="crtl-item" style="padding-bottom:0"><div class="crtl-dot" style="border-color:var(--gold);box-shadow:0 0 7px var(--gold)"></div><div class="crtl-time">2026 · Jan–May</div><div class="crtl-txt"><strong>A.I. Analyst II (LLM)</strong><br>Innodata · Cebu — AI, prompt engineering</div></div>
-        </div>
-      </div>
+    <div class="dc c2" style="cursor:pointer" onclick="switchDPage('jobfit')">
+      <div class="dc-title">🎯 Job Fit Analyzer <span style="font-size:9px;font-family:var(--fm);color:var(--cyan);letter-spacing:.1em">→ TRY IT</span></div>
+      <div class="dc-sub">Paste any JD — Claude scores James's match %</div>
+      <p style="font-size:12px;color:var(--mut);line-height:1.65;margin-top:8px;font-weight:300">Paste any job description and Claude returns a match percentage, hiring recommendation, strengths analysis, and gap identification — all personalized to James's actual resume.</p>
     </div>
-    <div>
-      <div class="dc c2">
-        <div class="dc-title">Quick AI Actions</div><div class="dc-sub">One-click career boosts</div>
-        <div style="display:flex;flex-direction:column;gap:5px">
-          <button class="btn bp" style="width:100%;justify-content:center;font-size:10px" onclick="aiQ('Write a 3-sentence elevator pitch for James that an HR reads in 10 seconds and immediately wants to interview him.','ov-qa')">⚡ Elevator Pitch</button>
-          <button class="btn bv" style="width:100%;justify-content:center;font-size:10px" onclick="aiQ('Write a powerful professional summary for James under 25 words for his resume header.','ov-qa')">📄 Resume Summary</button>
-          <button class="btn bg" style="width:100%;justify-content:center;font-size:10px" onclick="aiQ('In 3 bullet points, what makes James uniquely different from other BS IT 2025 graduates applying for AI roles?','ov-qa')">💎 What Makes Him Unique?</button>
-          <button class="btn bg" style="width:100%;justify-content:center;font-size:10px" onclick="aiQ('Give 3 compelling, punchy reasons an HR manager should shortlist James immediately.','ov-qa')">✅ Top 3 Reasons to Hire</button>
-          <button class="btn bg" style="width:100%;justify-content:center;font-size:10px" onclick="aiQ('What salary range should James target in PH for AI/IT roles in 2026? Give specific ranges by role type with negotiation tips.','ov-qa')">💰 2026 Salary Benchmark</button>
-          <button class="btn bg" style="width:100%;justify-content:center;font-size:10px" onclick="aiQ('What are the top 10 Philippine companies James should apply to for AI/IT roles in 2026 and why?','ov-qa')">🏢 Best PH Companies</button>
-        </div>
-        <div class="ai-out" id="ov-qa"></div>
-      </div>
-      <div class="dc c3">
-        <div class="dc-title">HR Activity Feed</div><div class="dc-sub">Live recruiter signals</div>
-        <div class="nfeed" id="ov-feed"></div>
-      </div>
+    <div class="dc c3" style="cursor:pointer" onclick="switchDPage('interview')">
+      <div class="dc-title">🎤 Interview Coach <span style="font-size:9px;font-family:var(--fm);color:var(--gold);letter-spacing:.1em">→ TRY IT</span></div>
+      <div class="dc-sub">Practice with real STAR-method answers</div>
+      <p style="font-size:12px;color:var(--mut);line-height:1.65;margin-top:8px;font-weight:300">Select any interview question and Claude generates a model answer using STAR method, grounded in James's real experience — not generic filler.</p>
+    </div>
+    <div class="dc c5" style="cursor:pointer" onclick="switchDPage('coldemail')">
+      <div class="dc-title">📧 Cold Email Builder <span style="font-size:9px;font-family:var(--fm);color:var(--red);letter-spacing:.1em">→ TRY IT</span></div>
+      <div class="dc-sub">Generate targeted outreach emails in seconds</div>
+      <p style="font-size:12px;color:var(--mut);line-height:1.65;margin-top:8px;font-weight:300">Enter a company name and angle. Claude writes a compelling subject line and email body under 200 words, referencing James's AI and LLM background specifically.</p>
+    </div>
+    <div class="dc c1" style="cursor:pointer" onclick="switchDPage('aichat')">
+      <div class="dc-title">💬 Chat with James's AI <span style="font-size:9px;font-family:var(--fm);color:var(--cyan);letter-spacing:.1em">→ TRY IT</span></div>
+      <div class="dc-sub">Ask anything about James's background</div>
+      <p style="font-size:12px;color:var(--mut);line-height:1.65;margin-top:8px;font-weight:300">Free-form chat powered by Claude. Ask about skills, experience, availability, projects, or salary expectations. James's full profile is the context.</p>
     </div>
   </div>
 </div>
 
-<!-- JOB TRACKER -->
-<div id="dp-tracker" class="dpage">
-  <div class="dph"><div class="dph-kk">Applications</div><div class="dph-title">Job Application Tracker</div><div class="dph-sub">Track every application, interview, and offer</div></div>
-  <div class="dc c1">
-    <div class="jtstats"><div class="jtst"><div class="jtst-n" id="jt-total">0</div><div class="jtst-l">Total</div></div><div class="jtst"><div class="jtst-n" style="color:var(--gold)" id="jt-applied">0</div><div class="jtst-l">Applied</div></div><div class="jtst"><div class="jtst-n" style="color:var(--cyan)" id="jt-interview">0</div><div class="jtst-l">Interview</div></div><div class="jtst"><div class="jtst-n" style="color:var(--grn)" id="jt-offer">0</div><div class="jtst-l">Offer</div></div></div>
-    <div class="jtlist" id="jt-list"></div>
-    <div class="jtadd"><input class="jtinp" id="jt-role" type="text" placeholder="Role title"/><input class="jtinp" id="jt-co" type="text" placeholder="Company"/><select class="jtsel" id="jt-st"><option value="applied">Applied</option><option value="interview">Interview</option><option value="offer">Offer</option><option value="rejected">Rejected</option></select><button class="jtaddbtn" id="jt-add">+ Add</button></div>
-  </div>
-  <div class="dc c4"><div class="dc-title">AI Application Strategy</div><div class="dc-sub">Personalized tips from Claude</div><button class="btn bp" style="width:100%;justify-content:center;font-size:10px" id="jt-ai-btn">🤖 Analyze My Applications</button><div class="ai-out" id="jt-ai-out"></div></div>
-</div>
+<!-- PLACEHOLDER: removed tools (tracker, activity, cover letter, followup, ats, linkedin, salary, video, career, reference, rewrite, planner, rejection, thankyou) -->
 
-<!-- HR ACTIVITY -->
-<div id="dp-activity" class="dpage">
-  <div class="dph"><div class="dph-kk">Recruiter Signals</div><div class="dph-title">HR Activity Feed</div><div class="dph-sub">Real-time recruiter attention simulation</div></div>
-  <div class="dc c1"><div class="nfeed" id="act-feed"></div></div>
-  <div class="dc c2"><div class="dc-title">AI Response Generator</div><div class="dc-sub">Perfect response to any recruiter situation</div>
-    <label class="ai-lbl">Scenario</label>
-    <select class="ai-sel" id="act-scenario"><option>HR viewed my profile but didn't reach out</option><option>Recruiter sent me a connection request</option><option>Received a generic rejection email</option><option>HR downloaded my resume but went silent</option><option>Got an interview invite from unexpected company</option><option>Recruiter asked for salary expectations upfront</option></select>
-    <button class="btn bp" style="width:100%;justify-content:center;font-size:10px" id="act-ai">💬 Generate My Response</button>
-    <div class="ai-out" id="act-out"></div>
-  </div>
-</div>
-
-<!-- JOB FIT -->
 <div id="dp-jobfit" class="dpage">
-  <div class="dph"><div class="dph-kk">AI Tool 01</div><div class="dph-title">Job Fit Analyzer</div><div class="dph-sub">Paste any JD — Claude scores James's match instantly</div></div>
+  <div class="dph"><div class="dph-kk">AI Tool 01 / 04</div><div class="dph-title">Job Fit Analyzer</div><div class="dph-sub">Paste any JD — Claude scores James's match % instantly</div></div>
   <div class="dc c1"><label class="ai-lbl">Paste Job Description</label><textarea class="ai-ta" id="jfa-jd" placeholder="Paste any job description — Claude analyzes match %, strengths, gaps, and gives a hiring recommendation…" style="min-height:150px"></textarea><button class="btn bp" style="width:100%;justify-content:center;font-size:10px" id="jfa-btn">⚡ Analyze Fit Now</button><div class="ai-out" id="jfa-out"></div></div>
 </div>
 
 <!-- COVER LETTER -->
-<div id="dp-coverletter" class="dpage">
-  <div class="dph"><div class="dph-kk">AI Tool 02</div><div class="dph-title">Cover Letter Generator</div><div class="dph-sub">Tailored, professional cover letters in seconds</div></div>
-  <div class="dc c2">
-    <label class="ai-lbl">Tone</label>
-    <div class="tone-row" id="cl-tones"><button class="tone-btn sel" data-tone="Professional">Professional</button><button class="tone-btn" data-tone="Enthusiastic">Enthusiastic</button><button class="tone-btn" data-tone="Confident &amp; Bold">Bold</button></div>
-    <label class="ai-lbl">Job Title &amp; Company</label><input class="ai-inp" id="cl-role" type="text" placeholder="e.g. Senior AI Engineer at Globe Telecom"/>
-    <label class="ai-lbl">Key Requirements (optional)</label><textarea class="ai-ta" id="cl-reqs" placeholder="Skills or requirements to highlight…" style="min-height:62px"></textarea>
-    <button class="btn bv" style="width:100%;justify-content:center;font-size:10px" id="cl-btn">✍️ Generate Cover Letter</button>
-    <div class="ai-out" id="cl-out"></div>
-  </div>
-</div>
-
-<!-- INTERVIEW -->
 <div id="dp-interview" class="dpage">
-  <div class="dph"><div class="dph-kk">AI Tool 03</div><div class="dph-title">Interview Coach</div><div class="dph-sub">Practice with Claude-powered model answers</div></div>
+  <div class="dph"><div class="dph-kk">AI Tool 02 / 04</div><div class="dph-title">Interview Coach</div><div class="dph-sub">Practice with Claude-powered model answers</div></div>
   <div class="dc c3">
     <label class="ai-lbl">Quick Questions</label>
     <div class="qchips">
@@ -1492,7 +1466,7 @@ footer{background:var(--bg);border-top:1px solid var(--line);padding:32px 0 20px
 
 <!-- COLD EMAIL -->
 <div id="dp-coldemail" class="dpage">
-  <div class="dph"><div class="dph-kk">AI Tool 04</div><div class="dph-title">Cold Email Builder</div><div class="dph-sub">Reach hiring managers directly — before the competition</div></div>
+  <div class="dph"><div class="dph-kk">AI Tool 03 / 04</div><div class="dph-title">Cold Email Builder</div><div class="dph-sub">Reach hiring managers directly — before the competition</div></div>
   <div class="dc c3">
     <label class="ai-lbl">Target Company</label><input class="ai-inp" id="ce-co" type="text" placeholder="e.g. Accenture PH, Globe, Grab"/>
     <label class="ai-lbl">Hiring Manager / Department</label><input class="ai-inp" id="ce-to" type="text" placeholder="e.g. Head of AI, IT Director…"/>
@@ -1504,178 +1478,8 @@ footer{background:var(--bg);border-top:1px solid var(--line);padding:32px 0 20px
 </div>
 
 <!-- FOLLOW-UP -->
-<div id="dp-followup" class="dpage">
-  <div class="dph"><div class="dph-kk">AI Tool 05</div><div class="dph-title">Follow-Up Email Generator</div><div class="dph-sub">Never miss a touchpoint — the right email at the right time</div></div>
-  <div class="dc c4">
-    <label class="ai-lbl">Select Your Situation</label>
-    <div class="fu-steps" id="fu-steps">
-      <div class="fu-step act" data-s="after applying online 7 days ago with no response"><span class="fu-day">Day 7</span><span class="fu-lbl">Applied online — no response</span></div>
-      <div class="fu-step" data-s="after a first interview 2 days ago"><span class="fu-day">Day 2</span><span class="fu-lbl">After first interview</span></div>
-      <div class="fu-step" data-s="after a final round interview, waiting for decision"><span class="fu-day">Day 5</span><span class="fu-lbl">After final interview</span></div>
-      <div class="fu-step" data-s="after receiving a job offer and needing more time to decide"><span class="fu-day">Same</span><span class="fu-lbl">Received offer — need time</span></div>
-      <div class="fu-step" data-s="after being rejected, following up to stay on radar for future roles"><span class="fu-day">Day 3</span><span class="fu-lbl">After rejection — stay connected</span></div>
-      <div class="fu-step" data-s="after a recruiter viewed my LinkedIn but didn't message me"><span class="fu-day">Day 1</span><span class="fu-lbl">Recruiter viewed LinkedIn — silent</span></div>
-    </div>
-    <label class="ai-lbl">Company &amp; Role</label><input class="ai-inp" id="fu-co" type="text" placeholder="e.g. AI Analyst at Convergys PH"/>
-    <button class="btn bp" style="width:100%;justify-content:center;font-size:10px" id="fu-btn">🔔 Generate Follow-Up Email</button>
-    <div class="ai-out" id="fu-out"></div>
-  </div>
-</div>
-
-<!-- ATS -->
-<div id="dp-ats" class="dpage">
-  <div class="dph"><div class="dph-kk">AI Tool 06</div><div class="dph-title">ATS Resume Optimizer</div><div class="dph-sub">Beat the bots, reach the humans</div></div>
-  <div class="dg2">
-    <div class="dc c2"><div class="dc-title">Current ATS Audit</div><div class="dc-sub">James's resume check</div>
-      <div class="ats-list"><div class="ats-c ok">Strong action verbs throughout</div><div class="ats-c ok">Quantified achievements present</div><div class="ats-c ok">Education section complete</div><div class="ats-c ok">Contact info clearly listed</div><div class="ats-c ok">Work history reverse-chronological</div><div class="ats-c wn">More industry keywords needed</div><div class="ats-c wn">Certifications section missing</div><div class="ats-c no">GitHub URL not in header</div><div class="ats-c no">LinkedIn URL missing from header</div></div>
-    </div>
-    <div class="dc c1"><div class="dc-title">Generate ATS Resume</div><div class="dc-sub">Keyword-rich, fully optimized</div>
-      <label class="ai-lbl">Target Keywords</label><input class="ai-inp" id="ats-kw" type="text" placeholder="e.g. LLM, prompt engineering, Power BI…"/>
-      <label class="ai-lbl">Target Role</label><input class="ai-inp" id="ats-role" type="text" placeholder="e.g. AI Operations Analyst"/>
-      <button class="btn bp" style="width:100%;justify-content:center;font-size:10px" id="ats-btn">🤖 Generate ATS Resume</button>
-      <div class="ai-out" id="ats-out"></div>
-    </div>
-  </div>
-</div>
-
-<!-- LINKEDIN -->
-<div id="dp-linkedin" class="dpage">
-  <div class="dph"><div class="dph-kk">AI Tool 07</div><div class="dph-title">LinkedIn Optimizer</div><div class="dph-sub">Headline + About section that gets recruiters clicking</div></div>
-  <div class="dc c5">
-    <label class="ai-lbl">Optimize For</label>
-    <div class="chips" id="li-chips"><span class="chip" data-v="AI and LLM roles">AI / LLM</span><span class="chip" data-v="IT support and operations">IT Support</span><span class="chip" data-v="data analyst and BI roles">Data / BI</span><span class="chip" data-v="remote tech jobs globally">Remote</span><span class="chip" data-v="cybersecurity roles">Cybersecurity</span><span class="chip" data-v="Philippine tech companies">PH Tech</span></div>
-    <label class="ai-lbl">Target Role / Company</label><input class="ai-inp" id="li-target" type="text" placeholder="e.g. AI Product Manager at a Manila fintech startup"/>
-    <button class="btn" style="background:linear-gradient(135deg,#0a66c2,#004a9f);color:#fff;width:100%;justify-content:center;font-size:10px" id="li-btn">💼 Optimize My LinkedIn</button>
-    <div class="ai-out" id="li-out"></div>
-  </div>
-</div>
-
-<!-- SALARY -->
-<div id="dp-salary" class="dpage">
-  <div class="dph"><div class="dph-kk">AI Tool 08</div><div class="dph-title">Salary Negotiator</div><div class="dph-sub">Scripts and strategies to get what you deserve</div></div>
-  <div class="dg2">
-    <div class="dc c3">
-      <label class="ai-lbl">Company's Offer (PHP/month)</label><input class="ai-inp" id="sal-offer" type="number" placeholder="e.g. 35000" min="1"/>
-      <label class="ai-lbl">James's Target (PHP/month)</label><input class="ai-inp" id="sal-target" type="number" placeholder="e.g. 55000" min="1"/>
-      <label class="ai-lbl">Role &amp; Company</label><input class="ai-inp" id="sal-role" type="text" placeholder="e.g. AI Analyst at TechCorp Manila"/>
-      <button class="btn" style="background:linear-gradient(135deg,#00d4ff,#0099cc);color:#020810;width:100%;justify-content:center;font-size:10px" id="sal-btn">💰 Get Negotiation Script</button>
-      <div class="ai-out" id="sal-out"></div>
-    </div>
-    <div class="dc c1"><div class="dc-title">2026 PH Benchmarks</div><div class="dc-sub">Current market rates</div>
-      <div class="sal-bench">
-        <div class="sal-bench-r"><span style="color:var(--mut)">AI Analyst (Entry)</span><span style="font-weight:600">PHP 25–40K</span></div>
-        <div class="sal-bench-r"><span style="color:var(--mut)">AI Analyst (Mid)</span><span style="color:var(--cyan);font-weight:600">PHP 40–65K ★</span></div>
-        <div class="sal-bench-r"><span style="color:var(--mut)">Prompt Engineer</span><span style="font-weight:600">PHP 45–80K</span></div>
-        <div class="sal-bench-r"><span style="color:var(--mut)">IT Support (Senior)</span><span style="font-weight:600">PHP 35–55K</span></div>
-        <div class="sal-bench-r"><span style="color:var(--mut)">Data Analyst (Mid)</span><span style="font-weight:600">PHP 38–58K</span></div>
-        <div class="sal-bench-r"><span style="color:var(--mut)">Remote (US client)</span><span style="color:var(--grn);font-weight:600">PHP 60–120K</span></div>
-      </div>
-      <div style="margin-top:9px;font-family:var(--fm);font-size:8px;color:rgba(0,255,136,.36);letter-spacing:.08em;text-transform:uppercase">★ James's current range</div>
-    </div>
-  </div>
-</div>
-
-<!-- VIDEO INTERVIEW -->
-<div id="dp-video" class="dpage">
-  <div class="dph"><div class="dph-kk">AI Tool 09</div><div class="dph-title">Mock Video Interview</div><div class="dph-sub">Practice with 10 progressively harder questions</div></div>
-  <div class="dc c1">
-    <div class="vidscreen"><div class="vid-sub" id="vid-label">// Press Start Interview to begin</div><div class="vid-q" id="vid-q">Your mock interviewer is ready. Press Start Interview and answer each question out loud as if it's the real thing.</div></div>
-    <div class="vid-ctrl">
-      <div class="vid-rec" id="vid-rec">● REC · LIVE</div>
-      <div style="font-family:var(--fm);font-size:9px;color:var(--mut);letter-spacing:.09em" id="vid-ctr">Q 0 / 10</div>
-      <div style="display:flex;gap:6px">
-        <button class="btn bp" style="padding:7px 14px;font-size:10px" id="vid-next">▶ Start Interview</button>
-        <button class="btn bg" style="padding:7px 14px;font-size:10px" id="vid-ans">💡 Model Answer</button>
-      </div>
-    </div>
-    <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:9px">
-      <span style="font-family:var(--fm);font-size:8px;color:var(--mut);background:rgba(0,240,255,.03);border:1px solid rgba(0,240,255,.1);padding:3px 7px;text-transform:uppercase;letter-spacing:.07em">🎯 STAR Method</span>
-      <span style="font-family:var(--fm);font-size:8px;color:var(--mut);background:rgba(0,240,255,.03);border:1px solid rgba(0,240,255,.1);padding:3px 7px;text-transform:uppercase;letter-spacing:.07em">👁️ Eye Contact</span>
-      <span style="font-family:var(--fm);font-size:8px;color:var(--mut);background:rgba(0,240,255,.03);border:1px solid rgba(0,240,255,.1);padding:3px 7px;text-transform:uppercase;letter-spacing:.07em">⏱️ 2-Min Max</span>
-      <span style="font-family:var(--fm);font-size:8px;color:var(--mut);background:rgba(0,240,255,.03);border:1px solid rgba(0,240,255,.1);padding:3px 7px;text-transform:uppercase;letter-spacing:.07em">💪 Be Specific</span>
-    </div>
-    <div class="ai-out" id="vid-out"></div>
-  </div>
-</div>
-
-<!-- CAREER PATH -->
-<div id="dp-careerpath" class="dpage">
-  <div class="dph"><div class="dph-kk">AI Tool 10</div><div class="dph-title">Career Path Advisor</div><div class="dph-sub">AI-mapped roadmap to your dream role</div></div>
-  <div class="dc c4">
-    <div class="cpn-row"><div class="cpn"><div class="cpn-dot">🛠️</div><div class="cpn-role">Jr. IT Support</div><div class="cpn-year">2024</div></div><div class="cpn"><div class="cpn-dot">📊</div><div class="cpn-role">IT Support BPO</div><div class="cpn-year">2025</div></div><div class="cpn"><div class="cpn-dot">🤖</div><div class="cpn-role">AI Analyst II</div><div class="cpn-year">2026</div></div><div class="cpn"><div class="cpn-dot">❓</div><div class="cpn-role">Next Step?</div><div class="cpn-year">2027+</div></div></div>
-    <label class="ai-lbl">Dream Role / Goal</label><input class="ai-inp" id="cp-goal" type="text" placeholder="e.g. AI Product Manager, CTO, Lead LLM Engineer…"/>
-    <label class="ai-lbl">Timeframe</label>
-    <select class="ai-sel" id="cp-time"><option>1 year</option><option>2 years</option><option selected>3-5 years</option><option>5-10 years</option></select>
-    <button class="btn" style="background:linear-gradient(135deg,#ff8c42,#ff5722);color:#fff;width:100%;justify-content:center;font-size:10px" id="cp-btn">🛤️ Map My Career Path</button>
-    <div class="ai-out" id="cp-out"></div>
-  </div>
-</div>
-
-<!-- REFERENCE -->
-<div id="dp-reference" class="dpage">
-  <div class="dph"><div class="dph-kk">AI Tool 11</div><div class="dph-title">Reference Letter Generator</div><div class="dph-sub">Professional reference letters from any perspective</div></div>
-  <div class="dc c5">
-    <label class="ai-lbl">Reference Type</label>
-    <select class="ai-sel" id="ref-type"><option>Former Supervisor — LLM Analyst at Innodata</option><option>IT Support Manager — Alorica Teleservices</option><option>Technical Lead — BESPOKE IT Corp.</option><option>Academic Reference — PLM Professor</option><option>Peer / Senior Colleague</option></select>
-    <label class="ai-lbl">Applying For</label><input class="ai-inp" id="ref-role" type="text" placeholder="e.g. Senior AI Analyst at Convergys PH"/>
-    <button class="btn bp" style="width:100%;justify-content:center;font-size:10px" id="ref-btn">🏆 Generate Reference Letter</button>
-    <div class="ai-out" id="ref-out"></div>
-  </div>
-</div>
-
-<!-- REWRITE -->
-<div id="dp-rewrite" class="dpage">
-  <div class="dph"><div class="dph-kk">AI Tool 12</div><div class="dph-title">Resume Bullet Rewriter</div><div class="dph-sub">Transform weak bullets into impact-driven statements</div></div>
-  <div class="dc c2">
-    <label class="ai-lbl">Impact Style</label>
-    <div class="tone-row" id="rb-tones"><button class="tone-btn sel" data-tone="ATS-optimized">ATS Optimized</button><button class="tone-btn" data-tone="Executive-level">Executive</button><button class="tone-btn" data-tone="Startup-focused">Startup</button></div>
-    <label class="ai-lbl">Paste Original Bullets</label>
-    <textarea class="ai-ta" id="rb-inp" placeholder="e.g.&#10;- Helped with AI projects&#10;- Worked on data tasks&#10;- Supported IT team" style="min-height:100px"></textarea>
-    <button class="btn bv" style="width:100%;justify-content:center;font-size:10px" id="rb-btn">📝 Rewrite for Impact</button>
-    <div class="ai-out" id="rb-out"></div>
-  </div>
-</div>
-
-<!-- DAILY PLANNER -->
-<div id="dp-planner" class="dpage">
-  <div class="dph"><div class="dph-kk">AI Tool 13</div><div class="dph-title">Daily Job Hunt Planner</div><div class="dph-sub">Personalized timed action plan for today</div></div>
-  <div class="dc c1">
-    <label class="ai-lbl">Available Time Today</label>
-    <select class="ai-sel" id="djp-hours"><option>1 hour</option><option selected>2-3 hours</option><option>Half day</option><option>Full day</option></select>
-    <label class="ai-lbl">Current Job Search Stage</label>
-    <select class="ai-sel" id="djp-stage"><option>Just starting — building resume &amp; profiles</option><option>Actively applying — sending applications daily</option><option>In interviews — preparing &amp; following up</option><option>Post-offer — negotiating or deciding</option></select>
-    <button class="btn bp" style="width:100%;justify-content:center;font-size:10px" id="djp-btn">📅 Generate Today's Plan</button>
-    <div class="ai-out" id="djp-out"></div>
-  </div>
-</div>
-
-<!-- REJECTION COACH -->
-<div id="dp-rejection" class="dpage">
-  <div class="dph"><div class="dph-kk">AI Tool 14</div><div class="dph-title">Rejection Recovery Coach</div><div class="dph-sub">Turn every setback into fuel</div></div>
-  <div class="dc c2">
-    <label class="ai-lbl">What Happened?</label>
-    <select class="ai-sel" id="rrc-type"><option>Got rejected after applying (no interview)</option><option>Rejected after first interview</option><option>Rejected after final interview</option><option>Ghosted — no response for weeks</option><option>Offer rescinded / pulled</option><option>Lost to another candidate</option></select>
-    <label class="ai-lbl">Role / Company</label><input class="ai-inp" id="rrc-role" type="text" placeholder="e.g. AI Analyst at Globe Telecom"/>
-    <button class="btn bv" style="width:100%;justify-content:center;font-size:10px" id="rrc-btn">💪 Get Recovery Plan</button>
-    <div class="ai-out" id="rrc-out"></div>
-  </div>
-</div>
-
-<!-- THANK YOU NOTE -->
-<div id="dp-thankyou" class="dpage">
-  <div class="dph"><div class="dph-kk">AI Tool 15</div><div class="dph-title">Thank-You Note Generator</div><div class="dph-sub">Post-interview edge — stand out from every other candidate</div></div>
-  <div class="dc c3">
-    <label class="ai-lbl">Interviewer Name &amp; Title</label><input class="ai-inp" id="ty-name" type="text" placeholder="e.g. Ms. Sarah Cruz, HR Director"/>
-    <label class="ai-lbl">Company &amp; Role</label><input class="ai-inp" id="ty-role" type="text" placeholder="e.g. AI Analyst at Accenture PH"/>
-    <label class="ai-lbl">Something Specific from the Interview</label><input class="ai-inp" id="ty-detail" type="text" placeholder="e.g. We discussed the AI roadmap for 2027"/>
-    <button class="btn bgd" style="width:100%;justify-content:center;font-size:10px" id="ty-btn">🙏 Write Thank-You Note</button>
-    <div class="ai-out" id="ty-out"></div>
-  </div>
-</div>
-
-<!-- AI CHAT -->
 <div id="dp-aichat" class="dpage">
-  <div class="dph"><div class="dph-kk">AI Tool 16</div><div class="dph-title">Live Claude AI Chat</div><div class="dph-sub">Ask anything about James — for HR, recruiters, and collaborators</div></div>
+  <div class="dph"><div class="dph-kk">AI Tool 04 / 04</div><div class="dph-title">Live Claude AI Chat</div><div class="dph-sub">Ask anything about James — for HR, recruiters, and collaborators</div></div>
   <div class="dc c1" style="padding:0">
     <div style="display:flex;flex-wrap:wrap;gap:4px;padding:11px 14px;border-bottom:1px solid var(--line)">
       <button class="btn bg" style="padding:5px 10px;font-size:10px" onclick="sendChat('What makes James a standout AI candidate?')">🌟 Standout Candidate</button>
@@ -1726,7 +1530,7 @@ async function callClaude(prompt) {
   try {
     var r = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'anthropic-dangerous-direct-browser-access': 'true' },
       body: JSON.stringify({
         model: 'claude-sonnet-4-6',
         max_tokens: 1000,
@@ -1788,6 +1592,63 @@ window.switchTab = function(tab) {
   if (tab === 'dashboard') setTimeout(animDashBars, 200);
   window.scrollTo(0, 0);
 };
+
+/* ═══ SWITCH TO DASHBOARD + SPECIFIC PANEL ═══ */
+window.switchDPage = function(panelId) {
+  switchTab('dashboard');
+  setTimeout(function() { showDPage(panelId); }, 100);
+};
+
+/* ═══ PORTFOLIO PAGE CHAT (Ask James's AI) ═══ */
+(function() {
+  var msgs = document.getElementById('portfolio-chat-msgs');
+  var inp = document.getElementById('portfolio-chat-inp');
+  var sendBtn = document.getElementById('portfolio-chat-send');
+  var typing = document.getElementById('portfolio-chat-typing');
+
+  function addMsg(text, isUser) {
+    var wrap = document.createElement('div');
+    wrap.style.cssText = 'display:flex;gap:8px;align-items:flex-end' + (isUser ? ';flex-direction:row-reverse' : '');
+    var av = document.createElement('div');
+    av.style.cssText = 'width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;border:1px solid var(--line)';
+    av.style.background = isUser ? 'linear-gradient(135deg,rgba(0,240,255,.1),rgba(155,77,255,.1))' : 'linear-gradient(135deg,rgba(0,240,255,.14),rgba(155,77,255,.14))';
+    av.textContent = isUser ? '👤' : '🤖';
+    var bub = document.createElement('div');
+    bub.style.cssText = 'max-width:480px;padding:9px 13px;font-size:12px;line-height:1.65;font-weight:300;';
+    if (isUser) {
+      bub.style.cssText += 'background:linear-gradient(135deg,rgba(0,240,255,.1),rgba(155,77,255,.1));border:1px solid var(--lc);border-radius:8px 0 8px 8px;color:var(--cyan)';
+    } else {
+      bub.style.cssText += 'background:var(--panel);border:1px solid var(--line);border-radius:0 8px 8px 8px;color:var(--txt)';
+    }
+    bub.style.whiteSpace = 'pre-wrap';
+    bub.style.wordBreak = 'break-word';
+    bub.textContent = text;
+    wrap.appendChild(av);
+    wrap.appendChild(bub);
+    msgs.appendChild(wrap);
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+
+  window.portfolioChat = function(q) {
+    if (!q) q = inp.value.trim();
+    if (!q) return;
+    inp.value = '';
+    addMsg(q, true);
+    if (typing) typing.style.display = 'block';
+    callClaude(q).then(function(r) {
+      if (typing) typing.style.display = 'none';
+      addMsg(r, false);
+    });
+  };
+
+  if (sendBtn) {
+    sendBtn.addEventListener('click', function() { portfolioChat(null); });
+  }
+  if (inp) {
+    inp.addEventListener('keydown', function(e) { if (e.key === 'Enter') portfolioChat(null); });
+  }
+})();
+
 document.querySelectorAll('.ntab').forEach(function(t) {
   t.addEventListener('click', function() { switchTab(t.dataset.tab); });
 });
@@ -2711,5 +2572,82 @@ setTimeout(function() {
 
 })();
 </script>
+<!-- PRINT RESUME — only visible when Ctrl+P / Print is triggered -->
+<div id="print-resume" style="display:none;font-family:Helvetica,Arial,sans-serif;color:#1a1a2e;font-size:9pt;line-height:1.45">
+
+  <!-- HEADER -->
+  <div style="border-bottom:2px solid #00b4c8;padding-bottom:8px;margin-bottom:12px">
+    <div style="font-size:22pt;font-weight:700;color:#1a1a2e;margin-bottom:2px;letter-spacing:-0.5px">James Earl Medrano</div>
+    <div style="font-size:10.5pt;color:#00b4c8;margin-bottom:4px">AI Operations Analyst &amp; Technical Specialist</div>
+    <div style="font-size:8.5pt;color:#6b7280">Workwitheaaarl@gmail.com &nbsp;·&nbsp; +63 976 318 9033 &nbsp;·&nbsp; Malate, Manila, Philippines &nbsp;·&nbsp; github.com/youngNwis31 &nbsp;·&nbsp; jamesmedrano.netlify.app</div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div style="font-size:8pt;font-weight:700;letter-spacing:1.5px;color:#00b4c8;text-transform:uppercase;margin-bottom:3px">Work Experience</div>
+  <div style="border-bottom:0.8px solid #00b4c8;margin-bottom:7px"></div>
+
+  <div style="margin-bottom:8px">
+    <div style="font-size:10pt;font-weight:700;color:#1a1a2e">A.I. Analyst II (LLM)</div>
+    <div style="font-size:8.5pt;color:#6b7280;margin-bottom:3px">Innodata Knowledge Services, Inc. · Mandaue City, Cebu &nbsp;|&nbsp; <strong>Jan 2026 – May 2026</strong></div>
+    <ul style="margin:0;padding-left:16px;color:#3a3a5c">
+      <li>Engineered and refined complex prompts to optimize the performance, accuracy, and logic of Large Language Models (LLMs).</li>
+      <li>Executed high-quality data annotation and side-by-side response analysis to support supervised fine-tuning and AI system evaluation.</li>
+      <li>Conducted rigorous testing of AI models to identify vulnerabilities, ensure quality assurance, and improve overall model behavior.</li>
+    </ul>
+  </div>
+
+  <div style="margin-bottom:8px">
+    <div style="font-size:10pt;font-weight:700;color:#1a1a2e">IT Support &amp; Case Resolution</div>
+    <div style="font-size:8.5pt;color:#6b7280;margin-bottom:3px">Alorica Teleservices, Inc. · Cyberpod Centris, Manila &nbsp;|&nbsp; <strong>Jan 2025 – Jan 2026</strong></div>
+    <ul style="margin:0;padding-left:16px;color:#3a3a5c">
+      <li>Managed end-to-end IT case resolutions and complex financial disputes for an international credit card provider, leveraging Salesforce and Optis for rapid, accurate, and compliant account remediation.</li>
+      <li>Executed critical data security and risk mitigation actions, including tracing fraudulent credit card transactions and implementing immediate account freezes.</li>
+      <li>Leveraged PowerBI and Advanced Excel to conduct deep-dive data analysis, tracking transaction anomalies and translating complex data sets into actionable operational reports for leadership.</li>
+      <li>Provided comprehensive technical support and computer troubleshooting, diagnosing hardware, software, and network endpoint issues to minimize system downtime.</li>
+    </ul>
+  </div>
+
+  <div style="margin-bottom:10px">
+    <div style="font-size:10pt;font-weight:700;color:#1a1a2e">Jr. Technical Support</div>
+    <div style="font-size:8.5pt;color:#6b7280;margin-bottom:3px">BESPOKE IT Project Corp. · GC Corporate Plaza, Makati &nbsp;|&nbsp; <strong>Feb 2024 – Jul 2024</strong></div>
+    <ul style="margin:0;padding-left:16px;color:#3a3a5c">
+      <li>Deployed and configured secure workspaces, POS systems, servers, and firewalls within a fast-paced cybersecurity environment.</li>
+      <li>Diagnosed and resolved complex hardware and software issues to minimize downtime and ensure seamless network operations.</li>
+      <li>Developed comprehensive technical documentation to support system analysis, standardize troubleshooting procedures, and improve team efficiency.</li>
+    </ul>
+  </div>
+
+  <!-- SKILLS -->
+  <div style="font-size:8pt;font-weight:700;letter-spacing:1.5px;color:#00b4c8;text-transform:uppercase;margin-bottom:3px">Core Skills &amp; Competencies</div>
+  <div style="border-bottom:0.8px solid #00b4c8;margin-bottom:7px"></div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 20px;margin-bottom:10px;font-size:8.5pt">
+    <div><strong style="color:#1a1a2e">Artificial Intelligence &amp; LLM</strong><br><span style="color:#6b7280">Advanced Prompt Engineering · RLHF &amp; Data Annotation · Side-by-Side Response Analysis · Vulnerability &amp; QA Testing · AI Model Evaluation</span></div>
+    <div><strong style="color:#1a1a2e">Software &amp; Web Engineering</strong><br><span style="color:#6b7280">HTML5 · CSS3 · JavaScript · Web APIs · Frontend Dev · Git &amp; GitHub · Netlify CI/CD · React · TypeScript · Flutter/Dart</span></div>
+    <div><strong style="color:#1a1a2e">Technical Support &amp; Infrastructure</strong><br><span style="color:#6b7280">Enterprise Hardware Troubleshooting · Network &amp; Endpoint Security · POS Systems · Firewall Admin · Technical Documentation &amp; SOPs</span></div>
+    <div><strong style="color:#1a1a2e">Data Analytics &amp; Financial IT</strong><br><span style="color:#6b7280">PowerBI · Advanced Excel · Salesforce · Optis · Data Dashboarding · Fraud Mitigation · Risk Analysis · CRM Management</span></div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div style="font-size:8pt;font-weight:700;letter-spacing:1.5px;color:#00b4c8;text-transform:uppercase;margin-bottom:3px">Education</div>
+  <div style="border-bottom:0.8px solid #00b4c8;margin-bottom:7px"></div>
+  <div style="margin-bottom:10px">
+    <div style="font-size:10pt;font-weight:700;color:#1a1a2e">Bachelor of Science in Information Technology</div>
+    <div style="font-size:8.5pt;color:#6b7280">Pamantasan ng Lungsod ng Maynila (PLM) · Intramuros, Manila &nbsp;|&nbsp; <strong>Graduated 2025</strong></div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div style="font-size:8pt;font-weight:700;letter-spacing:1.5px;color:#00b4c8;text-transform:uppercase;margin-bottom:3px">Portfolio Projects</div>
+  <div style="border-bottom:0.8px solid #00b4c8;margin-bottom:7px"></div>
+
+  <div style="font-size:8.5pt;margin-bottom:5px"><strong style="color:#1a1a2e">AI Portfolio + Live Tool Dashboard</strong> — jamesmedrano.netlify.app<br><span style="color:#6b7280">Single-file HTML/CSS/JS · 4 live Claude API tools · Zero dependencies · Self-contained 3.2MB</span></div>
+  <div style="font-size:8.5pt;margin-bottom:5px"><strong style="color:#1a1a2e">CourtBook — Tennis Court Booking App</strong> — tenniscourtbooker.netlify.app<br><span style="color:#6b7280">React 19 · TypeScript · Supabase · Tailwind CSS v4 · Leaflet.js · 18 real Metro Manila courts · AI layer</span></div>
+  <div style="font-size:8.5pt;margin-bottom:10px"><strong style="color:#1a1a2e">Arangkada AI — Rider Road Assistant</strong> — github.com/youngNwis31/arangkada-ai<br><span style="color:#6b7280">Flutter/Dart · Offline-first · 3-tier AI (Gemini Flash + on-device LLM) · OpenStreetMap · 63 Dart files · ~14,500 LOC</span></div>
+
+  <!-- ATS FOOTER -->
+  <div style="border-top:0.8px solid #e5e7eb;padding-top:6px;font-size:7.5pt;color:#9ca3af">
+    <strong>Tech Toolkit:</strong> Git · GitHub · Netlify · HTML5 · CSS3 · JavaScript · React · TypeScript · Flutter · Dart · Salesforce · Optis · PowerBI · Advanced Excel · LLM Fine-Tuning · Prompt Engineering · Data Annotation · RLHF · AI QA · Network Security · IT Support · Risk Analysis
+  </div>
+</div>
 </body>
 </html>
