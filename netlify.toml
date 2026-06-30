@@ -1,0 +1,9 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# Pretty URL: the site calls /api/claude, which runs the function
+[[redirects]]
+  from = "/api/claude"
+  to = "/.netlify/functions/claude"
+  status = 200
