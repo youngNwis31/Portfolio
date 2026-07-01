@@ -1225,30 +1225,9 @@ async function runProofDemo() {
   outDiv.style.display = 'block';
   resultDiv.textContent = '⚡ Building your blueprint...';
   resultDiv.style.color = 'var(--mut)';
-  try {
-    var r = await fetch((window.AI_ENDPOINT||'/api/claude'), {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': getKey(),
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true'
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 1000,
-        system: AC_SYSTEM,
-        messages: [{ role: 'user', content: input.value.trim() }]
-      })
-    });
-    var d = await r.json();
-    var text = d.content && d.content[0] ? d.content[0].text : 'Could not generate blueprint. Please try again in a moment.';
-    resultDiv.textContent = text;
-    resultDiv.style.color = 'var(--txt)';
-  } catch(e) {
-    resultDiv.textContent = 'Connection error: ' + e.message;
-    resultDiv.style.color = 'var(--red)';
-  }
+  var text = await callClaude(input.value.trim(), AC_SYSTEM);
+  resultDiv.textContent = text;
+  resultDiv.style.color = 'var(--txt)';
 }
 
 // ── AUTOMATION CONSULTANT ─────────────────────────────────────────
@@ -1266,27 +1245,8 @@ async function runAutoConsult() {
   var resultDiv = document.getElementById('ac-result');
   outDiv.style.display = 'block';
   resultDiv.textContent = '⚡ Building your automation blueprint...';
-  try {
-    var r = await fetch((window.AI_ENDPOINT||'/api/claude'), {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': getKey(),
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true'
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 1000,
-        system: AC_SYSTEM,
-        messages: [{ role: 'user', content: input }]
-      })
-    });
-    var d = await r.json();
-    resultDiv.textContent = d.content[0].text;
-  } catch(e) {
-    resultDiv.textContent = 'Error: ' + e.message;
-  }
+  var out = await callClaude(input, AC_SYSTEM);
+  resultDiv.textContent = out;
 }
 
 
