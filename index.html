@@ -337,7 +337,7 @@
     </div>
     <div style="display:flex;gap:10px;flex-wrap:wrap">
       <a href="#contact" onclick="navTo('contact')" class="btn bp">▶ Let's Talk</a>
-      <button class="btn" style="border-color:rgba(0,240,255,.4);color:var(--cyan)" onclick="switchDPage('autoconsult')">⚡ Try AI Consultant</button>
+      <button class="btn bp" style="font-size:11px;padding:11px 20px" onclick="switchDPage('autoconsult')">⚡ Try AI Consultant</button>
     </div>
   </div>
 </div>
@@ -804,7 +804,7 @@
       <textarea id="proof-input" style="width:100%;padding:12px 14px;background:var(--bg2);border:1px solid var(--line);color:var(--txt);font-family:var(--fd);font-size:13px;resize:vertical;min-height:80px;box-sizing:border-box;outline:none" placeholder="Or type your own: describe a manual process that wastes your team's time..." onfocus="this.style.borderColor='rgba(0,240,255,.4)'" onblur="this.style.borderColor='var(--line)'"></textarea>
       <div style="display:flex;gap:10px;margin-top:10px;align-items:center">
         <button class="btn bp" onclick="runProofDemo()" style="flex-shrink:0">⚡ Get My Automation Blueprint</button>
-        <div style="font-family:var(--fm);font-size:9px;color:var(--mut)">Powered by Claude Sonnet · Your API key required · Takes ~5 seconds</div>
+        <div style="font-family:var(--fm);font-size:9px;color:var(--mut)">Powered by Claude Sonnet · No setup needed · ~5 seconds</div>
       </div>
       <div id="proof-out" style="display:none;margin-top:16px">
         <div style="font-family:var(--fm);font-size:8px;color:var(--cyan);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">// Blueprint from James's AI</div>
@@ -2165,6 +2165,8 @@
   <div class="dsb-div"></div>
   <span class="dsb-lbl">AI Tools I Built</span>
   <div class="dsi" data-dp="jobfit"><span class="dsi-ico">🎯</span>Job Fit Analyzer</div>
+  <div class="dsi" data-dp="interview"><span class="dsi-ico">🎤</span>Interview Coach</div>
+  <div class="dsi" data-dp="coldemail"><span class="dsi-ico">📧</span>Cold Email Builder</div>
   <div class="dsi" data-dp="aichat"><span class="dsi-ico">💬</span>AI Chat</div>
   <div class="dsi" data-dp="autoconsult"><span class="dsi-ico">⚡</span>Automation Consultant<span class="dsbadge">New</span></div>
   <div class="dsb-div"></div>
@@ -2222,13 +2224,13 @@
 <!-- PLACEHOLDER: removed tools (tracker, activity, cover letter, followup, ats, linkedin, salary, video, career, reference, rewrite, planner, rejection, thankyou) -->
 
 <div id="dp-jobfit" class="dpage">
-  <div class="dph"><div class="dph-kk">AI Tool 01 / 03</div><div class="dph-title">Job Fit Analyzer</div><div class="dph-sub">Paste your job post — get a fit read AND the automation James would build for your team</div></div>
+  <div class="dph"><div class="dph-kk">AI Tool 01 / 05</div><div class="dph-title">Job Fit Analyzer</div><div class="dph-sub">Paste your job post — get a fit read AND the automation James would build for your team</div></div>
   <div class="dc c1"><label class="ai-lbl">Paste Job Description</label><textarea class="ai-ta" id="jfa-jd" placeholder="Paste your job post here — you'll get James's fit, his honest gaps, and the exact automation he'd build for your team…" style="min-height:150px"></textarea><button class="btn bp" style="width:100%;justify-content:center;font-size:10px" id="jfa-btn">⚡ Build my brief for this role</button><div class="ai-out" id="jfa-out"></div></div>
 </div>
 
 <!-- COVER LETTER -->
 <div id="dp-aichat" class="dpage">
-  <div class="dph"><div class="dph-kk">AI Tool 02 / 03</div><div class="dph-title">Live Claude AI Chat</div><div class="dph-sub">Ask anything about James — for HR, recruiters, and collaborators</div></div>
+  <div class="dph"><div class="dph-kk">AI Tool 04 / 05</div><div class="dph-title">Live Claude AI Chat</div><div class="dph-sub">Ask anything about James — for HR, recruiters, and collaborators</div></div>
   <div class="dc c1" style="padding:0">
     <div style="display:flex;flex-wrap:wrap;gap:4px;padding:11px 14px;border-bottom:1px solid var(--line)">
       <button class="btn bg" style="padding:5px 10px;font-size:10px" onclick="sendChat('What makes James a standout AI candidate?')">🌟 Standout Candidate</button>
@@ -2244,10 +2246,45 @@
     <div id="dc-typing" style="padding:4px 13px;font-family:var(--fm);font-size:9px;color:var(--mut);display:none;background:var(--bg2)">// Claude is thinking…</div>
     <div style="display:flex;border-top:1px solid var(--line)"><input id="dc-inp" type="text" placeholder="Ask anything about James — skills, fit, salary, interview questions…" style="flex:1;background:var(--panel);border:none;color:var(--txt);font-family:var(--fd);font-size:12px;padding:11px 14px;outline:none"/><button id="dc-send" style="background:linear-gradient(135deg,var(--cyan),var(--vio));color:#020810;border:none;padding:11px 15px;font-size:10px;cursor:pointer;font-weight:700;letter-spacing:.07em;font-family:var(--fm)">SEND</button></div>
   </div>
+</div>
+
+<div id="dp-interview" class="dpage">
+  <div class="dph"><div class="dph-kk">AI Tool 02 / 05 · 🎤</div><div class="dph-title">Interview Coach</div><div class="dph-sub">Pick or type any interview question — get a STAR-method model answer grounded in James's real experience</div></div>
+  <div class="dc c1">
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">
+      <button class="btn bg" style="padding:6px 11px;font-size:10px" onclick="document.getElementById('iv-inp').value='Tell me about yourself.';document.getElementById('iv-btn').click()">Tell me about yourself</button>
+      <button class="btn bg" style="padding:6px 11px;font-size:10px" onclick="document.getElementById('iv-inp').value='What is your greatest strength?';document.getElementById('iv-btn').click()">Greatest strength</button>
+      <button class="btn bg" style="padding:6px 11px;font-size:10px" onclick="document.getElementById('iv-inp').value='Describe a challenging problem you solved.';document.getElementById('iv-btn').click()">A challenge you solved</button>
+      <button class="btn bg" style="padding:6px 11px;font-size:10px" onclick="document.getElementById('iv-inp').value='Why should we hire you?';document.getElementById('iv-btn').click()">Why hire you</button>
+    </div>
+    <label class="ai-lbl">Interview Question</label>
+    <textarea class="ai-ta" id="iv-inp" placeholder="Type any interview question here…" style="min-height:90px"></textarea>
+    <button class="btn bp" style="width:100%;justify-content:center;font-size:10px" id="iv-btn">🎤 Generate my model answer</button>
+    <div class="ai-out" id="iv-out"></div>
+  </div>
+</div>
+
+<div id="dp-coldemail" class="dpage">
+  <div class="dph"><div class="dph-kk">AI Tool 03 / 05 · 📧</div><div class="dph-title">Cold Email Builder</div><div class="dph-sub">Enter a company and your angle — get a ready-to-send outreach email in seconds</div></div>
+  <div class="dc c1">
+    <label class="ai-lbl">Company / Target</label>
+    <input id="ce-co" placeholder="e.g. Acme Corp" style="width:100%;background:var(--bg);border:1px solid var(--line);color:var(--txt);font-family:var(--fd);font-size:12px;padding:10px 12px;outline:none;border-radius:4px"/>
+    <label class="ai-lbl" style="margin-top:10px;display:block">Recipient (optional)</label>
+    <input id="ce-to" placeholder="e.g. Hiring Manager, Head of Ops" style="width:100%;background:var(--bg);border:1px solid var(--line);color:var(--txt);font-family:var(--fd);font-size:12px;padding:10px 12px;outline:none;border-radius:4px"/>
+    <label class="ai-lbl" style="margin-top:10px;display:block">Your angle</label>
+    <textarea class="ai-ta" id="ce-angle" placeholder="What's the hook? e.g. 'I can automate their support inbox with n8n + Claude'" style="min-height:80px"></textarea>
+    <button class="btn bp" style="width:100%;justify-content:center;font-size:10px;margin-top:10px" id="ce-btn">📧 Write my cold email</button>
+    <div class="ep" id="ce-prev">
+      <div id="ce-subj" style="font-weight:700;color:var(--cyan);font-size:12px;margin-bottom:8px"></div>
+      <div id="ce-body" style="white-space:pre-wrap;font-size:12px;line-height:1.7;color:var(--txt)"></div>
+      <button id="ce-copy" class="btn bg" style="display:none;margin-top:10px;padding:6px 12px;font-size:10px">Copy</button>
+    </div>
+  </div>
+</div>
 
 <div id="dp-autoconsult" class="dpage">
   <div class="dph">
-    <div class="dph-kk">AI Tool 03 / 03 · ⚡</div>
+    <div class="dph-kk">AI Tool 05 / 05 · ⚡</div>
     <div class="dph-title">Automation Consultant</div>
     <div class="dph-sub">Describe any business problem — get a concrete n8n/Zapier/Claude automation blueprint</div>
   </div>
@@ -2267,8 +2304,6 @@
       <div id="ac-result" style="background:var(--bg2);border:1px solid var(--line);padding:16px;font-size:13px;line-height:1.8;color:var(--txt);white-space:pre-wrap;min-height:200px"></div>
     </div>
   </div>
-</div>
-
 </div>
 
 </div></div></div></div><!-- end dashboard -->

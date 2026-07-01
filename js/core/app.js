@@ -226,6 +226,27 @@ document.querySelectorAll('.dsi').forEach(function(s) {
   s.addEventListener('click', function() { showDPage(s.dataset.dp); });
 });
 
+/* ═══ BACK / HOME NAV on every tool panel ═══ */
+(function(){
+  document.querySelectorAll('.dpage').forEach(function(p){
+    if (p.id === 'dp-overview') return;
+    if (p.querySelector('.tool-backnav')) return;
+    var bar = document.createElement('div');
+    bar.className = 'tool-backnav';
+    bar.style.cssText = 'display:flex;gap:8px;margin-bottom:14px';
+    var back = document.createElement('button');
+    back.className = 'btn bg'; back.style.cssText = 'padding:6px 12px;font-size:10px';
+    back.textContent = '\u2190 All Tools';
+    back.addEventListener('click', function(){ showDPage('overview'); });
+    var home = document.createElement('button');
+    home.className = 'btn bg'; home.style.cssText = 'padding:6px 12px;font-size:10px';
+    home.textContent = '\uD83C\uDFE0 Home';
+    home.addEventListener('click', function(){ if(window.switchTab) window.switchTab('portfolio'); window.scrollTo(0,0); });
+    bar.appendChild(back); bar.appendChild(home);
+    p.insertBefore(bar, p.firstChild);
+  });
+})();
+
 /* ═══ HEX CANVAS BACKGROUND ═══ */
 var hexC = document.getElementById('hex');
 var hctx = hexC ? hexC.getContext('2d') : null;
@@ -1221,7 +1242,7 @@ async function runProofDemo() {
       })
     });
     var d = await r.json();
-    var text = d.content && d.content[0] ? d.content[0].text : 'Could not generate blueprint. Check your API key.';
+    var text = d.content && d.content[0] ? d.content[0].text : 'Could not generate blueprint. Please try again in a moment.';
     resultDiv.textContent = text;
     resultDiv.style.color = 'var(--txt)';
   } catch(e) {
