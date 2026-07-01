@@ -63,15 +63,15 @@ async function callClaude(prompt, systemOverride) {
     var d; try { d = await r.json(); } catch(_) { d = {}; }
     if (!r.ok || d.error) {
       var em = (d.error && d.error.message) || ('HTTP ' + r.status);
-      if (r.status === 404 || r.status === 405) return 'Live AI is not set up on this host yet. Deploy to Netlify with the included Claude function and it works for everyone \u2014 no key needed.';
-      if (r.status === 500 && /configured|ANTHROPIC/i.test(em)) return 'Almost there \u2014 add ANTHROPIC_API_KEY in Netlify (Site settings \u2192 Environment variables), then redeploy.';
-      if (r.status === 401 || r.status === 403) return 'Server key rejected. Check the ANTHROPIC_API_KEY value in your Netlify environment variables.';
+      if (r.status === 404 || r.status === 405) return 'Live AI is not set up on this host yet. Deploy to Netlify and add a free GEMINI_API_KEY in your environment variables.';
+      if (r.status === 500 && /configured|ANTHROPIC/i.test(em)) return 'Almost there \u2014 add a free GEMINI_API_KEY in Netlify (Site settings \u2192 Environment variables), then redeploy.';
+      if (r.status === 401 || r.status === 403) return 'Server key rejected. Check your GEMINI_API_KEY value in Netlify environment variables.';
       if (r.status === 429) return 'The AI is busy (rate limit). Please try again in a moment.';
       return 'AI error ' + r.status + ': ' + em;
     }
     return (d.content && d.content[0] && d.content[0].text) ? d.content[0].text : 'AI unavailable. Please try again.';
   } catch(e) {
-    return 'Could not reach the AI service. If you opened the local file, note the live demos only run on your deployed Netlify site (no key needed there).';
+    return 'Could not reach the AI service. If you opened the local file, note the live demos only run on your deployed Netlify site.';
   }
 }
 

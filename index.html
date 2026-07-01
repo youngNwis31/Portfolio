@@ -110,7 +110,7 @@
 </div>
 <button class="cbt" id="cbt" title="Chat with JEM-BOT">🗨️<span class="cbno" id="cbno"></span></button>
 <div class="cwin" id="cwin">
-  <div class="cwh"><div class="cwhl"><div class="cwav">🤖</div><div><div class="cwn">JEM-BOT</div><div class="cws">Claude AI · Online</div></div></div><button class="cwx" id="cwx">✕</button></div>
+  <div class="cwh"><div class="cwhl"><div class="cwav">🤖</div><div><div class="cwn">JEM-BOT</div><div class="cws">Google Gemini · Online</div></div></div><button class="cwx" id="cwx">✕</button></div>
   <div class="cms" id="cms"></div>
   <div class="ctyp" id="ctyp">// Claude is thinking…</div>
   <div class="qbtns">
@@ -789,7 +789,7 @@
     <div style="padding:20px 24px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px">
       <div style="width:40px;height:40px;border-radius:50%;background:rgba(0,240,255,.1);border:1px solid rgba(0,240,255,.3);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">⚡</div>
       <div>
-        <div style="font-size:15px;font-weight:700">Automation Consultant — Powered by Claude AI</div>
+        <div style="font-size:15px;font-weight:700">Automation Consultant — Powered by Google Gemini</div>
         <div style="font-family:var(--fm);font-size:9px;color:var(--mut);margin-top:3px">Live · Describe any manual process · Get a real workflow blueprint</div>
       </div>
       <div style="margin-left:auto;font-family:var(--fm);font-size:8px;padding:4px 10px;background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);color:var(--grn)">● ONLINE</div>
@@ -804,7 +804,7 @@
       <textarea id="proof-input" style="width:100%;padding:12px 14px;background:var(--bg2);border:1px solid var(--line);color:var(--txt);font-family:var(--fd);font-size:13px;resize:vertical;min-height:80px;box-sizing:border-box;outline:none" placeholder="Or type your own: describe a manual process that wastes your team's time..." onfocus="this.style.borderColor='rgba(0,240,255,.4)'" onblur="this.style.borderColor='var(--line)'"></textarea>
       <div style="display:flex;gap:10px;margin-top:10px;align-items:center">
         <button class="btn bp" onclick="runProofDemo()" style="flex-shrink:0">⚡ Get My Automation Blueprint</button>
-        <div style="font-family:var(--fm);font-size:9px;color:var(--mut)">Powered by Claude Sonnet · No setup needed · ~5 seconds</div>
+        <div style="font-family:var(--fm);font-size:9px;color:var(--mut)">Powered by Google Gemini · No setup needed · ~5 seconds</div>
       </div>
       <div id="proof-out" style="display:none;margin-top:16px">
         <div style="font-family:var(--fm);font-size:8px;color:var(--cyan);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">// Blueprint from James's AI</div>
@@ -2068,17 +2068,17 @@
 <section class="sec" id="ask-ai" style="background:linear-gradient(180deg,var(--bg2),var(--bg));padding:64px 0"><div class="wrap">
   <div class="kk rv">07 · Ask My AI</div>
   <h2 class="stitle rv">Ask James's AI</h2>
-  <p class="rv" style="color:var(--mut);font-size:14px;font-weight:300;max-width:540px;line-height:1.85;margin-bottom:32px">This chat is powered by Anthropic Claude with James's full profile as context. Ask anything — skills, availability, salary, fit for a role. It answers as if James is right there.</p>
+  <p class="rv" style="color:var(--mut);font-size:14px;font-weight:300;max-width:540px;line-height:1.85;margin-bottom:32px">This chat is powered by Google Gemini with James's full profile as context. Ask anything — skills, availability, salary, fit for a role. It answers as if James is right there.</p>
   <div class="rv" style="max-width:720px;background:var(--panel);border:1px solid var(--lc);box-shadow:0 0 44px rgba(0,240,255,.07);overflow:hidden">
     <div style="display:flex;align-items:center;justify-content:space-between;padding:13px 16px;border-bottom:1px solid var(--line);background:rgba(0,240,255,.03)">
       <div style="display:flex;align-items:center;gap:10px">
         <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,rgba(0,240,255,.14),rgba(155,77,255,.14));border:1px solid var(--lc);display:flex;align-items:center;justify-content:center;font-size:15px">🤖</div>
         <div>
           <div style="font-size:13px;font-weight:700;letter-spacing:.02em">James's AI Assistant</div>
-          <div style="font-family:var(--fm);font-size:8px;letter-spacing:.09em;color:var(--grn);display:flex;align-items:center;gap:4px"><span style="width:5px;height:5px;border-radius:50%;background:var(--grn);display:inline-block;animation:pip 1.4s infinite"></span>Claude AI · Online</div>
+          <div style="font-family:var(--fm);font-size:8px;letter-spacing:.09em;color:var(--grn);display:flex;align-items:center;gap:4px"><span style="width:5px;height:5px;border-radius:50%;background:var(--grn);display:inline-block;animation:pip 1.4s infinite"></span>Google Gemini · Online</div>
         </div>
       </div>
-      <div style="font-family:var(--fm);font-size:9px;color:var(--mut);letter-spacing:.08em">Powered by claude-sonnet-4</div>
+      <div style="font-family:var(--fm);font-size:9px;color:var(--mut);letter-spacing:.08em">Powered by Google Gemini</div>
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:5px;padding:10px 14px;border-bottom:1px solid var(--line);background:var(--bg2)">
       <button onclick="portfolioChat('Is James available for work right now?')" style="font-family:var(--fm);font-size:8px;letter-spacing:.07em;color:var(--cyan);background:rgba(0,240,255,.05);border:1px solid rgba(0,240,255,.2);padding:5px 10px;cursor:pointer;text-transform:uppercase;transition:.2s" onmouseover="this.style.background='rgba(0,240,255,.12)'" onmouseout="this.style.background='rgba(0,240,255,.05)'">Available now?</button>
@@ -2106,7 +2106,7 @@
         <span>▶</span> // How this works — engineering notes
       </summary>
       <div style="padding:14px 16px;border-top:1px solid var(--line);background:var(--bg2)">
-        <p style="font-family:var(--fm);font-size:10px;color:var(--mut);line-height:1.9;margin-bottom:10px">This chat calls the <strong style="color:var(--txt)">Anthropic Claude Sonnet API</strong> directly from the browser using the <code style="background:rgba(0,240,255,.08);color:var(--cyan);padding:1px 5px;font-size:9px">anthropic-dangerous-direct-browser-access</code> header.</p>
+        <p style="font-family:var(--fm);font-size:10px;color:var(--mut);line-height:1.9;margin-bottom:10px">This chat calls the <strong style="color:var(--txt)">Google Gemini API</strong> through a <code style="background:rgba(0,240,255,.08);color:var(--cyan);padding:1px 5px;font-size:9px">Netlify serverless function</code>, so the API key stays secure on the server and is never exposed to the browser.</p>
         <p style="font-family:var(--fm);font-size:10px;color:var(--mut);line-height:1.9;margin-bottom:10px">James's <strong style="color:var(--txt)">full profile — roles, skills, projects, salary target, availability</strong> — is injected as the system prompt, so every answer is grounded in his real background rather than generic AI responses.</p>
         <p style="font-family:var(--fm);font-size:10px;color:var(--mut);line-height:1.9;margin-bottom:10px">System prompt excerpt: <code style="background:rgba(0,240,255,.08);color:var(--cyan);padding:1px 5px;font-size:9px">"You are an AI assistant for James Earl Medrano's portfolio. Answer based on his real background: AI Analyst II (LLM) at Innodata, IT Support at Alorica, Jr. Technical Support at BESPOKE IT…"</code></p>
         <p style="font-family:var(--fm);font-size:10px;color:rgba(247,200,67,.7);line-height:1.9">⚠ <strong style="color:var(--gold)">Note for technical reviewers:</strong> The API key is currently exposed client-side — this is intentional for a portfolio demo but would be moved to a serverless function (e.g. Netlify Functions) in a production deployment.</p>
@@ -2176,14 +2176,14 @@
 
 <!-- OVERVIEW -->
 <div id="dp-overview" class="dpage act">
-  <div class="dph"><div class="dph-kk">AI Tools I Built</div><div class="dph-title">Live Claude-Powered Demos</div><div class="dph-sub">4 working tools · Built with Anthropic Claude API · Try them now</div></div>
+  <div class="dph"><div class="dph-kk">AI Tools I Built</div><div class="dph-title">Live AI-Powered Demos</div><div class="dph-sub">4 working tools · Built with Google Gemini API · Try them now</div></div>
   <div class="dg2" style="margin-bottom:16px">
     <div class="dc c1">
       <div class="dc-title">What This Shows HR</div><div class="dc-sub">Why this section exists</div>
       <p style="font-size:12px;color:var(--mut);line-height:1.75;font-weight:300;margin-bottom:12px">This section demonstrates that James can <strong style="color:var(--txt)">actually build AI-powered products</strong> — not just talk about AI. Each tool below calls the Claude API in real-time and returns useful output in seconds. Try one.</p>
       <div style="display:flex;flex-direction:column;gap:6px">
         <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:var(--mut)"><span style="color:var(--grn);font-size:11px;font-weight:700">✓</span> <span>Built with vanilla HTML, CSS, JS — no frameworks</span></div>
-        <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:var(--mut)"><span style="color:var(--grn);font-size:11px;font-weight:700">✓</span> <span>Anthropic Claude Sonnet API — live, real responses</span></div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:var(--mut)"><span style="color:var(--grn);font-size:11px;font-weight:700">✓</span> <span>Google Gemini API — live, real responses</span></div>
         <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:var(--mut)"><span style="color:var(--grn);font-size:11px;font-weight:700">✓</span> <span>James's full profile injected as context — personalized output</span></div>
         <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:var(--mut)"><span style="color:var(--grn);font-size:11px;font-weight:700">✓</span> <span>Zero dependencies, deploys instantly on any static host</span></div>
       </div>
@@ -2230,7 +2230,7 @@
 
 <!-- COVER LETTER -->
 <div id="dp-aichat" class="dpage">
-  <div class="dph"><div class="dph-kk">AI Tool 04 / 05</div><div class="dph-title">Live Claude AI Chat</div><div class="dph-sub">Ask anything about James — for HR, recruiters, and collaborators</div></div>
+  <div class="dph"><div class="dph-kk">AI Tool 04 / 05</div><div class="dph-title">Live AI Chat</div><div class="dph-sub">Ask anything about James — for HR, recruiters, and collaborators</div></div>
   <div class="dc c1" style="padding:0">
     <div style="display:flex;flex-wrap:wrap;gap:4px;padding:11px 14px;border-bottom:1px solid var(--line)">
       <button class="btn bg" style="padding:5px 10px;font-size:10px" onclick="sendChat('What makes James a standout AI candidate?')">🌟 Standout Candidate</button>
